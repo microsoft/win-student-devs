@@ -1,0 +1,1 @@
+## This folder contains content and samples for blog series 30 Days of PWA
