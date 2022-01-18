@@ -42,10 +42,18 @@ _We kick things off in week 1 with 7 days of content covering Progressive Web Ap
 * Why are they important for PWAs? 
 * Review the Service Worker Lifecycle. 
 * Review Caching Strategies.
-* Explore: 
-* Related: 
+* Explore: [Workbox Repo](https://github.com/googlechrome/workbox)
+* Related: [Week 3: Developer Tools](../dev-tools)
 
-### Day 7 | &nbsp; [Quickstart ](07.md) 
+### Day 7 | &nbsp; [Web Capabilities](07.md) 
+* What are Web Capabilities? 
+* What is Project Fugu? 
+* Where are the main opportunities and challenges for usage?
+* What is the current readiness status for adoption? 
+* Explore: [Fugu API Tracker](https://fugu-tracker.web.app/)
+* Related: [Week 2: Advanced Capabilities](../advanced-capabilities)
+
+### Day 8 | &nbsp; [Quickstart ](08.md) 
 * Let's get started with building our first PWA. 
 * Learn to build, debug, deploy and audit it. 
 * Review PWA support in popular frameworks.
