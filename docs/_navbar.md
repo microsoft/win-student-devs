@@ -1,4 +1,5 @@
 <!-- _navbar.md -->
 
 * [PWA Builder](https://pwabuilder.com)
-* [MSEdge Docs](https://aka.ms/pwa)
+* [MS Edge](https://docs.microsoft.com/en-us/microsoft-edge/)
+* [Playwright](https://playwright.dev)
