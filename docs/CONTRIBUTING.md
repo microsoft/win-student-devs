@@ -1,6 +1,6 @@
 # Win-Student-Devs
 
-This repo aims to help student and early-in-career developers to build awesome apps that run on Windows.
+[This repo](https://github.com/microsoft/win-student-devs) aims to help student and early-in-career developers to build awesome apps that run on Windows.
 
 ## Contributing
 

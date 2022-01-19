@@ -1,5 +1,4 @@
 <!-- _navbar.md -->
 
 * [PWA Builder](https://pwabuilder.com)
-* [MS Edge](https://docs.microsoft.com/en-us/microsoft-edge/)
-* [Playwright](https://playwright.dev)
+* [Microsoft Edge](https://docs.microsoft.com/en-us/microsoft-edge/progressive-web-apps-chromium/)
