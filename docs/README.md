@@ -2,7 +2,7 @@
 
 [This repo](https://github.com/microsoft/win-student-devs) aims to help student and early-in-career developers to build awesome apps that run on Windows. Explore some of our ongoing project pages here:
 
- * [#30DaysOfPWA](30DaysofPWA)
+ * [#30DaysOfPWA](/30DaysOfPWA/)
 
 
 ---
