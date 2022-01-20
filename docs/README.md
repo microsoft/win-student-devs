@@ -1,48 +1,30 @@
-# Welcome To #30DaysOfPWA
+# Welcome!
 
-## What is this project?
+[This repo](https://github.com/microsoft/win-student-devs) aims to help student and early-in-career developers to build awesome apps that run on Windows. Explore some of our ongoing project pages here:
 
-Join us for #30Days of strucutured content and resources to help you explore the fascinating world of Progressive Web Apps (PWA). 
- * `Core Concepts`: Learn the fundamental concepts and components of a PWA.
- * `Advanced Capabilities`: Explore web capabilities APIs and their support cross-browser.
- * `Developer Tools`: Learn about key authoring, auditing, and debugging, tools for PWA.
- * `Platforms & Practices`: Learn good practices and platform-specific support for PWA.
+ * [#30DaysOfPWA](30DaysofPWA)
+
 
 ---
 
-## How is this structured?
+## Contributing
 
-The series launches off with a [kickoff](kickoff) post, followed by 4 weeks pf structured content, each focused one one of the above top-level topics. The series concludes with a [summary](/summary) post that reviews the materials and provides additional resources to continue your learning journey!
+This project welcomes contributions and suggestions.  Most contributions require you to agree to a
+Contributor License Agreement (CLA) declaring that you have the right to, and actually do, grant us
+the rights to use your contribution. For details, visit https://cla.opensource.microsoft.com.
 
----
+When you submit a pull request, a CLA bot will automatically determine whether you need to provide
+a CLA and decorate the PR appropriately (e.g., status check, comment). Simply follow the instructions
+provided by the bot. You will only need to do this once across all repos using our CLA.
 
-## Who are the contributors?
+This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/).
+For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or
+contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
 
-This is a multi-team effort from Microsoft Edge, Windows and Developer Relations teams. We also hope to encourage and solicit contributions from the broader community over time. Here are some of the people currently involved - in alphabetical order:
+## Trademarks
 
- * Aaron Gustafson | ([@aarongustafson](https://twitter.com/AaronGustafson)) - _Microsoft Edge Dev_
- * Beth Pan | [@beth_panx](https://twitter.com/beth_panx) - _Microsoft Windows_
- * Justin Willis | [@JustinWillis96](https://twitter.com/Justinwillis96) - _PWA Builder_
- * Nitya Narasimhan | [@nitya](https://twitter.com/nitya) - _Microsoft Cloud Advocacy / DevRel_
- * Patrick Brosset | ([@patrickbrosset](https://twitter.com/patrickbrosset)) - _Microsoft Edge Dev_
-
- ---
-
- ## How can I contribute?
-
- Read our [Contributing](CONTRIBUTING.md) guide for general guidance - and stay tuned for updates requesting specific content or feedback contribution opportunities. For now, here are a few actions you can take:
-
-  * Watch this repo (give us a 🌟 if you like this content!)
-  * Follow [@pwabuilder](https://twitter.com/pwabuilder) and the [#30DaysOfPWA](https://twitter.com/search?q=%2330DaysOfPWA&src=typed_query) topic for updates
-  * Follow [@Azure](https://dev.to/azure) on dev.to for updates on series launch and posts!
- 
----
-
-## How can I provide feedback?
-
- * Found a bug or typo? [File an issue](https://github.com/microsoft/win-student-devs/issues/new).
- * Have feedback on content or code? `Stay Tuned` for a feedback form.
- * Want to share this content? `Tag your tweet with #30DaysOfPWA`
- * Want to discuss a specific post? `Leave a comment on the related dev.to post!`
-
----
+This project may contain trademarks or logos for projects, products, or services. Authorized use of Microsoft 
+trademarks or logos is subject to and must follow 
+[Microsoft's Trademark & Brand Guidelines](https://www.microsoft.com/en-us/legal/intellectualproperty/trademarks/usage/general).
+Use of Microsoft trademarks or logos in modified versions of this project must not cause confusion or imply Microsoft sponsorship.
+Any use of third-party trademarks or logos are subject to those third-party's policies.
