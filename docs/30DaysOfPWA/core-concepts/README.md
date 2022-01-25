@@ -1,61 +1,71 @@
-# PWA: Core Concepts
+# 2. Core Concepts
 
-> 🚨 Working Draft: Topics and sub-topics are under review and subject to change. 🚨 
+![Visual Guide to Core Concepts Week!](_media/week-1.png)
 
-_We kick things off in week 1 with 7 days of content covering Progressive Web Apps Fundamentals!_
 
-### Day 2 | &nbsp; [Introduction to PWA](02.md) 
+> 🚨 Working Draft 🚨  <br/> Topics and sub-topics are under review and subject to change. Here's what we'll cover in Week 1.
+
+### WHAT WE'LL COVER IN WEEK 1
+
+
+### 2.1 | &nbsp; [Introduction to PWA](02.md) 
 
 * What is a Progressive Web App? 
-* Why are the benefits and challenges? 
-* What are examples of real-world PWAs? 
+* Why are the benefits and challenges of PWA?
+* What are the characteristics of PWA?
+* What are real-world examples of PWA adoption?
 * Explore: [PWA Stats](https://www.pwastats.com/) 
 * Related: [Week 4: Platforms And Practices](../platforms-practices)
 
 
-### Day 3 | &nbsp; [Building Blocks](03.md) 
+### 2.2 | &nbsp; [Building Blocks](03.md) 
 
-* What are the core components of a Progressive Web App? 
-* What are the minimal requirements we should support? 
-* Explore: 
-* Related: 
+* What are the core components of a PWA?
+* What are the minimal requirements for a good PWA?
+* What are good practices for PWA development?
+* How can I validate my PWA for compliance?
+* Explore: [PWA Checklist](https://web.dev/pwa-checklist/)
+* Related: [Week 3: Developer Tools](../dev-tools)
 
-### Day 4 | &nbsp; [HTTPS](04.md) 
+### 2.3 | &nbsp; [HTTPS](04.md) 
 
 * What is HTTPS? 
 * How does it work? 
 * Why is it necessary for Progressive Web Apps? 
 * How can I integrate HTTPS support into my PWA?
-* Explore: 
-* Related: 
+* Explore: [Let's Encrypt](https://letsencrypt.org/getting-started/)
+* Related: [Week 4: Platforms And Practices](../platforms-practices)
 
-### Day 5 | &nbsp; [Web App Manifest](05.md) 
-* What is a Web App Manifest? 
-* How does it work? Why is it necessary for PWAs? 
-* What is a minimal App Manifest? 
-* How can I validate it?
-* Explore: 
-* Related: 
-
-### Day 6 | &nbsp; [Service Workers](06.md) 
+### 2.4 | &nbsp; [Service Workers](06.md) 
 * What are service workers? 
-* Why are they important for PWAs? 
-* Review the Service Worker Lifecycle. 
-* Review Caching Strategies.
-* Explore: [Workbox Repo](https://github.com/googlechrome/workbox)
-* Related: [Week 3: Developer Tools](../dev-tools)
+* Why are do PWAs need them? 
+* How do I implement service workers in my PWA?
+* Review: Service Worker Lifecycle. 
+* Review: Caching Strategies.
+* Explore: [Service Workers: Primer](https://developers.google.com/web/fundamentals/primers/service-workers)
+* Related: [Week 3: Developer Tools](../dev-tools) | Workbox
 
-### Day 7 | &nbsp; [Web Capabilities](07.md) 
+### 2.5 | &nbsp; [Web App Manifest](05.md) 
+* What is a Web App Manifest? 
+* How does it help PWAs? 
+* What does a minimal App Manifest need? 
+* How can I create and validate it?
+* Explore: [Web App Manifest: Keys](https://developer.mozilla.org/en-US/docs/Web/Manifest#members)
+* Related: [Week 3: Developer Tools](../dev-tools) | PWABuilder
+
+### 2.6 | &nbsp; [Web Capabilities](07.md) 
 * What are Web Capabilities? 
 * What is Project Fugu? 
-* Where are the main opportunities and challenges for usage?
-* What is the current readiness status for adoption? 
+* How ready are they for real-world adoption?
+* How do I get started using web capabilities?
 * Explore: [Fugu API Tracker](https://fugu-tracker.web.app/)
 * Related: [Week 2: Advanced Capabilities](../advanced-capabilities)
 
-### Day 8 | &nbsp; [Quickstart ](08.md) 
-* Let's get started with building our first PWA. 
-* Learn to build, debug, deploy and audit it. 
-* Review PWA support in popular frameworks.
-* Explore: 
-* Related: 
+### 2.7 | &nbsp; [Quickstart ](08.md) 
+* `Scaffold`: a basic vanillaJS PWA.
+* `Enhance`: add manifest, service workers. 
+* `Build`: deploy and validate PWA operation. 
+* `Audit`: evaluate PWA for compliance, optimizations.
+* `Celebrate`: you built your first PWA!!
+* Explore: [HNPWA: OSS Examples](https://hnpwa.com/) | Archived 
+* Related: [Week 4: Platforms And Practices](../platforms-practices) | For Windows 
