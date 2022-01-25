@@ -3,8 +3,6 @@
 ![Visual Guide to Core Concepts Week!](_media/week-1.png)
 
 
-> 🚨 Working Draft 🚨  <br/> Topics and sub-topics are under review and subject to change. Here's what we'll cover in Week 1.
-
 ### WHAT WE'LL COVER IN WEEK 1
 
 
