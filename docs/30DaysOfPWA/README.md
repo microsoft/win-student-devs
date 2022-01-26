@@ -25,6 +25,7 @@ This is a multi-team effort from Microsoft Edge, Windows and Developer Relations
  * Justin Willis | [@JustinWillis96](https://twitter.com/Justinwillis96) - _PWA Builder_
  * Nitya Narasimhan | [@nitya](https://twitter.com/nitya) - _Microsoft Cloud Advocacy / DevRel_
  * Patrick Brosset | ([@patrickbrosset](https://twitter.com/patrickbrosset)) - _Microsoft Edge Dev_
+ * Maxim Salnikov | ([@webmaxru](https://twitter.com/webmaxru)) - _Microsoft Norway Developer Relations_
 
  ---
 
