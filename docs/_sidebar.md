@@ -1,5 +1,5 @@
 ---
-- [`Hello, #30DaysofPWA!`](30DaysOfPWA/)
+- [`Hello, #30DaysofPWA!`](/30DaysOfPWA/)
 ---
 - [**0. Kickoff**](/30DaysOfPWA/kickoff)
 - [**1. Core Concepts**](/30DaysOfPWA/core-concepts/)
