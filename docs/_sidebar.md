@@ -1,7 +1,7 @@
 ---
-- [`Hello, #30DaysofPWA!`](30DaysOfPWA/)
+- [`Hello, #30DaysofPWA!`](/30DaysOfPWA/)
 ---
-- [**1. Kickoff**](30DaysOfPWA/kickoff)
+- [**1. Kickoff**](/30DaysOfPWA/kickoff)
 - [**2. Core Concepts**](/30DaysOfPWA/core-concepts/)
     - [2.1 Introduction to PWA ](/30DaysOfPWA/core-concepts/02.md)
     - [2.2 Building Blocks](/30DaysOfPWA/core-concepts/03.md)
