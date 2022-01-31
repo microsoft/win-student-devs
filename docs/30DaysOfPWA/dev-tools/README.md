@@ -4,15 +4,15 @@
 
 _This is week 3 with 7 days of content covering developer tools for Progressive Web Apps!_
 
-## Day 1 | &nbsp; [Get started tools](16.md)
+## 3.1 | &nbsp; [Get started tools](16.md)
 
 * TODO
 
-## Day 2 | &nbsp; [Authoring tools](17.md)
+## 3.2 | &nbsp; [Authoring tools](17.md)
 
 * TODO
 
-## Day 3 | &nbsp; [Debugging tools 1](18.md)
+## 3.3 | &nbsp; [Debugging tools 1](18.md)
 
 * How do I make it look good on mobile?
   * Device simulation tool
@@ -28,21 +28,21 @@ _This is week 3 with 7 days of content covering developer tools for Progressive 
   * Also test low bandwidth from network panel
   * Debug SW code
 
-## Day 4 | &nbsp; [Debugging tools 2](19.md)
+## 3.4 | &nbsp; [Debugging tools 2](19.md)
 
 * How do I debug advanced features?
   * Check API permissions
   * Simulate push
   * Check background sync/periodic sync/background fetch events
 
-## Day 5 | &nbsp; [Auditing tools](20.md)
+## 3.5 | &nbsp; [Auditing tools](20.md)
 
 * TODO
 
-## Day 6 | &nbsp; [Test automation tools](21.md)
+## 3.6 | &nbsp; [Test automation tools](21.md)
 
 * TODO
 
-## Day 7 | &nbsp; [Packaging tools](22.md)
+## 3.7 | &nbsp; [Packaging tools](22.md)
 
 * TODO

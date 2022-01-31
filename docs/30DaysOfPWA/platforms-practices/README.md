@@ -4,17 +4,17 @@
 ### WHAT WE'LL COVER IN WEEK 4
 
 
-### Day 23 | &nbsp; [Installability for PWAs](23.md) 
+### 4.1 | &nbsp; [Installability for PWAs](01.md) 
 
-### Day 24 | &nbsp; [Best Practices for PWA Engagement](24.md) 
+### 4.2 | &nbsp; [Best Practices for PWA Engagement](02.md) 
 
-### Day 25 | &nbsp; [Distributing Your PWA](25.md) 
+### 4.3 | &nbsp; [Distributing Your PWA](03.md) 
 
-### Day 26 | &nbsp; [Best Practices for PWA Reliability](26.md) 
+### 4.4 | &nbsp; [Best Practices for PWA Reliability](04.md) 
 
-### Day 27 | &nbsp; [PWAs and Maintainability](27.md)
+### 4.5 | &nbsp; [PWAs and Maintainability](05.md)
 
-### Day 28 | &nbsp; [PWA Maintainability Part 2: Web Components](28.md) 
+### 4.6 | &nbsp; [PWA Maintainability Part 2: Web Components](06.md) 
 
-### Day 29 | &nbsp; [Best Practices for PWA UI/UX](29.md) 
+### 4.7 | &nbsp; [Best Practices for PWA UI/UX](07.md) 
 
