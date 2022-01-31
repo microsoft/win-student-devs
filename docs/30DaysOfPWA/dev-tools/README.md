@@ -1,48 +1,47 @@
-# PWA: Developer Tools
+# Week 3. PWA Developer Tools
 
-> 🚨 Working Draft: Topics and sub-topics are under review and subject to change. 🚨 
+## WHAT WE'LL COVER IN WEEK 3
 
-_This is week 3 with 7 days of content covering developer tools for Progressive Web Apps!_
+### 3.1 | &nbsp; [Get started tools](01.md)
 
-## 3.1 | &nbsp; [Get started tools](16.md)
+* PWA starter
+* PWA Builder
 
-* TODO
+### 3.2 | &nbsp; [Authoring tools](02.md)
 
-## 3.2 | &nbsp; [Authoring tools](17.md)
+* PWA VS Code extensions
+* Boilerplate project starter
+* Workbox
 
-* TODO
+### 3.3 | &nbsp; [Debugging tools 1](03.md)
 
-## 3.3 | &nbsp; [Debugging tools 1](18.md)
+* Why browser DevTools are useful?
+* Testing on other devices
+* Making sure the app is installable
+* Reloading manifest changes
+* Checking if your service worker is running
+* Troubleshooting cache issues
+* Testing offline support
 
-* How do I make it look good on mobile?
-  * Device simulation tool
-* Why is it not installable?
-  * Check the manifest panel for warnings
-  * How to uninstall/refresh/re-install after a manifest change
-* Why is it not loading the latest resources?
-  * Read/delete cache
-  * Empty cache + reload trick
-  * Force SW update
-* Does it work offline?
-  * Offline mode in SW panel
-  * Also test low bandwidth from network panel
-  * Debug SW code
+### 3.4 | &nbsp; [Debugging tools 2](04.md)
 
-## 3.4 | &nbsp; [Debugging tools 2](19.md)
+* Simulating Push
+* Debugging background sync and fetch
+* ...
 
-* How do I debug advanced features?
-  * Check API permissions
-  * Simulate push
-  * Check background sync/periodic sync/background fetch events
+### 3.5 | &nbsp; [Auditing tools](05.md)
 
-## 3.5 | &nbsp; [Auditing tools](20.md)
+* PWA builder and VS Code extension
+* Lighthouse
+* WebHint
+* Accessibility Insights
 
-* TODO
+### 3.6 | &nbsp; [Test automation tools](06.md)
 
-## 3.6 | &nbsp; [Test automation tools](21.md)
+* Playwright
+* GitHub actions
+* WebDriver/EdgeDriver 
 
-* TODO
+### 3.7 | &nbsp; [Packaging tools](07.md)
 
-## 3.7 | &nbsp; [Packaging tools](22.md)
-
-* TODO
+* PWA builder
