@@ -17,8 +17,8 @@
 
 ### 2.2 | &nbsp; [Creating application shortcuts](10.md) 
 
-* How to create application shortcuts
-* How they look on various platforms
+* What is a Shortcut?
+* Defining Shortcuts
 * Explore: [Define app shortcuts](https://docs.microsoft.com/en-us/microsoft-edge/progressive-web-apps-chromium/how-to/shortcuts)
 * Related: [Week 3: Developer Tools](../dev-tools)
 
