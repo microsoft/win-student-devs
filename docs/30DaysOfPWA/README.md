@@ -26,7 +26,7 @@ This is a multi-team effort from Microsoft Edge, Windows and Developer Relations
  * Maxim Salnikov | ([@webmaxru](https://twitter.com/webmaxru)) - _Microsoft Norway Developer Relations_
  * Nitya Narasimhan | [@nitya](https://twitter.com/nitya) - _Microsoft Cloud Advocacy / DevRel_
  * Patrick Brosset | ([@patrickbrosset](https://twitter.com/patrickbrosset)) - _Microsoft Edge Dev_
- * Zachary Teutsch | ([@devteutsch])(https://twitter.com/devteutsch)) _Microsoft Windows_
+ * Zachary Teutsch | ([@devteutsch](https://twitter.com/devteutsch)) _Microsoft Windows_
 
  ---
 
