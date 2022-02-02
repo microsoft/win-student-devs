@@ -31,12 +31,12 @@
 
 ### 2.4 | &nbsp; [Displaying content more like an app](04.md) 
 * Display modes
-* WIndows Controls Overlay API
+* Window Controls Overlay API
 * Explore: [Display content in the title bar](https://docs.microsoft.com/en-us/microsoft-edge/progressive-web-apps-chromium/how-to/window-controls-overlay)
 * Related: [Week 1: Core Concepts](../core-concepts)
 
 ### 2.5 | &nbsp; [Caching your app’s data](05.md) 
-* Multiple caches
+* Managing multiple caches
 * Pruning stale data
 * Choosing the right strategy
 * Using IndexedDB
