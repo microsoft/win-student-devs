@@ -1,5 +1,7 @@
 # Hello, #30DaysOfPWA!
 
+![30DaysOfPWA](_media/branding.jpg)
+
 ## What is this project?
 
 Join us for #30Days of strucutured content and resources to help you explore the fascinating world of Progressive Web Apps (PWA). 
