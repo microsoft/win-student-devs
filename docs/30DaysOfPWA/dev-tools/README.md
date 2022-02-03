@@ -1,5 +1,7 @@
 # Week 3. PWA Developer Tools
 
+![Visual Guide to Core Concepts Week!](_media/week3-banner.jpg)
+
 ## WHAT WE'LL COVER IN WEEK 3
 
 ### 3.1 | &nbsp; [Get started tools](01.md)

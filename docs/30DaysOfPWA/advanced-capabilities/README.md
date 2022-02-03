@@ -1,7 +1,6 @@
 # 2. Advanced capabilities
 
-![Visual Guide to Core Concepts Week!](_media/day-01.png)
-
+![Visual Guide to Core Concepts Week!](_media/week2-banner.jpg)
 
 ### WHAT WE'LL COVER IN WEEK 2
 

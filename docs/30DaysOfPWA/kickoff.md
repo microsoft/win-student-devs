@@ -1,19 +1,74 @@
 # Kickoff
 
+---
+*⚠️ Please note that this article is work in progress and subject to change. The official release date of this article is 2/10.*
+
+---
+
 Welcome to our new learning series focused on the fascinating world of Progressive Web Apps (PWA)!
+
+Starting February 14th, 2022, for 30 days, we will publish articles that aim to introduce developers to Progressive Web App. We will have content that covers 0-level to 200-level topics. Each post should take you 5-10 minutes to read and is followed by a sample snippet or exercise. You will need some basic web development knowledge to follow along. We hope that beginners will quickly pick up the content and that experts will also learn a few new things. 
 
 ## The Roadmap
 
-The series provides #30DaysOfPWA content structured into 4 top-level topics:
+The series of #30DaysOfPWA is structured into 4 top-level topics:
 * `Core Concepts`: Learn the fundamental concepts and components of a PWA.
-* `Advanced Capabilities`: Explore web capabilities APIs, status and examples of use.
-* `Developer Tools`: Learn about key authoring, auditing, and debugging, tools for PWA.
+* `Advanced Capabilities`: Explore web capabilities APIs, status, and examples of use.
+* `Developer Tools`: Learn about key authoring, debugging, auditing, testing and packaging tools for PWA.
 * `Platforms & Practices`: Learn good practices and platform-specific support for PWA.
 
+## The Schedule
 
-## The Contributors
+Please be sure to bookmark this page or the homepage of this project (https://aka.ms/learn-pwa/30Days-blog) as the below list of topics will be updated as each blog post is published. 
 
-This is a multi-team effort from folks across the Microsoft Edge, Windows and Developer Relations teams. We also welcome contributions from the broader community - learn [how you can contribute](#we-need-your-help) to helping us make this a better resource for the community.
+> **Kickoff** – Announcing "30 Days of PWA" Blog Series (this post)
+
+> **Week 1 (2/14-2/21)** `Core Concepts`
+
+* Week 1 Day 1 - [Introduction to Progressive Web Apps](core-concepts/01.md)
+* Week 1 Day 2 - [Building Blocks: Core Components of PWAs](core-concepts/02.md)
+* Week 1 Day 3 - [HTTPS: Make PWAs Secure](core-concepts/03.md)
+* Week 1 Day 4 - [Service Workers: Make PWAs Reliable, Work Offline](core-concepts/04.md)
+* Week 1 Day 5 - [Web App Manifest: Make PWAs Installable](core-concepts/05.md)
+* Week 1 Day 6 - [Web Capabilities: Drive Rich Platform Experiences](core-concepts/06.md)
+* Week 1 Day 7 - [QuickStart: Build and Audit Your First PWA](core-concepts/07.md)
+
+> **Week 2 (2/21-2/28)**`Advanced Capabilities`
+
+* Week 2 Day 1 - [Introducing the Advanced Capabilities of Progressive Web Apps](advanced-capabilities/01.md)
+* Week 2 Day 2 - [Creating Application Shortcuts](advanced-capabilities/02.md)
+* Week 2 Day 3 - [Sharing Content from and with Your App](advanced-capabilities/03.md)
+* Week 2 Day 4 - [Display Content in the Title Bar](advanced-capabilities/04.md)
+* Week 2 Day 5 - [Caching Your App's Data](advanced-capabilities/05.md)
+* Week 2 Day 6 - [Synchronizing App Data in the Background](advanced-capabilities/06.md)
+* Week 2 Day 7 - [Notifying Your Users of Updates](advanced-capabilities/07.md)
+
+> **Week 3 (3/1-3/7)**`Developer Tools`
+
+* Week 3 Day 1 - [Getting Started Tools](dev-tools/01.md)
+* Week 3 Day 2 - [Authoring Tools](dev-tools/02.md)
+* Week 3 Day 3 - [Debugging Tools (Part 1)](dev-tools/03.md)
+* Week 3 Day 4 - [Debugging Tools (Part 2)](dev-tools/04.md)
+* Week 3 Day 5 - [Auditing Tools](dev-tools/05.md)
+* Week 3 Day 6 - [Test Automation Tools](dev-tools/06.md)
+* Week 3 Day 7 - [Packaging Tools](dev-tools/07.md)
+
+> **Week 4 (3/8-3/14)**`Platforms & Practices`
+
+* Week 4 Day 1 - [Installability for PWAs](platforms-practices/01.md)
+* Week 4 Day 2 - [Best Practices for PWA Engagement](platforms-practices/02.md)
+* Week 4 Day 3 - [Distributing Your PWA](platforms-practices/03.md)
+* Week 4 Day 4 - [Best Practices for PWA Reliability](platforms-practices/04.md)
+* Week 4 Day 5 - [PWAs and Maintainability](platforms-practices/05.md)
+* Week 4 Day 6 - [PWA Maitainability Part 2: Web Component](platforms-practices/06.md)
+* Week 4 Day 7 - [Best Practices for PWA UI/UX](platforms-practices/07.md)
+
+> **Summary** - We conclude with a [wrap-up](summary.md) post summarizing learnings from this journey, and outlining resources and next steps you can take from here.
+
+
+## Brought to you by:
+
+This is a multi-team effort from folks across the Microsoft Edge, Windows, and Developer Relations teams. We welcome contributions from the broader community - learn [how you can contribute](#we-need-your-help) to help us make this a better resource for the community.
 
  Here are the current contributors, in alphabetical order:
 
@@ -23,21 +78,7 @@ This is a multi-team effort from folks across the Microsoft Edge, Windows and De
  * Maxim Salnikov | ([@webmaxru](https://twitter.com/webmaxru)) - _Microsoft Norway Developer Relations_
  * Nitya Narasimhan | [@nitya](https://twitter.com/nitya) - _Microsoft Cloud Advocacy / DevRel_
  * Patrick Brosset | ([@patrickbrosset](https://twitter.com/patrickbrosset)) - _Microsoft Edge Dev_
-
-
-## The Schedule
-
-> **Week 0: Kickoff |** We kick off the series today, with 4 themed weeks of content to follow with _at least one_ new post published each day. Complex topics may be split into multiple posts published concurrently - or spread out over many days - as needed. 
-
-> **Week 1: Core Concepts**
-
-> **Week 2: Advanced Capabilities**
-
-> **Week 3: Developer Tools**
-
-> **Week 4: Platforms and Practices**
-
-> **Week 5: SUMMARY |** We conclude with a [wrap-up](/summary) post summarizing learnings from this journey, and outlining resources and next steps you can take from here.
+ * Zachary Teutsch | ([@devteutsch](https://twitter.com/devteutsch)) - _Microsoft Windows_
 
 ---
 

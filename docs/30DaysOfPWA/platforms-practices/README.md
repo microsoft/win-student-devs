@@ -1,5 +1,7 @@
 # Week 4: Platform and Practices
 
+![Visual Guide to Core Concepts Week!](_media/week4-banner.jpg)
+
 ### WHAT WE'LL COVER IN WEEK 4
 
 ### 4.1 | &nbsp; [Installability for PWAs](01.md) 
