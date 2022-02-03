@@ -1,8 +1,6 @@
 # Week 4: Platform and Practices
 
-
 ### WHAT WE'LL COVER IN WEEK 4
-
 
 ### 4.1 | &nbsp; [Installability for PWAs](01.md) 
 * Quick recap of how to make PWAs installable
