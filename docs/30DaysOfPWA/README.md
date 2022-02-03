@@ -45,6 +45,6 @@ This is a multi-team effort from Microsoft Edge, Windows, and Developer Relation
  * Found a bug or typo? [File an issue](https://github.com/microsoft/win-student-devs/issues/new).
  * Have feedback on content or code? `Stay Tuned` for a feedback form.
  * Want to share this content? `Tag your tweet with #30DaysOfPWA`
- * Want to discuss a specific post? `Leave a comment on the related post in [Discussion](https://github.com/microsoft/win-student-devs/discussions)!`
+ * Want to discuss a specific post? `Leave a comment on the related post` in [Discussion](https://github.com/microsoft/win-student-devs/discussions)!
 
 ---
