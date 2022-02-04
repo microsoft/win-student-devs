@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="description" content="Learning content for Windows Student Developers">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+
+  <!-- Default Theme Style (now commented out)--
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css"> 
+  -->
+
+  <!-- Custom theme options: 
+       1. https://cdn.jsdelivr.net/npm/docsify-themeable@0/dist/css/theme-simple-dark.css
+       2. "//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css" - use vue, buble, dark, or pure
+  -->
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
+  <style>
+    :root {
+    --base-font-size: 16px;
+    --theme-color   : #eb5757;
+    }
+
+    .content {
+      overflow: auto;
+    }
+
+    td::before { 
+      display: none 
+    }
+
+  </style>
+  <!-- End custom style -->
+
+</head>
+<body>
+  <div id="app"></div>
+  <script>
+    window.$docsify = {
+      name: 'Hello WinDev!',
+      repo: 'https://github.com/microsoft/win-student-devs',
+      relativePath: true,
+      loadSidebar: true,       // edit _sidebar.md
+      loadNavbar: true,        // edit _navbar.md
+      sidebarDisplayLevel: 1,
+      count:{
+        countable: true,
+        position: 'top',
+        margin: '10px',
+        float: 'left',
+        fontsize:'0.9em',
+        color:'#eb5757', // '#a2f4cc',
+        language:'english',
+        localization: {
+          words: "",
+          minute: ""
+        },
+        isExpected: true
+      },
+    }
+  </script>
+  <!-- Docsify v4 --
+  <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
+  <script src="//cdn.jsdelivr.net/npm/docsify@4.12.2"></script>
+  -->
+
+
+  <!-- plugins -->
+  <script src="//cdn.jsdelivr.net/npm/docsify-sidebar-collapse/dist/docsify-sidebar-collapse.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/docsify-count@latest/dist/countable.min.js"></script>
+  <!-- Google Analytics -->
+  <script src="//cdn.jsdelivr.net/npm/docsify/lib/docsify.min.js" data-ga="UA-218629596-1"></script>
+  <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/ga.min.js"></script>
+  <!-- docsify-themeable (latest v0.x.x) -->
+  <script src="https://cdn.jsdelivr.net/npm/docsify-themeable@0/dist/js/docsify-themeable.min.js"></script>
+
+</body>
+</html>
