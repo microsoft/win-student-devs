@@ -1,9 +1,4 @@
-# Kickoff
-
----
-*⚠️ Please note that this article is work in progress and subject to change. The official release date of this article is 2/10.*
-
----
+# Kickoff - Announcing "30 Days of PWA" Blog Series
 
 Welcome to our new learning series focused on the fascinating world of Progressive Web Apps (PWA)!
 
@@ -60,7 +55,7 @@ Please be sure to bookmark this page or the homepage of this project (https://ak
 * Week 4 Day 3 - [Distributing Your PWA](platforms-practices/03.md)
 * Week 4 Day 4 - [Best Practices for PWA Reliability](platforms-practices/04.md)
 * Week 4 Day 5 - [PWAs and Maintainability](platforms-practices/05.md)
-* Week 4 Day 6 - [PWA Maitainability Part 2: Web Component](platforms-practices/06.md)
+* Week 4 Day 6 - [PWA Maintainability Part 2: Web Component](platforms-practices/06.md)
 * Week 4 Day 7 - [Best Practices for PWA UI/UX](platforms-practices/07.md)
 
 > **Summary** - We conclude with a [wrap-up](summary.md) post summarizing learnings from this journey, and outlining resources and next steps you can take from here.
@@ -91,10 +86,11 @@ We would love to make this a more useful resource for students and beginners of 
     - Give us a 🌟 on [GitHub](https://aka.ms/learn-PWA/30Days-github). 
     - Share a blog post describing your experience.
 * 2️⃣ _Do you have feedback to help us improve it?_  
-    - Join the 💬 Discussion on [GitHub](https://aka.ms/learn-pwa/30Days-ghd) 
-    - Leave Comments on [dev.to](https://aka.ms/learn-PWA/30Days-devto) 
-    - Leave Comments on [Tech Community](https://aka.ms/learn-PWA/30Days-tc).
+    - Join the 💬 Discussion on [GitHub](https://aka.ms/learn-pwa/30Days-ghd).
+    - Leave Comments on [dev.to](https://aka.ms/learn-PWA/30Days-devto) (link goes live on 2/14). 
+    - Leave Comments on [Tech Community](https://aka.ms/learn-PWA/30Days-tc) (link goes live on 2/14).
 * 3️⃣ _Have something you built or wrote in context?_ 
     * Tag us 🏷 on Twitter with [#30DaysOfPWA](https://twitter.com/search?q=%2330DaysofPWA). 
-    * Join the [PWA community](https://aka.ms/learn-PWA/join-twitter) on Twitter. 
-    * Fill this [survey](// TODO) 
+    * Join the [PWA community](https://aka.ms/learn-PWA/join-twitter) on Twitter.
+    * Share your [feedback and suggestions](https://aka.ms/learn-pwa/30Days-survey) on anything and everything related to this series! We greatly appreciate your feedback as we reflect on lessons learned, what went well, and what we can do to improve this experience for future projects.
+    * [Reach out to us](mailto:30DaysOfPWA-help@microsoft.com) with any questions or comments.
