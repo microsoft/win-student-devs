@@ -79,7 +79,7 @@ This is a multi-team effort from folks across the Microsoft Edge, Windows, and D
  * Jaylyn Barbee | [@jaylynsatwork](https://twitter.com/jaylynsatwork) - _Microsoft Windows_
  * Judah Himango | [@JudahGabriel](https://twitter.com/JudahGabriel) - _Microsoft Windows_
  * Justin Willis | [@JustinWillis96](https://twitter.com/Justinwillis96) - _Microsoft Windows_
- * Kenneth Rohde Christiansen​ | [@kennethrohde​](https://twitter.com/kennethrohde)
+ * Kenneth Rohde Christiansen​ | [@kennethrohde​](https://twitter.com/kennethrohde) - _Intel Web Platform Engineering_
  * Marcus Felling | [@MarcusFelling](https://twitter.com/MarcusFelling) - _Microsoft .NET_
  * Maxim Salnikov | [@webmaxru](https://twitter.com/webmaxru) - _Microsoft Norway Developer Relations_
  * Nikola Metulev | [@metulev](https://twitter.com/metulev) - _Microsoft Windows_
