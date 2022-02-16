@@ -69,9 +69,9 @@
   <script>
     (function () {
     function create() {
-        return (hook) => {
-            const TARGET_QUERY = 'id';
-            const SCROLL_DELAY = 10;
+        return function scrollDelay(hook) {
+            var TARGET_QUERY = 'id';
+            var SCROLL_DELAY = 10;
 
             hook.doneEach(function () {
                 if (!location.hash.includes('?')) return;
