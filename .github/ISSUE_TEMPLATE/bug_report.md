@@ -29,10 +29,6 @@ If applicable, add screenshots to help explain your problem.
 **Environment (please complete the following information):**
  - OS: [e.g. iOS]
  - Browser [e.g. edge, chrome, safari]
- - Framework [e.g. react, vue, none]
- - Context [e.g. Microsoft Teams, SharePoint, Office Add-ins, Web]
- - Version [e.g. 0.1]
- - Provider [e.g. Msal2Provider] (bonus if you share the provider config)
 
 **Additional context**
 Add any other context about the problem here.
