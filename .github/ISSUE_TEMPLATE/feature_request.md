@@ -21,8 +21,6 @@ assignees: ''
 ## Preferred Solution
 <!-- A clear and concise description of what you want to happen 
      Provide examples of how the feature would be used in code and what the outcome would be.
-     For components, make sure to include attributes, properties, methods, and/or events and what they would do. 
-     Pseudocode is fine. 
      Include any Design mockups or example screenshots you might have -->
 
 ## Additional Context
