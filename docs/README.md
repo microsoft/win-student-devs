@@ -1,6 +1,4 @@
 [![GitHub license](https://img.shields.io/github/license/microsoft/Win-Student-Dev.svg)](https://github.com/microsoft/Win-Student-Dev/blob/master/LICENSE)
-[![GitHub issues](https://img.shields.io/github/issues/microsoft/Win-Student-Dev.svg)](https://GitHub.com/microsoft/Win-Student-Dev/issues/)
-[![GitHub pull-requests](https://img.shields.io/github/issues-pr/microsoft/Win-Student-Dev.svg)](https://GitHub.com/microsoft/Win-Student-Dev/pulls/)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 
 [![GitHub watchers](https://img.shields.io/github/watchers/microsoft/Win-Student-Dev.svg?style=social&label=Watch&maxAge=2592000)](https://GitHub.com/microsoft/Win-Student-Dev/watchers/)
