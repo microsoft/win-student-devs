@@ -3,18 +3,18 @@
 
 Closes # <!-- REQUIRED: Add the issue number (ex: #12) so the issue is automatically closed when PR is merged -->
 
-### PR Type
-<!-- Please uncomment one or more that apply to this PR -->
+---
 
-<!-- - Bugfix -->
-<!-- - Feature -->
-<!-- - Build or CI related changes -->
-<!-- - Content changes -->
-<!-- - Other... Please describe: -->
+⚠️ Merge/Release date:
+
+---
+
+### PR Type
+- Content changes
 
 ### Description of the changes
 
-### PR checklist for 30 Days of PWA
+### PR checklist
 - [ ] Article has updated banner including creatives. (Please add label 'needs: creatives' if unchecked.)
 - [ ] Article has been updated with aka links. (Please add label 'needs: aka links' if unchecked.)
 - [ ] Contains **NO** breaking changes
