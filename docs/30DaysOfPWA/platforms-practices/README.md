@@ -29,9 +29,9 @@
 * How can we use them to build maintainable and scalable PWAs?
 
 ### 4.6 | &nbsp; [Best Practices for PWA Authentication](06.md) 
-* Modular, standalone code with Web Components
-* Options for developing web components
-* Building your first web component
+* When should your PWA use authentication?
+* Considerations for implementing authentication for your PWA
+* Adding authentication to your app
 
 ### 4.7 | &nbsp; [Best Practices for PWA UI/UX](07.md) 
 * Responsiveness across all platforms
