@@ -2,7 +2,6 @@
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 
 [![GitHub watchers](https://img.shields.io/github/watchers/microsoft/Win-Student-Dev.svg?style=social&label=Watch&maxAge=2592000)](https://GitHub.com/microsoft/Win-Student-Dev/watchers/)
-[![GitHub forks](https://img.shields.io/github/forks/microsoft/Win-Student-Dev.svg?style=social&label=Fork&maxAge=2592000)](https://GitHub.com/microsoft/Win-Student-Dev/network/)
 [![GitHub stars](https://img.shields.io/github/stars/microsoft/Win-Student-Dev.svg?style=social&label=Star&maxAge=2592000)](https://GitHub.com/microsoft/Win-Student-Dev/stargazers/)
 
 [![Open in Visual Studio Code](https://open.vscode.dev/badges/open-in-vscode.svg)](https://open.vscode.dev/microsoft/Win-Student-Dev)
