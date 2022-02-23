@@ -1,4 +1,4 @@
-# 2. Advanced capabilities
+# Week 2. Advanced capabilities
 
 ![Visual Guide to Core Concepts Week!](_media/week2-roadmap.png)
 
