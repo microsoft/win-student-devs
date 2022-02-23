@@ -4,13 +4,13 @@
 
 ## WHAT WE'LL COVER IN WEEK 3
 
-### 3.1 | &nbsp; [Get started tools](01.md)
+### 3.1 | &nbsp; [Get-started tools: Building new PWAs](01.md)
 
 * Introducing new tools from the PWABuilder project
 * Getting Started + demo
 * Under the hood
 
-### 3.2 | &nbsp; [Authoring tools](02.md)
+### 3.2 | &nbsp; [Get-started Tools: Converting your web app to a PWA!](02.md)
 
 * What is PWABuilder.com
 * How it works
@@ -48,5 +48,5 @@
 ### 3.7 | &nbsp; [Packaging tools](07.md)
 
 * Introduction
-* The Process
+* The Process of packaging PWAs
 * Why the Microsoft Store?
