@@ -41,10 +41,12 @@
 
 ### 3.6 | &nbsp; [Test automation tools](06.md)
 
-* Introduction
-* The Process
-* Why the Microsoft Store?
+* Playwright
+* GitHub actions
+* WebDriver/EdgeDriver 
 
 ### 3.7 | &nbsp; [Packaging tools](07.md)
 
-* PWA builder
+* Introduction
+* The Process
+* Why the Microsoft Store?
