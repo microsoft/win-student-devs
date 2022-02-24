@@ -1,3 +1,11 @@
+[![GitHub license](https://img.shields.io/github/license/microsoft/Win-Student-Dev.svg)](https://github.com/microsoft/Win-Student-Dev/blob/master/LICENSE)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
+
+[![GitHub watchers](https://img.shields.io/github/watchers/microsoft/Win-Student-Dev.svg?style=social&label=Watch&maxAge=2592000)](https://GitHub.com/microsoft/Win-Student-Dev/watchers/)
+[![GitHub stars](https://img.shields.io/github/stars/microsoft/Win-Student-Dev.svg?style=social&label=Star&maxAge=2592000)](https://GitHub.com/microsoft/Win-Student-Dev/stargazers/)
+
+[![Open in Visual Studio Code](https://open.vscode.dev/badges/open-in-vscode.svg)](https://open.vscode.dev/microsoft/Win-Student-Dev)
+
 # Welcome!
 
 [This repo](https://github.com/microsoft/win-student-devs) aims to help student and early-in-career developers to build awesome apps that run on Windows. Explore some of our ongoing project pages here:
