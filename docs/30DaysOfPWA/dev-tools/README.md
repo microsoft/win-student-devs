@@ -29,7 +29,7 @@
 
 ### 3.4 | &nbsp; [Debugging tools 2](04.md)
 
-* Checking and managing PWA permissions
+* Checking and resetting user permissions
 * Managing notifications
 * Recording background sync and fetch events
 * Viewing and editing IndexedDB storage
