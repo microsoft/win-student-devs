@@ -60,6 +60,26 @@
       display: none 
     }
 
+    .sidebar {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .sidebar-nav {
+      position: relative;
+    }
+
+    .sidebar .sidebar-nav {
+      flex-grow: 1;
+      margin-bottom: 40px;
+      padding-bottom: 0;
+    }
+
+    .sidebar-nav > ul:last-child {
+      position: absolute;
+      bottom: 0;
+    }
+
   </style>
   <!-- End custom style -->
 
