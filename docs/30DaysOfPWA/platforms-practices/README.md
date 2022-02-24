@@ -1,4 +1,4 @@
-# Week 4: Platform and Practices
+# Week 4. Platform and Practices
 
 ![Visual Guide to Core Concepts Week!](_media/week4-banner.png)
 
