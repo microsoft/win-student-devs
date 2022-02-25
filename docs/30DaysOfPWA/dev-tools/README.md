@@ -6,9 +6,10 @@
 
 ### 3.1 | &nbsp; [Get-started tools: Building new PWAs](01.md)
 
-* Introducing new tools from the PWABuilder project
-* Getting Started + demo
-* Under the hood
+* Using the PWA Studio Visual Studio Code extension to start building a PWA
+* Creating your PWA using the PWA Starter code template
+* How to get started
+* A look at what's under the hood
 
 ### 3.2 | &nbsp; [Get-started Tools: Converting your web app to a PWA!](02.md)
 
@@ -19,18 +20,19 @@
 
 ### 3.3 | &nbsp; [Debugging tools 1](03.md)
 
-* What are browser developer tools and why they are useful? |
 * Testing on other devices
 * Troubleshooting installation issues
-* Troubleshooting service-worker issues
-* Troubleshooting caching issues
+* Reloading manifest changes
+* Troubleshooting server worker issues
+* Troubleshooting cache issues
 * Testing offline support
 
 ### 3.4 | &nbsp; [Debugging tools 2](04.md)
 
-* Simulating Push
-* Debugging background sync and fetch
-* ...
+* Checking and resetting user permissions
+* Managing notifications
+* Recording background sync and fetch events
+* Viewing and editing IndexedDB storage
 
 ### 3.5 | &nbsp; [Auditing tools](05.md)
 
@@ -43,10 +45,10 @@
 
 * Playwright
 * GitHub actions
-* WebDriver/EdgeDriver 
+* WebDriver/EdgeDriver
 
 ### 3.7 | &nbsp; [Packaging tools](07.md)
 
-* Introduction
+* About packaging your PWA for the store
 * The Process of packaging PWAs
-* Why the Microsoft Store?
+* The advantages of publishing to the Microsoft Store?
