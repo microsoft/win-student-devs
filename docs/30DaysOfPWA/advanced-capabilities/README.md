@@ -1,6 +1,7 @@
-# 2. Advanced capabilities
+# Week 2. Advanced capabilities
 
-![Visual Guide to Core Concepts Week!](_media/week2-banner.png)
+![Visual Guide to Core Concepts Week!](_media/week2-roadmap.png)
+
 
 ### WHAT WE'LL COVER IN WEEK 2
 
@@ -54,3 +55,7 @@
 * Notifications API
 * Explore: [Re-engage users with badges, notifications, and push messages](https://docs.microsoft.com/en-us/microsoft-edge/progressive-web-apps-chromium/how-to/notifications-badges) 
 * Related: [Week 4: Platforms And Practices](../platforms-practices)
+
+---
+
+![Visual Guide to Core Concepts Week!](_media/week2-banner.png)
