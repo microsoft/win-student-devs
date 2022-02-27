@@ -1,6 +1,9 @@
 # Week 3. PWA Developer Tools
 
-![Visual Guide to Core Concepts Week!](_media/week3-banner.png)
+
+![Visual Guide to DevTools Week!](_media/week3-roadmap.png)
+
+---
 
 ## WHAT WE'LL COVER IN WEEK 3
 
@@ -43,12 +46,16 @@
 
 ### 3.6 | &nbsp; [Test automation tools](06.md)
 
-* Playwright
-* GitHub actions
-* WebDriver/EdgeDriver
+* PWA Testing Challenges defined
+* Test Workflow and Automation
+* Introduction to Playwright
+* Reliable, End-to-End Testing for PWA
 
 ### 3.7 | &nbsp; [Packaging tools](07.md)
 
 * About packaging your PWA for the store
 * The Process of packaging PWAs
 * The advantages of publishing to the Microsoft Store?
+
+
+![Visual Banner for DevTools Week!](_media/week3-banner.png)
