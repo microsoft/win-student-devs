@@ -1,6 +1,6 @@
-# 2. Advanced capabilities
+# Week 2. Advanced capabilities
 
-![Visual Guide to Core Concepts Week!](_media/week2-roadmap.png)
+![Visual Guide to Advanced Capabilities Week!](_media/week2-roadmap.png)
 
 
 ### WHAT WE'LL COVER IN WEEK 2
