@@ -1,0 +1,23 @@
+{
+    "name": "30 Days of PWA",
+    "short_name": "30DaysOfPWA",
+    "start_url": "/index.html",
+    "categories": [
+        "productivity",
+        "devtools",
+        "browser",
+        "education"
+    ],
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#F25122",
+    "scope": "/",
+    "description": "A collection of articles and resources to help you learn more about Progressive Web Apps (PWA)",
+    "icons": [
+        {
+            "src": "/30DaysOfPWA/_media/800x800/800x800.png",
+            "sizes": "800x800",
+            "type": "image/png"
+        }
+    ]
+}
