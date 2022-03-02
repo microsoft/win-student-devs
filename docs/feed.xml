@@ -6,128 +6,6 @@
   <description>For 30 days, we publish articles that aim to introduce developers to Progressive Web App. We have content that covers 0-level to 200-level topics. Each post takes 5-10 minutes to read and is followed by a sample snippet or exercise.</description>
    
   <item>
-    <title><![CDATA[3.4: Debugging tools #2]]></title>
-    <link>https://aka.ms/learn-PWA/30Days-blog/#/30DaysOfPWA/dev-tools/04</link>
-    <guid isPermaLink="false">https://aka.ms/learn-PWA/30Days-blog/#/30DaysOfPWA/dev-tools/04</guid>
-    <description><![CDATA[<h1 id="debugging-tools-2">3.4: Debugging tools #2</h1>
-<p><strong>Author: Chait Pinnamaneni <span class="citation" data-cites="noobtiger11">[@noobtiger11]</span>(https://twitter.com/noobtiger11)</strong></p>
-<p>Welcome to <strong>Week 3 Day 4</strong> of #30DaysOfPWA! Want to learn more about this project? Check out our <a href="../kickoff.md">Kickoff</a> post to get more details on the content roadmap and contributors. Now, let’s dive in!</p>
-<figure>
-<img src="_media/day-04.jpg" alt="Welcome to week 3 day 4 - Debugging tools part 2." /><figcaption>Welcome to week 3 day 4 - Debugging tools part 2.</figcaption>
-</figure>
-<p>Welcome to the second day of debugging PWA using browser DevTools!</p>
-<p>Yesterday, you learned to debug common issues related to PWA using DevTools. However as you learned in <a href="../advanced-capabilities/">week 2</a> of this series, PWAs are capable of more advanced features like <a href="../advanced-capabilities/06.md">background synchronization</a>, <a href="../advanced-capabilities/07.md">push notifications</a> and more.</p>
-<p>Today we will go through the tools available to you for debugging these advanced features of PWAs.</p>
-<table>
-<thead>
-<tr class="header">
-<th style="text-align: left;"></th>
-<th style="text-align: left;">What you will learn today</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;"><em>PWA permissions</em></td>
-<td style="text-align: left;">How to check for PWA permissions?</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><em>Manage notifications</em></td>
-<td style="text-align: left;">How to emulate push notifications?</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"><em>Background sync and fetch</em></td>
-<td style="text-align: left;">How to view background sync and fetch events?</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><em>IndexedDB storage</em></td>
-<td style="text-align: left;">How to view and manage your data stored in IndexedDB?</td>
-</tr>
-</tbody>
-</table>
-<hr />
-<p>Note that all the screenshots in today’s article are taken from Microsoft Edge DevTools, but other browsers have similar tools as well.</p>
-<h2 id="managing-pwa-permissions">Managing PWA permissions</h2>
-<p>PWAs can make full use of modern web features such as notifications, location, storage etc. However for PWAs to use these features, they have to be granted permission.</p>
-<p>For example, to send notifications to the user, a PWA has to request permission via the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Notifications_API">Notifications API</a> which looks something like this:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb1-1" title="1"><span class="va">Notification</span>.<span class="at">requestPermission</span>().<span class="at">then</span>(<span class="kw">function</span>(result) <span class="op">{</span></a>
-<a class="sourceLine" id="cb1-2" title="2">  <span class="va">console</span>.<span class="at">log</span>(result)<span class="op">;</span></a>
-<a class="sourceLine" id="cb1-3" title="3"><span class="op">}</span>)<span class="op">;</span></a></code></pre></div>
-<p>This will prompt browsers to show a dialog requesting users for the permission as shown below.</p>
-<figure>
-<img src="_media/day-04-permission-dialog.png" alt="The permissions dialog in Microsoft Edge prompting the user to allow or deny notifications from a site." /><figcaption>The permissions dialog in Microsoft Edge prompting the user to allow or deny notifications from a site.</figcaption>
-</figure>
-<p>Often during development, you want to test user flows where the user either granted or denied certain permissions to the PWA. This can be achieved by using the <strong>App permissions</strong> list. With this list, you can validate and manage all the permissions that your app uses.</p>
-<p>For example, to reset notifications permission:</p>
-<ul>
-<li>Open the <strong>App permissions</strong> page by clicking the <strong>View site information</strong> icon in the url bar or the <strong>Settings and more</strong> menu button in an installed PWA’s title bar.</li>
-<li>Find <strong>Notifications</strong> in the list and reset it back to its default value.</li>
-<li>Alternatively you can also reset all permissions by clicking <strong>Reset permissions</strong>.</li>
-</ul>
-<figure>
-<img src="_media/day-04-all-permission.png" alt="Steps to open App permissions list and reset notification permission in Microsoft Edge." /><figcaption>Steps to open App permissions list and reset notification permission in Microsoft Edge.</figcaption>
-</figure>
-<h2 id="push-notifications">Push notifications</h2>
-<p>As you learned in <a href="../advanced-capabilities/07.md">Notifying Your Users of Updates</a>, PWAs can improve engagement by sending push notifications to the user. This is achieved through the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Push_API">Push API</a> and the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Notifications_API">Notifications API</a>, both of which are accessible to service workers.</p>
-<p>PWAs can subscribe to push messages from the server via the Push API. Once subscribed, a PWA will start receiving push events even if the application is closed. When a push event is received, the PWA can send a notification to the user via the Notifications API.</p>
-<p>DevTools can track all these events for you, which can help you debug the entire user notification flow. To see the list of all the push messages and notifications in DevTools:</p>
-<ul>
-<li>Open DevTools.</li>
-<li>Open the <strong>Application</strong> tool.</li>
-<li>Open <strong>Push messaging</strong> under the <strong>Background services</strong> section.</li>
-<li>Click <strong>Start recording events</strong> to start listing push notification events in the table.</li>
-<li>For notifications, open <strong>Notifications</strong> under the <strong>Background services</strong> section and click <strong>Start recording events</strong>.</li>
-<li>Click on any notification to view the details.</li>
-</ul>
-<figure>
-<img src="_media/day-04-notifications-table.png" alt="Steps to view Push messages and notifications list in Microsoft Edge DevTools." /><figcaption>Steps to view Push messages and notifications list in Microsoft Edge DevTools.</figcaption>
-</figure>
-<p>Since the push events have to be triggered by the server, to test and debug push messaging flow in a PWA, you often have to send mock events from the server.</p>
-<p>DevTools provides a convenient way to avoid this by simulating sending push events directly from the browser. To send mock push events in a PWA:</p>
-<ul>
-<li>Open DevTools and open the <strong>Application</strong> tool.</li>
-<li>Open <strong>Service Workers</strong> in the <strong>Application</strong> section.</li>
-<li>Type your test message in the <strong>Push</strong> input field.</li>
-<li>Click the <strong>Push</strong> button to send the message.</li>
-<li>You can then validate that the event was sent in the <strong>Push messaging</strong> table as described above.</li>
-</ul>
-<figure>
-<img src="_media/day-04-push-messages-mock.png" alt="Mock push messages in Microsoft Edge DevTools." /><figcaption>Mock push messages in Microsoft Edge DevTools.</figcaption>
-</figure>
-<h2 id="background-syncfetch">Background sync/fetch</h2>
-<p>PWAs can also use the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Background_Synchronization_API">Background Sync API</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/API/Background_Fetch_API">Background Fetch API</a>, and <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Periodic_Background_Synchronization_API">Periodic Background Sync API</a> to send and receive network requests and messages.</p>
-<p>The advantage of using these background APIs over fetch or xhr is that network requests made through these APIs can be deferred until the PWA has active network connectivity and be done even when the PWA is not being used. Check out <a href="../advanced-capabilities/06.md">Synchronizing app data in the background</a> for more information.</p>
-<p>Similar to how you can view push messages and notifications, Background API events can also be viewed in DevTools. The <strong>Background services</strong> section of the <strong>Application</strong> tool has 3 sub-sections:</p>
-<ul>
-<li><strong>Background Fetch</strong> can record the background fetch events.</li>
-<li><strong>Background Sync</strong> can record background sync events.</li>
-<li><strong>Periodic Background Sync</strong> can record periodic background sync events.</li>
-</ul>
-<p>You can also send test background sync events and periodic background sync events in the <strong>Service Workers</strong> section, which works like when sending test push messages as explained previously.</p>
-<p>These mock events trigger all the event handlers in PWA and also gets listed in the corresponding background services table.</p>
-<figure>
-<img src="_media/day-04-background-services.png" alt="Background sync in Microsoft Edge DevTools." /><figcaption>Background sync in Microsoft Edge DevTools.</figcaption>
-</figure>
-<h2 id="indexeddb-storage">IndexedDB storage</h2>
-<p>To provide offline support, PWAs should be able to store data locally. There are multiple storage options for the web and you can read more about them <a href="../core-concepts/05.md">here</a>.</p>
-<p>In PWAs, a recommended practice is to use <a href="../advanced-capabilities/05.md">Cache storage</a> for storing static resources and <a href="https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API">IndexedDB</a> is used for more structured data.</p>
-<p><a href="./03.md">Yesterday</a>, you learned about debugging cache issues in DevTools. To view and manage your app’s IndexedDB data in DevTools:</p>
-<ul>
-<li>Open DevTools</li>
-<li>Open the <strong>Application</strong> tool.</li>
-<li>Under <strong>Storage</strong>, expand the <strong>IndexedDB</strong> section until you find your database and the table you want to open. Note that there can be multiple databases here.</li>
-<li>Your table appears in the main area of the tool, and you can view the data.</li>
-<li>The toolbar displayed at the top of the table can be used to clear the entire table or delete the selected row.</li>
-</ul>
-<figure>
-<img src="_media/day-04-indexeddb.png" alt="Steps to view indexedDB data in DevTools." /><figcaption>Steps to view indexedDB data in DevTools.</figcaption>
-</figure>
-<h2 id="summary">Summary</h2>
-<p>After reading yesterday’s and today’s articles in this series, you should have a pretty good understating of how the browser DevTools can be used for PWA development and debugging. A lot of PWA issues can be resolved with DevTools and development can be made easy by using the specialized tools we went over in the past two days.</p>
-<p>The feature set available to PWAs is always growing and the DevTools is planning to add tooling support for these new features as well. If you have any feature requests or feedback, you can contact the Microsoft Edge DevTools team by clicking the <strong>Send Feedback</strong> button in upper right corner of DevTools.</p>]]></description>
-    <pubDate>Tue, 1 Mar 2022 16:05:29 -0800</pubDate>
-  </item>
-   
-  <item>
     <title><![CDATA[3.3: Debugging tools #1]]></title>
     <link>https://aka.ms/learn-PWA/30Days-blog/#/30DaysOfPWA/dev-tools/03</link>
     <guid isPermaLink="false">https://aka.ms/learn-PWA/30Days-blog/#/30DaysOfPWA/dev-tools/03</guid>
@@ -287,7 +165,50 @@
 <h2 id="summary">Summary</h2>
 <p>As we’ve seen today, DevTools is a true Swiss-army knife when it comes to debugging PWA issues. There’s a tool for almost any scenario you might be having problems with. You can emulate mobile devices, check manifest errors, verify the state of your service worker and debug it, look at what’s been cached, and even test your app’s offline support!</p>
 <p>No one writes perfect code in one go, and with developer tools like these browser DevTools, you don’t have to. You can feel comfortable experimenting and trying things out, and as soon as something seems wrong, just hit <code>F12</code> to get debugging information about the problem.</p>]]></description>
-    <pubDate>Tue, 1 Mar 2022 16:05:29 -0800</pubDate>
+    <pubDate>Tue, 1 Mar 2022 16:44:13 -0800</pubDate>
+  </item>
+   
+  <item>
+    <title><![CDATA[3.4: Debugging tools #2]]></title>
+    <link>https://aka.ms/learn-PWA/30Days-blog/#/30DaysOfPWA/dev-tools/04</link>
+    <guid isPermaLink="false">https://aka.ms/learn-PWA/30Days-blog/#/30DaysOfPWA/dev-tools/04</guid>
+    <description><![CDATA[<h1 id="debugging-tools-2">3.4: Debugging tools #2</h1>
+<h2 id="coming-soon"><em>Coming soon!</em></h2>
+<p><strong>Author: Chait Pinnamaneni <span class="citation" data-cites="noobtiger11">[@noobtiger11]</span>(https://twitter.com/noobtiger11)</strong></p>
+<p>Welcome to <strong>Week 3 Day 4</strong> of #30DaysOfPWA! Want to learn more about this project? Check out our <a href="../kickoff.md">Kickoff</a> post to get more details on the content roadmap and contributors. Now, let’s dive in!</p>
+<figure>
+<img src="_media/day-04.jpg" alt="Welcome to week 3 day 4 - Debugging tools part 2." /><figcaption>Welcome to week 3 day 4 - Debugging tools part 2.</figcaption>
+</figure>
+<p>Welcome to the second day of debugging PWA using browser DevTools!</p>
+<p>Yesterday, you learned to debug common issues related to PWA using DevTools. However as you learned in <a href="../advanced-capabilities/">week 2</a> of this series, PWAs are capable of more advanced features like <a href="../advanced-capabilities/06.md">background synchronization</a>, <a href="../advanced-capabilities/07.md">push notifications</a> and more.</p>
+<p>Today we will go through the tools available to you for debugging these advanced features of PWAs.</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: left;">What you will learn today</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><em>PWA permissions</em></td>
+<td style="text-align: left;">How to check for PWA permissions?</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><em>Manage notifications</em></td>
+<td style="text-align: left;">How to emulate push notifications?</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><em>Background sync and fetch</em></td>
+<td style="text-align: left;">How to view background sync and fetch events?</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><em>IndexedDB storage</em></td>
+<td style="text-align: left;">How to view and manage your data stored in IndexedDB?</td>
+</tr>
+</tbody>
+</table>]]></description>
+    <pubDate>Wed, 2 Mar 2022 01:02:26 +0100</pubDate>
   </item>
    
   <item>

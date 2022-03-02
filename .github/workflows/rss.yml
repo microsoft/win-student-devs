@@ -1,6 +1,9 @@
 name: RSS
 
-on: [ push ]
+on:
+  push:
+    branches:
+      - main
 
 jobs:
   build:
@@ -10,6 +13,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
         with:
+          token: ${{ secrets.ACTION_TOKEN }}
           fetch-depth: 0
           ref: ${{ github.head_ref }}
 
@@ -26,3 +30,4 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: Build rss feed.xml
+          push_options: --force
