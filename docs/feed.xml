@@ -6,52 +6,10 @@
   <description>For 30 days, we publish articles that aim to introduce developers to Progressive Web App. We have content that covers 0-level to 200-level topics. Each post takes 5-10 minutes to read and is followed by a sample snippet or exercise.</description>
    
   <item>
-    <title><![CDATA[3.4: Debugging tools #2]]></title>
-    <link>https://aka.ms/learn-PWA/30Days-blog/#/30DaysOfPWA/dev-tools/04</link>
-    <guid isPermaLink="false">https://aka.ms/learn-PWA/30Days-blog/#/30DaysOfPWA/dev-tools/04</guid>
-    <description><![CDATA[<h1 id="debugging-tools-2">3.4: Debugging tools #2</h1>
-<h2 id="coming-soon"><em>Coming soon!</em></h2>
-<p><strong>Author: Chait Pinnamaneni <span class="citation" data-cites="noobtiger11">[@noobtiger11]</span>(https://twitter.com/noobtiger11)</strong></p>
-<p>Welcome to <strong>Week 3 Day 4</strong> of #30DaysOfPWA! Want to learn more about this project? Check out our <a href="../kickoff.md">Kickoff</a> post to get more details on the content roadmap and contributors. Now, let’s dive in!</p>
-<figure>
-<img src="_media/day-04.jpg" alt="image of title and author." /><figcaption>image of title and author.</figcaption>
-</figure>
-<h3 id="what-well-cover-today">WHAT WE’LL COVER TODAY</h3>
-<table>
-<thead>
-<tr class="header">
-<th>Section</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><strong>Permissions</strong></td>
-<td>How to check and reset user permissions?</td>
-</tr>
-<tr class="even">
-<td><strong>Manage notifications</strong></td>
-<td>How to emulate push notifications?</td>
-</tr>
-<tr class="odd">
-<td><strong>Background sync and fetch</strong></td>
-<td>How to view background sync and fetch events?</td>
-</tr>
-<tr class="even">
-<td><strong>IndexedDB storage</strong></td>
-<td>How to view and manage data stored in IndexedDB?</td>
-</tr>
-</tbody>
-</table>]]></description>
-    <pubDate>Wed, 2 Mar 2022 01:02:26 +0100</pubDate>
-  </item>
-   
-  <item>
     <title><![CDATA[3.3: Debugging tools #1]]></title>
     <link>https://aka.ms/learn-PWA/30Days-blog/#/30DaysOfPWA/dev-tools/03</link>
     <guid isPermaLink="false">https://aka.ms/learn-PWA/30Days-blog/#/30DaysOfPWA/dev-tools/03</guid>
     <description><![CDATA[<h1 id="debugging-tools-1">3.3: Debugging tools #1</h1>
-<h2 id="coming-soon"><em>Coming soon!</em></h2>
 <p><strong>Author: Patrick Brosset <span class="citation" data-cites="patrickbrosset">[@patrickbrosset]</span>(https://twitter.com/patrickbrosset)</strong></p>
 <p>Welcome to <strong>Week 3 Day 3</strong> of #30DaysOfPWA! Want to learn more about this project? Check out our <a href="../kickoff.md">Kickoff</a> post to get more details on the content roadmap and contributors. Now, let’s dive in!</p>
 <figure>
@@ -207,6 +165,47 @@
 <h2 id="summary">Summary</h2>
 <p>As we’ve seen today, DevTools is a true Swiss-army knife when it comes to debugging PWA issues. There’s a tool for almost any scenario you might be having problems with. You can emulate mobile devices, check manifest errors, verify the state of your service worker and debug it, look at what’s been cached, and even test your app’s offline support!</p>
 <p>No one writes perfect code in one go, and with developer tools like these browser DevTools, you don’t have to. You can feel comfortable experimenting and trying things out, and as soon as something seems wrong, just hit <code>F12</code> to get debugging information about the problem.</p>]]></description>
+    <pubDate>Tue, 1 Mar 2022 16:44:13 -0800</pubDate>
+  </item>
+   
+  <item>
+    <title><![CDATA[3.4: Debugging tools #2]]></title>
+    <link>https://aka.ms/learn-PWA/30Days-blog/#/30DaysOfPWA/dev-tools/04</link>
+    <guid isPermaLink="false">https://aka.ms/learn-PWA/30Days-blog/#/30DaysOfPWA/dev-tools/04</guid>
+    <description><![CDATA[<h1 id="debugging-tools-2">3.4: Debugging tools #2</h1>
+<h2 id="coming-soon"><em>Coming soon!</em></h2>
+<p><strong>Author: Chait Pinnamaneni <span class="citation" data-cites="noobtiger11">[@noobtiger11]</span>(https://twitter.com/noobtiger11)</strong></p>
+<p>Welcome to <strong>Week 3 Day 4</strong> of #30DaysOfPWA! Want to learn more about this project? Check out our <a href="../kickoff.md">Kickoff</a> post to get more details on the content roadmap and contributors. Now, let’s dive in!</p>
+<figure>
+<img src="_media/day-04.jpg" alt="image of title and author." /><figcaption>image of title and author.</figcaption>
+</figure>
+<h3 id="what-well-cover-today">WHAT WE’LL COVER TODAY</h3>
+<table>
+<thead>
+<tr class="header">
+<th>Section</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Permissions</strong></td>
+<td>How to check and reset user permissions?</td>
+</tr>
+<tr class="even">
+<td><strong>Manage notifications</strong></td>
+<td>How to emulate push notifications?</td>
+</tr>
+<tr class="odd">
+<td><strong>Background sync and fetch</strong></td>
+<td>How to view background sync and fetch events?</td>
+</tr>
+<tr class="even">
+<td><strong>IndexedDB storage</strong></td>
+<td>How to view and manage data stored in IndexedDB?</td>
+</tr>
+</tbody>
+</table>]]></description>
     <pubDate>Wed, 2 Mar 2022 01:02:26 +0100</pubDate>
   </item>
    
