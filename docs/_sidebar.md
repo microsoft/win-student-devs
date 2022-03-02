@@ -36,3 +36,6 @@
     - [4.7 Best practices for PWA UI/UX](/30DaysOfPWA/platforms-practices/07.md)
 - [**5. Summary**](/30DaysOfPWA/summary)
 ---
+- [💬 Join the discussion on Github](https://aka.ms/learn-pwa/30Days-ghd)
+- [🗣 Help us grow with your feedback](https://aka.ms/learn-pwa/30Days-survey)
+
