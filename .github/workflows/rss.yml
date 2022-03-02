@@ -1,0 +1,28 @@
+name: RSS
+
+on: [ push ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          ref: ${{ github.head_ref }}
+
+      - name: Install Pandoc
+        run:
+          sudo apt-get install -y pandoc
+
+      - name: Build RSS
+        run: |
+          cd docs/
+          ./rss.sh
+
+      - name: Commit Updated
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: Build rss feed.xml

@@ -1,0 +1,784 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+<channel>
+  <title>30 Days of PWA</title>
+  <atom:link href="https://aka.ms/learn-PWA/30Days-blog/feed.xml" rel="self" type="application/rss+xml" />
+  <link>https://aka.ms/learn-PWA/30Days-blog</link>
+  <description>For 30 days, we publish articles that aim to introduce developers to Progressive Web App. We have content that covers 0-level to 200-level topics. Each post takes 5-10 minutes to read and is followed by a sample snippet or exercise.</description>
+   
+  <item>
+    <title><![CDATA[2.6: Synchronizing app in the background]]></title>
+    <link>https://aka.ms/learn-PWA/30Days-blog/#/30DaysOfPWA/advanced-capabilities/06</link>
+    <guid isPermaLink="false">https://aka.ms/learn-PWA/30Days-blog/#/30DaysOfPWA/advanced-capabilities/06</guid>
+    <description><![CDATA[<h1 id="synchronizing-app-in-the-background">2.6: Synchronizing app in the background</h1>
+<p><strong>Author: Maxim Salnikov​ <span class="citation" data-cites="webmaxru">[@webmaxru]</span>(https://twitter.com/webmaxru)</strong></p>
+<figure>
+<img src="_media/day-06.jpg" alt="image of title and author." /><figcaption>image of title and author.</figcaption>
+</figure>
+<p>Welcome to day 14 of the <a href="https://aka.ms/learn-pwa/30Days-blog">30 Days of PWA</a> series! Today’s blog post will introduce Background Services of modern browsers and how to use them for different kinds of synchronizations.</p>
+<h2 id="background-services">Background services</h2>
+<p>Modern browsers and Service Worker APIs bring exciting new features to the web. Now, you can run some pieces of your frontend code completely independently from the main application lifecycle. That means you are no longer limited to architecting and building your application as something that only starts when the user opens the corresponding URL and immediately ends right after they close the tab. Now, parts of your code can be executed even when there is no browser window with your application open in it, i.e. in the background. And this can happen with or without notifying the user. It’s you, as a developer, who decide.</p>
+<p>There are a bunch of APIs forming the <strong>Background Services</strong> feature in Chromium-based browsers which allow you to run code in the background. Today, we’ll take a closer look at two that make it possible to synchronize data between your application and the browser: <strong>Background Sync API</strong> and <strong>Periodic Background Sync API</strong>.</p>
+<h2 id="one-off-synchronization-on-restoring-the-connection">One-off synchronization on restoring the connection</h2>
+<p>The web is dependent on internet connectivity, which isn’t great as an application platform. Once you’ve downloaded and installed an application, you expect it to work, whether you’re online or offline. The offline-readiness of PWAs is taken care of by using a combination of the core Service Worker API events — <code>install</code>, <code>activate</code>, <code>fetch</code> — and Cache Storage. But what about the Requests that the app does during runtime? How to provide a smooth user experience when there is no internet connection?</p>
+<p>The Background Sync API is here to help. It allows developers to think about the frontend app to server communication as a set of <em>synchronizations</em>. These “syncs” will happen immediately after they were created (“registered” in terms of Background Sync API) if the connection is available or, if there is no connection, later when the user goes back online. The difference from all other pre-PWA approaches is that “later” can be <em>after</em> the user closed the application tab and/or the visible part of the browser - thanks to the service worker that is always “on duty” in the background.</p>
+<p>Please note, this API only provides a <code>sync</code> event to the service worker. You still have to preserve the data you want to send (in case the device is offline) and send it. You’ll need to store the data and implement queuing the data pushes if you want to support multiple transactions in a single sync. For storing the data, consider using IndexedDB API - it’s asynchronous so you can access it from your service worker.</p>
+<h3 id="how-to-start">How to start</h3>
+<p>There are lots of scenarios for background sync but the most straightforward and widespread one is the following: replaying requests to the server that fail because the app is offline, after the connection is restored. Let’s see how it works in practice for a web-based social media client.</p>
+<p>In your main application code, after the user created a new post and clicked “Publish” you check if the request to the server failed. If it did, you create a <em>sync</em> for this attempt. You need an active service worker registration to do that.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb1-1" title="1"><span class="kw">async</span> <span class="kw">function</span> <span class="at">publishPostOnConnected</span>(post) <span class="op">{</span></a>
+<a class="sourceLine" id="cb1-2" title="2">  <span class="kw">const</span> registration <span class="op">=</span> <span class="cf">await</span> <span class="va">navigator</span>.<span class="va">serviceWorker</span>.<span class="at">ready</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb1-3" title="3">  <span class="cf">try</span> <span class="op">{</span></a>
+<a class="sourceLine" id="cb1-4" title="4">    <span class="co">// First, you should write a code to save to IndexedDB the data you want to send later. It&#39;s a good idea to have this function ready for multiple posts published while offline.</span></a>
+<a class="sourceLine" id="cb1-5" title="5">    <span class="cf">await</span> <span class="at">savePost</span>(post)<span class="op">;</span></a>
+<a class="sourceLine" id="cb1-6" title="6"></a>
+<a class="sourceLine" id="cb1-7" title="7">    <span class="co">// Then, the sync registration itself. We give it a name because we can have multiple syncs for various parts of the app functionality:</span></a>
+<a class="sourceLine" id="cb1-8" title="8">    <span class="cf">await</span> <span class="va">registration</span>.<span class="va">sync</span>.<span class="at">register</span>(<span class="st">&#39;sync-post&#39;</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb1-9" title="9"></a>
+<a class="sourceLine" id="cb1-10" title="10">    <span class="co">// Finally, you can inform the user about it:</span></a>
+<a class="sourceLine" id="cb1-11" title="11">    <span class="at">showNotification</span>(<span class="st">&#39;Your post will be published automatically right after connection is restored. It is safe to close the app.&#39;</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb1-12" title="12">  <span class="op">}</span> <span class="cf">catch</span> <span class="op">{</span></a>
+<a class="sourceLine" id="cb1-13" title="13">    <span class="va">console</span>.<span class="at">error</span>(<span class="st">&#39;Background Sync registration failed&#39;</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb1-14" title="14">  <span class="op">}</span></a>
+<a class="sourceLine" id="cb1-15" title="15"><span class="op">}</span></a></code></pre></div>
+<p>It’s a really good idea to wrap this code by a feature detection:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb2-1" title="1"><span class="cf">if</span> (<span class="st">&#39;serviceWorker&#39;</span> <span class="kw">in</span> navigator <span class="op">&amp;&amp;</span> <span class="st">&#39;SyncManager&#39;</span> <span class="kw">in</span> window) <span class="op">{</span></a>
+<a class="sourceLine" id="cb2-2" title="2">  <span class="at">publishPostOnConnected</span>(post)<span class="op">;</span></a>
+<a class="sourceLine" id="cb2-3" title="3"><span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></a>
+<a class="sourceLine" id="cb2-4" title="4">  <span class="va">console</span>.<span class="at">log</span>(<span class="st">&#39;Background Sync is not supported&#39;</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb2-5" title="5"><span class="op">}</span></a></code></pre></div>
+<p>In the service worker, you listen and react to the <code>sync</code> event named <code>sync-post</code>:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb3-1" title="1"><span class="va">self</span>.<span class="at">addEventListener</span>(<span class="st">&#39;sync&#39;</span><span class="op">,</span> event <span class="kw">=&gt;</span> <span class="op">{</span></a>
+<a class="sourceLine" id="cb3-2" title="2">    <span class="cf">if</span> (<span class="va">event</span>.<span class="at">tag</span> <span class="op">===</span> <span class="st">&#39;sync-post&#39;</span>) <span class="op">{</span></a>
+<a class="sourceLine" id="cb3-3" title="3">      <span class="va">event</span>.<span class="at">waitUntil</span>(</a>
+<a class="sourceLine" id="cb3-4" title="4"></a>
+<a class="sourceLine" id="cb3-5" title="5">        <span class="co">// You have to implement the function that iterates over the preserved posts and sends them:</span></a>
+<a class="sourceLine" id="cb3-6" title="6">        <span class="at">publishSavedPosts</span>()<span class="op">;</span></a>
+<a class="sourceLine" id="cb3-7" title="7">      )<span class="op">;</span></a>
+<a class="sourceLine" id="cb3-8" title="8">    <span class="op">}</span></a>
+<a class="sourceLine" id="cb3-9" title="9"><span class="op">}</span>)<span class="op">;</span></a></code></pre></div>
+<p>Here, <code>publishSavedPosts()</code> should return a Promise indicating the success/failure of sending the data. If it’s rejected, the next sync will be scheduled to retry.</p>
+<p>Retrying failed requests can be automated and implemented in a declarative way by using <a href="https://aka.ms/learn-PWA/30Days-2.6/developers.google.com/web/tools/workbox/modules/workbox-background-sync">Workbox’s Background Sync module</a>.</p>
+<h2 id="periodic-synchronization">Periodic synchronization</h2>
+<p>Most application platforms have APIs that allow native applications to periodically run some tasks in the background without user interaction. For example, a social media app can fetch and store new posts from the server from time to time - to display an up-to-date feed whenever the user starts the app.</p>
+<p>What about the web? Can we keep a PWA up to date? Yes, via the Periodic Background Sync API. With this API, we can ask the browser’s background service to run parts of our code regularly, regardless of whether the PWA is currently being used. Like Background Sync, this API only provides an event to the service worker - you still have to implement the actual tasks yourself. For example, you could fetch the current app version, its content, and any updated resources, adding them to the browser cache.</p>
+<p>Let’s see how it works for a web-based social media client that can periodically update its main feed content in the background.</p>
+<h3 id="how-to-start-1">How to start</h3>
+<p>It’s a good idea to let the user decide if they want to use this feature or not. Using <code>PeriodicSyncManager</code> interface of the registered service worker, you can list existing “periodic syncs” to set the value (e.g., on/off) of UI controls (e.g., switches, checkboxes), such as “Update my feed in the background.” When the user turns on this feature, you would register a new periodic sync:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb4-1" title="1"><span class="kw">async</span> <span class="kw">function</span> <span class="at">registerPeriodicFeedUpdate</span>() <span class="op">{</span></a>
+<a class="sourceLine" id="cb4-2" title="2">  <span class="kw">const</span> registration <span class="op">=</span> <span class="cf">await</span> <span class="va">navigator</span>.<span class="va">serviceWorker</span>.<span class="at">ready</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb4-3" title="3"></a>
+<a class="sourceLine" id="cb4-4" title="4">  <span class="co">// Query and check permission. See &quot;Privacy and resource utilization considerations&quot; section below.</span></a>
+<a class="sourceLine" id="cb4-5" title="5">  <span class="kw">const</span> status <span class="op">=</span> <span class="cf">await</span> <span class="va">navigator</span>.<span class="va">permissions</span>.<span class="at">query</span>(<span class="op">{</span></a>
+<a class="sourceLine" id="cb4-6" title="6">    <span class="dt">name</span><span class="op">:</span> <span class="st">&#39;periodic-background-sync&#39;</span><span class="op">,</span></a>
+<a class="sourceLine" id="cb4-7" title="7">  <span class="op">}</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb4-8" title="8">  <span class="cf">if</span> (<span class="va">status</span>.<span class="at">state</span> <span class="op">!==</span> <span class="st">&#39;granted&#39;</span>) <span class="op">{</span></a>
+<a class="sourceLine" id="cb4-9" title="9">    <span class="va">console</span>.<span class="at">log</span>(<span class="st">&#39;Periodic Background Sync is not granted.&#39;</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb4-10" title="10">    <span class="cf">return</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb4-11" title="11">  <span class="op">}</span></a>
+<a class="sourceLine" id="cb4-12" title="12"></a>
+<a class="sourceLine" id="cb4-13" title="13">  <span class="cf">try</span> <span class="op">{</span></a>
+<a class="sourceLine" id="cb4-14" title="14">    <span class="cf">await</span> <span class="va">registration</span>.<span class="va">periodicSync</span>.<span class="at">register</span>(<span class="st">&#39;update-feed-content&#39;</span><span class="op">,</span> <span class="op">{</span></a>
+<a class="sourceLine" id="cb4-15" title="15">      <span class="dt">minInterval</span><span class="op">:</span> <span class="dv">24</span> <span class="op">*</span> <span class="dv">60</span> <span class="op">*</span> <span class="dv">60</span> <span class="op">*</span> <span class="dv">1000</span><span class="op">,</span> <span class="co">// We ask browser to run the sync no more than once a day</span></a>
+<a class="sourceLine" id="cb4-16" title="16">    <span class="op">}</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb4-17" title="17">    <span class="at">showNotification</span>(<span class="st">&#39;Success! Feed will be updated in the background.&#39;</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb4-18" title="18"></a>
+<a class="sourceLine" id="cb4-19" title="19">  <span class="op">}</span> <span class="cf">catch</span>() <span class="op">{</span></a>
+<a class="sourceLine" id="cb4-20" title="20">    <span class="va">console</span>.<span class="at">error</span>(<span class="st">&#39;Periodic Background Sync registration failed&#39;</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb4-21" title="21">  <span class="op">}</span></a>
+<a class="sourceLine" id="cb4-22" title="22"><span class="op">}</span></a></code></pre></div>
+<p>Like always in PWA, feature detection is a best practice:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb5-1" title="1"><span class="cf">if</span> (<span class="st">&#39;serviceWorker&#39;</span> <span class="kw">in</span> navigator <span class="op">&amp;&amp;</span> <span class="st">&#39;PeriodicSyncManager&#39;</span> <span class="kw">in</span> window) <span class="op">{</span></a>
+<a class="sourceLine" id="cb5-2" title="2">  <span class="at">registerPeriodicFeedUpdate</span>()<span class="op">;</span></a>
+<a class="sourceLine" id="cb5-3" title="3"><span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></a>
+<a class="sourceLine" id="cb5-4" title="4">  <span class="va">console</span>.<span class="at">log</span>(<span class="st">&#39;Periodic Background Sync is not supported&#39;</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb5-5" title="5"><span class="op">}</span></a></code></pre></div>
+<p>In the service worker, you should listen and react to the <code>periodicsync</code> event named <code>update-feed-content</code>:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb6-1" title="1"><span class="va">self</span>.<span class="at">addEventListener</span>(<span class="st">&#39;periodicsync&#39;</span><span class="op">,</span> event <span class="kw">=&gt;</span> <span class="op">{</span></a>
+<a class="sourceLine" id="cb6-2" title="2">  <span class="cf">if</span> (<span class="va">event</span>.<span class="at">tag</span> <span class="op">===</span> <span class="st">&#39;update-feed-content&#39;</span>) <span class="op">{</span></a>
+<a class="sourceLine" id="cb6-3" title="3">      <span class="va">event</span>.<span class="at">waitUntil</span>(</a>
+<a class="sourceLine" id="cb6-4" title="4"></a>
+<a class="sourceLine" id="cb6-5" title="5">        <span class="co">// You have to implement the function that fetches the latest posts and updates the storage:</span></a>
+<a class="sourceLine" id="cb6-6" title="6">        <span class="at">updateFeedContent</span>()<span class="op">;</span></a>
+<a class="sourceLine" id="cb6-7" title="7">      )<span class="op">;</span></a>
+<a class="sourceLine" id="cb6-8" title="8">  <span class="op">}</span></a>
+<a class="sourceLine" id="cb6-9" title="9"><span class="op">}</span>)<span class="op">;</span></a></code></pre></div>
+<p>It’s worth noting that you may not want to fetch new data in <code>updateFeedContent</code> function. Before sending the Request, you might want to check if the user is on an unmetered connection (using <a href="https://aka.ms/learn-PWA/30Days-2.6/developer.mozilla.org/en-US/docs/Web/API/Network_Information_API">the Network Information API</a>) and that there is enough space in browser storage (using the <a href="https://aka.ms/learn-PWA/30Days-2.6/developer.mozilla.org/en-US/docs/Web/API/Storage_API">Storage Manager API</a>).</p>
+<h2 id="privacy-and-resource-utilization-considerations">Privacy and resource utilization considerations</h2>
+<p>Both the Background Sync and Periodic Background Sync APIs are designed to run some custom code (that might send network requests) in the background, at any time, without notifying a user. It raises at least two concerns: privacy and resource utilization. Any network request is potentially a history-leaking and location-tracking opportunity. And any code execution consumes CPU, memory, battery, and, if needed, network resources. To avoid these problems, both specifications require:</p>
+<ul>
+<li>Having Background Sync permission granted for the origin. It has <code>allow</code> state by default but users can deny it.</li>
+</ul>
+<figure>
+<img src="_media/background-sync-permission.png" alt="Background Sync permission" /><figcaption>Background Sync permission</figcaption>
+</figure>
+<ul>
+<li>Capping the number of background sync retries and the duration of periodic syncs. It’s not defined in API specification, but for periodic sync intervals, browsers use the <em>Site Engagement</em> index (number and duration of user interactions) for the particular origin — and on the particular device — to calculate the exact intervals. At best it’s a few hours. If you’re interested, you can check the Site Engagement index for yourself by visiting <a href="about://site-engagement/">about://site-engagement/</a> in a Chromium-based browser.</li>
+<li>Code execution time is limited by the service worker’s lifetime which is a few seconds. So abusing device hardware by heavy computation or overusing network resources is rather difficult.</li>
+<li>Both <code>sync</code> and <code>periodicsync</code> events are only fired online.</li>
+</ul>
+<p>Periodic Background Sync API has a few additional requirements:</p>
+<ul>
+<li>The <code>periodicsync</code> will happen only on a known network (the one user was connected to before).</li>
+<li>It only works for <em>installed</em> web applications.</li>
+</ul>
+<h2 id="testing-and-debugging">Testing and debugging</h2>
+<p>Checking how the background services you implemented work might be not an easy task: you as a developer do not have full control over the exact times when sync events come to a service worker. Fortunately, we have a set of helpers in the Chromium-based browser DevTools.</p>
+<p>Go to Application -&gt; Service Workers pane to send <code>sync</code> and <code>periodicsync</code> events to the service worker manually:</p>
+<figure>
+<img src="_media/background-sync-devtools-send.png" alt="Sending events manually" /><figcaption>Sending events manually</figcaption>
+</figure>
+<p>In the Background Services section of the Application tab, you can click on the API you want to debug to see the events (both “real” and “manual”) that were sent to the service worker. To “catch” and debug the real ones (distributed over hours and days if we talk about periodic syncs), you can use the “Record” icon to log the events for up to three days.</p>
+<figure>
+<img src="_media/background-sync-devtools-record.png" alt="Logging background service events" /><figcaption>Logging background service events</figcaption>
+</figure>
+<h2 id="learn-more-about-background-synchronization">Learn more about background synchronization</h2>
+<ul>
+<li><a href="https://aka.ms/learn-PWA/30Days-2.6/docs.microsoft.com/en-us/microsoft-edge/progressive-web-apps-chromium/how-to/background-syncs">Synchronize and update a PWA in the background</a> article on Microsoft Docs</li>
+<li>Specifications for <a href="https://aka.ms/learn-PWA/30Days-2.6/wicg.github.io/background-sync/spec">Background Sync API</a> and <a href="https://aka.ms/learn-PWA/30Days-2.6/wicg.github.io/periodic-background-sync">Periodic Background Sync API</a></li>
+<li>API documentation for <a href="https://aka.ms/learn-PWA/30Days-2.6/developer.mozilla.org/en-US/docs/Web/API/Background_Synchronization_API">Background Sync API</a> and <a href="https://aka.ms/learn-PWA/30Days-2.6/developer.mozilla.org/en-US/docs/Web/API/Web_Periodic_Background_Synchronization_API">Periodic Background Sync API</a> on Mozilla Developer Network.</li>
+</ul>]]></description>
+    <pubDate>Fri, 25 Feb 2022 16:05:23 -0800</pubDate>
+  </item>
+   
+  <item>
+    <title><![CDATA[2.5: Caching your app’s data]]></title>
+    <link>https://aka.ms/learn-PWA/30Days-blog/#/30DaysOfPWA/advanced-capabilities/05</link>
+    <guid isPermaLink="false">https://aka.ms/learn-PWA/30Days-blog/#/30DaysOfPWA/advanced-capabilities/05</guid>
+    <description><![CDATA[<h1 id="caching-your-apps-data">2.5: Caching your app’s data</h1>
+<p><strong>Author: Aaron Gustafson <span class="citation" data-cites="AaronGustafson">[@AaronGustafson]</span>(https://twitter.com/AaronGustafson)</strong></p>
+<figure>
+<img src="_media/day-05.jpg" alt="image of title and author." /><figcaption>image of title and author.</figcaption>
+</figure>
+<p>Welcome to day 12 of the <a href="https://aka.ms/learn-pwa/30Days-blog">30 Days of PWA</a> series! Today’s blog post will walk you through how to be more effective and organized when it comes to caching.</p>
+<p>We’ll start with a quick recap of caching in a PWA, which <a href="../core-concepts/04.md">Nitya introduced on day 4</a>…</p>
+<h2 id="caching-basics">Caching basics</h2>
+<p>Progressive Web Apps have a lot of control over how they manage resource loading. Much of this power stems from Service Workers, which have the ability to intercept, manipulate, and respond directly to network requests. As a complement to that, the <a href="https://aka.ms/learn-PWA/30Days-2.5/developer.mozilla.org/docs/Web/API/Cache">Cache API</a> enables a Service Worker to store and retrieve previously-obtained (or created) Response objects, making it possible to avoid having to go to the network to retrieve long-lived resources like stylesheets and images.</p>
+<p>Before we tuck in, I want to note that the Cache API is available everywhere, not just within a Service Worker. If you’re only using it within the context of a Service Worker, it’s guaranteed to be available, but if you’re using it elsewhere, you’ll want to test to ensure the feature is available:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb1-1" title="1"><span class="cf">if</span> ( <span class="st">&quot;caches&quot;</span> <span class="kw">in</span> <span class="kw">this</span> ) <span class="op">{</span></a>
+<a class="sourceLine" id="cb1-2" title="2">  <span class="co">// Yay! The Cache API is accessible as caches.</span></a>
+<a class="sourceLine" id="cb1-3" title="3"><span class="op">}</span></a></code></pre></div>
+<p>Here’s a quick run-down on how the Cache API works. Keep in mind that it’s <a href="https://aka.ms/learn-PWA-30Days-2.5/developer.mozilla.org/docs/Web/JavaScript/Guide/Using_promises">Promise</a>-based. Let’s start with creating/opening a cache:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb2-1" title="1"><span class="kw">const</span> app_cache <span class="op">=</span> <span class="cf">await</span> <span class="va">caches</span>.<span class="at">open</span>(<span class="st">&quot;app&quot;</span>)<span class="op">;</span></a></code></pre></div>
+<p>This will create a cache “app” if it doesn’t exist already and then open it. You can then add items to the cache using the <code>add()</code>, <code>addAll()</code>, or <code>put()</code>. Here’s a quick run-down of how these work:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb3-1" title="1"><span class="co">// Add a single Request</span></a>
+<a class="sourceLine" id="cb3-2" title="2"><span class="va">app_cache</span>.<span class="at">add</span>(<span class="st">&quot;/path/to/resource.ext&quot;</span>)<span class="op">;</span> <span class="co">// requests the resource and adds it to the cache</span></a>
+<a class="sourceLine" id="cb3-3" title="3"><span class="va">app_cache</span>.<span class="at">add</span>(<span class="kw">new</span> <span class="at">Request</span>(<span class="st">&quot;/path/to/resource.ext&quot;</span>))<span class="op">;</span> <span class="co">// does the same thing</span></a>
+<a class="sourceLine" id="cb3-4" title="4"><span class="va">app_cache</span>.<span class="at">put</span>(<span class="st">&quot;/path/to/resource.ext&quot;</span>)<span class="op">;</span> <span class="co">// same again, but using put()</span></a>
+<a class="sourceLine" id="cb3-5" title="5"></a>
+<a class="sourceLine" id="cb3-6" title="6"><span class="co">// Add a bunch of Requests</span></a>
+<a class="sourceLine" id="cb3-7" title="7"><span class="kw">const</span> app_files <span class="op">=</span> [</a>
+<a class="sourceLine" id="cb3-8" title="8">  <span class="st">&quot;/path/to/resource-1.ext&quot;</span><span class="op">,</span></a>
+<a class="sourceLine" id="cb3-9" title="9">  <span class="st">&quot;/path/to/resource-2.ext&quot;</span></a>
+<a class="sourceLine" id="cb3-10" title="10">]<span class="op">;</span></a>
+<a class="sourceLine" id="cb3-11" title="11"><span class="va">app_cache</span>.<span class="at">addAll</span>( app_files )<span class="op">;</span></a>
+<a class="sourceLine" id="cb3-12" title="12">  <span class="co">// requests &amp; caches all of them</span></a>
+<a class="sourceLine" id="cb3-13" title="13"></a>
+<a class="sourceLine" id="cb3-14" title="14"><span class="co">// generates a new synthetic response &amp; </span></a>
+<a class="sourceLine" id="cb3-15" title="15"><span class="co">// caches it as though it was </span></a>
+<a class="sourceLine" id="cb3-16" title="16"><span class="co">// &quot;/path/to/generated.json&quot;</span></a>
+<a class="sourceLine" id="cb3-17" title="17"><span class="va">app_cache</span>.<span class="at">put</span>(</a>
+<a class="sourceLine" id="cb3-18" title="18">  <span class="st">&quot;/path/to/generated.json&quot;</span><span class="op">,</span></a>
+<a class="sourceLine" id="cb3-19" title="19">  <span class="kw">new</span> <span class="at">Response</span>(<span class="st">&#39;{ &quot;generated_by&quot;: &quot;my service worker&quot; }&#39;</span>)</a>
+<a class="sourceLine" id="cb3-20" title="20">)<span class="op">;</span></a>
+<a class="sourceLine" id="cb3-21" title="21"></a>
+<a class="sourceLine" id="cb3-22" title="22"><span class="co">// Store a non-CORS/3rd party Request</span></a>
+<a class="sourceLine" id="cb3-23" title="23"><span class="va">app_cache</span>.<span class="at">put</span>(<span class="st">&quot;https://another.tld/resource.ext&quot;</span>)<span class="op">;</span></a></code></pre></div>
+<p>Pretty cool, right? Now once you have items in the cache, you can pluck them out, using <code>match()</code>:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb4-1" title="1"><span class="kw">const</span> response <span class="op">=</span> <span class="cf">await</span> <span class="va">app_cache</span>.<span class="at">match</span>(<span class="st">&quot;/path/to/generated.json&quot;</span>)<span class="op">;</span></a></code></pre></div>
+<p>Usually this is done in the context of a <code>Fetch</code> event within a Service Worker, but you can also use this in the main thread to do things like <a href="https://aka.ms/learn-PWA/30Days-2.5/remysharp.com/2019/09/05/offline-listings">populate your offline page with a list of pages currently in the cache</a>. Pretty cool stuff.</p>
+<p>Finally, just to wrap things up, you can delete items from the cache just as easily as you can add them:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb5-1" title="1"><span class="va">cache</span>.<span class="at">delete</span>(<span class="st">&quot;/path/to/generated.json&quot;</span>)<span class="op">;</span></a></code></pre></div>
+<p>With the preliminaries out of the way, let’s take a look at how to manage your cached data.</p>
+<h2 id="getting-organized">Getting organized</h2>
+<p>You can store a lot of data in the browser cache—gigabytes worth in some cases. Just because we can doesn’t mean we should though. After all, at a certain point browser will evict an entire site from memory when space gets tight. Better to not be the resource hog when they come looking to clean up space 😉.</p>
+<p>Before we can get more intentional about the amount of data we are caching, it helps to begin categorizing that data. For instance, your PWA will have longer-lived content, such as your CSS, JavaScript, site logo, and maybe your offline page. I like to think of those as <em>assets</em> and will create a specific cache for those. Similarly, you’re likely going to be caching Requests for other categories of content like pages, images, and so on. I like to define those categories as individual caches so I can add items to and remove items from them in a more intentional way. I define them up at the top of my Service Worker:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb6-1" title="1"><span class="kw">const</span> version <span class="op">=</span> <span class="st">&quot;v1:&quot;</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb6-2" title="2"><span class="kw">const</span> sw_caches <span class="op">=</span> <span class="op">{</span></a>
+<a class="sourceLine" id="cb6-3" title="3">  <span class="dt">assets</span><span class="op">:</span> <span class="op">{</span></a>
+<a class="sourceLine" id="cb6-4" title="4">    <span class="dt">name</span><span class="op">:</span> <span class="vs">`</span><span class="sc">${</span>version<span class="sc">}</span><span class="vs">assets`</span></a>
+<a class="sourceLine" id="cb6-5" title="5">  <span class="op">},</span></a>
+<a class="sourceLine" id="cb6-6" title="6">  <span class="dt">images</span><span class="op">:</span> <span class="op">{</span></a>
+<a class="sourceLine" id="cb6-7" title="7">    <span class="dt">name</span><span class="op">:</span> <span class="vs">`</span><span class="sc">${</span>version<span class="sc">}</span><span class="vs">images`</span></a>
+<a class="sourceLine" id="cb6-8" title="8">  <span class="op">},</span></a>
+<a class="sourceLine" id="cb6-9" title="9">  <span class="dt">pages</span><span class="op">:</span> <span class="op">{</span></a>
+<a class="sourceLine" id="cb6-10" title="10">    <span class="dt">name</span><span class="op">:</span> <span class="vs">`</span><span class="sc">${</span>version<span class="sc">}</span><span class="vs">pages`</span></a>
+<a class="sourceLine" id="cb6-11" title="11">  <span class="op">}</span></a>
+<a class="sourceLine" id="cb6-12" title="12"><span class="op">};</span></a></code></pre></div>
+<p>Here you can see I am using a variable to track my cache <var>version</var>. Versioning your cache is a best practice because it allows you to completely remove old (stale) caches completely when you ship new versions of long-lived resources (typically in the Service Worker’s “activate” event).</p>
+<p>After establishing the version prefix, I set up an object to define the various caches I will be working with: assets, images, and pages. Making each an object may seem like overkill, but there’s a reason for it, which I will get to shortly.</p>
+<p>With this setup in place, I can use the service worker <code>install</code> event to cache my assets:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb7-1" title="1"><span class="kw">const</span> offline_page <span class="op">=</span> <span class="st">&quot;/offline/&quot;</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb7-2" title="2"><span class="kw">const</span> preinstall <span class="op">=</span> [</a>
+<a class="sourceLine" id="cb7-3" title="3">  <span class="st">&quot;/favicon.png&quot;</span><span class="op">,</span></a>
+<a class="sourceLine" id="cb7-4" title="4">  <span class="st">&quot;/c/default.min.css&quot;</span><span class="op">,</span></a>
+<a class="sourceLine" id="cb7-5" title="5">  <span class="st">&quot;/c/advanced.min.css&quot;</span><span class="op">,</span></a>
+<a class="sourceLine" id="cb7-6" title="6">  <span class="st">&quot;/j/main.min.js&quot;</span><span class="op">,</span></a>
+<a class="sourceLine" id="cb7-7" title="7">  offline_page</a>
+<a class="sourceLine" id="cb7-8" title="8">]<span class="op">;</span></a>
+<a class="sourceLine" id="cb7-9" title="9"></a>
+<a class="sourceLine" id="cb7-10" title="10"><span class="va">self</span>.<span class="at">addEventListener</span>( <span class="st">&quot;install&quot;</span><span class="op">,</span> <span class="kw">function</span>( event )<span class="op">{</span></a>
+<a class="sourceLine" id="cb7-11" title="11">  <span class="va">event</span>.<span class="at">waitUntil</span>(</a>
+<a class="sourceLine" id="cb7-12" title="12">    <span class="va">caches</span>.<span class="at">open</span>( <span class="va">sw_caches</span>.<span class="va">assets</span>.<span class="at">name</span> )</a>
+<a class="sourceLine" id="cb7-13" title="13">      .<span class="at">then</span>(<span class="kw">function</span>( cache )<span class="op">{</span></a>
+<a class="sourceLine" id="cb7-14" title="14">        <span class="cf">return</span> <span class="va">cache</span>.<span class="at">addAll</span>( preinstall )<span class="op">;</span></a>
+<a class="sourceLine" id="cb7-15" title="15">      <span class="op">}</span>)</a>
+<a class="sourceLine" id="cb7-16" title="16">  )<span class="op">;</span></a>
+<a class="sourceLine" id="cb7-17" title="17"><span class="op">}</span>)<span class="op">;</span></a></code></pre></div>
+<p>Here I’ve defined my offline page’s URL (<var>offline_page</var>) separately because I reference that string elsewhere in the Service Worker. Then I’ve included that URL alongside my PWA’s favicon, and its core CSS and JavaScript as <var>preinstall</var> which, in turn, gets fed into <code>cache.addAll()</code> as part of the <a href="../core-concepts/04.md">Service Worker’s <code>install</code> event</a>. As the Cache API is Promise-based, you can see that the <code>install</code> event (<var>event</var>) is asked to wait for the appropriate cache to be open (in this case <var>sw_caches.assets.name</var>) and for the <code>addAll()</code> operation to complete.</p>
+<p>We can use this organization in the <code>fetch</code> event as well. I typically use different cache/network recipes for different asset types. Similarly, I can store any of these assets in the most appropriate cache. Here’s an abbreviated example:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb8-1" title="1"><span class="va">self</span>.<span class="at">addEventListener</span>( <span class="st">&quot;fetch&quot;</span><span class="op">,</span> event <span class="kw">=&gt;</span> <span class="op">{</span></a>
+<a class="sourceLine" id="cb8-2" title="2">  <span class="co">// Destination gives us a clue as to the type of resource</span></a>
+<a class="sourceLine" id="cb8-3" title="3">  <span class="kw">const</span> destination <span class="op">=</span> <span class="va">event</span>.<span class="va">request</span>.<span class="at">destination</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb8-4" title="4">  <span class="cf">switch</span> ( destination )</a>
+<a class="sourceLine" id="cb8-5" title="5">  <span class="op">{</span></a>
+<a class="sourceLine" id="cb8-6" title="6">    <span class="cf">case</span> <span class="st">&quot;image&quot;</span><span class="op">:</span></a>
+<a class="sourceLine" id="cb8-7" title="7">      <span class="va">event</span>.<span class="at">respondWith</span>(</a>
+<a class="sourceLine" id="cb8-8" title="8">        <span class="co">// check the cache first,</span></a>
+<a class="sourceLine" id="cb8-9" title="9">        <span class="co">// fall back to the network</span></a>
+<a class="sourceLine" id="cb8-10" title="10">          <span class="co">// and store a copy in </span></a>
+<a class="sourceLine" id="cb8-11" title="11">          <span class="co">// sw_caches.images.name</span></a>
+<a class="sourceLine" id="cb8-12" title="12">      )<span class="op">;</span></a>
+<a class="sourceLine" id="cb8-13" title="13">      <span class="cf">break</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb8-14" title="14">    <span class="cf">case</span> <span class="st">&quot;document&quot;</span><span class="op">:</span></a>
+<a class="sourceLine" id="cb8-15" title="15">      <span class="va">event</span>.<span class="at">respondWith</span>(</a>
+<a class="sourceLine" id="cb8-16" title="16">        <span class="co">// check the network first</span></a>
+<a class="sourceLine" id="cb8-17" title="17">          <span class="co">// and store a copy in</span></a>
+<a class="sourceLine" id="cb8-18" title="18">          <span class="co">// sw_caches.pages.name,</span></a>
+<a class="sourceLine" id="cb8-19" title="19">        <span class="co">// fall back to the cache</span></a>
+<a class="sourceLine" id="cb8-20" title="20">      )<span class="op">;</span></a>
+<a class="sourceLine" id="cb8-21" title="21">    <span class="cf">default</span><span class="op">:</span></a>
+<a class="sourceLine" id="cb8-22" title="22">      <span class="va">event</span>.<span class="at">respondWith</span>(</a>
+<a class="sourceLine" id="cb8-23" title="23">        <span class="co">// network only</span></a>
+<a class="sourceLine" id="cb8-24" title="24">      )<span class="op">;</span></a>
+<a class="sourceLine" id="cb8-25" title="25">  <span class="op">}</span></a>
+<a class="sourceLine" id="cb8-26" title="26"><span class="op">}</span>)<span class="op">;</span></a></code></pre></div>
+<p>This is a very simplified example, but you can see how to use the Request information to make decisions about whether we go to the cache or the network first and where we store copies of the Request for later.</p>
+<p>Now it’s true that you <em>can</em> search for a match across all of your PWA’s caches at once, using <code>caches.match()</code> as opposed to opening and searching a specific, named cache. So you might be wondering why I’m recommending going through the trouble of maintaining distinct caches. Here’s why: It empowers us to be more intentional about how we clean up cached resources.</p>
+<h2 id="cleaning-up-after-yourself">Cleaning up after yourself</h2>
+<p>When Nitya talked about <a href="../core-concepts/04.md">the Service Worker lifecycle in week one</a>, she mentioned the <code>activate</code> event. Activation is a great time to clean up stale caches. Usually this is discussed in the context of expiring older cached content by seeing if the cache names don’t match the current value of <var>version</var>:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb9-1" title="1"><span class="va">self</span>.<span class="at">addEventListener</span>( <span class="st">&quot;activate&quot;</span><span class="op">,</span> event <span class="kw">=&gt;</span> <span class="op">{</span></a>
+<a class="sourceLine" id="cb9-2" title="2">  <span class="va">event</span>.<span class="at">waitUntil</span>(</a>
+<a class="sourceLine" id="cb9-3" title="3">    <span class="va">caches</span>.<span class="at">keys</span>()</a>
+<a class="sourceLine" id="cb9-4" title="4">      .<span class="at">then</span>( keys <span class="kw">=&gt;</span> <span class="op">{</span></a>
+<a class="sourceLine" id="cb9-5" title="5">        <span class="cf">return</span> <span class="va">Promise</span>.<span class="at">all</span>(</a>
+<a class="sourceLine" id="cb9-6" title="6">          keys</a>
+<a class="sourceLine" id="cb9-7" title="7">            .<span class="at">filter</span>( key <span class="kw">=&gt;</span> <span class="op">{</span></a>
+<a class="sourceLine" id="cb9-8" title="8">              <span class="cf">return</span> <span class="op">!</span> <span class="va">key</span>.<span class="at">startsWith</span>( version )<span class="op">;</span></a>
+<a class="sourceLine" id="cb9-9" title="9">            <span class="op">}</span>)</a>
+<a class="sourceLine" id="cb9-10" title="10">            .<span class="at">map</span>( key <span class="kw">=&gt;</span> <span class="op">{</span></a>
+<a class="sourceLine" id="cb9-11" title="11">              <span class="cf">return</span> <span class="va">caches</span>.<span class="at">delete</span>( key )<span class="op">;</span></a>
+<a class="sourceLine" id="cb9-12" title="12">            <span class="op">}</span>)</a>
+<a class="sourceLine" id="cb9-13" title="13">        )<span class="op">;</span></a>
+<a class="sourceLine" id="cb9-14" title="14">      <span class="op">}</span>)</a>
+<a class="sourceLine" id="cb9-15" title="15">      .<span class="at">then</span>( () <span class="kw">=&gt;</span> <span class="va">clients</span>.<span class="at">claim</span>() )</a>
+<a class="sourceLine" id="cb9-16" title="16">  )<span class="op">;</span></a>
+<a class="sourceLine" id="cb9-17" title="17"><span class="op">}</span>)<span class="op">;</span></a></code></pre></div>
+<p>This code collects all of the cache keys (names) you’ve created within your PWA. It then filters those down to only the ones that don’t begin with the current <var>version</var> value and then deletes them. This is a very heavy-handed way of removing cached resources, but it’s great for when you want to purge everything because you wanted a fresh start (which is what changing the <var>version</var> indicates).</p>
+<p>When you begin to subdivide your caches a bit more, you can also set limits for how many resources you want to keep on hand. Some caches, like your assets, you probably want to keep around for a long time. Other caches you may want to limit to a certain number of resources. Let’s tweak <var>sw_caches</var> to set this up:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb10-1" title="1"><span class="kw">const</span> sw_caches <span class="op">=</span> <span class="op">{</span></a>
+<a class="sourceLine" id="cb10-2" title="2">  <span class="dt">assets</span><span class="op">:</span> <span class="op">{</span></a>
+<a class="sourceLine" id="cb10-3" title="3">    <span class="dt">name</span><span class="op">:</span> <span class="vs">`</span><span class="sc">${</span>version<span class="sc">}</span><span class="vs">assets`</span></a>
+<a class="sourceLine" id="cb10-4" title="4">  <span class="op">},</span></a>
+<a class="sourceLine" id="cb10-5" title="5">  <span class="dt">images</span><span class="op">:</span> <span class="op">{</span></a>
+<a class="sourceLine" id="cb10-6" title="6">    <span class="dt">name</span><span class="op">:</span> <span class="vs">`</span><span class="sc">${</span>version<span class="sc">}</span><span class="vs">images`</span><span class="op">,</span></a>
+<a class="sourceLine" id="cb10-7" title="7">    <span class="dt">limit</span><span class="op">:</span> <span class="dv">50</span></a>
+<a class="sourceLine" id="cb10-8" title="8">  <span class="op">},</span></a>
+<a class="sourceLine" id="cb10-9" title="9">  <span class="dt">pages</span><span class="op">:</span> <span class="op">{</span></a>
+<a class="sourceLine" id="cb10-10" title="10">    <span class="dt">name</span><span class="op">:</span> <span class="vs">`</span><span class="sc">${</span>version<span class="sc">}</span><span class="vs">pages`</span><span class="op">,</span></a>
+<a class="sourceLine" id="cb10-11" title="11">    <span class="dt">limit</span><span class="op">:</span> <span class="dv">10</span></a>
+<a class="sourceLine" id="cb10-12" title="12">  <span class="op">}</span></a>
+<a class="sourceLine" id="cb10-13" title="13"><span class="op">};</span></a></code></pre></div>
+<p>Here I’ve set up hard limits for how many items I want in the image and page caches (50 and 10, respectively). With that in place, we can create a much more methodical cache trimming utility:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb11-1" title="1"><span class="kw">function</span> <span class="at">trimCache</span>( cache_name<span class="op">,</span> limit ) <span class="op">{</span></a>
+<a class="sourceLine" id="cb11-2" title="2">  <span class="va">caches</span>.<span class="at">open</span>( cache_name )</a>
+<a class="sourceLine" id="cb11-3" title="3">    .<span class="at">then</span>( cache <span class="kw">=&gt;</span> <span class="op">{</span></a>
+<a class="sourceLine" id="cb11-4" title="4">      <span class="va">cache</span>.<span class="at">keys</span>()</a>
+<a class="sourceLine" id="cb11-5" title="5">        .<span class="at">then</span>( items <span class="kw">=&gt;</span> <span class="op">{</span></a>
+<a class="sourceLine" id="cb11-6" title="6">          <span class="cf">if</span> ( <span class="va">items</span>.<span class="at">length</span> <span class="op">&gt;</span> limit ) <span class="op">{</span></a>
+<a class="sourceLine" id="cb11-7" title="7">            (<span class="kw">async</span> <span class="kw">function</span>()<span class="op">{</span></a>
+<a class="sourceLine" id="cb11-8" title="8">              <span class="kw">let</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">,</span></a>
+<a class="sourceLine" id="cb11-9" title="9">                  end <span class="op">=</span> <span class="va">items</span>.<span class="at">length</span> <span class="op">-</span> limit<span class="op">;</span></a>
+<a class="sourceLine" id="cb11-10" title="10">              <span class="cf">while</span> ( i <span class="op">&lt;</span> end ) <span class="op">{</span></a>
+<a class="sourceLine" id="cb11-11" title="11">                <span class="va">console</span>.<span class="at">log</span>(<span class="st">&#39;deleting item&#39;</span><span class="op">,</span> i<span class="op">,</span> items[i])<span class="op">;</span></a>
+<a class="sourceLine" id="cb11-12" title="12">                <span class="va">cache</span>.<span class="at">delete</span>( items[i<span class="op">++</span>] )<span class="op">;</span></a>
+<a class="sourceLine" id="cb11-13" title="13">              <span class="op">}</span></a>
+<a class="sourceLine" id="cb11-14" title="14">            <span class="op">}</span>)()<span class="op">;</span></a>
+<a class="sourceLine" id="cb11-15" title="15">          <span class="op">}</span></a>
+<a class="sourceLine" id="cb11-16" title="16">        <span class="op">}</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb11-17" title="17">    <span class="op">}</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb11-18" title="18"><span class="op">}</span></a></code></pre></div>
+<p>This function takes two arguments: the name of the cache (<var>cache_name</var>) and the max number of items we want the cache to hold (<var>limit</var>). Here’s what it does:</p>
+<ol type="1">
+<li>Open the named cache (<code>caches.open()</code>), then</li>
+<li>Get the items in the cache (<code>cache.keys()</code>), then</li>
+<li>Check to see if the number of items exceeds the limit,</li>
+<li>If it does, figure out how many to remove, and (finally)</li>
+<li>Delete the surplus, starting with the first (oldest) item.</li>
+</ol>
+<p>This function could be called at any time, but I often run it on page load by triggering it from the main thread:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb12-1" title="1"><span class="co">// main.js</span></a>
+<a class="sourceLine" id="cb12-2" title="2"><span class="co">// After my code to register the service worker…</span></a>
+<a class="sourceLine" id="cb12-3" title="3"><span class="cf">if</span> ( <span class="va">navigator</span>.<span class="va">serviceWorker</span>.<span class="at">controller</span> ) <span class="op">{</span></a>
+<a class="sourceLine" id="cb12-4" title="4">  <span class="va">window</span>.<span class="at">addEventListener</span>( <span class="st">&quot;load&quot;</span><span class="op">,</span> <span class="kw">function</span>()<span class="op">{</span></a>
+<a class="sourceLine" id="cb12-5" title="5">    <span class="va">navigator</span>.<span class="va">serviceWorker</span>.<span class="va">controller</span>.<span class="at">postMessage</span>( <span class="st">&quot;clean up&quot;</span> )<span class="op">;</span></a>
+<a class="sourceLine" id="cb12-6" title="6">  <span class="op">}</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb12-7" title="7"><span class="op">}</span></a>
+<a class="sourceLine" id="cb12-8" title="8"></a>
+<a class="sourceLine" id="cb12-9" title="9"><span class="co">// serviceworker.js</span></a>
+<a class="sourceLine" id="cb12-10" title="10"><span class="va">self</span>.<span class="at">addEventListener</span>(<span class="st">&quot;message&quot;</span><span class="op">,</span> messageEvent <span class="kw">=&gt;</span> <span class="op">{</span></a>
+<a class="sourceLine" id="cb12-11" title="11">  <span class="cf">if</span> (<span class="va">messageEvent</span>.<span class="at">data</span> <span class="op">==</span> <span class="st">&quot;clean up&quot;</span>) <span class="op">{</span></a>
+<a class="sourceLine" id="cb12-12" title="12">    <span class="cf">for</span> ( <span class="kw">let</span> key <span class="kw">in</span> sw_caches ) <span class="op">{</span></a>
+<a class="sourceLine" id="cb12-13" title="13">      <span class="cf">if</span> ( sw_caches[key].<span class="at">limit</span> <span class="op">!=</span> <span class="kw">undefined</span> ) <span class="op">{</span></a>
+<a class="sourceLine" id="cb12-14" title="14">        <span class="at">trimCache</span>( sw_caches[key].<span class="at">name</span><span class="op">,</span> sw_caches[key].<span class="at">limit</span> )<span class="op">;</span></a>
+<a class="sourceLine" id="cb12-15" title="15">      <span class="op">}</span></a>
+<a class="sourceLine" id="cb12-16" title="16">    <span class="op">}</span></a>
+<a class="sourceLine" id="cb12-17" title="17">  <span class="op">}</span></a>
+<a class="sourceLine" id="cb12-18" title="18"><span class="op">}</span>)<span class="op">;</span></a></code></pre></div>
+<p>The first block in this snippet exists in my main JavaScript file, just after I register the Service Worker. It checks to make sure the Service Worker controller exists and, if it does, sends the “clean up” command to it via <code>postMessage()</code>. The second block shown here is in the Service Worker file and it listens for any inbound messages. When it receives the “clean up” message, it loops through the list of caches I’ve defined and runs <code>trimCache()</code> against any that have a <code>limit</code>.</p>
+<h2 id="try-it-out">Try it out</h2>
+<p>The Cache API is an incredibly powerful tool and this post just scratches the surface of what it makes possible. Play around with it and find the approaches that work best for you. Keep in mind, they will likely vary from project to project and resource to resource. Stay flexible and think through what caching strategies make the most sense. Also don’t be afraid to change your mind; you can always revise the <var>version</var> and start again from scratch.</p>
+<p>Tune in for the <a href="./06.md">next post</a> in the <a href="https://aka.ms/learn-pwa/30Days-blog">series</a> tomorrow where we will cover how the many options for synchronizing data using a Service Worker.</p>
+<h2 id="resources">Resources</h2>
+<ul>
+<li><a href="https://aka.ms/learn-PWA/30Days-2.5/developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API">Service Worker API</a> (MDN)</li>
+<li><a href="https://aka.ms/learn-PWA/30Days-2.5/docs.microsoft.com/en-us/microsoft-edge/progressive-web-apps-chromium/how-to/service-workers">Use Service Workers to manage network requests and push notifications</a> (Edge Developer Documentation)</li>
+</ul>]]></description>
+    <pubDate>Thu, 24 Feb 2022 16:06:05 -0800</pubDate>
+  </item>
+   
+  <item>
+    <title><![CDATA[Week 3. PWA Developer Tools]]></title>
+    <link>https://aka.ms/learn-PWA/30Days-blog/#/30DaysOfPWA/dev-tools/README</link>
+    <guid isPermaLink="false">https://aka.ms/learn-PWA/30Days-blog/#/30DaysOfPWA/dev-tools/README</guid>
+    <description><![CDATA[<h1 id="week-3.-pwa-developer-tools">Week 3. PWA Developer Tools</h1>
+<figure>
+<img src="_media/week3-banner.png" alt="Visual Guide to Core Concepts Week!" /><figcaption>Visual Guide to Core Concepts Week!</figcaption>
+</figure>
+<h2 id="what-well-cover-in-week-3">WHAT WE’LL COVER IN WEEK 3</h2>
+<h3 id="get-started-tools-building-new-pwas">3.1 |   <a href="01.md">Get-started tools: Building new PWAs</a></h3>
+<ul>
+<li>Using the PWA Studio Visual Studio Code extension to start building a PWA</li>
+<li>Creating your PWA using the PWA Starter code template</li>
+<li>How to get started</li>
+<li>A look at what’s under the hood</li>
+</ul>
+<h3 id="get-started-tools-converting-your-web-app-to-a-pwa">3.2 |   <a href="02.md">Get-started Tools: Converting your web app to a PWA!</a></h3>
+<ul>
+<li>What is PWABuilder.com</li>
+<li>How it works</li>
+<li>Why should you use PWABuilder</li>
+<li>Evaluate and publish your PWA with PWABuilder.com</li>
+</ul>
+<h3 id="debugging-tools-1">3.3 |   <a href="03.md">Debugging tools 1</a></h3>
+<ul>
+<li>Testing on other devices</li>
+<li>Troubleshooting installation issues</li>
+<li>Reloading manifest changes</li>
+<li>Troubleshooting server worker issues</li>
+<li>Troubleshooting cache issues</li>
+<li>Testing offline support</li>
+</ul>
+<h3 id="debugging-tools-2">3.4 |   <a href="04.md">Debugging tools 2</a></h3>
+<ul>
+<li>Checking and resetting user permissions</li>
+<li>Managing notifications</li>
+<li>Recording background sync and fetch events</li>
+<li>Viewing and editing IndexedDB storage</li>
+</ul>
+<h3 id="auditing-tools">3.5 |   <a href="05.md">Auditing tools</a></h3>
+<ul>
+<li>Why Audit your PWA</li>
+<li>Audit with PWABuilder</li>
+<li>Audit accessibility with Webhint</li>
+<li>Audit performance with Lighthouse and Edge Devtools</li>
+</ul>
+<h3 id="test-automation-tools">3.6 |   <a href="06.md">Test automation tools</a></h3>
+<ul>
+<li>Playwright</li>
+<li>GitHub actions</li>
+<li>WebDriver/EdgeDriver</li>
+</ul>
+<h3 id="packaging-tools">3.7 |   <a href="07.md">Packaging tools</a></h3>
+<ul>
+<li>About packaging your PWA for the store</li>
+<li>The Process of packaging PWAs</li>
+<li>The advantages of publishing to the Microsoft Store?</li>
+</ul>]]></description>
+    <pubDate>Thu, 24 Feb 2022 18:49:10 +0100</pubDate>
+  </item>
+   
+  <item>
+    <title><![CDATA[3.4: Debugging tools #2]]></title>
+    <link>https://aka.ms/learn-PWA/30Days-blog/#/30DaysOfPWA/dev-tools/04</link>
+    <guid isPermaLink="false">https://aka.ms/learn-PWA/30Days-blog/#/30DaysOfPWA/dev-tools/04</guid>
+    <description><![CDATA[<h1 id="debugging-tools-2">3.4: Debugging tools #2</h1>
+<p><strong>Author: Chait Pinnamaneni <span class="citation" data-cites="noobtiger11">[@noobtiger11]</span>(https://twitter.com/noobtiger11)</strong></p>
+<p>Welcome to <strong>Week 3 Day 4</strong> of #30DaysOfPWA! Want to learn more about this project? Check out our <a href="../kickoff.md">Kickoff</a> post to get more details on the content roadmap and contributors. Now, let’s dive in!</p>
+<figure>
+<img src="_media/day-04.jpg" alt="image of title and author." /><figcaption>image of title and author.</figcaption>
+</figure>
+<h3 id="what-well-cover-today">WHAT WE’LL COVER TODAY</h3>
+<table>
+<thead>
+<tr class="header">
+<th>Section</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Permissions</strong></td>
+<td>How to check and reset user permissions?</td>
+</tr>
+<tr class="even">
+<td><strong>Manage notifications</strong></td>
+<td>How to emulate push notifications?</td>
+</tr>
+<tr class="odd">
+<td><strong>Background sync and fetch</strong></td>
+<td>How to view background sync and fetch events?</td>
+</tr>
+<tr class="even">
+<td><strong>IndexedDB storage</strong></td>
+<td>How to view and manage data stored in IndexedDB?</td>
+</tr>
+</tbody>
+</table>]]></description>
+    <pubDate>Thu, 24 Feb 2022 18:49:10 +0100</pubDate>
+  </item>
+   
+  <item>
+    <title><![CDATA[3.3: Debugging tools #1]]></title>
+    <link>https://aka.ms/learn-PWA/30Days-blog/#/30DaysOfPWA/dev-tools/03</link>
+    <guid isPermaLink="false">https://aka.ms/learn-PWA/30Days-blog/#/30DaysOfPWA/dev-tools/03</guid>
+    <description><![CDATA[<h1 id="debugging-tools-1">3.3: Debugging tools #1</h1>
+<p><strong>Author: Patrick Brosset <span class="citation" data-cites="patrickbrosset">[@patrickbrosset]</span>(https://twitter.com/patrickbrosset)</strong></p>
+<p>Welcome to <strong>Week 3 Day 3</strong> of #30DaysOfPWA! Want to learn more about this project? Check out our <a href="../kickoff.md">Kickoff</a> post to get more details on the content roadmap and contributors. Now, let’s dive in!</p>
+<figure>
+<img src="_media/day-03.jpg" alt="image of title and author." /><figcaption>image of title and author.</figcaption>
+</figure>
+<h3 id="what-well-cover-today">WHAT WE’LL COVER TODAY</h3>
+<table>
+<colgroup>
+<col style="width: 38%" />
+<col style="width: 61%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Section</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Testing on other devices</strong></td>
+<td>How to simulate your app being rendered on a mobile device during development?</td>
+</tr>
+<tr class="even">
+<td><strong>Troubleshooting installation issues</strong></td>
+<td>How to detect issues preventing your app from installing and resolve them?</td>
+</tr>
+<tr class="odd">
+<td><strong>Reloading manifest changes</strong></td>
+<td>How to make sure your manifest changes are reloaded?</td>
+</tr>
+<tr class="even">
+<td><strong>Troubleshooting server worker issues</strong></td>
+<td>How to check if your service worker is running, force update it, and debug it?</td>
+</tr>
+<tr class="odd">
+<td><strong>Troubleshooting cache issues</strong></td>
+<td>How to view and manage your cached resources?</td>
+</tr>
+<tr class="even">
+<td><strong>Testing offline support</strong></td>
+<td>How to simulate offline mode?</td>
+</tr>
+</tbody>
+</table>]]></description>
+    <pubDate>Thu, 24 Feb 2022 18:49:10 +0100</pubDate>
+  </item>
+   
+  <item>
+    <title><![CDATA[2.4: Displaying content more like an app]]></title>
+    <link>https://aka.ms/learn-PWA/30Days-blog/#/30DaysOfPWA/advanced-capabilities/04</link>
+    <guid isPermaLink="false">https://aka.ms/learn-PWA/30Days-blog/#/30DaysOfPWA/advanced-capabilities/04</guid>
+    <description><![CDATA[<h1 id="displaying-content-more-like-an-app">2.4: Displaying content more like an app</h1>
+<p><strong>Author: Stephanie Stimac <span class="citation" data-cites="seaotta">[@seaotta]</span>(https://twitter.com/seaotta)</strong></p>
+<figure>
+<img src="_media/day-04.jpg" alt="Image of title and author." /><figcaption>Image of title and author.</figcaption>
+</figure>
+<p>Welcome to <strong>Week 2 Day 4</strong> of the <a href="https://aka.ms/learn-pwa/30Days-blog">30 Days of PWA</a> series! Today’s blog post will walk you through the different display modes you can set for your website, and the experimental Window Controls Overlay feature which allows the customization of the title bar of your PWA.</p>
+<h2 id="display-modes">Display Modes</h2>
+<p>The way Progressive Web Apps get displayed by an operating system after installation may be different than the way the app appears when opened in a web browser. On a mobile device for example, an installed PWA can be displayed full screen, while on a desktop operating system, it can be displayed in a standalone window.</p>
+<p>There are four different display modes available to choose from and each provides a different browser UI experience that you’ll want to consider when deciding which display mode is right for your PWA.</p>
+<p>You set your preferred display mode via the web app manifest’s <code>display</code> member with one of the following values: “fullscreen,” “standalone,” “minimal-ui,” or “browser”:</p>
+<pre><code>{
+    “display”: “standalone”
+}</code></pre>
+<p>In the event a browser doesn’t support a display mode, which is possible since they’re not required or support all the display mode options, the display mode will <a href="https://www.w3.org/TR/appmanifest/#dfn-fallback-chain">fall back to a supported one</a> in this order:</p>
+<blockquote>
+<p>fullscreen &gt; standalone &gt; minimal-ui &gt; browser</p>
+</blockquote>
+<h3 id="standalone-display-mode">Standalone display mode</h3>
+<p>The “standalone” display mode makes your PWA look and behave the most like a native application. It opens in a different window from the browser and hides all the browser UI elements like the address bar. It keeps standard system UI elements like a back button or a close window button. In this mode, your application can also have its own icon in the application launcher. If standalone isn’t available, it will fall back to the “minimal-ui” display mode. Twitter uses “standalone” for their PWA.</p>
+<!-- ![Twitter displayed in its own window on Android](_media/display-standalone.png) -->
+<p><img src="/win-student-devs/30DaysOfPWA/advanced-capabilities/_media/display-standalone.png" alt="Twitter displayed in its own window on Android" style="max-width: 600px; display: block; margin-left: auto; margin-right: auto;" /></p>
+<h3 id="fullscreen-display-mode">Fullscreen display mode</h3>
+<p>The “fullscreen” display mode takes up the entirety of the display area available and hides all of the browser UI elements. If “fullscreen” isn’t available, it will fall back to “standalone.” Here’s an example of a game that uses the “fullscreen” display mode.</p>
+<!-- ![This PacMan game is a PWA and was built with the fullscreen display mode](_media/display-fullscreen.png) -->
+<p><img src="/win-student-devs/30DaysOfPWA/advanced-capabilities/_media/display-fullscreen.png" alt="This PacMan game is a PWA and was built with the fullscreen display mode" style="max-width: 600px; display: block; margin-left: auto; margin-right: auto;" /></p>
+<p>View the PacMan PWA <a href="https://bobrov.dev/pacman-pwa/index.html">here</a>.</p>
+<h3 id="minimal-ui-display-mode">Minimal-UI display mode</h3>
+<p>The “minimal-ui” display mode gives your PWA a similar experience to the standalone display mode. It opens in its own window, but the application retains a minimal set of browser UI controls. The UI that is retained will vary between browsers. The OneDrive PWA uses the “minimal-ui” display mode.</p>
+<figure>
+<img src="_media/display-minimal-ui.png" alt="The OneDrive PWA utilizes the minimal-ui display mode" /><figcaption>The OneDrive PWA utilizes the minimal-ui display mode</figcaption>
+</figure>
+<h3 id="browser-display-mode">Browser display mode</h3>
+<p>The browser display mode retains the browser experience with all the browser UI and your web app will not be installable. It will open in a normal browser window or tab. If Twitter were not using standalone mode, it would display in the browser like a normal tab.</p>
+<figure>
+<img src="_media/display-desktop.png" alt="Twitter in a browser window." /><figcaption>Twitter in a browser window.</figcaption>
+</figure>
+<h3 id="targeting-different-display-modes-with-the-display-mode-media-feature">Targeting different display modes with the <code>display-mode</code> media feature</h3>
+<p>Depending on the display mode you choose for your PWA there may be elements you want to hide when the web app is open in the browser tab, especially if you’re launching in a mode like standalone or fullscreen that hides the browser UI buttons. You need to ensure there’s a way for people to go back if there’s no back button. Or maybe you want to modify your site styles slightly to display better when the app is in fullscreen mode.</p>
+<p>You can do this by targeting certain display modes with the <code>display-mode</code> media feature.</p>
+<pre><code>.app-button {
+    display: none;
+}
+
+@media (display-mode: standalone) {
+.app-button {
+        display: block;
+    }
+}</code></pre>
+<p>In this example, the button with the class <code>.app-button</code> would only be shown when the PWA is in standalone mode. You can go even further and combine media queries to change how things are displayed on smaller screens versus a desktop when a user in standalone mode to tailor the experience.</p>
+<h2 id="customizing-display-options-further-with-window-controls-overlay">Customizing display options further with Window Controls Overlay</h2>
+<p>The previous display modes I mentioned currently only offer customization of the display below the title bar on desktop PWAs when in standalone mode. Window Controls Overlay is an experimental display option that will allow you to customize the title bar of your PWA with CSS and JavaScript. It provides access to the space next to the controls that minimize, maximize, or close the app’s window.</p>
+<p>Because this feature is experimental and in development, the way it currently works is subject to change. You can turn this feature on in Chrome and Edge by going to <code>about://flags</code> and enabling the <code>Desktop PWA Window Controls Overlay</code> flag.</p>
+<figure>
+<img src="_media/display-spec-wco.png" alt="A title bar with window controls overlay enabled and a title bar without it" /><figcaption>A title bar with window controls overlay enabled and a title bar without it</figcaption>
+</figure>
+<p><em>This example from the <a href="https://aka.ms/learn-PWA/30Days-2.4/wicg.github.io/window-controls-overlay">specification draft</a> shows how the title bar area becomes available when WCO is enabled.</em></p>
+<h3 id="using-window-controls-overlay">Using Window Controls Overlay</h3>
+<p>In order to use this feature we need to add “display_override” to our web app manifest file.</p>
+<pre><code>{
+    “display_override”: [“window-controls-overlay”]
+}</code></pre>
+<p>The customized title bar will only show when in a separate PWA window on a desktop operating system. After our <code>display_override</code>, we would then follow up with our preferred display mode when window controls overlay isn’t available.</p>
+<pre><code>{
+    “display_override”: [“window-controls-overlay”],
+    &quot;display&quot;: &quot;standalone&quot;,
+}</code></pre>
+<p>Now that we’ve stated via the manifest we would like to use window controls overlay, we need to add some CSS to position the content in our title bar area. We can do that with the following <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/env()">CSS environment variables</a>:</p>
+<ul>
+<li><strong><code>titlebar-area-x</code></strong></li>
+<li><strong><code>titlebar-area-y</code></strong></li>
+<li><strong><code>titlebar-area-width</code></strong></li>
+<li><strong><code>titlebar-area-height</code></strong></li>
+</ul>
+<p>Using these environment variables would look something like this:</p>
+<pre><code>.titleBar {
+    position: fixed;
+    left: env(titlebar-area-x, 0);
+    top: env(titlebar-area-y, 0);
+    width: env(titlebar-area-width, 100%);
+    height: env(titlebar-area-height, 40px);
+}</code></pre>
+<p>The <code>titlebar-area-x</code> variable gives us the distance from the left of the viewport to where the titlebar appears, with a fallback integer. The <code>titlebar-area-y</code> variable gives us the distance from the top. And <code>titlebar-area-width</code> and <code>titlebar-area-height</code> set the width and height respectively, with fallback values. The fallback values are used when the app isn’t installed, when Window Controls Overlay isn’t supported or the user has opted-out of the feature.</p>
+<h3 id="keeping-the-title-bar-draggable">Keeping the title bar draggable</h3>
+<p>Once you’ve positioned and styled your title bar, there’s one more step left. The window is no longer draggable if you’ve turned on window control overlay, so we need to fix this with the <code>app-region</code> CSS property.</p>
+<pre><code>.titleBar {
+    position: fixed;
+    left: env(titlebar-area-x, 0);
+    top: env(titlebar-area-y, 0);
+    width: env(titlebar-area-width, 100%);
+    height: env(titlebar-area-height, 40px);
+    -webkit-app-region: drag;
+    app-region: drag;
+}</code></pre>
+<p>This CSS property is also experimental, so <code>-webkit-app-region</code> is needed for it to work and is only supported in Chromium-based browsers.</p>
+<h2 id="resources">Resources</h2>
+<p><a href="https://aka.ms/learn-PWA/30Days-2.4/developer.mozilla.org/en-US/docs/Web/CSS/display-mode">MDN <code>display-mode</code></a></p>
+<p><a href="https://aka.ms/learn-PWA/30Days-2.4/web.dev/learn/pwa/app-design#display-modes">App Design: Display Modes</a></p>
+<p><a href="https://aka.ms/learn-PWA/30Days-2.4/alistapart.com/article/breaking-out-of-the-box">WCO: Breaking Out of the Box</a></p>
+<h2 id="summary">Summary</h2>
+<p>Display modes are an easy way to make your PWA feel like a native app and are set via the web app manifest <code>display</code> member. The ability to further customize the title bar area for an even greater native desktop app feel when your PWA is displayed in a separate window is available via the experimental Window Controls Overlay setting available in Chromium browsers.</p>
+<p>Tune in for the <a href="./05.md">next post</a> in the <a href="https://aka.ms/learn-pwa/30Days-blog">series</a> tomorrow where we will cover caching. </p>
+<h2 id="exercise">Exercise</h2>
+<p>Pick a <a href="https://aka.ms/learn-PWA/30Days-2.4/docs.microsoft.com/en-us/microsoft-edge/progressive-web-apps-chromium/demo-pwas">sample app</a> and change the display modes in the manifest to see how each presents when opened. What features are missing or added in each display mode? How does the UI change?</p>]]></description>
+    <pubDate>Thu, 24 Feb 2022 08:09:37 -0800</pubDate>
+  </item>
+   
+  <item>
+    <title><![CDATA[-]]></title>
+    <link>https://aka.ms/learn-PWA/30Days-blog/#/_sidebar</link>
+    <guid isPermaLink="false">https://aka.ms/learn-PWA/30Days-blog/#/_sidebar</guid>
+    <description><![CDATA[<ul>
+<li><a href="/30DaysOfPWA/kickoff"><strong>0. Kickoff</strong></a></li>
+<li><a href="/30DaysOfPWA/core-concepts/"><strong>1. Core Concepts</strong></a>
+<ul>
+<li><a href="/30DaysOfPWA/core-concepts/01.md">1.1 Introducing PWA.</a></li>
+<li><a href="/30DaysOfPWA/core-concepts/02.md">1.2 Deconstructing PWA.</a></li>
+<li><a href="/30DaysOfPWA/core-concepts/03.md">1.3 Make PWA installable.</a></li>
+<li><a href="/30DaysOfPWA/core-concepts/04.md">1.4 Make PWA reliable.</a></li>
+<li><a href="/30DaysOfPWA/core-concepts/05.md">1.5 Make PWA work offline.</a></li>
+<li><a href="/30DaysOfPWA/core-concepts/06.md">1.6 Make PWA capable.</a></li>
+<li><a href="/30DaysOfPWA/core-concepts/07.md">1.7 Developing PWA.</a></li>
+</ul></li>
+<li><a href="/30DaysOfPWA/advanced-capabilities/"><strong>2. Advanced Capabilities</strong></a>
+<ul>
+<li><a href="/30DaysOfPWA/advanced-capabilities/01.md">2.1 Introducting the advanced capabilities of Progressive Web Apps</a></li>
+<li><a href="/30DaysOfPWA/advanced-capabilities/02.md">2.2 Creating application shortcuts</a></li>
+<li><a href="/30DaysOfPWA/advanced-capabilities/03.md">2.3 Sharing content from and with your app</a></li>
+<li><a href="/30DaysOfPWA/advanced-capabilities/04.md">2.4 Displaying content more like an app</a></li>
+<li><a href="/30DaysOfPWA/advanced-capabilities/05.md">2.5 Caching your app data</a></li>
+<li><a href="/30DaysOfPWA/advanced-capabilities/06.md">2.6 Synchronizing app data in the background</a></li>
+<li><a href="/30DaysOfPWA/advanced-capabilities/07.md">2.7 Notifying your users of updates</a></li>
+</ul></li>
+<li><a href="/30DaysOfPWA/dev-tools/"><strong>3. Developer Tools</strong></a>
+<ul>
+<li><a href="/30DaysOfPWA/dev-tools/01.md">3.1 Get-started tools - Part 1</a></li>
+<li><a href="/30DaysOfPWA/dev-tools/02.md">3.2 Get-started tools - Part 2</a></li>
+<li><a href="/30DaysOfPWA/dev-tools/03.md">3.3 Debugging tools - Part 1</a></li>
+<li><a href="/30DaysOfPWA/dev-tools/04.md">3.4 Debugging tools - Part 2</a></li>
+<li><a href="/30DaysOfPWA/dev-tools/05.md">3.5 Auditing tools</a></li>
+<li><a href="/30DaysOfPWA/dev-tools/06.md">3.6 Test automation tools</a></li>
+<li><a href="/30DaysOfPWA/dev-tools/07.md">3.7 Packaging tools</a></li>
+</ul></li>
+<li><a href="/30DaysOfPWA/platforms-practices/"><strong>4. Platforms &amp; Practices</strong></a>
+<ul>
+<li><a href="/30DaysOfPWA/platforms-practices/01.md">4.1 Installability for PWAs</a></li>
+<li><a href="/30DaysOfPWA/platforms-practices/02.md">4.2 Best practices for PWA engagement</a></li>
+<li><a href="/30DaysOfPWA/platforms-practices/03.md">4.3 Distributing your PWA</a></li>
+<li><a href="/30DaysOfPWA/platforms-practices/04.md">4.4 Best practices for PWA reliability</a></li>
+<li><a href="/30DaysOfPWA/platforms-practices/05.md">4.5 PWA maintainability - Using web components</a></li>
+<li><a href="/30DaysOfPWA/platforms-practices/06.md">4.6 Best practices for PWA authentication</a></li>
+<li><a href="/30DaysOfPWA/platforms-practices/07.md">4.7 Best practices for PWA UI/UX</a></li>
+</ul></li>
+<li><h2 id="summary"><a href="/30DaysOfPWA/summary"><strong>5. Summary</strong></a></h2></li>
+</ul>]]></description>
+    <pubDate>Wed, 23 Feb 2022 16:33:58 -0800</pubDate>
+  </item>
+   
+  <item>
+    <title><![CDATA[Week 4. Platform and Practices]]></title>
+    <link>https://aka.ms/learn-PWA/30Days-blog/#/30DaysOfPWA/platforms-practices/README</link>
+    <guid isPermaLink="false">https://aka.ms/learn-PWA/30Days-blog/#/30DaysOfPWA/platforms-practices/README</guid>
+    <description><![CDATA[<h1 id="week-4.-platform-and-practices">Week 4. Platform and Practices</h1>
+<figure>
+<img src="_media/week4-banner.png" alt="Visual Guide to Core Concepts Week!" /><figcaption>Visual Guide to Core Concepts Week!</figcaption>
+</figure>
+<h3 id="what-well-cover-in-week-4">WHAT WE’LL COVER IN WEEK 4</h3>
+<h3 id="installability-for-pwas">4.1 |   <a href="01.md">Installability for PWAs</a></h3>
+<ul>
+<li>Quick recap of how to make PWAs installable</li>
+<li>What types of apps should be installable?</li>
+<li>App-first development strategy</li>
+</ul>
+<h3 id="best-practices-for-pwa-engagement">4.2 |   <a href="02.md">Best Practices for PWA Engagement</a></h3>
+<ul>
+<li>Best practices for notifications and push notifications</li>
+<li>Badging</li>
+<li>Mobile vs. Desktop engagement</li>
+</ul>
+<h3 id="distributing-your-pwa">4.3 |   <a href="03.md">Distributing Your PWA</a></h3>
+<ul>
+<li>PWAs are apps, so how can you get them on app stores?</li>
+<li>Getting maximum discoverability, all with one codebase.</li>
+<li>Working with different app stores</li>
+</ul>
+<h3 id="best-practices-for-pwa-reliability">4.4 |   <a href="04.md">Best Practices for PWA Reliability</a></h3>
+<ul>
+<li>How to preserve your user experience while offline</li>
+<li>IndexedDB sample walkthrough</li>
+</ul>
+<h3 id="pwa-maintainability-using-web-components">4.5 |   <a href="05.md">PWA Maintainability: Using Web Components</a></h3>
+<ul>
+<li>What does maintainability look like in larger (and possibly collaborative) web projects?</li>
+<li>What are web components?</li>
+<li>How can we use them to build maintainable and scalable PWAs?</li>
+</ul>
+<h3 id="best-practices-for-pwa-authentication">4.6 |   <a href="06.md">Best Practices for PWA Authentication</a></h3>
+<ul>
+<li>When should your PWA use authentication?</li>
+<li>Considerations for implementing authentication for your PWA</li>
+<li>Adding authentication to your app</li>
+</ul>
+<h3 id="best-practices-for-pwa-uiux">4.7 |   <a href="07.md">Best Practices for PWA UI/UX</a></h3>
+<ul>
+<li>Responsiveness across all platforms</li>
+<li>Focusing your PWA content</li>
+<li>Seamless user interactions</li>
+</ul>]]></description>
+    <pubDate>Wed, 23 Feb 2022 16:33:58 -0800</pubDate>
+  </item>
+   
+  <item>
+    <title><![CDATA[3.7: Packaging tools]]></title>
+    <link>https://aka.ms/learn-PWA/30Days-blog/#/30DaysOfPWA/dev-tools/07</link>
+    <guid isPermaLink="false">https://aka.ms/learn-PWA/30Days-blog/#/30DaysOfPWA/dev-tools/07</guid>
+    <description><![CDATA[<h1 id="packaging-tools">3.7: Packaging tools</h1>
+<p><strong>Author: Jaylyn Barbee <span class="citation" data-cites="jaylynsatwork">[@jaylynsatwork]</span>(https://twitter.com/jaylynsatwork)</strong></p>
+<p>Welcome to <strong>Week 3 Day 7</strong> of #30DaysOfPWA! Want to learn more about this project? Check out our <a href="../kickoff.md">Kickoff</a> post to get more details on the content roadmap and contributors. Now, let’s dive in!</p>
+<figure>
+<img src="_media/day-07.jpg" alt="image of title and author." /><figcaption>image of title and author.</figcaption>
+</figure>
+<h3 id="what-well-cover-today">WHAT WE’LL COVER TODAY</h3>
+<table>
+<colgroup>
+<col style="width: 38%" />
+<col style="width: 61%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Section</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Introduction</strong></td>
+<td>Introduction to packaging for the Windows Store</td>
+</tr>
+<tr class="even">
+<td><strong>The Process</strong></td>
+<td>Overview of how to package for the actual process of using pwabuilder.com to package for the Windows Store</td>
+</tr>
+<tr class="odd">
+<td><strong>Why the Microsoft Store?</strong></td>
+<td>An explanation of why you would chose the Microsoft Store over any others</td>
+</tr>
+</tbody>
+</table>]]></description>
+    <pubDate>Wed, 23 Feb 2022 16:33:58 -0800</pubDate>
+  </item>
+   
+  <item>
+    <title><![CDATA[3.6: Test automation tools]]></title>
+    <link>https://aka.ms/learn-PWA/30Days-blog/#/30DaysOfPWA/dev-tools/06</link>
+    <guid isPermaLink="false">https://aka.ms/learn-PWA/30Days-blog/#/30DaysOfPWA/dev-tools/06</guid>
+    <description><![CDATA[<h1 id="test-automation-tools">3.6: Test automation tools</h1>
+<h2 id="coming-soon"><em>Coming soon!</em></h2>
+<figure>
+<img src="_media/day-06.jpg" alt="image of title and author." /><figcaption>image of title and author.</figcaption>
+</figure>
+<h3 id="what-well-cover-today">WHAT WE’LL COVER TODAY</h3>
+<table>
+<thead>
+<tr class="header">
+<th>Section</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>TODO</strong></td>
+<td><strong>TODO</strong></td>
+</tr>
+</tbody>
+</table>]]></description>
+    <pubDate>Wed, 23 Feb 2022 16:33:58 -0800</pubDate>
+  </item>
+  
+</channel>
+</rss>
