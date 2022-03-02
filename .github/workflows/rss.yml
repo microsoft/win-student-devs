@@ -10,6 +10,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
         with:
+          token: ${{ secrets.ACTION_TOKEN }}
           fetch-depth: 0
           ref: ${{ github.head_ref }}
 
@@ -25,5 +26,5 @@ jobs:
       - name: Commit Updated
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          token: ${{ secrets.ACTION_TOKEN }}
           commit_message: Build rss feed.xml
+          push_options: --force
