@@ -25,4 +25,5 @@ jobs:
       - name: Commit Updated
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
+          token: ${{ secrets.ACTION_TOKEN }}
           commit_message: Build rss feed.xml
