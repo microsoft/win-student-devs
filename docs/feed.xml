@@ -230,32 +230,34 @@
 <p><strong>Author: Chait Pinnamaneni <span class="citation" data-cites="noobtiger11">[@noobtiger11]</span>(https://twitter.com/noobtiger11)</strong></p>
 <p>Welcome to <strong>Week 3 Day 4</strong> of #30DaysOfPWA! Want to learn more about this project? Check out our <a href="../kickoff.md">Kickoff</a> post to get more details on the content roadmap and contributors. Now, let’s dive in!</p>
 <figure>
-<img src="_media/day-04.jpg" alt="image of title and author." /><figcaption>image of title and author.</figcaption>
+<img src="_media/day-04.jpg" alt="Welcome to week 3 day 4 - Debugging tools part 2." /><figcaption>Welcome to week 3 day 4 - Debugging tools part 2.</figcaption>
 </figure>
-<h3 id="what-well-cover-today">WHAT WE’LL COVER TODAY</h3>
+<p>Welcome to the second day of debugging PWA using browser DevTools!</p>
+<p>Yesterday, you learned to debug common issues related to PWA using DevTools. However as you learned in <a href="../advanced-capabilities/">week 2</a> of this series, PWAs are capable of more advanced features like <a href="../advanced-capabilities/06.md">background synchronization</a>, <a href="../advanced-capabilities/07.md">push notifications</a> and more.</p>
+<p>Today we will go through the tools available to you for debugging these advanced features of PWAs.</p>
 <table>
 <thead>
 <tr class="header">
-<th>Section</th>
-<th>Description</th>
+<th style="text-align: left;"></th>
+<th style="text-align: left;">What you will learn today</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><strong>Permissions</strong></td>
-<td>How to check and reset user permissions?</td>
+<td style="text-align: left;"><em>PWA permissions</em></td>
+<td style="text-align: left;">How to check for PWA permissions?</td>
 </tr>
 <tr class="even">
-<td><strong>Manage notifications</strong></td>
-<td>How to emulate push notifications?</td>
+<td style="text-align: left;"><em>Manage notifications</em></td>
+<td style="text-align: left;">How to emulate push notifications?</td>
 </tr>
 <tr class="odd">
-<td><strong>Background sync and fetch</strong></td>
-<td>How to view background sync and fetch events?</td>
+<td style="text-align: left;"><em>Background sync and fetch</em></td>
+<td style="text-align: left;">How to view background sync and fetch events?</td>
 </tr>
 <tr class="even">
-<td><strong>IndexedDB storage</strong></td>
-<td>How to view and manage data stored in IndexedDB?</td>
+<td style="text-align: left;"><em>IndexedDB storage</em></td>
+<td style="text-align: left;">How to view and manage your data stored in IndexedDB?</td>
 </tr>
 </tbody>
 </table>]]></description>
