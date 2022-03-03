@@ -11,27 +11,29 @@
 
 ### 4.2 | &nbsp; [Best Practices for PWA Engagement](02.md) 
 * Best practices for notifications and push notifications
+* Badging
 * Mobile vs. Desktop engagement
 
 ### 4.3 | &nbsp; [Distributing Your PWA](03.md) 
-* Where can you distribute your PWA?
-* Preparing your PWA for different stores
+* PWAs are apps, so how can you get them on app stores?
+* Getting maximum discoverability, all with one codebase.
+* Working with different app stores
 
 ### 4.4 | &nbsp; [Best Practices for PWA Reliability](04.md)
 * How to preserve your user experience while offline
 * IndexedDB sample walkthrough
 
-### 4.5 | &nbsp; [PWAs and Maintainability](05.md)
+### 4.5 | &nbsp; [PWA Maintainability: Using Web Components](05.md)
 * What does maintainability look like in larger (and possibly collaborative) web projects?
-* Maintainability tooling
-* Introduction to web components
+* What are web components?
+* How can we use them to build maintainable and scalable PWAs?
 
-### 4.6 | &nbsp; [PWA Maintainability Part 2: Web Components](06.md) 
-* Modular, standalone code with Web Components
-* Options for developing web components
-* Building your first web component
+### 4.6 | &nbsp; [Best Practices for PWA Authentication](06.md) 
+* When should your PWA use authentication?
+* Considerations for implementing authentication for your PWA
+* Adding authentication to your app
 
 ### 4.7 | &nbsp; [Best Practices for PWA UI/UX](07.md) 
-* Creating consistent design experiences across different desktop and mobile platforms
-* UI and UX standards and implementation paths
-* Mobile-first responsive design
+* Responsiveness across all platforms
+* Focusing your PWA content
+* Seamless user interactions
