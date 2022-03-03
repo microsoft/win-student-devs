@@ -6,6 +6,181 @@
   <description>For 30 days, we publish articles that aim to introduce developers to Progressive Web App. We have content that covers 0-level to 200-level topics. Each post takes 5-10 minutes to read and is followed by a sample snippet or exercise.</description>
    
   <item>
+    <title><![CDATA[3.4: Debugging tools #2]]></title>
+    <link>https://aka.ms/learn-PWA/30Days-blog/#/30DaysOfPWA/dev-tools/04</link>
+    <guid isPermaLink="false">https://aka.ms/learn-PWA/30Days-blog/#/30DaysOfPWA/dev-tools/04</guid>
+    <description><![CDATA[<h1 id="debugging-tools-2">3.4: Debugging tools #2</h1>
+<p><strong>Author: Chait Pinnamaneni <span class="citation" data-cites="noobtiger11">[@noobtiger11]</span>(https://twitter.com/noobtiger11)</strong></p>
+<p>Welcome to <strong>Week 3 Day 4</strong> of #30DaysOfPWA! Want to learn more about this project? Check out our <a href="../kickoff.md">Kickoff</a> post to get more details on the content roadmap and contributors. Now, let’s dive in!</p>
+<figure>
+<img src="_media/day-04.jpg" alt="Welcome to week 3 day 4 - Debugging tools part 2." /><figcaption>Welcome to week 3 day 4 - Debugging tools part 2.</figcaption>
+</figure>
+<p>Welcome to the second day of debugging PWA using browser DevTools!</p>
+<p>Yesterday, you learned to debug common issues related to PWA using DevTools. However as you learned in <a href="../advanced-capabilities/">week 2</a> of this series, PWAs are capable of more advanced features like <a href="../advanced-capabilities/06.md">background synchronization</a>, <a href="../advanced-capabilities/07.md">push notifications</a>, and more.</p>
+<p>Today we will go through the tools available to you for debugging these advanced features of PWAs.</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: left;">What you will learn today</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><em>PWA permissions</em></td>
+<td style="text-align: left;">How to check for PWA permissions</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><em>Manage notifications</em></td>
+<td style="text-align: left;">How to emulate push notifications</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><em>Background sync and fetch</em></td>
+<td style="text-align: left;">How to view background sync and fetch events</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><em>IndexedDB storage</em></td>
+<td style="text-align: left;">How to view and manage your data stored in IndexedDB</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p>Please note that all of the screenshots in today’s article are taken from Microsoft Edge DevTools, but other browsers offer similar tools.</p>
+<h2 id="managing-pwa-permissions">Managing PWA permissions</h2>
+<p>PWAs can make full use of modern web features such as notifications, location, and storage, however, for PWAs to use these features, they must be granted permission.</p>
+<p>For example, to send notifications to the user, a PWA has to request permission via the <a href="https://aka.ms/learn-PWA/30Days-3.4/developer.mozilla.org/docs/Web/API/Notifications_API">Notifications API</a>, which looks something like this:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb1-1" title="1"><span class="va">Notification</span>.<span class="at">requestPermission</span>().<span class="at">then</span>(<span class="kw">function</span>(result) <span class="op">{</span></a>
+<a class="sourceLine" id="cb1-2" title="2">  <span class="va">console</span>.<span class="at">log</span>(result)<span class="op">;</span></a>
+<a class="sourceLine" id="cb1-3" title="3"><span class="op">}</span>)<span class="op">;</span></a></code></pre></div>
+<p>This will prompt browsers to show a dialog requesting users for the permission as shown below.</p>
+<figure>
+<img src="_media/day-04-permission-dialog.png" alt="The permissions dialog in Microsoft Edge prompting the user to allow or deny notifications from a site." /><figcaption>The permissions dialog in Microsoft Edge prompting the user to allow or deny notifications from a site.</figcaption>
+</figure>
+<p>During development, you often need to test different user flows based on whether the user has granted or denied certain permissions. This can be achieved by using the <strong>App permissions</strong> list. With this list, you can validate and manage all the permissions that your app uses.</p>
+<p>For example, to reset notifications permission:</p>
+<ul>
+<li>Open the <strong>App permissions</strong> page by clicking the <strong>View site information</strong> icon in the url bar or the <strong>Settings and more</strong> menu button in an installed PWA’s title bar.</li>
+<li>Find <strong>Notifications</strong> in the list and reset it back to its default value.</li>
+<li>Alternatively you can also reset all permissions by clicking <strong>Reset permissions</strong>.</li>
+</ul>
+<figure>
+<img src="_media/day-04-all-permission.png" alt="Steps to open App permissions list and reset notification permission in Microsoft Edge." /><figcaption>Steps to open App permissions list and reset notification permission in Microsoft Edge.</figcaption>
+</figure>
+<h2 id="push-notifications">Push notifications</h2>
+<p>As you learned in <a href="../advanced-capabilities/07.md">Notifying Your Users of Updates</a>, PWAs can improve engagement by sending push notifications to the user. This is achieved through the <a href="https://aka.ms/learn-PWA/30Days-3.4/developer.mozilla.org/docs/Web/API/Push_API">Push API</a> and the <a href="https://aka.ms/learn-PWA/30Days-3.4/developer.mozilla.org/docs/Web/API/Notifications_API">Notifications API</a>, both of which are accessible to service workers.</p>
+<p>PWAs can subscribe to push messages from the server via the Push API. Once subscribed, a PWA will start receiving push events even if the application is closed. When a push event is received, the PWA can send a notification to the user via the Notifications API.</p>
+<p>DevTools can track all these events for you, which can help you debug the entire user notification flow. To see the list of all the push messages and notifications in DevTools:</p>
+<ul>
+<li>Open DevTools.</li>
+<li>Open the <strong>Application</strong> tool.</li>
+<li>Open <strong>Push messaging</strong> under the <strong>Background services</strong> section.</li>
+<li>Click <strong>Start recording events</strong> to start listing push notification events in the table.</li>
+<li>For notifications, open <strong>Notifications</strong> under the <strong>Background services</strong> section and click <strong>Start recording events</strong>.</li>
+<li>Click on any notification to view the details.</li>
+</ul>
+<figure>
+<img src="_media/day-04-notifications-table.png" alt="Steps to view Push messages and notifications list in Microsoft Edge DevTools." /><figcaption>Steps to view Push messages and notifications list in Microsoft Edge DevTools.</figcaption>
+</figure>
+<p>Since the push events have to be triggered by the server, to test and debug push messaging flow in a PWA, you often have to send mock events from the server.</p>
+<p>DevTools provides a convenient way to avoid this by simulating sending push events directly from the browser. To send mock push events in a PWA:</p>
+<ul>
+<li>Open DevTools and open the <strong>Application</strong> tool.</li>
+<li>Open <strong>Service Workers</strong> in the <strong>Application</strong> section.</li>
+<li>Type your test message in the <strong>Push</strong> input field.</li>
+<li>Click the <strong>Push</strong> button to send the message.</li>
+<li>You can then validate that the event was sent in the <strong>Push messaging</strong> table as described above.</li>
+</ul>
+<figure>
+<img src="_media/day-04-push-messages-mock.png" alt="Mock push messages in Microsoft Edge DevTools." /><figcaption>Mock push messages in Microsoft Edge DevTools.</figcaption>
+</figure>
+<h2 id="background-syncfetch">Background sync/fetch</h2>
+<p>PWAs can also use the <a href="https://aka.ms/learn-PWA/30Days-3.4/developer.mozilla.org/en-US/docs/Web/API/Background_Synchronization_API">Background Sync API</a>, <a href="https://aka.ms/learn-PWA/30Days-3.4/developer.mozilla.org/docs/Web/API/Background_Fetch_API">Background Fetch API</a>, and <a href="https://aka.ms/learn-PWA/30Days-3.4/developer.mozilla.org/docs/Web/API/Web_Periodic_Background_Synchronization_API">Periodic Background Sync API</a> to send and receive network requests and messages.</p>
+<p>The advantage of using these background APIs over Fetch or XMLHttpRequest is that network requests made through these APIs can be deferred until the PWA has active network connectivity and be done even when the PWA is not being used. Check out <a href="../advanced-capabilities/06.md">Synchronizing app data in the background</a> for more information.</p>
+<p>Similar to how you can view push messages and notifications, Background API events can also be viewed in DevTools. The <strong>Background services</strong> section of the <strong>Application</strong> tool has 3 sub-sections:</p>
+<ul>
+<li><strong>Background Fetch</strong> can record the background fetch events.</li>
+<li><strong>Background Sync</strong> can record background sync events.</li>
+<li><strong>Periodic Background Sync</strong> can record periodic background sync events.</li>
+</ul>
+<p>You can also send test background sync events and periodic background sync events in the <strong>Service Workers</strong> section, which works like when sending test push messages as explained previously.</p>
+<p>These mock events trigger all the event handlers in PWA and also gets listed in the corresponding background services table.</p>
+<figure>
+<img src="_media/day-04-background-services.png" alt="Background sync in Microsoft Edge DevTools." /><figcaption>Background sync in Microsoft Edge DevTools.</figcaption>
+</figure>
+<h2 id="indexeddb-storage">IndexedDB storage</h2>
+<p>To provide offline support, PWAs should be able to store data locally. There are multiple storage options for the web and you can read more about them <a href="../core-concepts/05.md">here</a>.</p>
+<p>In PWAs, a recommended practice is to use <a href="../advanced-capabilities/05.md">Cache storage</a> for storing static resources and <a href="https://aka.ms/learn-PWA/30Days-3.4/developer.mozilla.org/docs/Web/API/IndexedDB_API">IndexedDB</a> is used for more structured data. You can learn more about IndexedDB in the upcoming <a href="../platforms-practices/04.md">Best Practices for Reliability</a> article.```</p>
+<p><a href="./03.md">Yesterday</a>, you learned about debugging cache issues in DevTools. To view and manage your app’s IndexedDB data in DevTools:</p>
+<ul>
+<li>Open DevTools</li>
+<li>Open the <strong>Application</strong> tool.</li>
+<li>Under <strong>Storage</strong>, expand the <strong>IndexedDB</strong> section until you find your database and the table you want to open. Note that there can be multiple databases here.</li>
+<li>Your table appears in the main area of the tool, and you can view the data.</li>
+<li>The toolbar displayed at the top of the table can be used to clear the entire table or delete the selected row.</li>
+</ul>
+<figure>
+<img src="_media/day-04-indexeddb.png" alt="Steps to view indexedDB data in DevTools." /><figcaption>Steps to view indexedDB data in DevTools.</figcaption>
+</figure>
+<h2 id="summary">Summary</h2>
+<p>After reading yesterday’s and today’s articles in this series, you should have a pretty good understating of how the browser DevTools can be used for PWA development and debugging. A lot of PWA issues can be resolved with DevTools and development can be made easy by using the specialized tools we went over in the past two days.</p>
+<p>The feature set available to PWAs is always growing and the DevTools is planning to add tooling support for these new features as well. If you have any feature requests or feedback, you can contact the Microsoft Edge DevTools team by clicking the <strong>Send Feedback</strong> button in upper right corner of DevTools.</p>]]></description>
+    <pubDate>Thu, 3 Mar 2022 01:01:03 +0100</pubDate>
+  </item>
+   
+  <item>
+    <title><![CDATA[-]]></title>
+    <link>https://aka.ms/learn-PWA/30Days-blog/#/_sidebar</link>
+    <guid isPermaLink="false">https://aka.ms/learn-PWA/30Days-blog/#/_sidebar</guid>
+    <description><![CDATA[<ul>
+<li><a href="/30DaysOfPWA/kickoff"><strong>0. Kickoff</strong></a></li>
+<li><a href="/30DaysOfPWA/core-concepts/"><strong>1. Core Concepts</strong></a>
+<ul>
+<li><a href="/30DaysOfPWA/core-concepts/01.md">1.1 Introducing PWA.</a></li>
+<li><a href="/30DaysOfPWA/core-concepts/02.md">1.2 Deconstructing PWA.</a></li>
+<li><a href="/30DaysOfPWA/core-concepts/03.md">1.3 Make PWA installable.</a></li>
+<li><a href="/30DaysOfPWA/core-concepts/04.md">1.4 Make PWA reliable.</a></li>
+<li><a href="/30DaysOfPWA/core-concepts/05.md">1.5 Make PWA work offline.</a></li>
+<li><a href="/30DaysOfPWA/core-concepts/06.md">1.6 Make PWA capable.</a></li>
+<li><a href="/30DaysOfPWA/core-concepts/07.md">1.7 Developing PWA.</a></li>
+</ul></li>
+<li><a href="/30DaysOfPWA/advanced-capabilities/"><strong>2. Advanced Capabilities</strong></a>
+<ul>
+<li><a href="/30DaysOfPWA/advanced-capabilities/01.md">2.1 Introducting the advanced capabilities of Progressive Web Apps</a></li>
+<li><a href="/30DaysOfPWA/advanced-capabilities/02.md">2.2 Creating application shortcuts</a></li>
+<li><a href="/30DaysOfPWA/advanced-capabilities/03.md">2.3 Sharing content from and with your app</a></li>
+<li><a href="/30DaysOfPWA/advanced-capabilities/04.md">2.4 Displaying content more like an app</a></li>
+<li><a href="/30DaysOfPWA/advanced-capabilities/05.md">2.5 Caching your app data</a></li>
+<li><a href="/30DaysOfPWA/advanced-capabilities/06.md">2.6 Synchronizing app data in the background</a></li>
+<li><a href="/30DaysOfPWA/advanced-capabilities/07.md">2.7 Notifying your users of updates</a></li>
+</ul></li>
+<li><a href="/30DaysOfPWA/dev-tools/"><strong>3. Developer Tools</strong></a>
+<ul>
+<li><a href="/30DaysOfPWA/dev-tools/01.md">3.1 Get-started tools - Part 1</a></li>
+<li><a href="/30DaysOfPWA/dev-tools/02.md">3.2 Get-started tools - Part 2</a></li>
+<li><a href="/30DaysOfPWA/dev-tools/03.md">3.3 Debugging tools - Part 1</a></li>
+<li><a href="/30DaysOfPWA/dev-tools/04.md">3.4 Debugging tools - Part 2</a></li>
+<li><a href="/30DaysOfPWA/dev-tools/05.md">3.5 Auditing tools</a></li>
+<li><a href="/30DaysOfPWA/dev-tools/06.md">3.6 Test automation tools</a></li>
+<li><a href="/30DaysOfPWA/dev-tools/07.md">3.7 Packaging tools</a></li>
+</ul></li>
+<li><a href="/30DaysOfPWA/platforms-practices/"><strong>4. Platforms &amp; Practices</strong></a>
+<ul>
+<li><a href="/30DaysOfPWA/platforms-practices/01.md">4.1 Installability for PWAs</a></li>
+<li><a href="/30DaysOfPWA/platforms-practices/02.md">4.2 Best practices for PWA engagement</a></li>
+<li><a href="/30DaysOfPWA/platforms-practices/03.md">4.3 Distributing your PWA</a></li>
+<li><a href="/30DaysOfPWA/platforms-practices/04.md">4.4 Best practices for PWA reliability</a></li>
+<li><a href="/30DaysOfPWA/platforms-practices/05.md">4.5 PWA maintainability - Using web components</a></li>
+<li><a href="/30DaysOfPWA/platforms-practices/06.md">4.6 Best practices for PWA authentication</a></li>
+<li><a href="/30DaysOfPWA/platforms-practices/07.md">4.7 Best practices for PWA UI/UX</a></li>
+</ul></li>
+<li><h2 id="summary"><a href="/30DaysOfPWA/summary"><strong>5. Summary</strong></a></h2></li>
+<li><a href="https://aka.ms/learn-pwa/30Days-ghd">💬 Join the discussion on Github</a></li>
+<li><a href="https://aka.ms/learn-pwa/30Days-survey">🗣 Help us grow with your feedback</a></li>
+</ul>]]></description>
+    <pubDate>Wed, 2 Mar 2022 14:53:43 -0800</pubDate>
+  </item>
+   
+  <item>
     <title><![CDATA[3.3: Debugging tools #1]]></title>
     <link>https://aka.ms/learn-PWA/30Days-blog/#/30DaysOfPWA/dev-tools/03</link>
     <guid isPermaLink="false">https://aka.ms/learn-PWA/30Days-blog/#/30DaysOfPWA/dev-tools/03</guid>
@@ -166,47 +341,6 @@
 <p>As we’ve seen today, DevTools is a true Swiss-army knife when it comes to debugging PWA issues. There’s a tool for almost any scenario you might be having problems with. You can emulate mobile devices, check manifest errors, verify the state of your service worker and debug it, look at what’s been cached, and even test your app’s offline support!</p>
 <p>No one writes perfect code in one go, and with developer tools like these browser DevTools, you don’t have to. You can feel comfortable experimenting and trying things out, and as soon as something seems wrong, just hit <code>F12</code> to get debugging information about the problem.</p>]]></description>
     <pubDate>Tue, 1 Mar 2022 16:44:13 -0800</pubDate>
-  </item>
-   
-  <item>
-    <title><![CDATA[3.4: Debugging tools #2]]></title>
-    <link>https://aka.ms/learn-PWA/30Days-blog/#/30DaysOfPWA/dev-tools/04</link>
-    <guid isPermaLink="false">https://aka.ms/learn-PWA/30Days-blog/#/30DaysOfPWA/dev-tools/04</guid>
-    <description><![CDATA[<h1 id="debugging-tools-2">3.4: Debugging tools #2</h1>
-<h2 id="coming-soon"><em>Coming soon!</em></h2>
-<p><strong>Author: Chait Pinnamaneni <span class="citation" data-cites="noobtiger11">[@noobtiger11]</span>(https://twitter.com/noobtiger11)</strong></p>
-<p>Welcome to <strong>Week 3 Day 4</strong> of #30DaysOfPWA! Want to learn more about this project? Check out our <a href="../kickoff.md">Kickoff</a> post to get more details on the content roadmap and contributors. Now, let’s dive in!</p>
-<figure>
-<img src="_media/day-04.jpg" alt="image of title and author." /><figcaption>image of title and author.</figcaption>
-</figure>
-<h3 id="what-well-cover-today">WHAT WE’LL COVER TODAY</h3>
-<table>
-<thead>
-<tr class="header">
-<th>Section</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><strong>Permissions</strong></td>
-<td>How to check and reset user permissions?</td>
-</tr>
-<tr class="even">
-<td><strong>Manage notifications</strong></td>
-<td>How to emulate push notifications?</td>
-</tr>
-<tr class="odd">
-<td><strong>Background sync and fetch</strong></td>
-<td>How to view background sync and fetch events?</td>
-</tr>
-<tr class="even">
-<td><strong>IndexedDB storage</strong></td>
-<td>How to view and manage data stored in IndexedDB?</td>
-</tr>
-</tbody>
-</table>]]></description>
-    <pubDate>Wed, 2 Mar 2022 01:02:26 +0100</pubDate>
   </item>
    
   <item>
@@ -1061,140 +1195,6 @@ web-push generate-vapid-keys --json</code></pre>
 <li><a href="https://aka.ms/learn-PWA/30Days-2.7/web-push-book.gauntface.com">Web Push Book</a></li>
 <li><a href="https://aka.ms/learn-PWA/30Days-2.7/datatracker.ietf.org/doc/html/draft-ietf-webpush-vapid-00">Voluntary Application Server Identification (VAPID) for Web Push</a></li>
 <li><a href="https://aka.ms/learn-PWA/30Days-2.7/datatracker.ietf.org/doc/html/draft-ietf-webpush-protocol">Web Push protocol</a></li>
-</ul>]]></description>
-    <pubDate>Tue, 1 Mar 2022 10:25:38 -0800</pubDate>
-  </item>
-   
-  <item>
-    <title><![CDATA[2.3: Sharing content from and with your app]]></title>
-    <link>https://aka.ms/learn-PWA/30Days-blog/#/30DaysOfPWA/advanced-capabilities/03</link>
-    <guid isPermaLink="false">https://aka.ms/learn-PWA/30Days-blog/#/30DaysOfPWA/advanced-capabilities/03</guid>
-    <description><![CDATA[<h1 id="sharing-content-from-and-with-your-app">2.3: Sharing content from and with your app</h1>
-<p><strong>Author: Diego González <span class="citation" data-cites="diekus">[@diekus]</span>(https://twitter.com/diekus)</strong></p>
-<figure>
-<img src="_media/day-03.jpg" alt="Banner image for Sharing content from and with your app" /><figcaption>Banner image for Sharing content from and with your app</figcaption>
-</figure>
-<h3 id="what-well-cover-today">WHAT WE’LL COVER TODAY</h3>
-<table>
-<colgroup>
-<col style="width: 38%" />
-<col style="width: 61%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Section</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><strong>Definition</strong></td>
-<td>What does it mean to share content between apps? What kind of content are we talking about?</td>
-</tr>
-<tr class="even">
-<td><strong>Sharing <em>from</em> your application</strong></td>
-<td>Learn how to share content directly from your PWA.</td>
-</tr>
-<tr class="odd">
-<td><strong>Sharing <em>to</em> your application</strong></td>
-<td>Prepare your PWA to receive shared content.</td>
-</tr>
-<tr class="even">
-<td><strong>Related</strong></td>
-<td>Look for other OS integrations throughout <a href="../advanced-capabilities/">Week 2: Advanced Capabilities</a>.</td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h2 id="definition">Definition</h2>
-<p>Hola! For today’s post on the <a href="https://aka.ms/learn-pwa/30Days-blog">30 Days of PWA</a> series, we will cover sharing! You know, “sharing is caring.” This is a saying that we probably hear often… and with good reason. We are social beings and communicating things with those we care about is natural. Whether it be important news or a funny meme, the ability to distribute information plays a significant role in our lives and impacts how we discover, interact, and even make decisions. It is not surprising that with the vast amount of information on the web, the ability to share content becomes increasingly relevant and will often form the basis for a good user experience. For this reason, modern web browsers make it easy to share content, generally offering options in their context menus or settings to facilitate this. The next screenshot shows the context menu of Microsoft Edge with a Share option highlighted, as an example.</p>
-<figure>
-<img src="_media/day-03/sharing-edge.jpg" alt="Screenshot of sharing option in Microsoft Edge" /><figcaption>Screenshot of sharing option in Microsoft Edge</figcaption>
-</figure>
-<p>Sharing information through a web browser usually involves a sharing dialog box that is native to the operating system being used. The dialog provides options of whom and where to share with, which might vary depending on the type of content. In the example mentioned above, where we are sharing a web page (or a URL), then any application that handles text or links can act as a target that can receive the shared content. It may be that you wish to share this page with a friend via instant messaging, or email the link to a co-worker; these are just two of many different options that we use on a daily basis. This is how sharing looks on Android:</p>
-<figure>
-<img src="_media/day-03/sharing-mobile.jpg" alt="Screenshot of sharing UX in Microsoft Edge on Android" /><figcaption>Screenshot of sharing UX in Microsoft Edge on Android</figcaption>
-</figure>
-<p>And this is how it looks on macOS:</p>
-<figure>
-<img src="_media/day-03/sharing-mac.jpg" alt="Screenshot of the sharing UI in Microsoft Edge on macOS" /><figcaption>Screenshot of the sharing UI in Microsoft Edge on macOS</figcaption>
-</figure>
-<p>As shown in the images above, the action of sharing invokes the operating system’s share dialog. This creates a seamless, integrated experience, independent of where you are sharing from, allowing the user to send information between applications. Now, here is where it gets really interesting.</p>
-<p>Now that I have laid out the concept of sharing between apps, let’s bring PWAs into the mix. We can use the <code>Web Share API</code> and <code>Web Share Target API</code> to invoke this sharing dialog and share specific content, allowing your web app to behave like any other installed app.</p>
-<h2 id="our-demo-pwa">Our demo PWA</h2>
-<p>To demonstrate how the <code>Web Share API</code> works, I will use the PWinter PWA, available <a href="https://aka.ms/learn-PWA/30Days-2.3/github.com/diekus/pwinter">here</a>. This PWA allows a user to create custom themed PWA logos. These logos can then be saved as SVG files to be shared.</p>
-<figure>
-<img src="_media/day-03/pwinter.jpg" alt="Screenshot of a PWA that prints PWA logos named “PWinter”" /><figcaption>Screenshot of a PWA that prints PWA logos named “PWinter”</figcaption>
-</figure>
-<h2 id="sharing-from-your-application">Sharing <em>from</em> your application</h2>
-<p>Let’s start by looking at how to share from your web application. We want to be able to share data from the PWA to another app that can handle the type of data being shared. As is the case for many things web, “there’s an API for that.” For this specific scenario, the Web Share API comes to the rescue, and we can use the <code>navigator.share()</code> method, which takes as a parameter the data we want to share. This data can be composed of a url, text, title, and even an array of files, if the system supports it. This will return a <a href="https://developer.mozilla.org/docs/Web/JavaScript/Guide/Using_promises">Promise</a> that resolves if the data is shared. As is the case with advanced powerful APIs, you need to be <a href="https://microsoft.github.io/win-student-devs/#/30DaysOfPWA/core-concepts/02?id=_1-https">running under HTTPS</a> to use the <code>Web Share API</code>.</p>
-<h3 id="sharing-a-link">Sharing a link</h3>
-<p>The PWinter app can share its URL, making it easy to distribute the address to the app with another user. In order to do so, it displays an icon on the lower right corner that when clicked, invokes the Web Share API. The following code shares a title, text and url via the operating system’s share dialog.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb1-1" title="1"><span class="co">// Shares a link with the Web Share API</span></a>
-<a class="sourceLine" id="cb1-2" title="2"><span class="kw">async</span> <span class="kw">function</span> <span class="at">sharePWinter</span>() <span class="op">{</span></a>
-<a class="sourceLine" id="cb1-3" title="3">    <span class="kw">const</span> shareData <span class="op">=</span> <span class="op">{</span></a>
-<a class="sourceLine" id="cb1-4" title="4">        <span class="dt">title</span><span class="op">:</span> <span class="st">&#39;PWinter&#39;</span><span class="op">,</span></a>
-<a class="sourceLine" id="cb1-5" title="5">        <span class="dt">text</span><span class="op">:</span> <span class="st">&#39;Design your own PWA Logo.&#39;</span><span class="op">,</span></a>
-<a class="sourceLine" id="cb1-6" title="6">        <span class="dt">url</span><span class="op">:</span> <span class="st">&#39;https://diek.us/pwinter&#39;</span><span class="op">,</span></a>
-<a class="sourceLine" id="cb1-7" title="7">    <span class="op">};</span></a>
-<a class="sourceLine" id="cb1-8" title="8">    <span class="cf">try</span> <span class="op">{</span></a>
-<a class="sourceLine" id="cb1-9" title="9">        <span class="cf">await</span> <span class="va">navigator</span>.<span class="at">share</span>(shareData)<span class="op">;</span></a>
-<a class="sourceLine" id="cb1-10" title="10">        <span class="va">console</span>.<span class="at">log</span>(<span class="st">&#39;PWinter shared!&#39;</span>)<span class="op">;</span></a>
-<a class="sourceLine" id="cb1-11" title="11">    <span class="op">}</span> <span class="cf">catch</span> (e) <span class="op">{</span></a>
-<a class="sourceLine" id="cb1-12" title="12">        <span class="va">console</span>.<span class="at">error</span>(e)<span class="op">;</span></a>
-<a class="sourceLine" id="cb1-13" title="13">    <span class="op">}</span></a>
-<a class="sourceLine" id="cb1-14" title="14"><span class="op">}</span></a></code></pre></div>
-<h3 id="sharing-files">Sharing files</h3>
-<p>The Web Share API also allows you to share files. This capability works with images, PDFs, audio, text documents, and video. The <a href="https://aka.ms/learn-PWA/30Days-2.3/developer.mozilla.org/en-US/docs/Web/API/Navigator/share#shareable_file_types">full list of supported file types is here</a>, but you should always test to ensure the sharing action works with the type of file you want to share.</p>
-<p>To do that, you can use the <code>navigator.canShare()</code> method, which returns <code>true</code> if the sharing would succeed. The method returns <code>false</code> if the data can’t be validated. This might happen due to badly formatted URLs, missing data parameters, for security reasons, or even because the implementation does not support that specific file type. Once you know that your sharing would succeed, you can specify the files to share in an array that you pass as an option to the share method. The following code from the demo PWA PWinter shares a logo created by the user in SVG format.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb2-1" title="1"><span class="co">// Shares a file with the Web Share API</span></a>
-<a class="sourceLine" id="cb2-2" title="2"><span class="kw">async</span> <span class="kw">function</span> <span class="at">shareLogo</span>() <span class="op">{</span></a>
-<a class="sourceLine" id="cb2-3" title="3">    <span class="kw">let</span> fileToShare <span class="op">=</span> <span class="at">createFileForSharing</span>(<span class="at">preparePWALogoforSVG</span>())<span class="op">;</span></a>
-<a class="sourceLine" id="cb2-4" title="4">    <span class="kw">let</span> filesArray <span class="op">=</span> []<span class="op">;</span></a>
-<a class="sourceLine" id="cb2-5" title="5">    filesArray[<span class="dv">0</span>] <span class="op">=</span> fileToShare<span class="op">;</span></a>
-<a class="sourceLine" id="cb2-6" title="6">    <span class="cf">if</span> (<span class="va">navigator</span>.<span class="at">canShare</span> <span class="op">&amp;&amp;</span> <span class="va">navigator</span>.<span class="at">canShare</span>(<span class="op">{</span> <span class="dt">files</span><span class="op">:</span> filesArray <span class="op">}</span>)) <span class="op">{</span></a>
-<a class="sourceLine" id="cb2-7" title="7">        <span class="cf">try</span> <span class="op">{</span></a>
-<a class="sourceLine" id="cb2-8" title="8">            <span class="cf">await</span> <span class="va">navigator</span>.<span class="at">share</span>(<span class="op">{</span></a>
-<a class="sourceLine" id="cb2-9" title="9">                <span class="dt">files</span><span class="op">:</span> filesArray<span class="op">,</span></a>
-<a class="sourceLine" id="cb2-10" title="10">                <span class="dt">title</span><span class="op">:</span> <span class="st">&#39;My PWA Logo&#39;</span><span class="op">,</span></a>
-<a class="sourceLine" id="cb2-11" title="11">                <span class="dt">text</span><span class="op">:</span> <span class="st">&#39;Custom PWA logo from The PWinter.&#39;</span></a>
-<a class="sourceLine" id="cb2-12" title="12">            <span class="op">}</span>)<span class="op">;</span></a>
-<a class="sourceLine" id="cb2-13" title="13">            <span class="va">console</span>.<span class="at">log</span>(<span class="st">&#39;Share was successful.&#39;</span>)<span class="op">;</span></a>
-<a class="sourceLine" id="cb2-14" title="14">        <span class="op">}</span> <span class="cf">catch</span> (error) <span class="op">{</span></a>
-<a class="sourceLine" id="cb2-15" title="15">            <span class="va">console</span>.<span class="at">log</span>(<span class="st">&#39;Sharing failed&#39;</span><span class="op">,</span> error)<span class="op">;</span></a>
-<a class="sourceLine" id="cb2-16" title="16">        <span class="op">}</span></a>
-<a class="sourceLine" id="cb2-17" title="17">    <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></a>
-<a class="sourceLine" id="cb2-18" title="18">        <span class="va">console</span>.<span class="at">log</span>(<span class="vs">`System doesn&#39;t support sharing.`</span>)<span class="op">;</span></a>
-<a class="sourceLine" id="cb2-19" title="19">    <span class="op">}</span></a>
-<a class="sourceLine" id="cb2-20" title="20"><span class="op">};</span></a></code></pre></div>
-<figure>
-<img src="_media/day-03/pwinter-share.jpg" alt="Screenshot of the PWinter PWA sharing a custom SVG image" /><figcaption>Screenshot of the PWinter PWA sharing a custom SVG image</figcaption>
-</figure>
-<h2 id="sharing-to-your-application">Sharing <em>to</em> your application</h2>
-<p>Last, but definitely not least, you can share information from other applications to your PWA. Using the Web Share Target API, you can register your PWA to be on the receiving end of a share, allowing it to integrate with the OS’s share dialog. In the previous image, you can spot that the SVG file created by the user can be shared with a set of apps listed in the bottom part of the OS’s share dialog; notably, SimpleEdit and The PWinter, are both PWAs that can handle image files.</p>
-<p>You can register a PWA as a share target by adding the <code>share_target</code> member to the app’s web Manifest file. In order to accept simple data, such as a link or text, the code would look like this:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode json"><code class="sourceCode json"><a class="sourceLine" id="cb3-1" title="1"><span class="er">&quot;share_target&quot;:</span> <span class="fu">{</span></a>
-<a class="sourceLine" id="cb3-2" title="2">      <span class="dt">&quot;action&quot;</span><span class="fu">:</span> <span class="st">&quot;index.html?shared-color&quot;</span><span class="fu">,</span></a>
-<a class="sourceLine" id="cb3-3" title="3">      <span class="dt">&quot;method&quot;</span><span class="fu">:</span> <span class="st">&quot;GET&quot;</span><span class="fu">,</span></a>
-<a class="sourceLine" id="cb3-4" title="4">      <span class="dt">&quot;enctype&quot;</span><span class="fu">:</span> <span class="st">&quot;application/x-www-form-urlencoded&quot;</span><span class="fu">,</span></a>
-<a class="sourceLine" id="cb3-5" title="5">      <span class="dt">&quot;params&quot;</span><span class="fu">:</span> <span class="fu">{</span></a>
-<a class="sourceLine" id="cb3-6" title="6">        <span class="dt">&quot;title&quot;</span><span class="fu">:</span> <span class="st">&quot;title&quot;</span><span class="fu">,</span></a>
-<a class="sourceLine" id="cb3-7" title="7">        <span class="dt">&quot;text&quot;</span><span class="fu">:</span> <span class="st">&quot;text&quot;</span><span class="fu">,</span></a>
-<a class="sourceLine" id="cb3-8" title="8">        <span class="dt">&quot;url&quot;</span><span class="fu">:</span> <span class="st">&quot;url&quot;</span></a>
-<a class="sourceLine" id="cb3-9" title="9">      <span class="fu">}</span></a>
-<a class="sourceLine" id="cb3-10" title="10">    <span class="fu">}</span></a></code></pre></div>
-<p>Something important to note is that the <code>action</code> property defines which part of the PWA will handle the incoming data. For the demo PWA, this addition to the manifest file indicates that a link will be received and processed by the <code>index.html?shared-color</code> url. This file has code in place that knows that when this url is called, it will try to parse the incoming link to detect any hex color code; this will set the letters of the PWA logo to that specific color.</p>
-<figure>
-<img src="_media/day-03/pwinter-share-target.jpg" alt="Screenshot of the PWA PWinter acting as a share target for a link shared through Microsoft Edge" /><figcaption>Screenshot of the PWA PWinter acting as a share target for a link shared through Microsoft Edge</figcaption>
-</figure>
-<p>If the target PWA changes as a result of the information it will receive, then you must set the method key value to <code>POST</code> and the <code>enctype</code> field to <code>multipart/form-data</code>. If you are also expecting the PWA to receive files, then be sure to set the <code>files</code> property to an array with those files. When the user shares to a PWA, the browser will open up the app on the action url and process the data accordingly.</p>
-<h2 id="summary">Summary</h2>
-<p>I have explained the two parts of sharing with PWAs. Sharing from the app is achieved by the Web Share API. You can share a variety of information with it. You can share to the app by registering it as a share target, with the Web Share Target API. This is done through an entry in the manifest file. These two advanced capabilities help your PWA integrate seamlessly with your platform, and create a smooth, unified sharing experience. The Web Share API is currently supported on Windows, macOS, Linux, Android and iOS. There are some engines that do not have support, so be ready to check and accommodate your app accordingly. Web Share Target API relies on the Manifest and installation of a PWA which means it is supported on Chromium-based browsers.</p>
-<p>Now you are ready to share and continue with <a href="./04.md">tomorrow’s post</a> in the <a href="https://aka.ms/learn-pwa/30Days-blog">series</a> where you’ll learn about display modes!</p>
-<h2 id="resources">Resources</h2>
-<ul>
-<li><a href="https://aka.ms/learn-PWA/30Days-2.3/developer.mozilla.org/en-US/docs/Web/API/Web_Share_API">Web Share API</a> at MDN Web Docs</li>
-<li><a href="https://aka.ms/learn-PWA/30Days-2.3/docs.microsoft.com/en-us/microsoft-edge/progressive-web-apps-chromium/how-to/share">Share content with other apps</a> at Microsoft Edge docs.</li>
 </ul>]]></description>
     <pubDate>Tue, 1 Mar 2022 10:25:38 -0800</pubDate>
   </item>
