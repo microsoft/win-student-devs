@@ -52,7 +52,7 @@
 <a class="sourceLine" id="cb1-6" title="6">        <span class="dt">path</span><span class="op">:</span> <span class="st">&quot;&lt;relative path for our notification&gt;&quot;</span></a>
 <a class="sourceLine" id="cb1-7" title="7">    <span class="op">}</span></a>
 <a class="sourceLine" id="cb1-8" title="8"><span class="op">}</span></a></code></pre></div>
-<p>Now, we can adjust the push listener to make sure the displayed Notification captures our new <code>data</code> property:</p>
+<p>Now, we can adjust the push listener in our service worker to make sure the displayed Notification captures our new <code>data</code> property:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb2-1" title="1"><span class="va">self</span>.<span class="at">addEventListener</span>(<span class="st">&#39;push&#39;</span><span class="op">,</span> (event) <span class="kw">=&gt;</span> <span class="op">{</span></a>
 <a class="sourceLine" id="cb2-2" title="2">    <span class="kw">const</span> notificationData <span class="op">=</span> <span class="va">JSON</span>.<span class="at">parse</span>(<span class="va">event</span>.<span class="va">data</span>.<span class="at">text</span>())<span class="op">;</span></a>
 <a class="sourceLine" id="cb2-3" title="3"></a>
@@ -121,7 +121,7 @@
 <li><a href="https://docs.microsoft.com/en-us/microsoft-edge/progressive-web-apps-chromium/how-to/notifications-badges"><strong>Re-engage users with badges, notifications, and push messages</strong></a> article on Microsoft Docs</li>
 <li><a href="https://github.com/MicrosoftEdge/pushnotifications-demo"><strong>Push Notifications Demo Project</strong></a></li>
 </ul>]]></description>
-    <pubDate>Fri, 4 Mar 2022 13:19:40 -0800</pubDate>
+    <pubDate>Fri, 4 Mar 2022 13:20:38 -0800</pubDate>
   </item>
    
   <item>
