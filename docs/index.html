@@ -91,6 +91,37 @@
 </head>
 <body>
   <div id="app"></div>
+
+  <!-- Add 1DS (Adobe Analytics). This script needs to be loaded above other scripts. -->
+  <script type="text/javascript" src="https://js.monitor.azure.com/scripts/c/ms.analytics-web-3.min.js"></script>
+  <script>
+    const analytics = new oneDS.ApplicationInsights();
+    var config = {
+      instrumentationKey: "js:win-student-devs",
+      channelConfiguration:{ // Post channel configuration
+          eventsLimitInMem: 50
+      },
+      propertyConfiguration: { // Properties Plugin configuration 
+      env:"PROD" // Environment can be set to PPE or PROD as needed. 
+      },
+      webAnalyticsConfiguration:{ // Web Analytics Plugin configuration
+        urlCollectQuery:true, 
+          autoCapture: {
+            scroll: true,
+            pageView: true,
+            onLoad: true,
+            onUnload: true,
+            click: true,
+            resize: true,
+            lineage: true,
+            jsError: true
+          }
+      }
+    }; 
+    //Initialize SDK
+    analytics.initialize(config, []);
+  </script>
+
   <script>
     window.$docsify = {
       name: 'Hello WinDev!',
