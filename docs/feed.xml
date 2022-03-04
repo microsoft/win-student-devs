@@ -1,0 +1,1230 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+<channel>
+  <title>30 Days of PWA</title>
+  <atom:link href="https://aka.ms/learn-PWA/30Days-blog/feed.xml" rel="self" type="application/rss+xml" />
+  <link>https://aka.ms/learn-PWA/30Days-blog</link>
+  <description>For 30 days, we publish articles that aim to introduce developers to Progressive Web App. We have content that covers 0-level to 200-level topics. Each post takes 5-10 minutes to read and is followed by a sample snippet or exercise.</description>
+   
+  <item>
+    <title><![CDATA[3.5: Auditing tools]]></title>
+    <link>https://aka.ms/learn-PWA/30Days-blog/#/30DaysOfPWA/dev-tools/05</link>
+    <guid isPermaLink="false">https://aka.ms/learn-PWA/30Days-blog/#/30DaysOfPWA/dev-tools/05</guid>
+    <description><![CDATA[<h1 id="auditing-tools">3.5: Auditing tools</h1>
+<p><strong>Author: Justin Willis (Software Engineer on the PWABuilder team) <span class="citation" data-cites="justinwillis96">[@justinwillis96]</span>(https://twitter.com/Justinwillis96)</strong></p>
+<p>Welcome to <strong>Week 3 Day 5</strong> of #30DaysOfPWA! Want to learn more about this project? Check out our <a href="../kickoff.md">Kickoff</a> post to get more details on the content roadmap and contributors. Now, let’s dive in!</p>
+<figure>
+<img src="_media/day-05.jpg" alt="image of title and author." /><figcaption>image of title and author.</figcaption>
+</figure>
+<h3 id="what-well-cover-today">WHAT WE’LL COVER TODAY</h3>
+<table>
+<colgroup>
+<col style="width: 38%" />
+<col style="width: 61%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Section</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Why audit our PWA</strong></td>
+<td>Why should you use these auditing tools?</td>
+</tr>
+<tr class="even">
+<td><strong>Audit with PWABuilder</strong></td>
+<td>PWABuilder can tell you if our PWA is installable and store ready</td>
+</tr>
+<tr class="odd">
+<td><strong>Audit with Webhint</strong></td>
+<td>Let’s use these two new tools to create a new PWA with just a few button clicks.</td>
+</tr>
+<tr class="even">
+<td><strong>Audit performance with Lighthouse and Edge Devtools</strong></td>
+<td>Deep dive into some of the tools used in PWA Studio and Starter</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p>Hello! For today’s post on the 30 Days of PWA series, we will be learning how to audit a PWA and use those audits to help improve it’s user experience.</p>
+<h2 id="why-audit-a-pwa">Why audit a PWA</h2>
+<p>So, why should we audit our PWA anyways? And what does this even mean?</p>
+<p>When we are talking about auditing our PWA, we mean using tools to ensure that our PWA is:</p>
+<ul>
+<li>Installable from the browser</li>
+<li>Ready to submit to app stores such as the Microsoft Store</li>
+<li>Accessible</li>
+<li>Fast</li>
+<li>Follows cross-browser development best practices</li>
+</ul>
+<p>We do this to ensure our PWA is the best it can be for users. Users want high quality apps that are accessible, fast and discoverable, and auditing ensures we are meeting these requirements.</p>
+<p>Today we are going to use PWABuider, Webhint and Edge Devtools to audit our PWA, let’s dive in!</p>
+<h2 id="audit-with-pwabuilder">Audit with PWABuilder</h2>
+<p>Let’s start with PWABuilder. The focus of the audit PWABuilder does is to ensure our PWA is high-quality, installable, and ready to publish to app stores like the Microsoft Store. To do this, PWABuilder looks at the:</p>
+<ul>
+<li>Web Manifest</li>
+<li>Service Worker</li>
+<li>HTTPS Setup</li>
+</ul>
+<p>and audits them based on a set of requirements. These also happen to be the technical essentials you need for an app to be considered a PWA.</p>
+<table>
+<colgroup>
+<col style="width: 24%" />
+<col style="width: 37%" />
+<col style="width: 37%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Web Manifest</th>
+<th>Service Worker</th>
+<th>Security</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Properly linked + registered</td>
+<td>Properly linked + registered</td>
+<td>Uses HTTPS</td>
+</tr>
+<tr class="even">
+<td>Contains required fields for installation</td>
+<td>Works Offline</td>
+<td>Valid HTTPS Setup</td>
+</tr>
+<tr class="odd">
+<td>Icons follow best practices</td>
+<td>Suggested features to improve our offline experience</td>
+<td>No HTTP content on page</td>
+</tr>
+<tr class="even">
+<td>Suggested fields to improve our PWA or enable new features</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Each section above has a set of Required audits. These are audits that are required to be in the app stores and for installation from the browser. There are also Recommended and Optional audits for each section. These audit things such as, for example, manifest fields you can add to improve the installation experience of your PWA, but are not required.</p>
+<p>To get started with PWABuilder’s audits, you can use either <a href="https://aka.ms/learn-PWA/30Days-3.5/pwabuilder.com">PWABuilder</a> or the <a href="https://aka.ms/learn-PWA/30Days-3.5/pwa-studio">PWA Studio VSCode Extension</a>.</p>
+<h3 id="getting-audits-from-pwabuilder.com">Getting audits from pwabuilder.com</h3>
+<p>Already have a published and live PWA that you want to audit?</p>
+<ul>
+<li>Grab our URL and head over to https://aka.ms/learn-PWA/30Days-3.5/pwabuilder.com</li>
+<li>Enter the URL to our PWA on the homepage of pwabuilder.com and click Start <img src="_media/05/enter-url.png" alt="We have entered our URL into the input on the homepage of PWABuilder" /></li>
+<li>pwabuilder.com will now analyze our PWA and return our audits <img src="_media/05/report-card.jpeg" alt="A screenshot of the report-card page in PWABuilder showing our audits" /></li>
+</ul>
+<p>Each section is given an overall score. If we click on that section, it will give us more details on our score, including what we can add or change to get a better score. Towards the bottom of the page, we can see our total score. <img src="_media/05/total-score.png" alt="A screenshot showing the total score located towards the bottom of the report page" /></p>
+<p>If our total score is green, then our PWA is ready to publish and we are ready to click next to start packaging our PWA.</p>
+<p>If our total score is yellow this means that our PWA is most likely ready to publish, but may be missing out on Recommended Features such as having a <code>background_color</code> in our Web Manifest. The section that is lowering our score will also have a yellow score. At that point, we should click on it to see what we need to add.</p>
+<p>If our score is red, this means our PWA is not ready to publish to the web or app stores and needs additional work. The section with the problem will also have a red score. As above, we can click on that section to see what needs to be added next.</p>
+<h3 id="getting-our-audits-with-pwa-studio">Getting our audits with PWA Studio</h3>
+<p>PWA Studio enables us to audit with PWABuilder during development, not just after our PWA has gone live.</p>
+<ul>
+<li>Install PWA Studio from the <a href="https://aka.ms/learn-PWA/30Days-3.5/pwa-studio">VSCode Marketplace</a></li>
+<li>Open our codebase in VSCode</li>
+<li>Click the PWABuilder icon on the left side of VSCode <img src="_media/05/icon-on-left.png" alt="The PWABuilder icon on the left side of VSCode" /></li>
+<li>We will now see our audits</li>
+</ul>
+<figure>
+<img src="_media/05/pwa-studio.png" alt="The audits panels in PWA Studio" /><figcaption>The audits panels in PWA Studio</figcaption>
+</figure>
+<p>PWA Studio uses a simpler way of showing audits. As it shows in the above screenshot, there are three sections again, but slightly different this time: Web Manifest, Service Worker, Store Ready.</p>
+<p>For each section, you will see a list of items. If that item is good to go, it will have a checkmark next to it, if not, it will have a caution symbol. For every item, you can click on the info icon in that item to learn more about it and how to fix the audit.</p>
+<p>For the best PWA, we recommend checking off as many items as you can. If you are missing something that is required, PWA Studio will give you an alert when trying to publish to the web or package your PWA for the app stores.</p>
+<h2 id="audit-a-pwa-with-webhint">Audit a PWA with Webhint</h2>
+<p>You may have heard of <a href="https://aka.ms/learn-PWA/30Days-3.5/webhint.io">Webhint</a> before, but did you know it’s audits are built into the <a href="https://aka.ms/learn-PWA/30Days-3.5/docs.microsoft.com/en-us/microsoft-edge/devtools-guide-chromium/issues">Issues panel in Edge devtools?</a></p>
+<p>The Issues panel allows you to quickly see any of the issues webhint detected in our app. On top of this, it also tells you which HTML element the problem affects and how to fix it.</p>
+<p><img src="_media/05/webhint.png" alt="The issues panel in Edge devtools showing an accessibility issue" />.</p>
+<p>To use it: - Open our app in Edge - Open <a href="https://aka.ms/learn-PWA/30Days-3.5/docs.microsoft.com/en-us/microsoft-edge/devtools-guide-chromium">Edge devtools</a> - Select the Issues tab. The Issues panel opens with issues grouped into different categories. - Refresh our app, because some issues are reported based on network requests. Notice the updated count in the Issues counter.</p>
+<h2 id="audit-performance-with-lighthouse-and-devtools">Audit performance with Lighthouse and Devtools</h2>
+<p>We are now ready to audit our app’s loading performance, or how fast our PWA loads on different devices with varying network connections.</p>
+<p><strong>Note</strong> Edge devtools can also help you evaluate and improve our apps runtime performance. Check our <a href="https://aka.ms/learn-PWA/30Days-3.5/docs.microsoft.com/en-us/microsoft-edge/devtools-guide-chromium/evaluate-performance">docs</a> to learn more.</p>
+<p>Edge devtools has the <a href="https://aka.ms/learn-PWA/30Days-3.5/docs.microsoft.com/en-us/microsoft-edge/devtools-guide-chromium/speed/get-started">Lighhouse</a> tool built in. Lighthouse can quickly evaluate our apps loading performance and give us suggestions on how to make it load faster. It will evaluate our app running on our device, but with CPU throttling and Network throttling to better match what you users experience. When talking about loading performance, it is important to remember that we need to ensure our apps load fast on our users devices, not just our development machines. Lighthouse enables us to do this directly from our development device.</p>
+<p>To get started auditing our loading performance with Lighthouse:</p>
+<ul>
+<li>Open our app in Edge</li>
+<li>Open <a href="https://aka.ms/learn-PWA/30Days-3.5/docs.microsoft.com/en-us/microsoft-edge/devtools-guide-chromium">Edge devtools</a></li>
+<li>Open the Lighthouse tab in devtools</li>
+</ul>
+<figure>
+<img src="_media/05/lighthouse.png" alt="A screenshot of the lighthouse tab at the top of devtools" /><figcaption>A screenshot of the lighthouse tab at the top of devtools</figcaption>
+</figure>
+<ul>
+<li>Click <code>Generate Report</code> to get a baseline report</li>
+<li>Analyze the report and make the suggested changes to our app.</li>
+</ul>
+<p>For a full walkthrough on using Lighthouse to improve the loading performance of our application, check our <a href="https://aka.ms/learn-PWA/30Days-3.5/docs.microsoft.com/en-us/microsoft-edge/devtools-guide-chromium/speed/get-started">docs</a>.</p>
+<p>Using these tools, we can quickly make changes to our PWA to ensure it provides the best experience possible for our users. And, because PWAs are instantly updateable like normal websites, we can get these changes out to our users quickly!</p>
+<p>In our next post, we’ll dive into converting our existing website to a PWA!</p>
+<h2 id="resources">Resources</h2>
+<ul>
+<li><a href="https://aka.ms/learn-PWA/30Days-3.5/pwabuilder.com">pwabuilder.com</a></li>
+<li><a href="https://aka.ms/learn-PWA/30Days-3.5/pwa-studio">PWA Studio VSCode Extension</a></li>
+<li><a href="https://aka.ms/learn-PWA/30Days-3.5/docs.microsoft.com/en-us/microsoft-edge/devtools-guide-chromium">Edge devtools</a></li>
+<li><a href="https://aka.ms/learn-PWA/30Days-3.5/docs.microsoft.com/en-us/microsoft-edge/devtools-guide-chromium/evaluate-performance">Evaluate Runtime Performance</a></li>
+<li><a href="https://aka.ms/learn-PWA/30Days-3.5/docs.microsoft.com/en-us/microsoft-edge/devtools-guide-chromium/speed/get-started">Evaluate Loading Performance</a></li>
+</ul>]]></description>
+    <pubDate>Thu, 3 Mar 2022 16:05:19 -0800</pubDate>
+  </item>
+   
+  <item>
+    <title><![CDATA[3.4: Debugging tools #2]]></title>
+    <link>https://aka.ms/learn-PWA/30Days-blog/#/30DaysOfPWA/dev-tools/04</link>
+    <guid isPermaLink="false">https://aka.ms/learn-PWA/30Days-blog/#/30DaysOfPWA/dev-tools/04</guid>
+    <description><![CDATA[<h1 id="debugging-tools-2">3.4: Debugging tools #2</h1>
+<p><strong>Author: Chait Pinnamaneni <span class="citation" data-cites="noobtiger11">[@noobtiger11]</span>(https://twitter.com/noobtiger11)</strong></p>
+<p>Welcome to <strong>Week 3 Day 4</strong> of #30DaysOfPWA! Want to learn more about this project? Check out our <a href="../kickoff.md">Kickoff</a> post to get more details on the content roadmap and contributors. Now, let’s dive in!</p>
+<figure>
+<img src="_media/day-04.jpg" alt="Welcome to week 3 day 4 - Debugging tools part 2." /><figcaption>Welcome to week 3 day 4 - Debugging tools part 2.</figcaption>
+</figure>
+<p>Welcome to the second day of debugging PWA using browser DevTools!</p>
+<p>Yesterday, you learned to debug common issues related to PWA using DevTools. However as you learned in <a href="../advanced-capabilities/">week 2</a> of this series, PWAs are capable of more advanced features like <a href="../advanced-capabilities/06.md">background synchronization</a>, <a href="../advanced-capabilities/07.md">push notifications</a>, and more.</p>
+<p>Today we will go through the tools available to you for debugging these advanced features of PWAs.</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: left;">What you will learn today</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><em>PWA permissions</em></td>
+<td style="text-align: left;">How to check for PWA permissions</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><em>Manage notifications</em></td>
+<td style="text-align: left;">How to emulate push notifications</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><em>Background sync and fetch</em></td>
+<td style="text-align: left;">How to view background sync and fetch events</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><em>IndexedDB storage</em></td>
+<td style="text-align: left;">How to view and manage your data stored in IndexedDB</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p>Please note that all of the screenshots in today’s article are taken from Microsoft Edge DevTools, but other browsers offer similar tools.</p>
+<h2 id="managing-pwa-permissions">Managing PWA permissions</h2>
+<p>PWAs can make full use of modern web features such as notifications, location, and storage, however, for PWAs to use these features, they must be granted permission.</p>
+<p>For example, to send notifications to the user, a PWA has to request permission via the <a href="https://aka.ms/learn-PWA/30Days-3.4/developer.mozilla.org/docs/Web/API/Notifications_API">Notifications API</a>, which looks something like this:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb1-1" title="1"><span class="va">Notification</span>.<span class="at">requestPermission</span>().<span class="at">then</span>(<span class="kw">function</span>(result) <span class="op">{</span></a>
+<a class="sourceLine" id="cb1-2" title="2">  <span class="va">console</span>.<span class="at">log</span>(result)<span class="op">;</span></a>
+<a class="sourceLine" id="cb1-3" title="3"><span class="op">}</span>)<span class="op">;</span></a></code></pre></div>
+<p>This will prompt browsers to show a dialog requesting users for the permission as shown below.</p>
+<figure>
+<img src="_media/day-04-permission-dialog.png" alt="The permissions dialog in Microsoft Edge prompting the user to allow or deny notifications from a site." /><figcaption>The permissions dialog in Microsoft Edge prompting the user to allow or deny notifications from a site.</figcaption>
+</figure>
+<p>During development, you often need to test different user flows based on whether the user has granted or denied certain permissions. This can be achieved by using the <strong>App permissions</strong> list. With this list, you can validate and manage all the permissions that your app uses.</p>
+<p>For example, to reset notifications permission:</p>
+<ul>
+<li>Open the <strong>App permissions</strong> page by clicking the <strong>View site information</strong> icon in the url bar or the <strong>Settings and more</strong> menu button in an installed PWA’s title bar.</li>
+<li>Find <strong>Notifications</strong> in the list and reset it back to its default value.</li>
+<li>Alternatively you can also reset all permissions by clicking <strong>Reset permissions</strong>.</li>
+</ul>
+<figure>
+<img src="_media/day-04-all-permission.png" alt="Steps to open App permissions list and reset notification permission in Microsoft Edge." /><figcaption>Steps to open App permissions list and reset notification permission in Microsoft Edge.</figcaption>
+</figure>
+<h2 id="push-notifications">Push notifications</h2>
+<p>As you learned in <a href="../advanced-capabilities/07.md">Notifying Your Users of Updates</a>, PWAs can improve engagement by sending push notifications to the user. This is achieved through the <a href="https://aka.ms/learn-PWA/30Days-3.4/developer.mozilla.org/docs/Web/API/Push_API">Push API</a> and the <a href="https://aka.ms/learn-PWA/30Days-3.4/developer.mozilla.org/docs/Web/API/Notifications_API">Notifications API</a>, both of which are accessible to service workers.</p>
+<p>PWAs can subscribe to push messages from the server via the Push API. Once subscribed, a PWA will start receiving push events even if the application is closed. When a push event is received, the PWA can send a notification to the user via the Notifications API.</p>
+<p>DevTools can track all these events for you, which can help you debug the entire user notification flow. To see the list of all the push messages and notifications in DevTools:</p>
+<ul>
+<li>Open DevTools.</li>
+<li>Open the <strong>Application</strong> tool.</li>
+<li>Open <strong>Push messaging</strong> under the <strong>Background services</strong> section.</li>
+<li>Click <strong>Start recording events</strong> to start listing push notification events in the table.</li>
+<li>For notifications, open <strong>Notifications</strong> under the <strong>Background services</strong> section and click <strong>Start recording events</strong>.</li>
+<li>Click on any notification to view the details.</li>
+</ul>
+<figure>
+<img src="_media/day-04-notifications-table.png" alt="Steps to view Push messages and notifications list in Microsoft Edge DevTools." /><figcaption>Steps to view Push messages and notifications list in Microsoft Edge DevTools.</figcaption>
+</figure>
+<p>Since the push events have to be triggered by the server, to test and debug push messaging flow in a PWA, you often have to send mock events from the server.</p>
+<p>DevTools provides a convenient way to avoid this by simulating sending push events directly from the browser. To send mock push events in a PWA:</p>
+<ul>
+<li>Open DevTools and open the <strong>Application</strong> tool.</li>
+<li>Open <strong>Service Workers</strong> in the <strong>Application</strong> section.</li>
+<li>Type your test message in the <strong>Push</strong> input field.</li>
+<li>Click the <strong>Push</strong> button to send the message.</li>
+<li>You can then validate that the event was sent in the <strong>Push messaging</strong> table as described above.</li>
+</ul>
+<figure>
+<img src="_media/day-04-push-messages-mock.png" alt="Mock push messages in Microsoft Edge DevTools." /><figcaption>Mock push messages in Microsoft Edge DevTools.</figcaption>
+</figure>
+<h2 id="background-syncfetch">Background sync/fetch</h2>
+<p>PWAs can also use the <a href="https://aka.ms/learn-PWA/30Days-3.4/developer.mozilla.org/en-US/docs/Web/API/Background_Synchronization_API">Background Sync API</a>, <a href="https://aka.ms/learn-PWA/30Days-3.4/developer.mozilla.org/docs/Web/API/Background_Fetch_API">Background Fetch API</a>, and <a href="https://aka.ms/learn-PWA/30Days-3.4/developer.mozilla.org/docs/Web/API/Web_Periodic_Background_Synchronization_API">Periodic Background Sync API</a> to send and receive network requests and messages.</p>
+<p>The advantage of using these background APIs over Fetch or XMLHttpRequest is that network requests made through these APIs can be deferred until the PWA has active network connectivity and be done even when the PWA is not being used. Check out <a href="../advanced-capabilities/06.md">Synchronizing app data in the background</a> for more information.</p>
+<p>Similar to how you can view push messages and notifications, Background API events can also be viewed in DevTools. The <strong>Background services</strong> section of the <strong>Application</strong> tool has 3 sub-sections:</p>
+<ul>
+<li><strong>Background Fetch</strong> can record the background fetch events.</li>
+<li><strong>Background Sync</strong> can record background sync events.</li>
+<li><strong>Periodic Background Sync</strong> can record periodic background sync events.</li>
+</ul>
+<p>You can also send test background sync events and periodic background sync events in the <strong>Service Workers</strong> section, which works like when sending test push messages as explained previously.</p>
+<p>These mock events trigger all the event handlers in PWA and also gets listed in the corresponding background services table.</p>
+<figure>
+<img src="_media/day-04-background-services.png" alt="Background sync in Microsoft Edge DevTools." /><figcaption>Background sync in Microsoft Edge DevTools.</figcaption>
+</figure>
+<h2 id="indexeddb-storage">IndexedDB storage</h2>
+<p>To provide offline support, PWAs should be able to store data locally. There are multiple storage options for the web and you can read more about them <a href="../core-concepts/05.md">here</a>.</p>
+<p>In PWAs, a recommended practice is to use <a href="../advanced-capabilities/05.md">Cache storage</a> for storing static resources and <a href="https://aka.ms/learn-PWA/30Days-3.4/developer.mozilla.org/docs/Web/API/IndexedDB_API">IndexedDB</a> is used for more structured data. You can learn more about IndexedDB in the upcoming <a href="../platforms-practices/04.md">Best Practices for Reliability</a> article.```</p>
+<p><a href="./03.md">Yesterday</a>, you learned about debugging cache issues in DevTools. To view and manage your app’s IndexedDB data in DevTools:</p>
+<ul>
+<li>Open DevTools</li>
+<li>Open the <strong>Application</strong> tool.</li>
+<li>Under <strong>Storage</strong>, expand the <strong>IndexedDB</strong> section until you find your database and the table you want to open. Note that there can be multiple databases here.</li>
+<li>Your table appears in the main area of the tool, and you can view the data.</li>
+<li>The toolbar displayed at the top of the table can be used to clear the entire table or delete the selected row.</li>
+</ul>
+<figure>
+<img src="_media/day-04-indexeddb.png" alt="Steps to view indexedDB data in DevTools." /><figcaption>Steps to view indexedDB data in DevTools.</figcaption>
+</figure>
+<h2 id="summary">Summary</h2>
+<p>After reading yesterday’s and today’s articles in this series, you should have a pretty good understating of how the browser DevTools can be used for PWA development and debugging. A lot of PWA issues can be resolved with DevTools and development can be made easy by using the specialized tools we went over in the past two days.</p>
+<p>The feature set available to PWAs is always growing and the DevTools is planning to add tooling support for these new features as well. If you have any feature requests or feedback, you can contact the Microsoft Edge DevTools team by clicking the <strong>Send Feedback</strong> button in upper right corner of DevTools.</p>]]></description>
+    <pubDate>Thu, 3 Mar 2022 01:01:03 +0100</pubDate>
+  </item>
+   
+  <item>
+    <title><![CDATA[-]]></title>
+    <link>https://aka.ms/learn-PWA/30Days-blog/#/_sidebar</link>
+    <guid isPermaLink="false">https://aka.ms/learn-PWA/30Days-blog/#/_sidebar</guid>
+    <description><![CDATA[<ul>
+<li><a href="/30DaysOfPWA/kickoff"><strong>0. Kickoff</strong></a></li>
+<li><a href="/30DaysOfPWA/core-concepts/"><strong>1. Core Concepts</strong></a>
+<ul>
+<li><a href="/30DaysOfPWA/core-concepts/01.md">1.1 Introducing PWA.</a></li>
+<li><a href="/30DaysOfPWA/core-concepts/02.md">1.2 Deconstructing PWA.</a></li>
+<li><a href="/30DaysOfPWA/core-concepts/03.md">1.3 Make PWA installable.</a></li>
+<li><a href="/30DaysOfPWA/core-concepts/04.md">1.4 Make PWA reliable.</a></li>
+<li><a href="/30DaysOfPWA/core-concepts/05.md">1.5 Make PWA work offline.</a></li>
+<li><a href="/30DaysOfPWA/core-concepts/06.md">1.6 Make PWA capable.</a></li>
+<li><a href="/30DaysOfPWA/core-concepts/07.md">1.7 Developing PWA.</a></li>
+</ul></li>
+<li><a href="/30DaysOfPWA/advanced-capabilities/"><strong>2. Advanced Capabilities</strong></a>
+<ul>
+<li><a href="/30DaysOfPWA/advanced-capabilities/01.md">2.1 Introducting the advanced capabilities of Progressive Web Apps</a></li>
+<li><a href="/30DaysOfPWA/advanced-capabilities/02.md">2.2 Creating application shortcuts</a></li>
+<li><a href="/30DaysOfPWA/advanced-capabilities/03.md">2.3 Sharing content from and with your app</a></li>
+<li><a href="/30DaysOfPWA/advanced-capabilities/04.md">2.4 Displaying content more like an app</a></li>
+<li><a href="/30DaysOfPWA/advanced-capabilities/05.md">2.5 Caching your app data</a></li>
+<li><a href="/30DaysOfPWA/advanced-capabilities/06.md">2.6 Synchronizing app data in the background</a></li>
+<li><a href="/30DaysOfPWA/advanced-capabilities/07.md">2.7 Notifying your users of updates</a></li>
+</ul></li>
+<li><a href="/30DaysOfPWA/dev-tools/"><strong>3. Developer Tools</strong></a>
+<ul>
+<li><a href="/30DaysOfPWA/dev-tools/01.md">3.1 Get-started tools - Part 1</a></li>
+<li><a href="/30DaysOfPWA/dev-tools/02.md">3.2 Get-started tools - Part 2</a></li>
+<li><a href="/30DaysOfPWA/dev-tools/03.md">3.3 Debugging tools - Part 1</a></li>
+<li><a href="/30DaysOfPWA/dev-tools/04.md">3.4 Debugging tools - Part 2</a></li>
+<li><a href="/30DaysOfPWA/dev-tools/05.md">3.5 Auditing tools</a></li>
+<li><a href="/30DaysOfPWA/dev-tools/06.md">3.6 Test automation tools</a></li>
+<li><a href="/30DaysOfPWA/dev-tools/07.md">3.7 Packaging tools</a></li>
+</ul></li>
+<li><a href="/30DaysOfPWA/platforms-practices/"><strong>4. Platforms &amp; Practices</strong></a>
+<ul>
+<li><a href="/30DaysOfPWA/platforms-practices/01.md">4.1 Installability for PWAs</a></li>
+<li><a href="/30DaysOfPWA/platforms-practices/02.md">4.2 Best practices for PWA engagement</a></li>
+<li><a href="/30DaysOfPWA/platforms-practices/03.md">4.3 Distributing your PWA</a></li>
+<li><a href="/30DaysOfPWA/platforms-practices/04.md">4.4 Best practices for PWA reliability</a></li>
+<li><a href="/30DaysOfPWA/platforms-practices/05.md">4.5 PWA maintainability - Using web components</a></li>
+<li><a href="/30DaysOfPWA/platforms-practices/06.md">4.6 Best practices for PWA authentication</a></li>
+<li><a href="/30DaysOfPWA/platforms-practices/07.md">4.7 Best practices for PWA UI/UX</a></li>
+</ul></li>
+<li><h2 id="summary"><a href="/30DaysOfPWA/summary"><strong>5. Summary</strong></a></h2></li>
+<li><a href="https://aka.ms/learn-pwa/30Days-ghd">💬 Join the discussion on Github</a></li>
+<li><a href="https://aka.ms/learn-pwa/30Days-survey">🗣 Help us grow with your feedback</a></li>
+</ul>]]></description>
+    <pubDate>Wed, 2 Mar 2022 14:53:43 -0800</pubDate>
+  </item>
+   
+  <item>
+    <title><![CDATA[3.3: Debugging tools #1]]></title>
+    <link>https://aka.ms/learn-PWA/30Days-blog/#/30DaysOfPWA/dev-tools/03</link>
+    <guid isPermaLink="false">https://aka.ms/learn-PWA/30Days-blog/#/30DaysOfPWA/dev-tools/03</guid>
+    <description><![CDATA[<h1 id="debugging-tools-1">3.3: Debugging tools #1</h1>
+<p><strong>Author: Patrick Brosset <span class="citation" data-cites="patrickbrosset">[@patrickbrosset]</span>(https://twitter.com/patrickbrosset)</strong></p>
+<p>Welcome to <strong>Week 3 Day 3</strong> of #30DaysOfPWA! Want to learn more about this project? Check out our <a href="../kickoff.md">Kickoff</a> post to get more details on the content roadmap and contributors. Now, let’s dive in!</p>
+<figure>
+<img src="_media/day-03.jpg" alt="image of title and author." /><figcaption>image of title and author.</figcaption>
+</figure>
+<h3 id="what-well-cover-today">WHAT WE’LL COVER TODAY</h3>
+<table>
+<colgroup>
+<col style="width: 38%" />
+<col style="width: 61%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Section</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Testing on other devices</strong></td>
+<td>How to simulate your app being rendered on a mobile device during development?</td>
+</tr>
+<tr class="even">
+<td><strong>Troubleshooting installation issues</strong></td>
+<td>How to detect issues preventing your app from installing and resolve them?</td>
+</tr>
+<tr class="odd">
+<td><strong>Reloading manifest changes</strong></td>
+<td>How to make sure your manifest changes are reloaded?</td>
+</tr>
+<tr class="even">
+<td><strong>Troubleshooting server worker issues</strong></td>
+<td>How to check if your service worker is running, force update it, and debug it?</td>
+</tr>
+<tr class="odd">
+<td><strong>Troubleshooting cache issues</strong></td>
+<td>How to view and manage your cached resources?</td>
+</tr>
+<tr class="even">
+<td><strong>Testing offline support</strong></td>
+<td>How to simulate offline mode?</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p>As you start creating your PWA and making use of service workers, storage, and other features, you may start running into bugs. Thankfully, web browsers come with powerful built-in tools you can use to inspect your application’s code and debug it.</p>
+<p>On top of accessing HTML and CSS, editing it live in the browser, finding JavaScript errors or debugging them, browser developer tools (or just DevTools) also come with tools specifically made for PWAs.</p>
+<h2 id="overview">Overview</h2>
+<p>Today, we’ll cover some of the most useful tools when working on Progressive Web Apps code. In this article we’ll take a look at how to simulate different devices, troubleshoot installability and caching issues, as well as test offline scenarios.</p>
+<p>Although we’ll be using Microsoft Edge to demo the tools, other browsers have very similar tools.</p>
+<h2 id="testing-on-other-devices">Testing on other devices</h2>
+<p>Nothing replaces testing on real devices. So once your app is getting ready and runs on a web server, it’s great if you can check it on other computers and mobile devices.</p>
+<p>It’s not always possible though and DevTools comes with a very useful <strong>Device Emulation</strong> tool you can use to check what your app would look and feel like on other devices.</p>
+<p>To start <strong>Device Emulation</strong>:</p>
+<ul>
+<li>Open DevTools by pressing <code>F12</code> or right-clicking the page and selecting <code>Inspect</code>.</li>
+<li>Click the <strong>Toggle device emulation</strong> button in the top-left corner of DevTools.</li>
+</ul>
+<figure>
+<img src="_media/device-mode.png" alt="Screenshot of a tab in Microsoft Edge with DevTools open and the device emulation tool started, making the page appear as if rendered on a mobile device" /><figcaption>Screenshot of a tab in Microsoft Edge with DevTools open and the device emulation tool started, making the page appear as if rendered on a mobile device</figcaption>
+</figure>
+<p>Choose the devices you want to emulate in the <strong>Dimensions</strong> drop-down menu. When you do, the viewport resizes to match the emulated device’s screen, and your cursor acts like a touch input if the emulated device supports it. If you want, you can also click <strong>Edit</strong> in the menu and create your own devices.</p>
+<p>Note that <strong>Device Emulation</strong> only works when your app is running in a browser tab. If it is running separately from the browser (e.g. when using <a href="01.md">PWA Starter</a>, or when installed and running as a separate window), then the <strong>Toggle device emulation</strong> button won’t be available in DevTools.</p>
+<p>Learn more about the <a href="https://aka.ms/learn-PWA/device-emulation"><strong>Device Emulation</strong> tool here</a>.</p>
+<h2 id="making-sure-the-app-is-installable">Making sure the app is installable</h2>
+<p>During week 1, we saw the 3 building blocks of a PWA: using <a href="../core-concepts/04.md">HTTPS</a>, a <a href="../core-concepts/05.md">Service Worker</a>, and a <a href="../core-concepts/06.md">Web App Manifest</a>.</p>
+<p>Web browsers will check that all 3 are available before making a web app installable. But they also run a few more checks on the content of the worker and manifest before letting a user install the app.</p>
+<p>There may be times when the web browser thinks your app isn’t ready to be installed, and it is not always straightforward to know why. To debug this problem, you can review the installability information in the <strong>Application</strong> tool.</p>
+<p>To review this information:</p>
+<ul>
+<li>Open DevTools.</li>
+<li>Open the <strong>Application</strong> tool by clicking the <code>+</code> sign in the toolbar and finding the tool name in the list.</li>
+<li>Once in the tool, go to the <strong>Manifest</strong> tab in the left sidebar.</li>
+</ul>
+<p>You may see a number of warnings that prevent your application from being installable.</p>
+<figure>
+<img src="_media/installability-warnings.png" alt="Screenshot of the Application tool in Microsoft Edge DevTools, showing the Manifest tab with many installability warnings" /><figcaption>Screenshot of the Application tool in Microsoft Edge DevTools, showing the Manifest tab with many installability warnings</figcaption>
+</figure>
+<p>Review and address these warnings, and reload the page. Once the warnings are gone, the web browser should display the app installation button in the address bar, which in Microsoft Edge, looks like this:</p>
+<figure>
+<img src="_media/app-available-icon.png" alt="Screenshot of the App Available button in Microsoft Edge DevTools" /><figcaption>Screenshot of the App Available button in Microsoft Edge DevTools</figcaption>
+</figure>
+<p>Learn more about using the <a href="https://aka.ms/learn-PWA/debug-PWA"><strong>Application</strong> tool to review your Web App Manifest</a>.</p>
+<h2 id="reloading-manifest-changes">Reloading manifest changes</h2>
+<p>While we’re on the topic of fixing manifest issues, there will be times when you make manifest changes and want to test the app again.</p>
+<p>Because the manifest file is read upon installation, the only way for the OS to know about the change is by installing the app again. So, in order to reload your manifest changes:</p>
+<ol type="1">
+<li>Un-install the app:
+<ul>
+<li>On a mobile device, PWAs can be un-installed like any other apps.</li>
+<li>On desktop computers, using Microsoft Edge, or Chrome, go to the special <code>about:apps</code> page to un-install any app.</li>
+</ul></li>
+<li>Go to the app again with your web browser, and make sure the new manifest is loaded.
+<ul>
+<li>You may need to force a hard-reload: open DevTools, then right-click on the page refresh icon in the browser toolbar and choose <strong>Empty cache and hard refresh</strong>.</li>
+</ul></li>
+<li>Install the app again.</li>
+</ol>
+<h2 id="checking-if-your-service-worker-is-running">Checking if your service worker is running</h2>
+<p>Once registered, a service worker has its own lifecycle, independent from the one of the web page that registered it. It can get started and stopped, as well as updated by the browser outside of your control. As a developer, it’s important to know what state a service worker is currently in, and here DevTools can help again.</p>
+<p>To find information about your PWA service worker:</p>
+<ul>
+<li>Open DevTools.</li>
+<li>Open the <strong>Application</strong> tool by clicking the <code>+</code> sign in the toolbar and finding the tool name in the list.</li>
+<li>Once in the tool, go to the <strong>Service Workers</strong> tab in the left sidebar.</li>
+</ul>
+<p>From there a few different pieces of information are provided including the name of the service worker file (which you can click to open it) and its status. This tool makes it easy to see whether the worker is running but can also be used to stop the service worker and, more usefully, update it. If you made a change to the code of your service worker and want to test it right away, click the <strong>Update</strong> link to do it.</p>
+<figure>
+<img src="_media/service-worker-status.png" alt="Screenshot of the Application tool in Microsoft Edge DevTools, showing the Service Workers panel, with the status of the worker, and the Update button" /><figcaption>Screenshot of the Application tool in Microsoft Edge DevTools, showing the Service Workers panel, with the status of the worker, and the Update button</figcaption>
+</figure>
+<p>If you want to debug the JavaScript code in your worker, click its <strong>Source</strong> file name in the tool. This will automatically open the file in the <strong>Sources</strong> tool. You can always go back to the <strong>Application</strong> tool by using the tab bar at the top, but the <strong>Sources</strong> tool is very handy for when you need to investigate JavaScript problems that require checking what the code does step by step.</p>
+<ul>
+<li>Click in the line number gutter, next to where you suspect the bug might be. This will add a breakpoint on that line. The next time this line runs, the JavaScript debugger will pause there.</li>
+<li>Now use the app so that this line of code is execute. For example, if you added the breakpoint in your <code>fetch</code> handler, use the app so that a network request is made.</li>
+<li>The debugger now pauses on that line, making it possible to review the values of all the accessible variables, as well as continue the execution step by step.</li>
+</ul>
+<figure>
+<img src="_media/service-worker-debug.png" alt="Screenshot of the Sources tool in Microsoft Edge DevTools, showing the debugger paused in the service worker file" /><figcaption>Screenshot of the Sources tool in Microsoft Edge DevTools, showing the debugger paused in the service worker file</figcaption>
+</figure>
+<p>Learn more about using the <a href="https://aka.ms/learn-PWA/sources-tool"><strong>Sources</strong> tool to debug JavaScript code</a>.</p>
+<h2 id="troubleshooting-cache-issues">Troubleshooting cache issues</h2>
+<p>A lot of your service worker code likely revolves around accessing the cache, either reading from it or writing to it. There will come a time when you need to debug cache issues. Here the <strong>Sources</strong> tool will be useful to debug your code step by step, but it’s also very important to be able to see what’s in the cache already.</p>
+<p>DevTools comes with a way to visualize the cache for your PWA.</p>
+<ul>
+<li>Open DevTools.</li>
+<li>Open the <strong>Application</strong> tool by clicking the <code>+</code> sign in the toolbar and finding the tool name in the list.</li>
+<li>Once in the tool, expand the <strong>Cache Storage</strong> section in the left sidebar.</li>
+<li>Find your cache (it will be displayed in the expanded section with the name you chose in your service worker code) and click on it.</li>
+</ul>
+<p>This tool will display all of the cached resources in a table. The table is very handy, it lets you search through the list, sort by various columns, preview the content of a resource, etc.</p>
+<figure>
+<img src="_media/cache-storage.png" alt="Screenshot of the Application tool in Microsoft Edge DevTools, showing the Cache Storage section, with a table filled with cached resources" /><figcaption>Screenshot of the Application tool in Microsoft Edge DevTools, showing the Cache Storage section, with a table filled with cached resources</figcaption>
+</figure>
+<p>One of the most useful thing you can do in this tool is delete entries from the cache. This way you can make changes to your caching code, and test again, as if the resource had not been cached before. To delete a cached resource:</p>
+<ul>
+<li>Select it by clicking on it in the <strong>Cache Storage</strong> table.</li>
+<li>Click the <strong>Delete Selected</strong> button in the table toolbar.</li>
+</ul>
+<p>Learn more about using the <a href="https://aka.ms/learn-PWA/cache-storage"><strong>Cache Storage</strong> tool</a>.</p>
+<h2 id="testing-offline-support">Testing offline support</h2>
+<p>Making your PWA work even when there is no network connection is key to a true app-like user experience, but it’s almost certain that when coding, you do have access to the network. So how do you test the offline scenario?</p>
+<p>Again, DevTools comes to the rescue!</p>
+<ul>
+<li>Open DevTools.</li>
+<li>Open the <strong>Application</strong> tool by clicking the <code>+</code> sign in the toolbar and finding the tool name in the list.</li>
+<li>Once in the tool, go to the <strong>Service Workers</strong> tab in the left sidebar.</li>
+<li>Select the <strong>Offline</strong> checkbox at the top of the tool.</li>
+</ul>
+<p>Once done, the browser will act as if you’re not connected to the internet and you can use the app to see how it behaves. For example, you could try to refresh (by pressing <code>F5</code> or <code>ctrl+R</code>/<code>cmd+R</code>) and see if the app loads at all.</p>
+<figure>
+<img src="_media/offline-mode.png" alt="Screenshot of the Application tool in Microsoft Edge DevTools, showing the Service Workers section and the Offline checkbox" /><figcaption>Screenshot of the Application tool in Microsoft Edge DevTools, showing the Service Workers section and the Offline checkbox</figcaption>
+</figure>
+<h2 id="summary">Summary</h2>
+<p>As we’ve seen today, DevTools is a true Swiss-army knife when it comes to debugging PWA issues. There’s a tool for almost any scenario you might be having problems with. You can emulate mobile devices, check manifest errors, verify the state of your service worker and debug it, look at what’s been cached, and even test your app’s offline support!</p>
+<p>No one writes perfect code in one go, and with developer tools like these browser DevTools, you don’t have to. You can feel comfortable experimenting and trying things out, and as soon as something seems wrong, just hit <code>F12</code> to get debugging information about the problem.</p>]]></description>
+    <pubDate>Tue, 1 Mar 2022 16:44:13 -0800</pubDate>
+  </item>
+   
+  <item>
+    <title><![CDATA[3.1: Get-started tools: Building new PWAs]]></title>
+    <link>https://aka.ms/learn-PWA/30Days-blog/#/30DaysOfPWA/dev-tools/01</link>
+    <guid isPermaLink="false">https://aka.ms/learn-PWA/30Days-blog/#/30DaysOfPWA/dev-tools/01</guid>
+    <description><![CDATA[<h1 id="get-started-tools-building-new-pwas">3.1: Get-started tools: Building new PWAs</h1>
+<p><strong>Author: Justin Willis (Software Engineer on the PWABuilder team) <span class="citation" data-cites="justinwillis96">[@justinwillis96]</span>(https://twitter.com/Justinwillis96)</strong></p>
+<p>Welcome to <strong>Week 3 Day 1</strong> of #30DaysOfPWA! Want to learn more about this project? Check out our <a href="../kickoff.md">Kickoff</a> post to get more details on the content roadmap and contributors. Now, let’s dive in!</p>
+<figure>
+<img src="_media/day-01.jpg" alt="image of title and author." /><figcaption>image of title and author.</figcaption>
+</figure>
+<h3 id="what-well-cover-today">WHAT WE’LL COVER TODAY</h3>
+<table>
+<colgroup>
+<col style="width: 38%" />
+<col style="width: 61%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Section</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Introduction</strong></td>
+<td>Introducing new tools from the PWABuilder project, PWA Studio and the PWA Starter!</td>
+</tr>
+<tr class="even">
+<td><strong>Getting started + demo</strong></td>
+<td>Let’s use these two new tools to create a new PWA with just a few button clicks.</td>
+</tr>
+<tr class="odd">
+<td><strong>Under the hood</strong></td>
+<td>Deep dive into some of the tools used in PWA Studio and Starter</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="introduction">Introduction</h2>
+<p>Hello! For today’s post on the <a href="https://aka.ms/learn-pwa/30Days-blog">30 Days of PWA</a> series, we will be getting started with some new tooling from the <a href="https://aka.ms/learn-PWA/30Days-3.1/github.com/pwa-builder/PWABuilder">PWABuilder Project</a>! The PWABuilder team has been working on tools for developers at any step of the building process, from starting a brand new PWA to packaging your existing PWA for the app stores. In this article, we will focus on <a href="https://aka.ms/learn-PWA/30Days-3.1/pwa-studio">PWA Studio</a>, a new VSCode Extension from the PWABuilder project, and <a href="https://aka.ms/learn-PWA/30Days-3.1/github.com/pwa-builder/pwa-starter">the PWA Starter</a>, also from the PWABuilder team, a codebase template to help you get started with building new PWAs.</p>
+<h2 id="getting-started-demo">Getting Started + Demo</h2>
+<p>Let’s start building a new Progressive Web App using PWA Studio! PWA Studio’s <code>Start a new App</code> feature creates your app using <a href="https://aka.ms/learn-PWA/30Days-3.1/github.com/pwa-builder/pwa-starter">the PWA Starter</a>.</p>
+<ol type="1">
+<li><p>First, if you have not installed PWA Studio yet, install it from the <a href="https://aka.ms/learn-PWA/30Days-3.1/pwa-studio">VSCode Marketplace</a>.</p></li>
+<li><p>Now that you have PWA Studio installed, click the PWABuilder Icon on the left side of VSCode</p></li>
+</ol>
+<figure>
+<img src="_media/icon-on-left.png" alt="The PWABuilder icon on the left side of VSCode" /><figcaption>The PWABuilder icon on the left side of VSCode</figcaption>
+</figure>
+<ol start="3" type="1">
+<li>You should now see a <code>Start new PWA</code> button in the bottom bar of VSCode. Click this button to start generating a PWA.</li>
+</ol>
+<figure>
+<img src="_media/start-new-pwa.png" alt="The start new pwa button can be found in the bottom left" /><figcaption>The start new pwa button can be found in the bottom left</figcaption>
+</figure>
+<ol start="4" type="1">
+<li><p>Enter your respository name when propmted, this is normally the name of your app.</p></li>
+<li><p>Your PWA will be generated using the Starter and all of your dependencies will be installed!</p></li>
+<li><p>At this point, you are now ready to start coding! Click <code>F5</code> or Click <code>Run</code> and <code>Start Debugging</code> at the top of VSCode. Your new PWA will now open in dev mode, with auto-reload, in its own App window. Enabling you to build your PWA in an app-first manner.</p></li>
+</ol>
+<figure>
+<img src="_media/new-app.png" alt="Your new app will open in its own app window!" /><figcaption>Your new app will open in its own app window!</figcaption>
+</figure>
+<h2 id="under-the-hood">Under the Hood</h2>
+<h3 id="pwa-starter">PWA Starter</h3>
+<figure>
+<img src="_media/pwa-starter.png" alt="The PWA Starter Github homepage" /><figcaption>The PWA Starter Github homepage</figcaption>
+</figure>
+<p><a href="https://aka.ms/learn-PWA/30Days-3.1/github.com/pwa-builder/pwa-starter">The PWA Starter</a> is a code template, similar to what tools like create-react-app or the Angular CLI can generate.</p>
+<p>With the PWA Starter, you get an app that: - Has no build system to set up and no boilerplate code to add. Everything is included out of the box. - Has a Service Worker system using <a href="https://aka.ms/learn-PWA/30Days-3.1/developers.google.com/web/tools/workbox">Workbox</a> - Scores close to 100 on Lighthouse, out of the box - Uses the <a href="https://aka.ms/learn-PWA/30Days-3.1/docs.microsoft.com/en-us/fluent-ui/web-components">Fluent Web Components</a>, you can build native looking PWAs on Windows - Has everything needed to be installable in the browser - Is ready to be packaged for the app stores using <a href="https://aka.ms/learn-PWA/30Days-3.1/www.pwabuilder.com">PWABuilder</a></p>
+<h3 id="pwa-studio">PWA Studio</h3>
+<figure>
+<img src="_media/pwa-studio.png" alt="The PWA Studio extension running in VSCode" /><figcaption>The PWA Studio extension running in VSCode</figcaption>
+</figure>
+<p>PWA Studio is an extension that brings everything you need to build PWAs to <a href="https://aka.ms/learn-PWA/30Days-3.1/code.visualstudio.com">VSCode</a>. When you <a href="https://aka.ms/learn-PWA/30Days-3.1/pwa-studio">install PWA Studio</a>, you can: - Start building a new PWA in seconds using the PWABuilder pwa-starter. - Learn how to publish your app to the Web with <a href="https://azure.microsoft.com/en-us/services/app-service/static/">Azure Static Web Apps</a> - Add a Web App Manifest and Service Worker to your existing web app - Package your PWA for the Microsoft Store, Google Play, and Apple App Store - Generate Icons for your PWA - Validate that your PWA is installable in the browser and is ready to publish to the app stores - Learn more about using the Web App Manifest to enable new features in your PWA - Use the snippets to implement native features that can improve the User Experience of your PWA.</p>
+<p>And that was how we use the new PWA Studio VSCode Extension and the PWA Starter to start building a PWA with just a few button clicks!</p>
+<p>In our <a href="./02.md">next post</a>, we’ll dive into converting our existing website to a PWA!</p>
+<h2 id="resources">Resources</h2>
+<ul>
+<li><a href="https://aka.ms/learn-PWA/30Days-3.1/github.com/pwa-builder/PWABuilder">PWABuilder Project</a></li>
+<li><a href="https://aka.ms/learn-PWA/30Days-3.1/pwa-studio">Install PWA Studio</a></li>
+<li><a href="https://aka.ms/learn-PWA/30Days-3.1/github.com/pwa-builder/pwa-starter">The PWA Starter</a></li>
+<li><a href="https://aka.ms/learn-PWA/30Days-3.1/code.visualstudio.com">VSCode</a></li>
+<li><a href="https://aka.ms/learn-PWA/30Days-3.1/docs.microsoft.com/en-us/fluent-ui/web-components">Fluent Web Components</a></li>
+<li><a href="https://aka.ms/learn-PWA/30Days-3.1/developers.google.com/web/tools/workbox">Workbox</a></li>
+</ul>]]></description>
+    <pubDate>Tue, 1 Mar 2022 10:25:38 -0800</pubDate>
+  </item>
+   
+  <item>
+    <title><![CDATA[Week 1. Core Concepts]]></title>
+    <link>https://aka.ms/learn-PWA/30Days-blog/#/30DaysOfPWA/core-concepts/README</link>
+    <guid isPermaLink="false">https://aka.ms/learn-PWA/30Days-blog/#/30DaysOfPWA/core-concepts/README</guid>
+    <description><![CDATA[<h1 id="week-1.-core-concepts">Week 1. Core Concepts</h1>
+<p>Welcome to Week 1 of #30DaysOfPWA. Want to learn more about this project? Check out our <a href="../kickoff.md">Kickoff</a> post to get more details on the content roadmap and contributors. Then read on for what we’ll cover <strong>this week</strong>.</p>
+<figure>
+<img src="_media/week-1.png" alt="Visual Guide to Core Concepts Week!" /><figcaption>Visual Guide to Core Concepts Week!</figcaption>
+</figure>
+<hr />
+<h2 id="what-well-cover-in-week-1">WHAT WE’LL COVER IN WEEK 1</h2>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Topic</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">1 - <a href="01.md">Introducing PWA.</a></td>
+<td style="text-align: left;">What is a Progressive Web App (PWA)? How does it compare to other apps? What drives real-world PWA adoption? What characterizes a <em>good</em> PWA? <br/><br/> <strong>Exercise:</strong> Install and explore a PWA.<br/> <strong>Watch For:</strong> <a href="../platforms-practices/">Week 4: Platforms And Practices</a></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2 - <a href="02.md">Deconstructing PWA.</a></td>
+<td style="text-align: left;">What are the building blocks of a PWA? What does each contribute to PWA experience? What are core (vs. optional) features for PWA development? <br/><br/> <strong>Exercise:</strong> Audit sample PWA - explore the reports. <br/> <strong>Watch For:</strong> <a href="../platforms-practices/">Week 4: Platforms And Practices</a></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">3 - <a href="03.md">Make it Installable.</a></td>
+<td style="text-align: left;">What is a Web App Manifest? What does a minimal PWA manifest provide? How does do properties unlock advanced capabilities? <br/><br/> <strong>Exercise:</strong> Inspect <em>manifest.json</em> - using DevTools.<br/> <strong>Watch For:</strong> <a href="../dev-tools/">Week 3: Developer Tools</a></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">4 - <a href="04.md">Make it Reliable.</a></td>
+<td style="text-align: left;">What is a Service Worker? Why is HTTPS essential? Understand registration and lifecycle events. Learn key use cases and Web APIs for service workers. <br/><br/> <strong>Exercise:</strong> Inspect <em>sw.js</em> - using DevTools. <br/> <strong>Watch For:</strong> <a href="../dev-tools/">Week 3: Developer Tools</a></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">5 - <a href="05.md">Make it Work Offline.</a></td>
+<td style="text-align: left;">What is an offline PWA experience? How do PWAs detect network changes? Understand PWA caching strategies and storage options. <br/><br/> <strong>Exercise:</strong> Inspect <em>Cache</em>, <em>Storage</em> - using DevTools.<br/> <strong>Watch For:</strong> <a href="../dev-tools/">Week 3: Developer Tools</a></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">6 - <a href="06.md">Make it Capable.</a></td>
+<td style="text-align: left;">What is the web capabilities project? What are key web APIs, interfaces? What is Feature Detection? What are pros &amp; cons for PWA development? <br/><br/> <strong>Exercise:</strong> Explore new capabilities in installed PWA. <br/> <strong>Watch For:</strong> <a href="../advanced-capabilities/">Week 2: Advanced Capabilities</a></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">7 - <a href="07.md">Build it Iteratively.</a></td>
+<td style="text-align: left;">How do I build a PWA from scratch? How do I enhance an existing app for PWA readiness? What tools and practices can I rely on as a developer? <br/><br/> <strong>Exercise:</strong> Audit &amp; fix existing app. Get minimal PWA. <br/> <strong>Watch For:</strong> <a href="../dev-tools/">Week 3: Developer Tools</a></td>
+</tr>
+</tbody>
+</table>]]></description>
+    <pubDate>Tue, 1 Mar 2022 10:25:38 -0800</pubDate>
+  </item>
+   
+  <item>
+    <title><![CDATA[1.4 Make PWA Reliable]]></title>
+    <link>https://aka.ms/learn-PWA/30Days-blog/#/30DaysOfPWA/core-concepts/04</link>
+    <guid isPermaLink="false">https://aka.ms/learn-PWA/30Days-blog/#/30DaysOfPWA/core-concepts/04</guid>
+    <description><![CDATA[<h1 id="make-pwa-reliable">1.4 Make PWA Reliable</h1>
+<p><strong>Author: Nitya Narasimhan <span class="citation" data-cites="nitya">[@nitya]</span>(https://twitter.com/nitya)</strong></p>
+<p>Welcome to <strong>Day 4</strong> of #30DaysOfPWA! Want to learn more about this project? Check out our <a href="../kickoff.md">Kickoff</a> post to get more details on the content roadmap and contributors. Now, let’s dive in!</p>
+<figure>
+<img src="_media/day-04.jpg" alt="Day 4: Let’s Talk Service Workers!" /><figcaption>Day 4: Let’s Talk Service Workers!</figcaption>
+</figure>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: left;">What you will learn today</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><em>Definition</em></td>
+<td style="text-align: left;">What is a Service Worker?</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><em>Priority</em></td>
+<td style="text-align: left;">Why is HTTPS essential for PWA?</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><em>Function</em></td>
+<td style="text-align: left;">Understand registration and lifecycle events</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><em>Usage</em></td>
+<td style="text-align: left;">How are service workers used in PWA?</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><em>Exercise</em></td>
+<td style="text-align: left;">Inspect the <em>sw.js</em> in your sample PWA</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><em>Related</em></td>
+<td style="text-align: left;"><a href="../dev-tools/">Week 3: Developer Tools</a></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="lets-recap">Let’s Recap</h2>
+<p><strong>What we learned so far:</strong></p>
+<ul>
+<li>PWAs are web apps by default. They can provide a <em>usable</em> experience across all devices and platforms, from a single codebase.</li>
+<li>PWAs use <em>progressive enhancement</em> to scale up their experiences to suit richer platform capabilities. They can feel indistinguishable from natively installed apps in that context.</li>
+<li>PWAs use <em>open web technologies</em> to implement this behavior. Core building blocks are HTTPS, Web App Manifest and Service Workers. New <em>web capabilities</em> unlock even richer experiences on supporting platforms.</li>
+<li><em>Web App Manifests</em> are like app resumes - providing identity, branding and skills information that is needed for app installation (on device) or publishing (to app stores).</li>
+</ul>
+<p><strong>What we’ll cover today:</strong> We’ll explore the remaining building blocks (HTTPS, Service Workers) with specific focus on <a href="https://aka.ms/learn-PWA/30Days-1.4/docs.microsoft.com/en-us/microsoft-edge/progressive-web-apps-chromium/how-to/service-workers">using Service Workers</a>.</p>
+<hr />
+<h2 id="pwas-are-like-startups">PWAs are like startups!</h2>
+<p>To set the stage, let’s use another analogy. We previously talked about how Web App Manifests are like app resumes. Now think about the PWA like a startup - with each technology being a founding team member with a specialized purpose that helps deliver a progressively-enhanced experience.</p>
+<ul>
+<li>The app <strong>page</strong> is the CEO - it drives the core experience and remains responsive to user needs and interactions.</li>
+<li>The <strong>Web App Manifest</strong> is the resume - it describes app identity, brand and capabilities to devices and app stores <em>for installability</em>.</li>
+<li><strong>HTTPS</strong> is the Chief Security Officer (CSO) - it encrypts end-to-end communications between app and server endpoints <em>for safety</em>.</li>
+<li>The <strong>Service Worker</strong> is the Chief Operations Officer (COO) - it unblocks the CEO from performing time-consuming or synchronous tasks, and takes proactive actions to ensure reliable operation even when offline.</li>
+</ul>
+<figure>
+<img src="_media/4-service-workers.png" alt="Image describes relationship of PWA startup." /><figcaption>Image describes relationship of PWA startup.</figcaption>
+</figure>
+<p>Let’s see how this translates to PWA implementations that support desirable traits like safety, network-independent operation, and re-engageability. And in particular, we’ll explore service worker implementation and usage, to make this happen.</p>
+<hr />
+<h2 id="make-pwas-safe">Make PWAs Safe</h2>
+<p>HTTPS enforces end-to-end encryption of all client-server communications, providing privacy safeguards for information exchanged over the network. Visualize this as a Chief Security Officer locking down all entry and access paths into your startup and protecting information from malicious third-party access or tampering.</p>
+<p><strong>HTTPS support is mandatory for using Service Workers</strong>. Thankfully, as we covered <a href="./02.md">in our earlier post</a>, it is easy to implement HTTPS support. Use modern cloud hosting providers (who enable it by default) or take advantage of free certificate options (e.g., <a href="https://aka.ms/learn-PWA/30Days-1.4/letsencrypt.com">Let’s Encrypt</a>) to secure your own servers.</p>
+<h2 id="make-pwas-reliable-re-engageable">Make PWAs Reliable &amp; Re-Engageable</h2>
+<p>Service Workers are a special type of <a href="https://aka.ms/learn-PWA/30Days-1.4/developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API">Web Worker</a>. Web Workers operate in a separate thread, allowing them to execute long-running or asynchronous tasks in the background, minimizing the impact on page performance (“unblocking” the CEO).</p>
+<p>Service Workers make PWA operation <em>reliable</em> by helping deliver usable experiences even under flaky or offline network conditions. They do this by <em>intercepting</em> network fetch requests from the page (CEO) and <em>strategically</em> handling them using cached responses (if offline), or network-fetched resources (if real-time), or some combination of both based on predefined caching strategies for resource types.</p>
+<p>Service Workers make PWAs <em>re-engageable</em> by having the ability to alert users to app changes or context, even if the page itself is inactive. They do this by listening for asynchronous push notifications (from a server) and working with platform capabilities to deliver alerts in a device-familiar way. When users engage with the alert, they are drawn back into the app seamlessly - just like with other native app experiences.</p>
+<hr />
+<h2 id="how-do-service-workers-work">How do Service Workers work?</h2>
+<p>From a development perspective, we need to know two concepts: * Service Worker <strong>Registration</strong> - where CEO “hires” the COO. * Service Worker <strong>Lifecycle</strong> - where COO “handles” operational events.</p>
+<p>Let’s look at registration first. Like all Web Workers, the Service Worker must be authored in its own file. The location of that file (relative to the root of the app) defines the <em>scope</em> of its authority. Service Workers can only intercept or manage requests to pages within their scope. <em>Placing the file at the root of your app ensures your service worker will manage all pages within it</em>.</p>
+<p>Let’s inspect the <a href="https://aka.ms/learn-PWA/30Days-1.4/devtoolstips.org">DevTools Tips PWA</a> in the browser again. Look at <em>Service Workers</em> under the <em>Application</em> tab. We can see that the service worker is implemented in the “sw.js” file in the root directory - implicitly setting its scope to the whole app.</p>
+<figure>
+<img src="_media/dtt-inspect.png" alt="Inspect PWA in DevTools" /><figcaption>Inspect PWA in DevTools</figcaption>
+</figure>
+<p>If you inspect the application source (in <em>Elements</em> tab) you will find this snippet of code for service worker registration:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb1-1" title="1"><span class="cf">if</span>(<span class="st">&#39;serviceWorker&#39;</span> <span class="kw">in</span> navigator) <span class="op">{</span></a>
+<a class="sourceLine" id="cb1-2" title="2">    <span class="co">// Register the service worker</span></a>
+<a class="sourceLine" id="cb1-3" title="3">    <span class="va">navigator</span>.<span class="va">serviceWorker</span>.<span class="at">register</span>(<span class="st">&#39;/sw.js&#39;</span><span class="op">,</span> <span class="op">{</span></a>
+<a class="sourceLine" id="cb1-4" title="4">        <span class="dt">scope</span><span class="op">:</span> <span class="st">&#39;/&#39;</span></a>
+<a class="sourceLine" id="cb1-5" title="5">    <span class="op">}</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb1-6" title="6"><span class="op">}</span></a></code></pre></div>
+<p>Because Service Worker is a more recent technology that may not be <a href="https://aka.ms/learn-PWA/30Days-1.4/caniuse.com/serviceworkers">supported on all browsers</a>, we test for its existence before registering it. The scope is set implicitly by the file location - the code shows how you can explicitly set this if needed.</p>
+<hr />
+<h2 id="service-worker-lifecycle-events">Service Worker: Lifecycle Events</h2>
+<p>Service worker registration is like onboarding the COO. Once that is complete, the service worker is ready to listen for lifecycle events (install, activate) to set itself up for success. Think of this as three phases:</p>
+<ol type="1">
+<li><p><strong>Registration</strong>: The browser registers the service worker, kicking off the Service Worker lifecycle.</p></li>
+<li><p><strong>Installation</strong>: The browser triggers <code>install</code> as the first event to the Service Worker. It can use this for pre-caching resources (e.g., populate cache with long-lived resources like logos or offline pages).</p></li>
+</ol>
+<div class="sourceCode" id="cb2"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb2-1" title="1"><span class="va">self</span>.<span class="at">addEventListener</span>( <span class="st">&quot;install&quot;</span><span class="op">,</span> <span class="kw">function</span>( event )<span class="op">{</span></a>
+<a class="sourceLine" id="cb2-2" title="2">    <span class="va">console</span>.<span class="at">log</span>( <span class="st">&quot;WORKER: install event in progress.&quot;</span> )<span class="op">;</span></a>
+<a class="sourceLine" id="cb2-3" title="3"><span class="op">}</span>)<span class="op">;</span></a></code></pre></div>
+<ol start="3" type="1">
+<li><strong>Activation</strong>: The browser sends the <code>activate</code> event to indicate that the service worker has been installed. This service worker can now do clean up actions (e.g., remove old caches from prior version) and ready itself to handle <em>functional</em> events. If there is an old service worker in play, you can use <code>clients.claim()</code> to immediately replace the old service worker with your new one.</li>
+</ol>
+<div class="sourceCode" id="cb3"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb3-1" title="1"><span class="va">self</span>.<span class="at">addEventListener</span>( <span class="st">&quot;activate&quot;</span><span class="op">,</span> <span class="kw">function</span>( event )<span class="op">{</span></a>
+<a class="sourceLine" id="cb3-2" title="2">    <span class="va">console</span>.<span class="at">log</span>( <span class="st">&quot;WORKER: activation event in progress.&quot;</span> )<span class="op">;</span></a>
+<a class="sourceLine" id="cb3-3" title="3">    <span class="va">clients</span>.<span class="at">claim</span>()<span class="op">;</span></a>
+<a class="sourceLine" id="cb3-4" title="4">    <span class="va">console</span>.<span class="at">log</span>( <span class="st">&quot;WORKER: all clients are now controlled by me! Mwahahaha!&quot;</span> )<span class="op">;</span></a>
+<a class="sourceLine" id="cb3-5" title="5"><span class="op">}</span>)<span class="op">;</span></a></code></pre></div>
+<h2 id="service-worker-functional-events">Service Worker: Functional Events</h2>
+<p>Functional events are those that require the asynchronous or background processing abilities of service workers to support reliable and re-enageable behaviors. For now, think about just two: “fetch” and “push”.</p>
+<ol type="1">
+<li>The <a href="https://aka.ms/learn-PWA/30Days-1.4/developer.mozilla.org/en-US/docs/Web/API/FetchEvent"><strong>fetch event</strong></a> is triggered when the browser tries to access a page that lies within the <em>scope</em> of the service worker. The service worker acts as an interceptor - returning a response either from the cache or from the network (or some combination of both) based on predefined strategies. We’ll cover more on this in the next post.</li>
+</ol>
+<div class="sourceCode" id="cb4"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb4-1" title="1"><span class="va">self</span>.<span class="at">addEventListener</span>( <span class="st">&quot;fetch&quot;</span><span class="op">,</span> <span class="kw">function</span>( event )<span class="op">{</span></a>
+<a class="sourceLine" id="cb4-2" title="2">    <span class="va">console</span>.<span class="at">log</span>( <span class="st">&quot;WORKER: Fetching&quot;</span><span class="op">,</span> <span class="va">event</span>.<span class="at">request</span> )<span class="op">;</span></a>
+<a class="sourceLine" id="cb4-3" title="3"><span class="op">}</span>)<span class="op">;</span></a></code></pre></div>
+<ol start="2" type="1">
+<li>The <a href="https://aka.ms/learn-PWA/30Days-1.4/developer.mozilla.org/en-US/docs/Web/API/PushEvent"><strong>push event</strong></a> is triggered when the browser receives a push message from a server to display as a toast notification to users. This occurs only if the PWA had previously <em>subscribed</em> for server notifications <em>and</em> user has granted the PWA permission to receive them. Push events are critical to <a href="https://aka.ms/learn-PWA/30Days-1.4/docs.microsoft.com/en-us/microsoft-edge/progressive-web-apps-chromium/how-to/notifications-badges">re-engaging users</a> when the app is not otherwise active.</li>
+</ol>
+<div class="sourceCode" id="cb5"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb5-1" title="1"><span class="va">self</span>.<span class="at">addEventListener</span>( <span class="st">&quot;push&quot;</span><span class="op">,</span> <span class="kw">function</span>( event )<span class="op">{</span></a>
+<a class="sourceLine" id="cb5-2" title="2">    <span class="va">console</span>.<span class="at">log</span>( <span class="st">&quot;WORKER: Received notification&quot;</span><span class="op">,</span> <span class="va">event</span>.<span class="at">data</span> )<span class="op">;</span></a>
+<a class="sourceLine" id="cb5-3" title="3"><span class="op">}</span>)<span class="op">;</span></a></code></pre></div>
+<p>In our next post, we’ll dive into details of service worker support for offline operation - looking at how service workers engage with the Fetch and Cache Storage APIs to provide continuity of experience in a network-independent manner. For now, it’s time for a hands-on exercise!</p>
+<hr />
+<h2 id="exercise-explore-service-workers">Exercise: Explore Service Workers</h2>
+<p>Use DevTools to inspect a different <a href="https://aka.ms/learn-PWA/30Days-1.4/docs.microsoft.com/en-us/microsoft-edge/progressive-web-apps-chromium/demo-pwas">sample PWA</a> and see if you can identify and understand the service worker hooks and implementation:</p>
+<ul>
+<li>Go to <code>Elements</code> tab and explore the application source
+<ul>
+<li>Where is the service worker registered?</li>
+<li>What is the scope for registration?</li>
+</ul></li>
+<li>Go to <code>Applications</code> tab and explore the service worker file
+<ul>
+<li>What events is it handling?</li>
+<li>Can you understand its caching strategy (for fetch)?</li>
+<li>Is it re-engaging the user (with push)?</li>
+</ul></li>
+<li>Go to the <code>Cache Storage</code> section
+<ul>
+<li>What files or assets do you see stored there?</li>
+<li>How do these correlate to actions taken for <code>install</code> event?</li>
+</ul></li>
+<li>Go to the <code>Service Workers</code> section - click “Offline”
+<ul>
+<li>What happens when you reload the page?</li>
+<li>What happens when you go to a different site (offline)?</li>
+</ul></li>
+</ul>]]></description>
+    <pubDate>Tue, 1 Mar 2022 10:25:38 -0800</pubDate>
+  </item>
+   
+  <item>
+    <title><![CDATA[1.3 Make PWA Installable]]></title>
+    <link>https://aka.ms/learn-PWA/30Days-blog/#/30DaysOfPWA/core-concepts/03</link>
+    <guid isPermaLink="false">https://aka.ms/learn-PWA/30Days-blog/#/30DaysOfPWA/core-concepts/03</guid>
+    <description><![CDATA[<h1 id="make-pwa-installable">1.3 Make PWA Installable</h1>
+<p><strong>Author: Nitya Narasimhan <span class="citation" data-cites="nitya">[@nitya]</span>(https://twitter.com/nitya)</strong></p>
+<p>Welcome to <strong>Day 3</strong> of #30DaysOfPWA! Want to learn more about this project? Check out our <a href="../kickoff.md">Kickoff</a> post to get more details on the content roadmap and contributors. Now, let’s dive in!</p>
+<figure>
+<img src="_media/day-03.jpg" alt="Welcome to Day 3. Make PWA Installable." /><figcaption>Welcome to Day 3. Make PWA Installable.</figcaption>
+</figure>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: left;">What you will learn today</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><em>Definition</em></td>
+<td style="text-align: left;">What is a Web App Manifest?</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><em>Priority</em></td>
+<td style="text-align: left;">What should a minimal PWA manifest provide?</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><em>Function</em></td>
+<td style="text-align: left;">How do manifest properties drive PWA capabilities?</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><em>Validation</em></td>
+<td style="text-align: left;">How can I create &amp; validate a Web App Manifest?</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><em>Exercise</em></td>
+<td style="text-align: left;">Inspect the <em>manifest.json</em> for the sample PWA</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><em>Related</em></td>
+<td style="text-align: left;"><a href="../dev-tools/">Week 3: Developer Tools</a></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="lets-recap">Let’s Recap</h2>
+<ul>
+<li><a href="./01.md">Day 1</a>: We learned PWAs are web apps that are <em>progressively enhanced</em> to deliver experiences that <strong>scale to device and platform capabilities</strong>. They can behave like native apps on richer platforms and fall back to regular website behavior on less capable ones.</li>
+<li><a href="./02.md">Day 2</a>: We learned this is enabled by <em>open web technologies</em> like Service Workers, Web App Manifest and HTTPS and support for modern Web APIs. These enable desirable PWA characteristics like <strong>installability</strong> and <strong>network independence</strong> in a cross-browser compatible way.</li>
+</ul>
+<p>Plus, we picked a <a href="https://aka.ms/learn-PWA/30Days-1.3/docs.microsoft.com/en-us/microsoft-edge/progressive-web-apps-chromium/demo-pwas">Sample PWA</a> to look at as we explore the concepts. Now, let’s dive into PWA building blocks, starting with manifests.</p>
+<h2 id="what-is-a-web-app-manifest">What is a Web App Manifest?</h2>
+<p><em>Installability</em> is a desirable PWA characterstic that allows it to be added to a device home screen and behave like other native apps - e.g., users can launch them, pin them to Taskbar, find them through device search etc.</p>
+<p>The <strong>Web App Manifest</strong> is an open web <a href="https://aka.ms/learn-PWA/30Days-1.3/docs.microsoft.com/en-us/microsoft-edge/progressive-web-apps-chromium/how-to/web-app-manifests">specification of a JSON format</a> that is critical to making PWAs installable. <a href="https://aka.ms/learn-PWA/30Days-1.3/docs.microsoft.com/en-us/microsoft-edge/progressive-web-apps-chromium/how-to/web-app-manifests">Functionally</a>, it <em>governs how your PWA looks and behaves when installed on device</em> by defining the properties (key-value pairs) that characterize its appearance and behaviors. In other words, it describes details about your web app, such as your app name, description, icons, and more.</p>
+<h2 id="a-sample-pwa-manifest">A Sample PWA Manifest</h2>
+<p>Let’s take a look at what a real manifest looks like using a <a href="https://aka.ms/learn-PWA/30Days-1.3/docs.microsoft.com/en-us/microsoft-edge/progressive-web-apps-chromium/demo-pwas">Sample PWA</a>. I’m using <a href="https://aka.ms/learn-PWA/30Days-1.3/devtoolstips.org">DevTool Tips</a> - and I can view its manifest in two ways: * <strong>From runtime.</strong> In <a href="./02.md">yesterday’s post</a> we learned to <em>inspect</em> the app with browser DevTools to find the Manifest section under the Application tab. * <strong>From source.</strong> Look for a <a href="https://aka.ms/learn-PWA/30Days-1.3/raw.githubusercontent.com/captainbrosset/devtools-tips/main/src/manifest.json">manifest.json</a> file. Apps may choose to use a <code>app_name.webmanifest</code> naming convention if they serve it with an <code>application/manifest+json</code> MIME type. You can find a <code>&lt;link rel="manifest" href="manifest.json"&gt;</code> inside the <code>&lt;head&gt;</code> tag of the page. The <code>href</code> will specify the file name of the manifest file.</p>
+<p>Here’s what my sample PWA’s <em>manifest.json</em> looks like.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode json"><code class="sourceCode json"><a class="sourceLine" id="cb1-1" title="1"><span class="fu">{</span></a>
+<a class="sourceLine" id="cb1-2" title="2">    <span class="dt">&quot;name&quot;</span><span class="fu">:</span> <span class="st">&quot;DevTools Tips&quot;</span><span class="fu">,</span></a>
+<a class="sourceLine" id="cb1-3" title="3">    <span class="dt">&quot;short_name&quot;</span><span class="fu">:</span> <span class="st">&quot;DevTools Tips&quot;</span><span class="fu">,</span></a>
+<a class="sourceLine" id="cb1-4" title="4">    <span class="dt">&quot;start_url&quot;</span><span class="fu">:</span> <span class="st">&quot;/&quot;</span><span class="fu">,</span></a>
+<a class="sourceLine" id="cb1-5" title="5">    <span class="dt">&quot;categories&quot;</span><span class="fu">:</span> <span class="ot">[</span></a>
+<a class="sourceLine" id="cb1-6" title="6">        <span class="st">&quot;productivity&quot;</span><span class="ot">,</span></a>
+<a class="sourceLine" id="cb1-7" title="7">        <span class="st">&quot;devtools&quot;</span><span class="ot">,</span></a>
+<a class="sourceLine" id="cb1-8" title="8">        <span class="st">&quot;browser&quot;</span><span class="ot">,</span></a>
+<a class="sourceLine" id="cb1-9" title="9">        <span class="st">&quot;education&quot;</span></a>
+<a class="sourceLine" id="cb1-10" title="10">    <span class="ot">]</span><span class="fu">,</span></a>
+<a class="sourceLine" id="cb1-11" title="11">    <span class="dt">&quot;display&quot;</span><span class="fu">:</span> <span class="st">&quot;standalone&quot;</span><span class="fu">,</span></a>
+<a class="sourceLine" id="cb1-12" title="12">    <span class="dt">&quot;background_color&quot;</span><span class="fu">:</span> <span class="st">&quot;#ffffff&quot;</span><span class="fu">,</span></a>
+<a class="sourceLine" id="cb1-13" title="13">    <span class="dt">&quot;theme_color&quot;</span><span class="fu">:</span> <span class="st">&quot;#ffffff&quot;</span><span class="fu">,</span></a>
+<a class="sourceLine" id="cb1-14" title="14">    <span class="dt">&quot;scope&quot;</span><span class="fu">:</span> <span class="st">&quot;/&quot;</span><span class="fu">,</span></a>
+<a class="sourceLine" id="cb1-15" title="15">    <span class="dt">&quot;description&quot;</span><span class="fu">:</span> <span class="st">&quot;A collection of useful cross-browser DevTools tips&quot;</span><span class="fu">,</span></a>
+<a class="sourceLine" id="cb1-16" title="16">    <span class="dt">&quot;icons&quot;</span><span class="fu">:</span> <span class="ot">[</span></a>
+<a class="sourceLine" id="cb1-17" title="17">        <span class="fu">{</span></a>
+<a class="sourceLine" id="cb1-18" title="18">            <span class="dt">&quot;src&quot;</span><span class="fu">:</span> <span class="st">&quot;/assets/logo-192.png&quot;</span><span class="fu">,</span></a>
+<a class="sourceLine" id="cb1-19" title="19">            <span class="dt">&quot;sizes&quot;</span><span class="fu">:</span> <span class="st">&quot;192x192&quot;</span><span class="fu">,</span></a>
+<a class="sourceLine" id="cb1-20" title="20">            <span class="dt">&quot;type&quot;</span><span class="fu">:</span> <span class="st">&quot;image/png&quot;</span></a>
+<a class="sourceLine" id="cb1-21" title="21">        <span class="fu">}</span><span class="ot">,</span></a>
+<a class="sourceLine" id="cb1-22" title="22">        <span class="fu">{</span></a>
+<a class="sourceLine" id="cb1-23" title="23">            <span class="dt">&quot;src&quot;</span><span class="fu">:</span> <span class="st">&quot;/assets/logo-512.png&quot;</span><span class="fu">,</span></a>
+<a class="sourceLine" id="cb1-24" title="24">            <span class="dt">&quot;sizes&quot;</span><span class="fu">:</span> <span class="st">&quot;512x512&quot;</span><span class="fu">,</span></a>
+<a class="sourceLine" id="cb1-25" title="25">            <span class="dt">&quot;type&quot;</span><span class="fu">:</span> <span class="st">&quot;image/png&quot;</span></a>
+<a class="sourceLine" id="cb1-26" title="26">        <span class="fu">}</span></a>
+<a class="sourceLine" id="cb1-27" title="27">    <span class="ot">]</span><span class="fu">,</span></a>
+<a class="sourceLine" id="cb1-28" title="28">    <span class="dt">&quot;screenshots&quot;</span><span class="fu">:</span> <span class="ot">[</span></a>
+<a class="sourceLine" id="cb1-29" title="29">        <span class="fu">{</span></a>
+<a class="sourceLine" id="cb1-30" title="30">            <span class="dt">&quot;src&quot;</span><span class="fu">:</span> <span class="st">&quot;/assets/screenshot-home.png&quot;</span><span class="fu">,</span></a>
+<a class="sourceLine" id="cb1-31" title="31">            <span class="dt">&quot;sizes&quot;</span><span class="fu">:</span> <span class="st">&quot;1992x1773&quot;</span><span class="fu">,</span></a>
+<a class="sourceLine" id="cb1-32" title="32">            <span class="dt">&quot;type&quot;</span><span class="fu">:</span> <span class="st">&quot;image/png&quot;</span></a>
+<a class="sourceLine" id="cb1-33" title="33">        <span class="fu">}</span><span class="ot">,</span></a>
+<a class="sourceLine" id="cb1-34" title="34">        <span class="fu">{</span></a>
+<a class="sourceLine" id="cb1-35" title="35">            <span class="dt">&quot;src&quot;</span><span class="fu">:</span> <span class="st">&quot;/assets/screenshot-tip.png&quot;</span><span class="fu">,</span></a>
+<a class="sourceLine" id="cb1-36" title="36">            <span class="dt">&quot;sizes&quot;</span><span class="fu">:</span> <span class="st">&quot;1992x1773&quot;</span><span class="fu">,</span></a>
+<a class="sourceLine" id="cb1-37" title="37">            <span class="dt">&quot;type&quot;</span><span class="fu">:</span> <span class="st">&quot;image/png&quot;</span></a>
+<a class="sourceLine" id="cb1-38" title="38">        <span class="fu">}</span></a>
+<a class="sourceLine" id="cb1-39" title="39">    <span class="ot">]</span><span class="fu">,</span></a>
+<a class="sourceLine" id="cb1-40" title="40">    <span class="dt">&quot;url_handlers&quot;</span><span class="fu">:</span> <span class="ot">[</span></a>
+<a class="sourceLine" id="cb1-41" title="41">        <span class="fu">{</span></a>
+<a class="sourceLine" id="cb1-42" title="42">            <span class="dt">&quot;origin&quot;</span><span class="fu">:</span> <span class="st">&quot;https://devtoolstips.org&quot;</span></a>
+<a class="sourceLine" id="cb1-43" title="43">        <span class="fu">}</span></a>
+<a class="sourceLine" id="cb1-44" title="44">    <span class="ot">]</span></a>
+<a class="sourceLine" id="cb1-45" title="45"><span class="fu">}</span></a></code></pre></div>
+<h2 id="manifests-are-like-app-resumes">Manifests are like App Resumes</h2>
+<p>That’s a lot to take in right? It helps if you can put these properties into a few buckets - here’s what I see: * <em>Identity</em> - e.g., name, categories, starting URL. * <em>Characteristics</em> - e.g, icons, colors, screenshots. * <em>Capabilities</em> e.g., url_handlers</p>
+<p>Wait - doesn’t this remind you of a resume? The identity information, the profile headshots, the list of skills? That’s exactly how I think of it:</p>
+<ul>
+<li>A Web App Manifest is like a resume for the application.</li>
+<li>The browser is where the application currently “works”.</li>
+<li><strong>Installability</strong> is the “interview” to work in a new place (on device).</li>
+<li><strong>Discoverability</strong> is helped by “publishing” app resumes (to app stores).</li>
+</ul>
+<p>The visual explains how this analogy works for PWA.</p>
+<figure>
+<img src="_media/3-manifest.png" alt="Placeholder for visual on manifest" /><figcaption>Placeholder for visual on manifest</figcaption>
+</figure>
+<p>The browser is like an amazing workplace where people look out for your success. PWAs are apps “working” there - they keep an updated “resume” (manifest) and “link” it in their HTML to tell the browser they can work “remotely” (on device). The browser uses it to “advertise” this to users (“Install This Site As An App”). Make sense?</p>
+<p>If the user clicks that <code>Install</code> prompt, it triggers an “interview” between app new workplace (device), The latter looks up the resume for details (profile, appearance, skills) and adds it to its local “workplace directory” just like other native apps. Users can now <em>launch</em> the app, or <em>discover</em> it using device-specific search features. And, users and other apps can now target this app for tasks matching its listed <em>capabilities</em> (“url handling”). Isn’t that neat?</p>
+<p>But wait - there’s more. The PWA can also list its resume in app stores just like native apps (publish to <a href="https://aka.ms/learn-PWA/30Days-1.3/docs.microsoft.com/en-us/microsoft-edge/progressive-web-apps-chromium/how-to/microsoft-store">e.g., Microsoft Store</a> for Windows devices). When users <code>Install</code> from app store, they just trigger the same interview process. <strong>Installability and discoverability for the win!</strong></p>
+<h2 id="creating-an-web-app-manifest">Creating an Web App Manifest</h2>
+<p>From a PWA developer perspective, creating a manifest involves: * Create a <em>manifest.json</em> and populating its properties. * Linking it to app HTML to advertise your PWA status. Ex:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode html"><code class="sourceCode html"><a class="sourceLine" id="cb2-1" title="1"><span class="kw">&lt;link</span><span class="ot"> rel=</span><span class="st">&quot;manifest&quot;</span><span class="ot"> href=</span><span class="st">&quot;/manifest.json&quot;</span><span class="kw">&gt;</span></a></code></pre></div>
+<p>Create your manifest with any text editor or IDE - just make sure your JSON is valid. Start with a minimal manifest to get a working PWA. Then iteratively add new <a href="https://aka.ms/learn-PWA/30Days-1.3/developer.mozilla.org/docs/Web/Manifest">members</a> to improve PWA experience. Then add capability-driven attributes related to <a href="https://aka.ms/learn-PWA/30Days-1.3/developer.mozilla.org/en-US/docs/Web/API">Web APIs</a> you support.</p>
+<p>Audit your PWA with tools like <a href="https://aka.ms/learn-PWA/30Days-1.3/pwabuilder.com">PWABuilder</a> to find, and fix, issues in your manifest so you can deliver a best-in-class PWA experience to users.</p>
+<h2 id="what-does-a-minimal-manifest-need">What does a minimal manifest need?</h2>
+<p>The <a href="https://aka.ms/learn-PWA/30Days-1.3/w3c.github.io/manifest#examples">specfication</a> defines a number of <em>member</em> attributes - but a suggested <a href="https://aka.ms/learn-PWA/30Days-1.3/docs.microsoft.com/en-us/microsoft-edge/progressive-web-apps-chromium/how-to/web-app-manifests">minimal manifest</a> should have at least these three - where <em>start_url</em> defines the entry point (default path shown) when app is launched on device.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode json"><code class="sourceCode json"><a class="sourceLine" id="cb3-1" title="1"><span class="fu">{</span></a>
+<a class="sourceLine" id="cb3-2" title="2">    <span class="dt">&quot;name&quot;</span><span class="fu">:</span> <span class="st">&quot;My Sample PWA&quot;</span><span class="fu">,</span></a>
+<a class="sourceLine" id="cb3-3" title="3">    <span class="dt">&quot;lang&quot;</span><span class="fu">:</span> <span class="st">&quot;en-US&quot;</span><span class="fu">,</span></a>
+<a class="sourceLine" id="cb3-4" title="4">    <span class="dt">&quot;start_url&quot;</span><span class="fu">:</span> <span class="st">&quot;/&quot;</span></a>
+<a class="sourceLine" id="cb3-5" title="5"><span class="fu">}</span></a></code></pre></div>
+<p>A user-friendly description of the supported members can be read <a href="https://aka.ms/learn-PWA/30Days-1.3/developer.mozilla.org/docs/Web/Manifest">here</a> - let’s see what our sample PWA is declaring for instance: * <code>short_name</code> - app name for constrained spaces (e.g., home screen) * <code>categories</code> - hints for stores or app catalogs. (See W3C <a href="https://aka.ms/learn-PWA/30Days-1.3/github.com/w3c/manifest/wiki/Categories">examples</a>) * <code>display</code> - how much of browser UI does user see in app? * <code>background_color</code> - placeholder to show (before stylesheet loads) * <code>theme_color</code> - default theme color for app * <code>scope</code> - what web pages can be viewed (navigation scope) * <code>description</code> - what is the app about? * <code>icons</code> - array of icon images used in various contexts * <code>screenshots</code> - showcase application UI/UX (e.g., for app stores)</p>
+<h2 id="what-is-a-good-manifest">What is a <em>good</em> manifest?</h2>
+<p>A good Manifest provides additional properties that help deliver the optimal experience for the user on that device. This can include: * adding <em>recommended</em> members and <em>experimental</em> members * adding properties to unlock new <em>capabilities</em> on device.</p>
+<p>For the first part, an actionable step to use audit tools like <a href="https://aka.ms/learn-PWA/30Days-1.3/pwabuilder.com">PWABuilder</a> that grade manifest quality and help fix issues interactively (see example below). Look for our <a href="../dev-tools/">Week 3: Developer Tools</a> coverage for more details.</p>
+<figure>
+<img src="_media/dtt-manifest-report.png" alt="DevTools Tips - Manifest Audit" /><figcaption>DevTools Tips - Manifest Audit</figcaption>
+</figure>
+<p>For the second part, we talked about two things</p>
+<p><strong>Experimental members</strong>. These are manifest members that are being evaluated for future inclusion, but subject to change. Browser platforms may offer early implementations under a <a href="https://aka.ms/learn-PWA/30Days-1.3/docs.microsoft.com/en-us/microsoft-edge/progressive-web-apps-chromium/how-to/handle-urls#enable-url-handling">flag</a> for evaluation - but keep in mind that these could change, and be unevenly supported across browsers.</p>
+<ul>
+<li><em>Example</em>: Our sample PWA declares a “url_handlers” member. This is an <a href="https://aka.ms/learn-PWA/30Days-1.3/docs.microsoft.com/en-us/microsoft-edge/progressive-web-apps-chromium/how-to/handle-urls">experimental feature</a> that allows the app to register itself as a launch target when user wishes to open associated URLs. There is now a proposal to replace this with a <a href="https://aka.ms/learn-PWA/30Days-1.3/github.com/WICG/pwa-url-handler/blob/main/handle_links/explainer.md">“handle_links”</a> member instead.</li>
+</ul>
+<p><strong>Web capabilities</strong>. The manifest can be used to declare support for using new <a href="https://aka.ms/learn-PWA/30Days-1.3/developer.mozilla.org/en-US/docs/Web/API">Web APIs</a> that unlock app access to rich platform hardware and features.</p>
+<ul>
+<li><em>Example:</em> The <a href="https://aka.ms/learn-PWA/30Days-1.3/docs.microsoft.com/en-us/microsoft-edge/progressive-web-apps-chromium/how-to/web-app-manifests#identify-your-app-as-a-share-target">“share_target”</a> (used with the <a href="https://aka.ms/learn-PWA/30Days-1.3/developer.mozilla.org/en-US/docs/Web/API/Web_Share_API">Web Share API</a>), activates PWA ability to <a href="https://aka.ms/learn-PWA/30Days-1.3/docs.microsoft.com/en-us/microsoft-edge/progressive-web-apps-chromium/how-to/share">share content with other apps</a> like any other native app. Watch for Week 2, when we talk about advanced capabilities.</li>
+</ul>
+<p>One last thought. Remember our analogy for the manifest being a resume for the PWA? Where manifest “members” reflect different sections related to identity, characteristics and capability?</p>
+<p>Think of <em>web capabilities</em> and other open web technologies (e.g, Service Workers) as being a <strong>rolodex</strong> of team-mates that this app can call upon, to get the work done. They can now list those skills on their resume because it’s a skill they are <em>capable</em> of. However, their ability to do that job on a given device is dependent on the <em>availability</em> of those teammates. Think of “feature detection” as equivalent to <em>making a call</em> to see if the required colleague is around before committing to support that task.</p>
+<hr />
+<h2 id="exercise-inspect-sample-pwa-manifest">Exercise: Inspect Sample PWA Manifest</h2>
+<p>We covered a lot today - and now it’s your turn to learn by actively exploring the concepts. Pick a different <a href="https://aka.ms/learn-PWA/30Days-1.3/docs.microsoft.com/en-us/microsoft-edge/progressive-web-apps-chromium/demo-pwas">Sample App.</a></p>
+<ul>
+<li>Inspect it’s Manifest in DevTools. What <a href="https://aka.ms/learn-PWA/30Days-1.3/developer.mozilla.org/docs/Web/Manifest">members</a> did it define?</li>
+<li>Audit it with <a href="https://aka.ms/learn-PWA/30Days-1.3/pwabuilder.com">PWABuilder</a>. What gaps did it identify?</li>
+<li>Explore the Manifest.
+<ul>
+<li>Are any experimental members in use? What do they do?</li>
+<li>Are any capabilities declared? What <a href="https://aka.ms/learn-PWA/30Days-1.3/developer.mozilla.org/en-US/docs/Web/API">Web APIs</a> are behind them?</li>
+</ul></li>
+</ul>
+<p><em>Share your insights using #30DaysOfPWA</em> - we’d love to see them!</p>
+<p>–</p>]]></description>
+    <pubDate>Tue, 1 Mar 2022 10:25:38 -0800</pubDate>
+  </item>
+   
+  <item>
+    <title><![CDATA[1.1: Introducing PWA]]></title>
+    <link>https://aka.ms/learn-PWA/30Days-blog/#/30DaysOfPWA/core-concepts/01</link>
+    <guid isPermaLink="false">https://aka.ms/learn-PWA/30Days-blog/#/30DaysOfPWA/core-concepts/01</guid>
+    <description><![CDATA[<h1 id="introducing-pwa">1.1: Introducing PWA</h1>
+<p><strong>Author: Nitya Narasimhan <span class="citation" data-cites="nitya">[@nitya]</span>(https://twitter.com/nitya)</strong></p>
+<p>Welcome to <strong>Week 1 Day 1</strong> of #30DaysOfPWA! Want to learn more about this project? Check out our <a href="../kickoff.md">Kickoff</a> post to get more details on the content roadmap and contributors. Now, let’s dive in!</p>
+<figure>
+<img src="_media/day-01.jpg" alt="Welcome to Day 1 - Introducing PWA." /><figcaption>Welcome to Day 1 - Introducing PWA.</figcaption>
+</figure>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: left;">What you will learn today</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><em>Definition</em></td>
+<td style="text-align: left;">What is a <em>Progressive</em> Web App (PWA)?</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><em>Differentiation</em></td>
+<td style="text-align: left;">How does it compare to existing web &amp; native apps?</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><em>Adoption</em></td>
+<td style="text-align: left;">What are PWA benefits for real-world deployments?</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><em>Experience</em></td>
+<td style="text-align: left;">What characterizes a good PWA?</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><em>Exercise</em></td>
+<td style="text-align: left;">Install and explore a sample PWA</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><em>Related</em></td>
+<td style="text-align: left;"><a href="../platforms-practices/">Week 4: Platforms And Practices</a></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="what-is-a-progressive-web-app-pwa">What is a Progressive Web App (PWA)?</h2>
+<p>A <a href="https://aka.ms/learn-PWA/30Days-1.1/docs.microsoft.com/en-us/microsoft-edge/progressive-web-apps-chromium">Progressive Web App (PWA)</a> is a traditional web app that is <strong>progressively enhanced</strong> using open web technologies, to make sure it delivers the <strong>best possible experience</strong> on every device, based on available capabilities.</p>
+<p>This means that users on modern browsers and newer devices will get an <em>enhanced</em> experience that rivals the native (installed) apps on that platform – but users on older browsers or devices will continue to get a <em>usable</em> experience in the form of familiar websites.</p>
+<p>This allows Progressive Web Apps to combine the <strong>reach</strong> (broad availability and access) of website experiences with the <strong>capability</strong> (hardware features and rich resources) of platform-native experiences.</p>
+<p><strong>How does it do that?</strong> Let’s talk about progressive enhancement!</p>
+<h2 id="what-is-progressive-enhancement">What is Progressive Enhancement?</h2>
+<p><a href="https://aka.ms/learn-PWA/30Days-1.1/alistapart.com/article/understandingprogressiveenhancement">Progressive enhancement</a> is a design philosophy that puts emphasis on <em>content-first</em> experiences where developers * ensure there is a <em>baseline</em> experience so users can consume core content from any device, even those with older browsers. * detect existence of newer capabilities (e.g., on modern browsers, newer devices) and <em>enhance</em> the experience on those devices to use them.</p>
+<p>To understand this better, take a look at the figure below.</p>
+<figure>
+<img src="_media/progressive.png" alt="Progressive Enhancement" /><figcaption>Progressive Enhancement</figcaption>
+</figure>
+<p>Today, when users think of apps, they think of either platform-installed “native” apps (in blue) or browser-based “web” apps (in yellow) - where the browser is itself installed as a native app on device platforms.</p>
+<ul>
+<li><strong>Native apps work only on their device platform.</strong> You need one codebase <em>per platform</em> and possibly a specialized developer team (familiar with tools, languages) - but you get to access to all platform capabilities.</li>
+<li><strong>Web apps work everywhere with a single codebase.</strong> They can run across browsers, and all devices that browsers run on - using a single codebase. However, this limits them from using platform-specific capabilities that may not be supported everywhere.</li>
+</ul>
+<p>Progressive Web Apps takes advantage of <strong>open web technologies</strong> - like Service Workers, HTTPS, Web App Manifest, Push Notifications, and other Web APIs and capabilities - to <em>detect and adapt</em> experiences to suit the available capabilities on the platform. * On older devices and browsers - where nothing new may be detected, it delivers a baseline website experience. * On newer devices - it can detect device form factors and <em>deliver responsive experiences</em> that align with native behaviors. * On modern browsers - it can detect support for Service Workers and Web App Manifest, and use those to unlock and support features like <em>installability</em> and <em>offline operation</em> - just like native apps.</p>
+<p>As platforms evolve, and more platforms move to the right (in capabilities support), PWA development will become key to delivering scalable experiences across the broadest range of devices.</p>
+<hr />
+<h2 id="how-does-pwa-compare-to-web-and-native-experiences">How does PWA compare to web and native experiences?</h2>
+<p>Progressive Web Apps have the ability to get the best of both worlds by offering a solid baseline experience that improves based on each browser’s and OS’s growing support for these open web technologies. Here are a few benefits:</p>
+<ul>
+<li><em>They have the reach of websites</em>. They can be indexed by search engines, discovered or shared by URL, and used from any device with a browser.</li>
+<li><em>They can behave like native apps</em>. They can work offline, be installed on device, handle push notifications, and access rich device hardware.</li>
+<li><em>They can use rich platform capabilities</em>. Ex: on Windows, PWA can be added to Start Menu, pinned to Taskbar, provide Share Targets for other apps &amp; be published in Microsoft Store with other Windows apps.</li>
+<li><em>They can reduce costs</em>. PWAs are developed for all platforms from one codebase - not only does this reduce maintainability costs, it requires a single development team vs. multiple platform-specific teams, to deliver the same experiences.</li>
+</ul>
+<hr />
+<h2 id="what-characterizes-a-good-pwa">What characterizes a “good” PWA?</h2>
+<p>Let’s look at an example PWA to keep in mind during discussions this week. Pick one of these <a href="https://aka.ms/learn-PWA/30Days-1.1/docs.microsoft.com/en-us/microsoft-edge/progressive-web-apps-chromium/demo-pwas">sample PWAs</a> – they have live demos &amp; source code. I’ll be using the <a href="https://aka.ms/learn-PWA/30Days-1.1/devtoolstips.org">DevTools Tips</a> PWA for my exploration. (See: <a href="https://aka.ms/learn-PWA/30Days-1.1/github.com/captainbrosset/devtools-tips">Source</a>)</p>
+<figure>
+<img src="_media/devtooltips.png" alt="DevTools Tips PWA" /><figcaption>DevTools Tips PWA</figcaption>
+</figure>
+<p>What makes this a good PWA experience? Because PWA is based on a design philosophy, there are no prescriptive rules - only <a href="https://aka.ms/learn-PWA/30Days-1.1/docs.microsoft.com/en-us/microsoft-edge/progressive-web-apps-chromium/#characteristics-of-a-progressive-web-app-pwa">desirable characteristics</a> that make experiences comparable favorably to existing native and web apps:</p>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Characteristic</th>
+<th style="text-align: left;">Why Is This Desirable?</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Discoverability</td>
+<td style="text-align: left;">I can find PWAs in app stores, or via web search.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Installability</td>
+<td style="text-align: left;">I can add PWAs to my device home screen, and launch them - like any native app.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Re-Engageability</td>
+<td style="text-align: left;">I can get push notification alerts (even if PWA is not actively in use) - like any native app .</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Network Independence</td>
+<td style="text-align: left;">I can get a usable PWA experience - like any native app.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Progressive Enhancement</td>
+<td style="text-align: left;">My PWA experience scales up (like native) or down (like website) based on device capabilities.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Secure</td>
+<td style="text-align: left;">My PWA uses secure network communications with privacy safeguards in place.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Responsive</td>
+<td style="text-align: left;">My PWA adapts to suit device screen size, orientation and input modality.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Linkability</td>
+<td style="text-align: left;">I can link to, share, bookmark, and visit, the PWA URL - like any website.</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Try using the sample PWA to explore characteristics</p>
+</blockquote>
+<ul>
+<li>Can you find it in web search results?</li>
+<li>Can you find it in the app store (try: <a href="https://aka.ms/learn-PWA/30Days-1.1/www.microsoft.com/en-us/p/webboard/9p53q9bf3mv6">webboard</a>)</li>
+<li>Can you access it when offline (try: flight mode)?</li>
+<li>Is it served over HTTPS?</li>
+<li>Does it adapt to screen size (mobile vs. desktop)?</li>
+</ul>
+<p>How can we develop PWA that can better meet these requirements? Look out for relevant posts in <a href="../platforms-practices">Week 4: Platforms And Practices</a>. For now, let’s close this discussion with a look at real-world PWA adoption.</p>
+<hr />
+<h2 id="what-drives-real-world-pwa-adoption">What drives real-world PWA adoption?</h2>
+<p>Are PWAs deployed in the real world today? What motivates an app developer to deploy PWA to production - and what are the challenges and benefits?</p>
+<p>Let’s look at some <a href="https://aka.ms/learn-PWA/30Days-1.1/docs.microsoft.com/en-us/microsoft-edge/progressive-web-apps-chromium/#success-stories">success stories</a> for PWA:</p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"><img src="_media/pwa-lyft.png" /></th>
+<th style="text-align: left;"><img src="_media/pwa-starbucks.jpeg" /></th>
+<th style="text-align: left;"><img src="_media/pwa-trivago.jpeg" /></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">2020 - Lyft</td>
+<td style="text-align: left;">2018 - Starbucks</td>
+<td style="text-align: left;">2017 - Trivago</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">PWA gets <a href="https://aka.ms/learn-PWA/30Days-1.1/twitter.com/ebidel/status/1445425210119704578">40% more ‘Install PWA’ clicks</a> vs ‘Download app’ option.</td>
+<td style="text-align: left;">PWA had <a href="https://aka.ms/learn-PWA/30Days-1.1/twitter.com/davidbrunelle/status/993960071406080000">2X daily active users</a> at launch. Desktop &amp; mobile order rates were comparable.</td>
+<td style="text-align: left;">PWA got <a href="https://aka.ms/learn-PWA/30Days-1.1/twitter.com/ebidel/status/1445425210119704578">150% more engagement</a> post install, 97% increase in clockouts.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Image Credit: <br/> <a href="https://appsco.pe/app/lyft">Lyft on AppScope</a></td>
+<td style="text-align: left;">Image Credit: <br/> <a href="https://formidable.com/work/starbucks-progressive-web-app/">Starbucks Case Study</a></td>
+<td style="text-align: left;">Image Credit: <br/> <a href="https://www.windowslatest.com/2018/04/30/trivago-pushes-its-official-pwa-app-to-the-microsoft-store/">Windows Latest</a></td>
+</tr>
+</tbody>
+</table>
+<p>The above reflects metrics from <a href="https://aka.ms/learn-PWA/30Days-1.1/pwastats.com">PWAStats.com</a> – explore the site to see more such case studies and metrics. In general, PWA deployments can be evaluated on metrics like this that reflect reduced costs, improved efficiency, and user growth:</p>
+<ul>
+<li><strong>App Installs</strong> - did more users install PWA (vs. download native app)</li>
+<li><strong>App Revenue</strong> - did PWA usage drive more conversions or ad revenue?</li>
+<li><strong>User Acquisiton</strong> - did PWA result in new users (growth) for app?</li>
+<li><strong>User Retention</strong> - did PWA increase monthly active users on app?</li>
+<li><strong>App Performance</strong> - did PWA reduce app size, page load times etc.?</li>
+</ul>
+<p>The primary challenges remain cross-browser compatibility (for consistent experiences) and complexity in migrating large scale apps from existing web or native codebases to PWA. We’ll dive into developer tools and best practices in later weeks, to tackle these issues.</p>
+<p>In the next post we’ll <strong>deconstruct Progressive Web Apps (PWA)</strong> to understand the core technologies that power our implementation, along with a peek at key developer tools to help our understanding.</p>
+<hr />
+<h2 id="exercise-install-your-first-pwa">Exercise: Install your first PWA</h2>
+<p>Ready to dive into your first exercise? Try this: 1. Choose a <a href="https://aka.ms/learn-PWA/30Days-1.1/docs.microsoft.com/en-us/microsoft-edge/progressive-web-apps-chromium/demo-pwas">sample PWAs</a> and explore the live demo. 2. Try <a href="https://aka.ms/learn-PWA/30Days-1.1/docs.microsoft.com/en-us/microsoft-edge/progressive-web-apps-chromium/ux#installing-a-pwa">installing it</a> on desktop and on mobile. How does the experience differ? How is it similar?</p>
+<p>In our <a href="./02.md">next post</a>, we’ll dive into the building blocks of PWA - and use this sample PWA to see how they are used in practice.</p>
+<hr />]]></description>
+    <pubDate>Tue, 1 Mar 2022 10:25:38 -0800</pubDate>
+  </item>
+   
+  <item>
+    <title><![CDATA[Week 2. Advanced capabilities]]></title>
+    <link>https://aka.ms/learn-PWA/30Days-blog/#/30DaysOfPWA/advanced-capabilities/README</link>
+    <guid isPermaLink="false">https://aka.ms/learn-PWA/30Days-blog/#/30DaysOfPWA/advanced-capabilities/README</guid>
+    <description><![CDATA[<h1 id="week-2.-advanced-capabilities">Week 2. Advanced capabilities</h1>
+<figure>
+<img src="_media/week2-roadmap.png" alt="Visual Guide to Advanced Capabilities Week!" /><figcaption>Visual Guide to Advanced Capabilities Week!</figcaption>
+</figure>
+<h3 id="what-well-cover-in-week-2">WHAT WE’LL COVER IN WEEK 2</h3>
+<h3 id="introducing-the-advanced-capabilities-of-progressive-web-apps">2.1 |   <a href="01.md">Introducing the advanced capabilities of Progressive Web Apps</a></h3>
+<ul>
+<li>Project Fugu</li>
+<li>PWA &amp; Web Standards</li>
+<li>Useful tools</li>
+<li>Explore: <a href="https://fugu-tracker.web.app">Fugu API Tracker</a></li>
+<li>Related: <a href="../core-concepts/">Week 1: Core Concepts</a></li>
+</ul>
+<h3 id="creating-application-shortcuts">2.2 |   <a href="02.md">Creating application shortcuts</a></h3>
+<ul>
+<li>What is a Shortcut?</li>
+<li>Defining Shortcuts</li>
+<li>Explore: <a href="https://docs.microsoft.com/en-us/microsoft-edge/progressive-web-apps-chromium/how-to/shortcuts">Define app shortcuts</a></li>
+<li>Related: <a href="../dev-tools/">Week 3: Developer Tools</a></li>
+</ul>
+<h3 id="sharing-content-from-and-with-your-app">2.3 |   <a href="03.md">Sharing content from and with your app</a></h3>
+<ul>
+<li>Web Share API</li>
+<li>Web Share Target API</li>
+<li>Explore: <a href="https://docs.microsoft.com/en-us/microsoft-edge/progressive-web-apps-chromium/how-to/share">Share content with other apps</a></li>
+<li>Related: <a href="../platforms-practices/">Week 4: Platforms And Practices</a></li>
+</ul>
+<h3 id="displaying-content-more-like-an-app">2.4 |   <a href="04.md">Displaying content more like an app</a></h3>
+<ul>
+<li>Display modes</li>
+<li>Window Controls Overlay API</li>
+<li>Explore: <a href="https://docs.microsoft.com/en-us/microsoft-edge/progressive-web-apps-chromium/how-to/window-controls-overlay">Display content in the title bar</a></li>
+<li>Related: <a href="../core-concepts/">Week 1: Core Concepts</a></li>
+</ul>
+<h3 id="caching-your-apps-data">2.5 |   <a href="05.md">Caching your app’s data</a></h3>
+<ul>
+<li>Managing multiple caches</li>
+<li>Pruning stale data</li>
+<li>Choosing the right strategy</li>
+<li>Using IndexedDB</li>
+<li>Explore: <a href="https://docs.microsoft.com/en-us/microsoft-edge/progressive-web-apps-chromium/how-to/offline">Offline and network connectivity support in Progressive Web Apps</a></li>
+<li>Related: <a href="../dev-tools/">Week 3: Developer Tools</a> | Workbox</li>
+</ul>
+<h3 id="synchronizing-app-data-in-the-background">2.6 |   <a href="06.md">Synchronizing app data in the background</a></h3>
+<ul>
+<li>Background Sync API</li>
+<li>Periodic Background Sync API</li>
+<li>Explore: <a href="https://docs.microsoft.com/en-us/microsoft-edge/progressive-web-apps-chromium/how-to/background-syncs">Synchronize and update a PWA in the background</a></li>
+<li>Related: <a href="../dev-tools/">Week 3: Developer Tools</a> | Workbox</li>
+</ul>
+<h3 id="notifying-your-users-of-updates">2.7 |   <a href="07.md">Notifying your users of updates</a></h3>
+<ul>
+<li>Badging API</li>
+<li>Push API</li>
+<li>Notifications API</li>
+<li>Explore: <a href="https://docs.microsoft.com/en-us/microsoft-edge/progressive-web-apps-chromium/how-to/notifications-badges">Re-engage users with badges, notifications, and push messages</a></li>
+<li>Related: <a href="../platforms-practices/">Week 4: Platforms And Practices</a></li>
+</ul>
+<hr />
+<figure>
+<img src="_media/week2-banner.png" alt="Visual Guide to Core Concepts Week!" /><figcaption>Visual Guide to Core Concepts Week!</figcaption>
+</figure>]]></description>
+    <pubDate>Tue, 1 Mar 2022 10:25:38 -0800</pubDate>
+  </item>
+  
+</channel>
+</rss>

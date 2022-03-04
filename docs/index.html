@@ -2,18 +2,18 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>30 Days of PWA - Learning Series about Progressive Web Apps</title>
+  <title>30 Days of PWA - Learn Progressive Web Apps in 30 Days</title>
+  <meta name="google-site-verification" content="QNW95h_nhC-klH33xWnGk4SNis-lrrqiBoGeYam_1Bg" />
+
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <meta name="description" content="For 30 days, we publish articles that aim to introduce developers to Progressive Web App. We have content that covers 0-level to 200-level topics. Each post takes 5-10 minutes to read and is followed by a sample snippet or exercise.">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-  <link rel="manifest" href="manifest.json">
-  <meta name="google-site-verification" content="QNW95h_nhC-klH33xWnGk4SNis-lrrqiBoGeYam_1Bg" />
-
-  <link rel="icon" href="30DaysOfPWA/_media/favicon.png" />
   <meta name="theme-color" content="#0d4c73" />
+  <meta content="Learn Progressive Web Apps in 30 Days" itemprop="name" />
+  <meta content="For 30 days, we publish articles that aim to introduce developers to Progressive Web App. We have content that covers 0-level to 200-level topics. Each post takes 5-10 minutes to read and is followed by a sample snippet or exercise." itemprop="description" />
 
   <meta property="og:url" content="https://microsoft.github.io/win-student-devs/#/30DaysOfPWA/" />
-  <meta property="og:type" content="website" />
+  <meta property="og:type" content="article" />
   <meta
     property="og:title"
     content="30 Days of PWA - Learning Series about Progressive Web Apps"
@@ -37,6 +37,9 @@
   />
   <meta name="twitter:image" content="https://microsoft.github.io/win-student-devs/30DaysOfPWA/_media/social.jpg" />
 
+  <link href="/feed.xml" rel="alternate" type="application/atom+xml" title="30 Days of PWA feed" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="icon" href="30DaysOfPWA/_media/favicon.png" />
   <!-- Default Theme Style (now commented out)--
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css"> 
   -->
@@ -58,6 +61,28 @@
 
     td::before { 
       display: none 
+    }
+
+    .sidebar {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .sidebar .sidebar-nav {
+      flex-grow: 1;
+      margin-bottom: 40px;
+      padding-bottom: 0;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .sidebar .sidebar-nav hr {
+      margin-left: 0;
+      margin-right: 0;
+    }
+
+    .sidebar-nav > ul:last-child {
+      margin-top: auto;
     }
 
   </style>
