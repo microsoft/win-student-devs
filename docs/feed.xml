@@ -111,7 +111,7 @@
 <a class="sourceLine" id="cb6-13" title="13">    <span class="op">}</span></a>
 <a class="sourceLine" id="cb6-14" title="14">    </a>
 <a class="sourceLine" id="cb6-15" title="15"><span class="op">}</span>)<span class="op">;</span></a></code></pre></div>
-<p>With actions, we can make our notifications a bit more dynamic and interactive for our users. You could even use the <code>data</code> property to provide paths for every action, generalizing this solution and making it a bit more reliable in practice.</p>
+<p>With actions, we can make our notifications a bit more dynamic and interactive for our users. You could even use the <code>data</code> property to provide paths for every action, generalizing this solution and making it a bit more reliable in practice. To make it a bit easier on yourself, the <a href="https://marketplace.visualstudio.com/items?itemName=PWABuilder.pwa-studio">PWA Studio VSCode extension</a> also has support for code snippets for working with notifications, with and without actions.</p>
 <p><em>Note:</em> It’s important to always provide default behavior. Actions aren’t supported in some browsers and can behave differently in browsers that do support them.</p>
 <h2 id="wrapping-up">Wrapping Up</h2>
 <p>Today, we took a brief look at how engagement can work on PWAs and how to get started working with quality, actionable notifications for our applications. You can adapt the tricks we showed you today to help with your own engagement strategy for your PWAs, but don’t forget that every application is going to be different: experiment and find what works for you!</p>
@@ -121,7 +121,7 @@
 <li><a href="https://docs.microsoft.com/en-us/microsoft-edge/progressive-web-apps-chromium/how-to/notifications-badges"><strong>Re-engage users with badges, notifications, and push messages</strong></a> article on Microsoft Docs</li>
 <li><a href="https://github.com/MicrosoftEdge/pushnotifications-demo"><strong>Push Notifications Demo Project</strong></a></li>
 </ul>]]></description>
-    <pubDate>Fri, 4 Mar 2022 13:20:38 -0800</pubDate>
+    <pubDate>Fri, 4 Mar 2022 13:25:27 -0800</pubDate>
   </item>
    
   <item>
