@@ -16,10 +16,10 @@
 </figure>
 <p>Welcome to Week 4, Day 2 of the <a href="https://aka.ms/learn-pwa/30Days-blog">30 Days of PWA</a> series! Now that we’ve seen how to start building PWAs and what basic and advanced capabilites they bring, it’s time to dive into what a <em>good</em> PWA really looks like it, and how we can turn our PWAs into quality application experiences. Week 4 is all about some of the best practices and technologies you can use to really polish up your PWA.</p>
 <h3 id="a-quick-note">A Quick Note</h3>
-<p>This article is about the best practices for engagement with PWAs. If you’re looking for the basics on push notifications and badging in PWAs, check out the <a href="">Notifying Your Users of Upates</a> article from Week 2.</p>
+<p>This article is about the best practices for engagement with PWAs. If you’re looking for the basics on push notifications and badging in PWAs, check out the <a href="../advanced-capabilities/07.md">Notifying Your Users of Updates</a> article from Week 2.</p>
 <h2 id="todays-plan">Today’s Plan</h2>
 <p>As we briefly touched on in <a href="01.md">Day 1</a>, a carefully thought out engagement strategy can be one of the cornerstones of a great PWA. With the “one codebase” nature of PWA, it’s also easy to keep your engagement strategy consistent across different devices and platforms.</p>
-<p>Today, we’re going to take a look at PWAs stack up in terms of engagement and see how we can build on what we already learned about push notifications to get started off on the right foot with engagement.</p>
+<p>Today, we’re going to take a look at how PWAs stack up in terms of engagement and see how we can build on what we already learned about push notifications to get started off on the right foot with engagement.</p>
 <h2 id="comparing-pwa-engagement">Comparing PWA Engagement</h2>
 <p>You may not have taken the dive into making your first PWA, but others have! Engagement with PWAs has been a success story for several companies that have experimented with redesigning their web experiences as PWAs. <a href="https://www.pwastats.com/">PWAstats.com</a> is a great resource for seeing how PWAs can improve many factors of your app, including engagement. Some cherry-picked figures related to engagement:</p>
 <ul>
@@ -41,8 +41,8 @@
 </ul>
 <p>A quality notification will give the user something to do on your PWA, not just have them open the application for the sake of opening it.</p>
 <h2 id="lets-see-some-code">Let’s See Some Code!</h2>
-<p>We can build on the snippets that we saw in the <a href="../advanced-capabilities/07.md">Notifying Your Users of Updates</a> article to keep our notifications actionable in practice. If you haven’t see the notifications snippets from that post, go check them out and then come back to this.</p>
-<p>Using the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Notification/Notification">Notification</a> specification, we can take advantage of the <code>data</code> property to associate our notification with any structured data that we want.</p>
+<p>We can build on the snippets that we saw in the <a href="../advanced-capabilities/07.md">Notifying Your Users of Updates</a> article to keep our notifications actionable in practice. If you haven’t seen the notifications snippets from that post, go check them out and then come back to this.</p>
+<p>Using the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Notification/Notification">Notification API</a>, we can take advantage of the <code>data</code> property to associate our notification with any structured data that we want.</p>
 <p>So, if we want to associate our notification with a specific location in our PWA, the notification payload we send could look something like this:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb1-1" title="1"><span class="op">{</span></a>
 <a class="sourceLine" id="cb1-2" title="2">    <span class="dt">title</span><span class="op">:</span> <span class="st">&quot;Our Notification Title&quot;</span><span class="op">,</span></a>
@@ -121,7 +121,7 @@
 <li><a href="https://docs.microsoft.com/en-us/microsoft-edge/progressive-web-apps-chromium/how-to/notifications-badges"><strong>Re-engage users with badges, notifications, and push messages</strong></a> article on Microsoft Docs</li>
 <li><a href="https://github.com/MicrosoftEdge/pushnotifications-demo"><strong>Push Notifications Demo Project</strong></a></li>
 </ul>]]></description>
-    <pubDate>Fri, 4 Mar 2022 13:18:18 -0800</pubDate>
+    <pubDate>Fri, 4 Mar 2022 13:19:40 -0800</pubDate>
   </item>
    
   <item>
