@@ -6,6 +6,103 @@
   <description>For 30 days, we publish articles that aim to introduce developers to Progressive Web App. We have content that covers 0-level to 200-level topics. Each post takes 5-10 minutes to read and is followed by a sample snippet or exercise.</description>
    
   <item>
+    <title><![CDATA[3.7: Packaging tools]]></title>
+    <link>https://aka.ms/learn-PWA/30Days-blog/#/30DaysOfPWA/dev-tools/07</link>
+    <guid isPermaLink="false">https://aka.ms/learn-PWA/30Days-blog/#/30DaysOfPWA/dev-tools/07</guid>
+    <description><![CDATA[<h1 id="packaging-tools">3.7: Packaging tools</h1>
+<h2 id="coming-soon"><em>Coming soon!</em></h2>
+<p><strong>Author: Jaylyn Barbee <span class="citation" data-cites="jaylynsatwork">[@jaylynsatwork]</span>(https://twitter.com/jaylynsatwork)</strong></p>
+<p>Welcome to <strong>Week 3 Day 7</strong> of #30DaysOfPWA! Want to learn more about this project? Check out our <a href="../kickoff.md">Kickoff</a> post to get more details on the content roadmap and contributors. Now, let’s dive in!</p>
+<figure>
+<img src="_media/day-07.jpg" alt="image of title and author." /><figcaption>image of title and author.</figcaption>
+</figure>
+<h3 id="what-well-cover-today">WHAT WE’LL COVER TODAY</h3>
+<table>
+<colgroup>
+<col style="width: 38%" />
+<col style="width: 61%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Section</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Introduction</strong></td>
+<td>Introduction to packaging for the Windows Store</td>
+</tr>
+<tr class="even">
+<td><strong>Step 1: Packaging</strong></td>
+<td>A walkthrough of the PWA Builder process to package your app for the Windows Store</td>
+</tr>
+<tr class="odd">
+<td><strong>Step 2: Partner Center</strong></td>
+<td>A walkthrough of Partner Center and how to submit your app to the Store</td>
+</tr>
+<tr class="even">
+<td><strong>Why the Microsoft Store?</strong></td>
+<td>An explanation of why you would chose the Microsoft Store over any others</td>
+</tr>
+</tbody>
+</table>
+<h1 id="packaging-for-the-windows-store">Packaging for the Windows Store</h1>
+<h2 id="introduction">Introduction</h2>
+<p>Great! You’ve just finished your web app and you are ready to send it off into the stores! Luckily for you, PWA Builder makes that as easy as pie. PWA Builder makes it possible to ship your app into multiple stores including the Google Play Store and Apple App Store. In this article we will focus on how to use our tools to package your PWA for the Microsoft Store, via the Partner Center. This is the last step, sharing your PWA with the world and now its time for all your hard work to pay off! Before we get started, here are some things you might want to have ready:</p>
+<ul>
+<li>A 512px by 512px icon (at least)
+<ul>
+<li>This will be used for your app icon</li>
+</ul></li>
+<li>Screenshots
+<ul>
+<li>For the Microsoft Store, you’re going to want laptop/tablet sized screenshots of your app to display in a carousel on your product description page. The exact pixel dimensions will be given to you in the Partner Center, where you will be publishing your app for the Microsoft Store (more on that later)</li>
+</ul></li>
+<li>Short Description &amp; Long Description
+<ul>
+<li>The short description may be the same as what you have in your manifest while the long description is a more in-depth summary of what your app is and what it does</li>
+</ul></li>
+<li>A privacy policy if your app can access, collect, or transmit personal information (data that could be used to identify a person).</li>
+<li>A personal Microsoft account (create one <a href="https://aka.ms/learn-PWA/30Days-3.7/signup.live.com">here</a> if needed)</li>
+<li>$20 to pay for your Partner Center account.This covers the monitoring of your app and prevents spam apps from being submitted. (Google Play Store: $25, Apple App Store: $99)</li>
+<li>The URL to your site.</li>
+</ul>
+<p>With the above four items, you are ready to begin.</p>
+<h2 id="step-1-packaging">Step 1: Packaging</h2>
+<p>In order to package for the Windows store, you are going to want to navigate to <a href="https://aka.ms/learn-PWA/30Days-3.7/pwabuilder.com">pwabuilder.com</a> and enter the url to your web app on the home page.</p>
+<figure>
+<img src="/docs/30DaysOfPWA/dev-tools/_media/07_pwabuilder_home.png" alt="pwa builder home page" /><figcaption>pwa builder home page</figcaption>
+</figure>
+<p>After a few tests run to verify the quality of your PWA, you’ll receive a report card detailing what you do well and some areas for improvement.</p>
+<figure>
+<img src="/docs/30DaysOfPWA/dev-tools/_media/07_pwabuilder_rc.png" alt="pwa builder report card page" /><figcaption>pwa builder report card page</figcaption>
+</figure>
+<p>At the bottom of this page, you can press “Next” and you will be at the publishing page of PWABuilder. You can press “Store Package” in the Windows section and you are greeted with a pop up to input a few options.</p>
+<figure>
+<img src="/docs/30DaysOfPWA/dev-tools/_media/07_pwabuilder_pub.png" alt="pwa builder publish page" /><figcaption>pwa builder publish page</figcaption>
+</figure>
+<p>In a new tab, you are going to want to head over to <a href="https://aka.ms/learn-PWA/30Days-3.7/partner.microsoft.com">Partner Center</a> and register your app.</p>
+<p><strong>It is important that you register your app on Partner Center with the same name you listed in your manifest. When it comes time to upload your app bundles, it will check if the bundle matches the name of the registered app.</strong></p>
+<p>Information on how to register your app can be found <a href="https://aka.ms/learn-PWA/30Days-3.7/blog.pwabuilder.com/docs/publish-a-new-app-to-the-microsoft-store">here</a> and information on <a href="https://aka.ms/learn-PWA/30Days-3.7/blog.pwabuilder.com/docs/finding-your-windows-publisher-info">where</a> to find the necessary Ids can be found here. Once you have inputted your publisher information, you can press generate and download your app bundles.</p>
+<h2 id="step-2-partner-center">Step 2: Partner Center</h2>
+<p>If you are inside of your app on Partner Center, you will see a button that says, “Start your submission”. After clicking on that you will see a list of options you will need to take care of before your submission is ready to be reviewed. Since you made sure to have everything on the checklist above, these sections should be a breeze.</p>
+<figure>
+<img src="/docs/30DaysOfPWA/dev-tools/_media/07_pc.png" alt="partner center submission page" /><figcaption>partner center submission page</figcaption>
+</figure>
+<p>After completing each task under each headers, your app is ready for review. These tasks will include setting up your product description page, getting your IARC rating, and uploading your app bundles that you got from PWA Builder. The review process takes about 24 hours and the feedback will either be precisely what was wrong with your submission so you can fix it or a congratulations message letting your know that your submission has been processed and your app will be in the store within the next two hours.</p>
+<figure>
+<img src="/docs/30DaysOfPWA/dev-tools/_media/07_store.png" alt="windows store webboard product description page" /><figcaption>windows store webboard product description page</figcaption>
+</figure>
+<p>PWA Builder helps you to create store ready PWAs with robust descriptions pages: all while keeping the app submission process as simple as possible.</p>
+<h2 id="why-the-microsoft-store">Why the Microsoft Store?</h2>
+<p>The Microsoft store is an excellent place for your app to live. All of your in-app purchases (whether that be through Stripe or a custom payment system) go 100% to you. Microsoft will not take a cut. All of your analytics that you have running for your website will behave seemlessly. And most importantly, PWAs submitted through the Microsoft Store are TRUE PWAs; meaning they are not wrapped in a webview. There will be no “gotchas” or extra hoops to jump through in order for your app to feel native. It will just work. I promise I am not making this up, I submitted my very own app, “Sync’d - a Social Calendar App”, to the Microsoft Store in early February. I downloaded the app and it looked flawless, exactly like I expected. The cherry on top is that my app was reviewed, approved and in the Store in 24 hours.</p>
+<h2 id="wrapping-up">Wrapping Up</h2>
+<p>PWABuilder makes packaging for the Microsoft Store easier than ever. For additional resources on how to package and much more, you can visit the <a href="https://aka.ms/learn-PWA/30Days-3.7/blog.pwabuilder.com">PWABuilder Blog</a> page.</p>]]></description>
+    <pubDate>Sat, 5 Mar 2022 20:38:50 -0500</pubDate>
+  </item>
+   
+  <item>
     <title><![CDATA[3.6: Test automation tools]]></title>
     <link>https://aka.ms/learn-PWA/30Days-blog/#/30DaysOfPWA/dev-tools/06</link>
     <guid isPermaLink="false">https://aka.ms/learn-PWA/30Days-blog/#/30DaysOfPWA/dev-tools/06</guid>
@@ -1208,195 +1305,6 @@ To open last HTML report run:
 </ul>
 <p><em>Share your insights using #30DaysOfPWA</em> - we’d love to see them!</p>
 <p>–</p>]]></description>
-    <pubDate>Tue, 1 Mar 2022 10:25:38 -0800</pubDate>
-  </item>
-   
-  <item>
-    <title><![CDATA[1.1: Introducing PWA]]></title>
-    <link>https://aka.ms/learn-PWA/30Days-blog/#/30DaysOfPWA/core-concepts/01</link>
-    <guid isPermaLink="false">https://aka.ms/learn-PWA/30Days-blog/#/30DaysOfPWA/core-concepts/01</guid>
-    <description><![CDATA[<h1 id="introducing-pwa">1.1: Introducing PWA</h1>
-<p><strong>Author: Nitya Narasimhan <span class="citation" data-cites="nitya">[@nitya]</span>(https://twitter.com/nitya)</strong></p>
-<p>Welcome to <strong>Week 1 Day 1</strong> of #30DaysOfPWA! Want to learn more about this project? Check out our <a href="../kickoff.md">Kickoff</a> post to get more details on the content roadmap and contributors. Now, let’s dive in!</p>
-<figure>
-<img src="_media/day-01.jpg" alt="Welcome to Day 1 - Introducing PWA." /><figcaption>Welcome to Day 1 - Introducing PWA.</figcaption>
-</figure>
-<table>
-<thead>
-<tr class="header">
-<th style="text-align: left;"></th>
-<th style="text-align: left;">What you will learn today</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;"><em>Definition</em></td>
-<td style="text-align: left;">What is a <em>Progressive</em> Web App (PWA)?</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><em>Differentiation</em></td>
-<td style="text-align: left;">How does it compare to existing web &amp; native apps?</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"><em>Adoption</em></td>
-<td style="text-align: left;">What are PWA benefits for real-world deployments?</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><em>Experience</em></td>
-<td style="text-align: left;">What characterizes a good PWA?</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"><em>Exercise</em></td>
-<td style="text-align: left;">Install and explore a sample PWA</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><em>Related</em></td>
-<td style="text-align: left;"><a href="../platforms-practices/">Week 4: Platforms And Practices</a></td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h2 id="what-is-a-progressive-web-app-pwa">What is a Progressive Web App (PWA)?</h2>
-<p>A <a href="https://aka.ms/learn-PWA/30Days-1.1/docs.microsoft.com/en-us/microsoft-edge/progressive-web-apps-chromium">Progressive Web App (PWA)</a> is a traditional web app that is <strong>progressively enhanced</strong> using open web technologies, to make sure it delivers the <strong>best possible experience</strong> on every device, based on available capabilities.</p>
-<p>This means that users on modern browsers and newer devices will get an <em>enhanced</em> experience that rivals the native (installed) apps on that platform – but users on older browsers or devices will continue to get a <em>usable</em> experience in the form of familiar websites.</p>
-<p>This allows Progressive Web Apps to combine the <strong>reach</strong> (broad availability and access) of website experiences with the <strong>capability</strong> (hardware features and rich resources) of platform-native experiences.</p>
-<p><strong>How does it do that?</strong> Let’s talk about progressive enhancement!</p>
-<h2 id="what-is-progressive-enhancement">What is Progressive Enhancement?</h2>
-<p><a href="https://aka.ms/learn-PWA/30Days-1.1/alistapart.com/article/understandingprogressiveenhancement">Progressive enhancement</a> is a design philosophy that puts emphasis on <em>content-first</em> experiences where developers * ensure there is a <em>baseline</em> experience so users can consume core content from any device, even those with older browsers. * detect existence of newer capabilities (e.g., on modern browsers, newer devices) and <em>enhance</em> the experience on those devices to use them.</p>
-<p>To understand this better, take a look at the figure below.</p>
-<figure>
-<img src="_media/progressive.png" alt="Progressive Enhancement" /><figcaption>Progressive Enhancement</figcaption>
-</figure>
-<p>Today, when users think of apps, they think of either platform-installed “native” apps (in blue) or browser-based “web” apps (in yellow) - where the browser is itself installed as a native app on device platforms.</p>
-<ul>
-<li><strong>Native apps work only on their device platform.</strong> You need one codebase <em>per platform</em> and possibly a specialized developer team (familiar with tools, languages) - but you get to access to all platform capabilities.</li>
-<li><strong>Web apps work everywhere with a single codebase.</strong> They can run across browsers, and all devices that browsers run on - using a single codebase. However, this limits them from using platform-specific capabilities that may not be supported everywhere.</li>
-</ul>
-<p>Progressive Web Apps takes advantage of <strong>open web technologies</strong> - like Service Workers, HTTPS, Web App Manifest, Push Notifications, and other Web APIs and capabilities - to <em>detect and adapt</em> experiences to suit the available capabilities on the platform. * On older devices and browsers - where nothing new may be detected, it delivers a baseline website experience. * On newer devices - it can detect device form factors and <em>deliver responsive experiences</em> that align with native behaviors. * On modern browsers - it can detect support for Service Workers and Web App Manifest, and use those to unlock and support features like <em>installability</em> and <em>offline operation</em> - just like native apps.</p>
-<p>As platforms evolve, and more platforms move to the right (in capabilities support), PWA development will become key to delivering scalable experiences across the broadest range of devices.</p>
-<hr />
-<h2 id="how-does-pwa-compare-to-web-and-native-experiences">How does PWA compare to web and native experiences?</h2>
-<p>Progressive Web Apps have the ability to get the best of both worlds by offering a solid baseline experience that improves based on each browser’s and OS’s growing support for these open web technologies. Here are a few benefits:</p>
-<ul>
-<li><em>They have the reach of websites</em>. They can be indexed by search engines, discovered or shared by URL, and used from any device with a browser.</li>
-<li><em>They can behave like native apps</em>. They can work offline, be installed on device, handle push notifications, and access rich device hardware.</li>
-<li><em>They can use rich platform capabilities</em>. Ex: on Windows, PWA can be added to Start Menu, pinned to Taskbar, provide Share Targets for other apps &amp; be published in Microsoft Store with other Windows apps.</li>
-<li><em>They can reduce costs</em>. PWAs are developed for all platforms from one codebase - not only does this reduce maintainability costs, it requires a single development team vs. multiple platform-specific teams, to deliver the same experiences.</li>
-</ul>
-<hr />
-<h2 id="what-characterizes-a-good-pwa">What characterizes a “good” PWA?</h2>
-<p>Let’s look at an example PWA to keep in mind during discussions this week. Pick one of these <a href="https://aka.ms/learn-PWA/30Days-1.1/docs.microsoft.com/en-us/microsoft-edge/progressive-web-apps-chromium/demo-pwas">sample PWAs</a> – they have live demos &amp; source code. I’ll be using the <a href="https://aka.ms/learn-PWA/30Days-1.1/devtoolstips.org">DevTools Tips</a> PWA for my exploration. (See: <a href="https://aka.ms/learn-PWA/30Days-1.1/github.com/captainbrosset/devtools-tips">Source</a>)</p>
-<figure>
-<img src="_media/devtooltips.png" alt="DevTools Tips PWA" /><figcaption>DevTools Tips PWA</figcaption>
-</figure>
-<p>What makes this a good PWA experience? Because PWA is based on a design philosophy, there are no prescriptive rules - only <a href="https://aka.ms/learn-PWA/30Days-1.1/docs.microsoft.com/en-us/microsoft-edge/progressive-web-apps-chromium/#characteristics-of-a-progressive-web-app-pwa">desirable characteristics</a> that make experiences comparable favorably to existing native and web apps:</p>
-<table>
-<colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: left;">Characteristic</th>
-<th style="text-align: left;">Why Is This Desirable?</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">Discoverability</td>
-<td style="text-align: left;">I can find PWAs in app stores, or via web search.</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Installability</td>
-<td style="text-align: left;">I can add PWAs to my device home screen, and launch them - like any native app.</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Re-Engageability</td>
-<td style="text-align: left;">I can get push notification alerts (even if PWA is not actively in use) - like any native app .</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Network Independence</td>
-<td style="text-align: left;">I can get a usable PWA experience - like any native app.</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Progressive Enhancement</td>
-<td style="text-align: left;">My PWA experience scales up (like native) or down (like website) based on device capabilities.</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Secure</td>
-<td style="text-align: left;">My PWA uses secure network communications with privacy safeguards in place.</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Responsive</td>
-<td style="text-align: left;">My PWA adapts to suit device screen size, orientation and input modality.</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Linkability</td>
-<td style="text-align: left;">I can link to, share, bookmark, and visit, the PWA URL - like any website.</td>
-</tr>
-</tbody>
-</table>
-<blockquote>
-<p>Try using the sample PWA to explore characteristics</p>
-</blockquote>
-<ul>
-<li>Can you find it in web search results?</li>
-<li>Can you find it in the app store (try: <a href="https://aka.ms/learn-PWA/30Days-1.1/www.microsoft.com/en-us/p/webboard/9p53q9bf3mv6">webboard</a>)</li>
-<li>Can you access it when offline (try: flight mode)?</li>
-<li>Is it served over HTTPS?</li>
-<li>Does it adapt to screen size (mobile vs. desktop)?</li>
-</ul>
-<p>How can we develop PWA that can better meet these requirements? Look out for relevant posts in <a href="../platforms-practices">Week 4: Platforms And Practices</a>. For now, let’s close this discussion with a look at real-world PWA adoption.</p>
-<hr />
-<h2 id="what-drives-real-world-pwa-adoption">What drives real-world PWA adoption?</h2>
-<p>Are PWAs deployed in the real world today? What motivates an app developer to deploy PWA to production - and what are the challenges and benefits?</p>
-<p>Let’s look at some <a href="https://aka.ms/learn-PWA/30Days-1.1/docs.microsoft.com/en-us/microsoft-edge/progressive-web-apps-chromium/#success-stories">success stories</a> for PWA:</p>
-<table>
-<colgroup>
-<col style="width: 33%" />
-<col style="width: 33%" />
-<col style="width: 33%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: left;"><img src="_media/pwa-lyft.png" /></th>
-<th style="text-align: left;"><img src="_media/pwa-starbucks.jpeg" /></th>
-<th style="text-align: left;"><img src="_media/pwa-trivago.jpeg" /></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">2020 - Lyft</td>
-<td style="text-align: left;">2018 - Starbucks</td>
-<td style="text-align: left;">2017 - Trivago</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">PWA gets <a href="https://aka.ms/learn-PWA/30Days-1.1/twitter.com/ebidel/status/1445425210119704578">40% more ‘Install PWA’ clicks</a> vs ‘Download app’ option.</td>
-<td style="text-align: left;">PWA had <a href="https://aka.ms/learn-PWA/30Days-1.1/twitter.com/davidbrunelle/status/993960071406080000">2X daily active users</a> at launch. Desktop &amp; mobile order rates were comparable.</td>
-<td style="text-align: left;">PWA got <a href="https://aka.ms/learn-PWA/30Days-1.1/twitter.com/ebidel/status/1445425210119704578">150% more engagement</a> post install, 97% increase in clockouts.</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Image Credit: <br/> <a href="https://appsco.pe/app/lyft">Lyft on AppScope</a></td>
-<td style="text-align: left;">Image Credit: <br/> <a href="https://formidable.com/work/starbucks-progressive-web-app/">Starbucks Case Study</a></td>
-<td style="text-align: left;">Image Credit: <br/> <a href="https://www.windowslatest.com/2018/04/30/trivago-pushes-its-official-pwa-app-to-the-microsoft-store/">Windows Latest</a></td>
-</tr>
-</tbody>
-</table>
-<p>The above reflects metrics from <a href="https://aka.ms/learn-PWA/30Days-1.1/pwastats.com">PWAStats.com</a> – explore the site to see more such case studies and metrics. In general, PWA deployments can be evaluated on metrics like this that reflect reduced costs, improved efficiency, and user growth:</p>
-<ul>
-<li><strong>App Installs</strong> - did more users install PWA (vs. download native app)</li>
-<li><strong>App Revenue</strong> - did PWA usage drive more conversions or ad revenue?</li>
-<li><strong>User Acquisiton</strong> - did PWA result in new users (growth) for app?</li>
-<li><strong>User Retention</strong> - did PWA increase monthly active users on app?</li>
-<li><strong>App Performance</strong> - did PWA reduce app size, page load times etc.?</li>
-</ul>
-<p>The primary challenges remain cross-browser compatibility (for consistent experiences) and complexity in migrating large scale apps from existing web or native codebases to PWA. We’ll dive into developer tools and best practices in later weeks, to tackle these issues.</p>
-<p>In the next post we’ll <strong>deconstruct Progressive Web Apps (PWA)</strong> to understand the core technologies that power our implementation, along with a peek at key developer tools to help our understanding.</p>
-<hr />
-<h2 id="exercise-install-your-first-pwa">Exercise: Install your first PWA</h2>
-<p>Ready to dive into your first exercise? Try this: 1. Choose a <a href="https://aka.ms/learn-PWA/30Days-1.1/docs.microsoft.com/en-us/microsoft-edge/progressive-web-apps-chromium/demo-pwas">sample PWAs</a> and explore the live demo. 2. Try <a href="https://aka.ms/learn-PWA/30Days-1.1/docs.microsoft.com/en-us/microsoft-edge/progressive-web-apps-chromium/ux#installing-a-pwa">installing it</a> on desktop and on mobile. How does the experience differ? How is it similar?</p>
-<p>In our <a href="./02.md">next post</a>, we’ll dive into the building blocks of PWA - and use this sample PWA to see how they are used in practice.</p>
-<hr />]]></description>
     <pubDate>Tue, 1 Mar 2022 10:25:38 -0800</pubDate>
   </item>
   
