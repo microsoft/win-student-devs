@@ -10,7 +10,6 @@
     <link>https://aka.ms/learn-PWA/30Days-blog/#/30DaysOfPWA/dev-tools/07</link>
     <guid isPermaLink="false">https://aka.ms/learn-PWA/30Days-blog/#/30DaysOfPWA/dev-tools/07</guid>
     <description><![CDATA[<h1 id="packaging-tools">3.7: Packaging tools</h1>
-<h2 id="coming-soon"><em>Coming soon!</em></h2>
 <p><strong>Author: Jaylyn Barbee <span class="citation" data-cites="jaylynsatwork">[@jaylynsatwork]</span>(https://twitter.com/jaylynsatwork)</strong></p>
 <p>Welcome to <strong>Week 3 Day 7</strong> of #30DaysOfPWA! Want to learn more about this project? Check out our <a href="../kickoff.md">Kickoff</a> post to get more details on the content roadmap and contributors. Now, let’s dive in!</p>
 <figure>
@@ -72,15 +71,15 @@
 <h2 id="step-1-packaging">Step 1: Packaging</h2>
 <p>In order to package for the Windows store, you are going to want to navigate to <a href="https://aka.ms/learn-PWA/30Days-3.7/pwabuilder.com">pwabuilder.com</a> and enter the url to your web app on the home page.</p>
 <figure>
-<img src="/docs/30DaysOfPWA/dev-tools/_media/07_pwabuilder_home.png" alt="pwa builder home page" /><figcaption>pwa builder home page</figcaption>
+<img src="_media/07_pwabuilder_home.png" alt="pwa builder home page" /><figcaption>pwa builder home page</figcaption>
 </figure>
 <p>After a few tests run to verify the quality of your PWA, you’ll receive a report card detailing what you do well and some areas for improvement.</p>
 <figure>
-<img src="/docs/30DaysOfPWA/dev-tools/_media/07_pwabuilder_rc.png" alt="pwa builder report card page" /><figcaption>pwa builder report card page</figcaption>
+<img src="_media/07_pwabuilder_rc.png" alt="pwa builder report card page" /><figcaption>pwa builder report card page</figcaption>
 </figure>
 <p>At the bottom of this page, you can press “Next” and you will be at the publishing page of PWABuilder. You can press “Store Package” in the Windows section and you are greeted with a pop up to input a few options.</p>
 <figure>
-<img src="/docs/30DaysOfPWA/dev-tools/_media/07_pwabuilder_pub.png" alt="pwa builder publish page" /><figcaption>pwa builder publish page</figcaption>
+<img src="_media/07_pwabuilder_pub.png" alt="pwa builder publish page" /><figcaption>pwa builder publish page</figcaption>
 </figure>
 <p>In a new tab, you are going to want to head over to <a href="https://aka.ms/learn-PWA/30Days-3.7/partner.microsoft.com">Partner Center</a> and register your app.</p>
 <p><strong>It is important that you register your app on Partner Center with the same name you listed in your manifest. When it comes time to upload your app bundles, it will check if the bundle matches the name of the registered app.</strong></p>
@@ -88,18 +87,18 @@
 <h2 id="step-2-partner-center">Step 2: Partner Center</h2>
 <p>If you are inside of your app on Partner Center, you will see a button that says, “Start your submission”. After clicking on that you will see a list of options you will need to take care of before your submission is ready to be reviewed. Since you made sure to have everything on the checklist above, these sections should be a breeze.</p>
 <figure>
-<img src="/docs/30DaysOfPWA/dev-tools/_media/07_pc.png" alt="partner center submission page" /><figcaption>partner center submission page</figcaption>
+<img src="_media/07_pc.png" alt="partner center submission page" /><figcaption>partner center submission page</figcaption>
 </figure>
 <p>After completing each task under each headers, your app is ready for review. These tasks will include setting up your product description page, getting your IARC rating, and uploading your app bundles that you got from PWA Builder. The review process takes about 24 hours and the feedback will either be precisely what was wrong with your submission so you can fix it or a congratulations message letting your know that your submission has been processed and your app will be in the store within the next two hours.</p>
 <figure>
-<img src="/docs/30DaysOfPWA/dev-tools/_media/07_store.png" alt="windows store webboard product description page" /><figcaption>windows store webboard product description page</figcaption>
+<img src="_media/07_store.png" alt="windows store webboard product description page" /><figcaption>windows store webboard product description page</figcaption>
 </figure>
 <p>PWA Builder helps you to create store ready PWAs with robust descriptions pages: all while keeping the app submission process as simple as possible.</p>
 <h2 id="why-the-microsoft-store">Why the Microsoft Store?</h2>
 <p>The Microsoft store is an excellent place for your app to live. All of your in-app purchases (whether that be through Stripe or a custom payment system) go 100% to you. Microsoft will not take a cut. All of your analytics that you have running for your website will behave seemlessly. And most importantly, PWAs submitted through the Microsoft Store are TRUE PWAs; meaning they are not wrapped in a webview. There will be no “gotchas” or extra hoops to jump through in order for your app to feel native. It will just work. I promise I am not making this up, I submitted my very own app, “Sync’d - a Social Calendar App”, to the Microsoft Store in early February. I downloaded the app and it looked flawless, exactly like I expected. The cherry on top is that my app was reviewed, approved and in the Store in 24 hours.</p>
 <h2 id="wrapping-up">Wrapping Up</h2>
 <p>PWABuilder makes packaging for the Microsoft Store easier than ever. For additional resources on how to package and much more, you can visit the <a href="https://aka.ms/learn-PWA/30Days-3.7/blog.pwabuilder.com">PWABuilder Blog</a> page.</p>]]></description>
-    <pubDate>Sat, 5 Mar 2022 20:38:50 -0500</pubDate>
+    <pubDate>Sun, 6 Mar 2022 10:44:25 -0800</pubDate>
   </item>
    
   <item>
