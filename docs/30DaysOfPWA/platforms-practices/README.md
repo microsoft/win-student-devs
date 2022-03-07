@@ -1,6 +1,6 @@
 # Week 4. Platform and Practices
 
-![Visual Guide to Core Concepts Week!](_media/week4-banner.png)
+![Visual Guide to Platforms & Practices Week!](_media/week4-roadmap.png)
 
 ### WHAT WE'LL COVER IN WEEK 4
 
@@ -37,3 +37,6 @@
 * Responsiveness across all platforms
 * Focusing your PWA content
 * Seamless user interactions
+
+
+![Visual Banner for Platforms & Practices Week!](_media/week4-banner.png)
