@@ -760,50 +760,209 @@ To open last HTML report run:
   </item>
    
   <item>
-    <title><![CDATA[-]]></title>
-    <link>https://aka.ms/learn-PWA/30Days-blog/#/_sidebar</link>
-    <guid isPermaLink="false">https://aka.ms/learn-PWA/30Days-blog/#/_sidebar</guid>
-    <description><![CDATA[<ul>
-<li><a href="/30DaysOfPWA/kickoff"><strong>0. Kickoff</strong></a></li>
-<li><a href="/30DaysOfPWA/core-concepts/"><strong>1. Core Concepts</strong></a>
+    <title><![CDATA[Week 1. Core Concepts]]></title>
+    <link>https://aka.ms/learn-PWA/30Days-blog/#/30DaysOfPWA/core-concepts/README</link>
+    <guid isPermaLink="false">https://aka.ms/learn-PWA/30Days-blog/#/30DaysOfPWA/core-concepts/README</guid>
+    <description><![CDATA[<h1 id="week-1.-core-concepts">Week 1. Core Concepts</h1>
+<p>Welcome to Week 1 of #30DaysOfPWA. Want to learn more about this project? Check out our <a href="../kickoff.md">Kickoff</a> post to get more details on the content roadmap and contributors. Then read on for what we’ll cover <strong>this week</strong>.</p>
+<figure>
+<img src="_media/week-1.png" alt="Visual Guide to Core Concepts Week!" /><figcaption>Visual Guide to Core Concepts Week!</figcaption>
+</figure>
+<hr />
+<h2 id="what-well-cover-in-week-1">WHAT WE’LL COVER IN WEEK 1</h2>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Topic</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">1 - <a href="01.md">Introducing PWA.</a></td>
+<td style="text-align: left;">What is a Progressive Web App (PWA)? How does it compare to other apps? What drives real-world PWA adoption? What characterizes a <em>good</em> PWA? <br/><br/> <strong>Exercise:</strong> Install and explore a PWA.<br/> <strong>Watch For:</strong> <a href="../platforms-practices/">Week 4: Platforms And Practices</a></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2 - <a href="02.md">Deconstructing PWA.</a></td>
+<td style="text-align: left;">What are the building blocks of a PWA? What does each contribute to PWA experience? What are core (vs. optional) features for PWA development? <br/><br/> <strong>Exercise:</strong> Audit sample PWA - explore the reports. <br/> <strong>Watch For:</strong> <a href="../platforms-practices/">Week 4: Platforms And Practices</a></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">3 - <a href="03.md">Make it Installable.</a></td>
+<td style="text-align: left;">What is a Web App Manifest? What does a minimal PWA manifest provide? How does do properties unlock advanced capabilities? <br/><br/> <strong>Exercise:</strong> Inspect <em>manifest.json</em> - using DevTools.<br/> <strong>Watch For:</strong> <a href="../dev-tools/">Week 3: Developer Tools</a></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">4 - <a href="04.md">Make it Reliable.</a></td>
+<td style="text-align: left;">What is a Service Worker? Why is HTTPS essential? Understand registration and lifecycle events. Learn key use cases and Web APIs for service workers. <br/><br/> <strong>Exercise:</strong> Inspect <em>sw.js</em> - using DevTools. <br/> <strong>Watch For:</strong> <a href="../dev-tools/">Week 3: Developer Tools</a></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">5 - <a href="05.md">Make it Work Offline.</a></td>
+<td style="text-align: left;">What is an offline PWA experience? How do PWAs detect network changes? Understand PWA caching strategies and storage options. <br/><br/> <strong>Exercise:</strong> Inspect <em>Cache</em>, <em>Storage</em> - using DevTools.<br/> <strong>Watch For:</strong> <a href="../dev-tools/">Week 3: Developer Tools</a></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">6 - <a href="06.md">Make it Capable.</a></td>
+<td style="text-align: left;">What is the web capabilities project? What are key web APIs, interfaces? What is Feature Detection? What are pros &amp; cons for PWA development? <br/><br/> <strong>Exercise:</strong> Explore new capabilities in installed PWA. <br/> <strong>Watch For:</strong> <a href="../advanced-capabilities/">Week 2: Advanced Capabilities</a></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">7 - <a href="07.md">Build it Iteratively.</a></td>
+<td style="text-align: left;">How do I build a PWA from scratch? How do I enhance an existing app for PWA readiness? What tools and practices can I rely on as a developer? <br/><br/> <strong>Exercise:</strong> Audit &amp; fix existing app. Get minimal PWA. <br/> <strong>Watch For:</strong> <a href="../dev-tools/">Week 3: Developer Tools</a></td>
+</tr>
+</tbody>
+</table>]]></description>
+    <pubDate>Tue, 1 Mar 2022 10:25:38 -0800</pubDate>
+  </item>
+   
+  <item>
+    <title><![CDATA[1.4 Make PWA Reliable]]></title>
+    <link>https://aka.ms/learn-PWA/30Days-blog/#/30DaysOfPWA/core-concepts/04</link>
+    <guid isPermaLink="false">https://aka.ms/learn-PWA/30Days-blog/#/30DaysOfPWA/core-concepts/04</guid>
+    <description><![CDATA[<h1 id="make-pwa-reliable">1.4 Make PWA Reliable</h1>
+<p><strong>Author: Nitya Narasimhan <span class="citation" data-cites="nitya">[@nitya]</span>(https://twitter.com/nitya)</strong></p>
+<p>Welcome to <strong>Day 4</strong> of #30DaysOfPWA! Want to learn more about this project? Check out our <a href="../kickoff.md">Kickoff</a> post to get more details on the content roadmap and contributors. Now, let’s dive in!</p>
+<figure>
+<img src="_media/day-04.jpg" alt="Day 4: Let’s Talk Service Workers!" /><figcaption>Day 4: Let’s Talk Service Workers!</figcaption>
+</figure>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: left;">What you will learn today</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><em>Definition</em></td>
+<td style="text-align: left;">What is a Service Worker?</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><em>Priority</em></td>
+<td style="text-align: left;">Why is HTTPS essential for PWA?</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><em>Function</em></td>
+<td style="text-align: left;">Understand registration and lifecycle events</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><em>Usage</em></td>
+<td style="text-align: left;">How are service workers used in PWA?</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><em>Exercise</em></td>
+<td style="text-align: left;">Inspect the <em>sw.js</em> in your sample PWA</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><em>Related</em></td>
+<td style="text-align: left;"><a href="../dev-tools/">Week 3: Developer Tools</a></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="lets-recap">Let’s Recap</h2>
+<p><strong>What we learned so far:</strong></p>
 <ul>
-<li><a href="/30DaysOfPWA/core-concepts/01.md">1.1 Introducing PWA.</a></li>
-<li><a href="/30DaysOfPWA/core-concepts/02.md">1.2 Deconstructing PWA.</a></li>
-<li><a href="/30DaysOfPWA/core-concepts/03.md">1.3 Make PWA installable.</a></li>
-<li><a href="/30DaysOfPWA/core-concepts/04.md">1.4 Make PWA reliable.</a></li>
-<li><a href="/30DaysOfPWA/core-concepts/05.md">1.5 Make PWA work offline.</a></li>
-<li><a href="/30DaysOfPWA/core-concepts/06.md">1.6 Make PWA capable.</a></li>
-<li><a href="/30DaysOfPWA/core-concepts/07.md">1.7 Developing PWA.</a></li>
+<li>PWAs are web apps by default. They can provide a <em>usable</em> experience across all devices and platforms, from a single codebase.</li>
+<li>PWAs use <em>progressive enhancement</em> to scale up their experiences to suit richer platform capabilities. They can feel indistinguishable from natively installed apps in that context.</li>
+<li>PWAs use <em>open web technologies</em> to implement this behavior. Core building blocks are HTTPS, Web App Manifest and Service Workers. New <em>web capabilities</em> unlock even richer experiences on supporting platforms.</li>
+<li><em>Web App Manifests</em> are like app resumes - providing identity, branding and skills information that is needed for app installation (on device) or publishing (to app stores).</li>
+</ul>
+<p><strong>What we’ll cover today:</strong> We’ll explore the remaining building blocks (HTTPS, Service Workers) with specific focus on <a href="https://aka.ms/learn-PWA/30Days-1.4/docs.microsoft.com/en-us/microsoft-edge/progressive-web-apps-chromium/how-to/service-workers">using Service Workers</a>.</p>
+<hr />
+<h2 id="pwas-are-like-startups">PWAs are like startups!</h2>
+<p>To set the stage, let’s use another analogy. We previously talked about how Web App Manifests are like app resumes. Now think about the PWA like a startup - with each technology being a founding team member with a specialized purpose that helps deliver a progressively-enhanced experience.</p>
+<ul>
+<li>The app <strong>page</strong> is the CEO - it drives the core experience and remains responsive to user needs and interactions.</li>
+<li>The <strong>Web App Manifest</strong> is the resume - it describes app identity, brand and capabilities to devices and app stores <em>for installability</em>.</li>
+<li><strong>HTTPS</strong> is the Chief Security Officer (CSO) - it encrypts end-to-end communications between app and server endpoints <em>for safety</em>.</li>
+<li>The <strong>Service Worker</strong> is the Chief Operations Officer (COO) - it unblocks the CEO from performing time-consuming or synchronous tasks, and takes proactive actions to ensure reliable operation even when offline.</li>
+</ul>
+<figure>
+<img src="_media/4-service-workers.png" alt="Image describes relationship of PWA startup." /><figcaption>Image describes relationship of PWA startup.</figcaption>
+</figure>
+<p>Let’s see how this translates to PWA implementations that support desirable traits like safety, network-independent operation, and re-engageability. And in particular, we’ll explore service worker implementation and usage, to make this happen.</p>
+<hr />
+<h2 id="make-pwas-safe">Make PWAs Safe</h2>
+<p>HTTPS enforces end-to-end encryption of all client-server communications, providing privacy safeguards for information exchanged over the network. Visualize this as a Chief Security Officer locking down all entry and access paths into your startup and protecting information from malicious third-party access or tampering.</p>
+<p><strong>HTTPS support is mandatory for using Service Workers</strong>. Thankfully, as we covered <a href="./02.md">in our earlier post</a>, it is easy to implement HTTPS support. Use modern cloud hosting providers (who enable it by default) or take advantage of free certificate options (e.g., <a href="https://aka.ms/learn-PWA/30Days-1.4/letsencrypt.com">Let’s Encrypt</a>) to secure your own servers.</p>
+<h2 id="make-pwas-reliable-re-engageable">Make PWAs Reliable &amp; Re-Engageable</h2>
+<p>Service Workers are a special type of <a href="https://aka.ms/learn-PWA/30Days-1.4/developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API">Web Worker</a>. Web Workers operate in a separate thread, allowing them to execute long-running or asynchronous tasks in the background, minimizing the impact on page performance (“unblocking” the CEO).</p>
+<p>Service Workers make PWA operation <em>reliable</em> by helping deliver usable experiences even under flaky or offline network conditions. They do this by <em>intercepting</em> network fetch requests from the page (CEO) and <em>strategically</em> handling them using cached responses (if offline), or network-fetched resources (if real-time), or some combination of both based on predefined caching strategies for resource types.</p>
+<p>Service Workers make PWAs <em>re-engageable</em> by having the ability to alert users to app changes or context, even if the page itself is inactive. They do this by listening for asynchronous push notifications (from a server) and working with platform capabilities to deliver alerts in a device-familiar way. When users engage with the alert, they are drawn back into the app seamlessly - just like with other native app experiences.</p>
+<hr />
+<h2 id="how-do-service-workers-work">How do Service Workers work?</h2>
+<p>From a development perspective, we need to know two concepts: * Service Worker <strong>Registration</strong> - where CEO “hires” the COO. * Service Worker <strong>Lifecycle</strong> - where COO “handles” operational events.</p>
+<p>Let’s look at registration first. Like all Web Workers, the Service Worker must be authored in its own file. The location of that file (relative to the root of the app) defines the <em>scope</em> of its authority. Service Workers can only intercept or manage requests to pages within their scope. <em>Placing the file at the root of your app ensures your service worker will manage all pages within it</em>.</p>
+<p>Let’s inspect the <a href="https://aka.ms/learn-PWA/30Days-1.4/devtoolstips.org">DevTools Tips PWA</a> in the browser again. Look at <em>Service Workers</em> under the <em>Application</em> tab. We can see that the service worker is implemented in the “sw.js” file in the root directory - implicitly setting its scope to the whole app.</p>
+<figure>
+<img src="_media/dtt-inspect.png" alt="Inspect PWA in DevTools" /><figcaption>Inspect PWA in DevTools</figcaption>
+</figure>
+<p>If you inspect the application source (in <em>Elements</em> tab) you will find this snippet of code for service worker registration:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb1-1" title="1"><span class="cf">if</span>(<span class="st">&#39;serviceWorker&#39;</span> <span class="kw">in</span> navigator) <span class="op">{</span></a>
+<a class="sourceLine" id="cb1-2" title="2">    <span class="co">// Register the service worker</span></a>
+<a class="sourceLine" id="cb1-3" title="3">    <span class="va">navigator</span>.<span class="va">serviceWorker</span>.<span class="at">register</span>(<span class="st">&#39;/sw.js&#39;</span><span class="op">,</span> <span class="op">{</span></a>
+<a class="sourceLine" id="cb1-4" title="4">        <span class="dt">scope</span><span class="op">:</span> <span class="st">&#39;/&#39;</span></a>
+<a class="sourceLine" id="cb1-5" title="5">    <span class="op">}</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb1-6" title="6"><span class="op">}</span></a></code></pre></div>
+<p>Because Service Worker is a more recent technology that may not be <a href="https://aka.ms/learn-PWA/30Days-1.4/caniuse.com/serviceworkers">supported on all browsers</a>, we test for its existence before registering it. The scope is set implicitly by the file location - the code shows how you can explicitly set this if needed.</p>
+<hr />
+<h2 id="service-worker-lifecycle-events">Service Worker: Lifecycle Events</h2>
+<p>Service worker registration is like onboarding the COO. Once that is complete, the service worker is ready to listen for lifecycle events (install, activate) to set itself up for success. Think of this as three phases:</p>
+<ol type="1">
+<li><p><strong>Registration</strong>: The browser registers the service worker, kicking off the Service Worker lifecycle.</p></li>
+<li><p><strong>Installation</strong>: The browser triggers <code>install</code> as the first event to the Service Worker. It can use this for pre-caching resources (e.g., populate cache with long-lived resources like logos or offline pages).</p></li>
+</ol>
+<div class="sourceCode" id="cb2"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb2-1" title="1"><span class="va">self</span>.<span class="at">addEventListener</span>( <span class="st">&quot;install&quot;</span><span class="op">,</span> <span class="kw">function</span>( event )<span class="op">{</span></a>
+<a class="sourceLine" id="cb2-2" title="2">    <span class="va">console</span>.<span class="at">log</span>( <span class="st">&quot;WORKER: install event in progress.&quot;</span> )<span class="op">;</span></a>
+<a class="sourceLine" id="cb2-3" title="3"><span class="op">}</span>)<span class="op">;</span></a></code></pre></div>
+<ol start="3" type="1">
+<li><strong>Activation</strong>: The browser sends the <code>activate</code> event to indicate that the service worker has been installed. This service worker can now do clean up actions (e.g., remove old caches from prior version) and ready itself to handle <em>functional</em> events. If there is an old service worker in play, you can use <code>clients.claim()</code> to immediately replace the old service worker with your new one.</li>
+</ol>
+<div class="sourceCode" id="cb3"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb3-1" title="1"><span class="va">self</span>.<span class="at">addEventListener</span>( <span class="st">&quot;activate&quot;</span><span class="op">,</span> <span class="kw">function</span>( event )<span class="op">{</span></a>
+<a class="sourceLine" id="cb3-2" title="2">    <span class="va">console</span>.<span class="at">log</span>( <span class="st">&quot;WORKER: activation event in progress.&quot;</span> )<span class="op">;</span></a>
+<a class="sourceLine" id="cb3-3" title="3">    <span class="va">clients</span>.<span class="at">claim</span>()<span class="op">;</span></a>
+<a class="sourceLine" id="cb3-4" title="4">    <span class="va">console</span>.<span class="at">log</span>( <span class="st">&quot;WORKER: all clients are now controlled by me! Mwahahaha!&quot;</span> )<span class="op">;</span></a>
+<a class="sourceLine" id="cb3-5" title="5"><span class="op">}</span>)<span class="op">;</span></a></code></pre></div>
+<h2 id="service-worker-functional-events">Service Worker: Functional Events</h2>
+<p>Functional events are those that require the asynchronous or background processing abilities of service workers to support reliable and re-enageable behaviors. For now, think about just two: “fetch” and “push”.</p>
+<ol type="1">
+<li>The <a href="https://aka.ms/learn-PWA/30Days-1.4/developer.mozilla.org/en-US/docs/Web/API/FetchEvent"><strong>fetch event</strong></a> is triggered when the browser tries to access a page that lies within the <em>scope</em> of the service worker. The service worker acts as an interceptor - returning a response either from the cache or from the network (or some combination of both) based on predefined strategies. We’ll cover more on this in the next post.</li>
+</ol>
+<div class="sourceCode" id="cb4"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb4-1" title="1"><span class="va">self</span>.<span class="at">addEventListener</span>( <span class="st">&quot;fetch&quot;</span><span class="op">,</span> <span class="kw">function</span>( event )<span class="op">{</span></a>
+<a class="sourceLine" id="cb4-2" title="2">    <span class="va">console</span>.<span class="at">log</span>( <span class="st">&quot;WORKER: Fetching&quot;</span><span class="op">,</span> <span class="va">event</span>.<span class="at">request</span> )<span class="op">;</span></a>
+<a class="sourceLine" id="cb4-3" title="3"><span class="op">}</span>)<span class="op">;</span></a></code></pre></div>
+<ol start="2" type="1">
+<li>The <a href="https://aka.ms/learn-PWA/30Days-1.4/developer.mozilla.org/en-US/docs/Web/API/PushEvent"><strong>push event</strong></a> is triggered when the browser receives a push message from a server to display as a toast notification to users. This occurs only if the PWA had previously <em>subscribed</em> for server notifications <em>and</em> user has granted the PWA permission to receive them. Push events are critical to <a href="https://aka.ms/learn-PWA/30Days-1.4/docs.microsoft.com/en-us/microsoft-edge/progressive-web-apps-chromium/how-to/notifications-badges">re-engaging users</a> when the app is not otherwise active.</li>
+</ol>
+<div class="sourceCode" id="cb5"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb5-1" title="1"><span class="va">self</span>.<span class="at">addEventListener</span>( <span class="st">&quot;push&quot;</span><span class="op">,</span> <span class="kw">function</span>( event )<span class="op">{</span></a>
+<a class="sourceLine" id="cb5-2" title="2">    <span class="va">console</span>.<span class="at">log</span>( <span class="st">&quot;WORKER: Received notification&quot;</span><span class="op">,</span> <span class="va">event</span>.<span class="at">data</span> )<span class="op">;</span></a>
+<a class="sourceLine" id="cb5-3" title="3"><span class="op">}</span>)<span class="op">;</span></a></code></pre></div>
+<p>In our next post, we’ll dive into details of service worker support for offline operation - looking at how service workers engage with the Fetch and Cache Storage APIs to provide continuity of experience in a network-independent manner. For now, it’s time for a hands-on exercise!</p>
+<hr />
+<h2 id="exercise-explore-service-workers">Exercise: Explore Service Workers</h2>
+<p>Use DevTools to inspect a different <a href="https://aka.ms/learn-PWA/30Days-1.4/docs.microsoft.com/en-us/microsoft-edge/progressive-web-apps-chromium/demo-pwas">sample PWA</a> and see if you can identify and understand the service worker hooks and implementation:</p>
+<ul>
+<li>Go to <code>Elements</code> tab and explore the application source
+<ul>
+<li>Where is the service worker registered?</li>
+<li>What is the scope for registration?</li>
 </ul></li>
-<li><a href="/30DaysOfPWA/advanced-capabilities/"><strong>2. Advanced Capabilities</strong></a>
+<li>Go to <code>Applications</code> tab and explore the service worker file
 <ul>
-<li><a href="/30DaysOfPWA/advanced-capabilities/01.md">2.1 Introducting the advanced capabilities of Progressive Web Apps</a></li>
-<li><a href="/30DaysOfPWA/advanced-capabilities/02.md">2.2 Creating application shortcuts</a></li>
-<li><a href="/30DaysOfPWA/advanced-capabilities/03.md">2.3 Sharing content from and with your app</a></li>
-<li><a href="/30DaysOfPWA/advanced-capabilities/04.md">2.4 Displaying content more like an app</a></li>
-<li><a href="/30DaysOfPWA/advanced-capabilities/05.md">2.5 Caching your app data</a></li>
-<li><a href="/30DaysOfPWA/advanced-capabilities/06.md">2.6 Synchronizing app data in the background</a></li>
-<li><a href="/30DaysOfPWA/advanced-capabilities/07.md">2.7 Notifying your users of updates</a></li>
+<li>What events is it handling?</li>
+<li>Can you understand its caching strategy (for fetch)?</li>
+<li>Is it re-engaging the user (with push)?</li>
 </ul></li>
-<li><a href="/30DaysOfPWA/dev-tools/"><strong>3. Developer Tools</strong></a>
+<li>Go to the <code>Cache Storage</code> section
 <ul>
-<li><a href="/30DaysOfPWA/dev-tools/01.md">3.1 Get-started tools - Part 1</a></li>
-<li><a href="/30DaysOfPWA/dev-tools/02.md">3.2 Get-started tools - Part 2</a></li>
-<li><a href="/30DaysOfPWA/dev-tools/03.md">3.3 Debugging tools - Part 1</a></li>
-<li><a href="/30DaysOfPWA/dev-tools/04.md">3.4 Debugging tools - Part 2</a></li>
-<li><a href="/30DaysOfPWA/dev-tools/05.md">3.5 Auditing tools</a></li>
-<li><a href="/30DaysOfPWA/dev-tools/06.md">3.6 Test automation tools</a></li>
-<li><a href="/30DaysOfPWA/dev-tools/07.md">3.7 Packaging tools</a></li>
+<li>What files or assets do you see stored there?</li>
+<li>How do these correlate to actions taken for <code>install</code> event?</li>
 </ul></li>
-<li><a href="/30DaysOfPWA/platforms-practices/"><strong>4. Platforms &amp; Practices</strong></a>
+<li>Go to the <code>Service Workers</code> section - click “Offline”
 <ul>
-<li><a href="/30DaysOfPWA/platforms-practices/01.md">4.1 Installability for PWAs</a></li>
-<li><a href="/30DaysOfPWA/platforms-practices/02.md">4.2 Best practices for PWA engagement</a></li>
-<li><a href="/30DaysOfPWA/platforms-practices/03.md">4.3 Distributing your PWA</a></li>
-<li><a href="/30DaysOfPWA/platforms-practices/04.md">4.4 Best practices for PWA reliability</a></li>
-<li><a href="/30DaysOfPWA/platforms-practices/05.md">4.5 PWA maintainability - Using web components</a></li>
-<li><a href="/30DaysOfPWA/platforms-practices/06.md">4.6 Best practices for PWA authentication</a></li>
-<li><a href="/30DaysOfPWA/platforms-practices/07.md">4.7 Best practices for PWA UI/UX</a></li>
+<li>What happens when you reload the page?</li>
+<li>What happens when you go to a different site (offline)?</li>
 </ul></li>
 <li><h2 id="summary"><a href="/30DaysOfPWA/summary"><strong>5. Summary</strong></a></h2></li>
 <li><a href="https://aka.ms/learn-pwa/30Days-ghd">💬 Join the discussion on Github</a></li>
@@ -985,16 +1144,11 @@ To open last HTML report run:
 <figure>
 <img src="_media/day-01.jpg" alt="image of title and author." /><figcaption>image of title and author.</figcaption>
 </figure>
-<h3 id="what-well-cover-today">WHAT WE’LL COVER TODAY</h3>
 <table>
-<colgroup>
-<col style="width: 38%" />
-<col style="width: 61%" />
-</colgroup>
 <thead>
 <tr class="header">
-<th>Section</th>
-<th>Description</th>
+<th style="text-align: left;"></th>
+<th style="text-align: left;">What you will learn today</th>
 </tr>
 </thead>
 <tbody>
