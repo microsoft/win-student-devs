@@ -21,7 +21,7 @@
 <p>As we briefly touched on in <a href="01.md">Day 1</a>, a carefully thought out engagement strategy can be one of the cornerstones of a great PWA. With the “one codebase” nature of PWA, it’s also easy to keep your engagement strategy consistent across different devices and platforms.</p>
 <p>Today, we’re going to take a look at how PWAs stack up in terms of engagement and see how we can build on what we already learned about push notifications to get started off on the right foot with engagement.</p>
 <h2 id="comparing-pwa-engagement">Comparing PWA Engagement</h2>
-<p>You may not have taken the dive into making your first PWA, but others have! Engagement with PWAs has been a success story for several companies that have experimented with redesigning their web experiences as PWAs. <a href="https://www.pwastats.com/">PWAstats.com</a> is a great resource for seeing how PWAs can improve many factors of your app, including engagement. Some cherry-picked figures related to engagement:</p>
+<p>You may not have taken the dive into making your first PWA, but others have! Engagement with PWAs has been a success story for several companies that have experimented with redesigning their web experiences as PWAs. <a href="https://aka.ms/learn-pwa/30days-4.2/pwastats.com">PWAstats.com</a> is a great resource for seeing how PWAs can improve many factors of your app, including engagement. Some cherry-picked figures related to engagement:</p>
 <ul>
 <li><strong>Starbucks doubled daily active users with their PWA</strong></li>
 <li><strong>Tinder’s PWA saw engagement increase across the board</strong></li>
@@ -29,7 +29,7 @@
 </ul>
 <p>Granted, progressive web apps aren’t a magic, one-size-fits all solution for engagement, but they do give you all the tools you need for building a re-engageable application.</p>
 <h2 id="improving-engagement-with-actionable-push-notifications">Improving Engagement with Actionable Push Notifications</h2>
-<p>We’ve seen some numbers. Now let’s take a look at how we can take advantage of <a href="https://docs.microsoft.com/en-us/microsoft-edge/progressive-web-apps-chromium/how-to/notifications-badges">PWA notification capabilities</a> to improve engagement on our app.</p>
+<p>We’ve seen some numbers. Now let’s take a look at how we can take advantage of <a href="https://aka.ms/learn-pwa/30days-4.2/docs.microsoft.com/microsoft-edge/progressive-web-apps-chromium/how-to/notifications-badges">PWA notification capabilities</a> to improve engagement on our app.</p>
 <h3 id="content-comes-first">Content Comes First</h3>
 <p>Before you even think about sending push notifications, make sure your PWA has enough engageable content and reusability to even justify sending a push notification in the first place. If there’s nothing to do on your app, why prompt a user to visit?</p>
 <h3 id="what-does-actionable-mean">What Does “Actionable” Mean?</h3>
@@ -42,7 +42,7 @@
 <p>A quality notification will give the user something to do on your PWA, not just have them open the application for the sake of opening it.</p>
 <h2 id="lets-see-some-code">Let’s See Some Code!</h2>
 <p>We can build on the snippets that we saw in the <a href="../advanced-capabilities/07.md">Notifying Your Users of Updates</a> article to keep our notifications actionable in practice. If you haven’t seen the notifications snippets from that post, go check them out and then come back to this.</p>
-<p>Using the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Notification/Notification">Notification API</a>, we can take advantage of the <code>data</code> property to associate our notification with any structured data that we want.</p>
+<p>Using the <a href="https://aka.ms/learn-pwa/30days-4.2/developer.mozilla.org/docs/Web/API/Notification/Notification">Notification API</a>, we can take advantage of the <code>data</code> property to associate our notification with any structured data that we want.</p>
 <p>So, if we want to associate our notification with a specific location in our PWA, the notification payload we send could look something like this:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb1-1" title="1"><span class="op">{</span></a>
 <a class="sourceLine" id="cb1-2" title="2">    <span class="dt">title</span><span class="op">:</span> <span class="st">&quot;Our Notification Title&quot;</span><span class="op">,</span></a>
@@ -74,9 +74,9 @@
 <a class="sourceLine" id="cb3-7" title="7">    <span class="va">clients</span>.<span class="at">openWindow</span>(fullPath)<span class="op">;</span> </a>
 <a class="sourceLine" id="cb3-8" title="8"><span class="op">}</span>)<span class="op">;</span></a></code></pre></div>
 <p>Using this strategy, we can easily associate our notification with specific content on our PWA, directing our users directly to the portion of our app that we want them to engage with.</p>
-<p><em>Note:</em> This is a very basic implementation for our listener and skips out on some case handling for the sake of simplicity. You can see more detailed implementations in the <a href="https://github.com/MicrosoftEdge/pushnotifications-demo">Push Notifications Demo project</a> or in the MDN specification for <a href="https://developer.mozilla.org/en-US/docs/Web/API/Clients/openWindow"><code>openWindow()</code></a>.</p>
+<p><em>Note:</em> This is a very basic implementation for our listener and skips out on some case handling for the sake of simplicity. You can see more detailed implementations in the <a href="https://aka.ms/learn-pwa/30days-4.2/github.com/MicrosoftEdge/pushnotifications-demo">Push Notifications Demo project</a> or in the MDN specification for <a href="https://aka.ms/learn-pwa/30days-4.2/developer.mozilla.org/docs/Web/API/Clients/openWindow"><code>openWindow()</code></a>.</p>
 <h2 id="further-notification-behavior-with-actions">Further Notification Behavior with Actions</h2>
-<p><a href="https://developer.mozilla.org/en-US/docs/Web/API/notification/actions#browser_compatibility">Some browsers</a>, including Edge and Chrome, have support for Notification <code>actions</code>, which allow you to add multiple options to a notification.</p>
+<p><a href="https://aka.ms/learn-pwa/30days-4.2/developer.mozilla.org/docs/Web/API/notification/actions">Some browsers</a>, including Edge and Chrome, have support for Notification <code>actions</code>, which allow you to add multiple options to a notification.</p>
 <p>You can add actions to your Notification payload like so:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb4-1" title="1"><span class="op">{</span></a>
 <a class="sourceLine" id="cb4-2" title="2">    <span class="dt">title</span><span class="op">:</span> <span class="st">&quot;Our Notification Title&quot;</span><span class="op">,</span></a>
@@ -111,17 +111,17 @@
 <a class="sourceLine" id="cb6-13" title="13">    <span class="op">}</span></a>
 <a class="sourceLine" id="cb6-14" title="14">    </a>
 <a class="sourceLine" id="cb6-15" title="15"><span class="op">}</span>)<span class="op">;</span></a></code></pre></div>
-<p>With actions, we can make our notifications a bit more dynamic and interactive for our users. You could even use the <code>data</code> property to provide paths for every action, generalizing this solution and making it a bit more reliable in practice. To make it a bit easier on yourself, the <a href="https://marketplace.visualstudio.com/items?itemName=PWABuilder.pwa-studio">PWA Studio VSCode extension</a> also has support for code snippets for working with notifications, with and without actions.</p>
+<p>With actions, we can make our notifications a bit more dynamic and interactive for our users. You could even use the <code>data</code> property to provide paths for every action, generalizing this solution and making it a bit more reliable in practice. To make it a bit easier on yourself, the <a href="https://aka.ms/learn-pwa/30days-4.2/marketplace.visualstudio.com">PWA Studio VSCode extension</a> also has support for code snippets for working with notifications, with and without actions.</p>
 <p><em>Note:</em> It’s important to always provide default behavior. Actions aren’t supported in some browsers and can behave differently in browsers that do support them.</p>
 <h2 id="wrapping-up">Wrapping Up</h2>
 <p>Today, we took a brief look at how engagement can work on PWAs and how to get started working with quality, actionable notifications for our applications. You can adapt the tricks we showed you today to help with your own engagement strategy for your PWAs, but don’t forget that every application is going to be different: experiment and find what works for you!</p>
 <h2 id="resources">Resources</h2>
 <ul>
-<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Notification/Notification"><strong>Notification specification</strong></a></li>
-<li><a href="https://docs.microsoft.com/en-us/microsoft-edge/progressive-web-apps-chromium/how-to/notifications-badges"><strong>Re-engage users with badges, notifications, and push messages</strong></a> article on Microsoft Docs</li>
-<li><a href="https://github.com/MicrosoftEdge/pushnotifications-demo"><strong>Push Notifications Demo Project</strong></a></li>
+<li><a href="https://aka.ms/learn-pwa/30days-4.2/developer.mozilla.org/docs/Web/API/Notification/Notification"><strong>Notification specification</strong></a></li>
+<li><a href="https://aka.ms/learn-pwa/30days-4.2/docs.microsoft.com/microsoft-edge/progressive-web-apps-chromium/how-to/notifications-badgess"><strong>Re-engage users with badges, notifications, and push messages</strong></a> article on Microsoft Docs</li>
+<li><a href="https://aka.ms/learn-pwa/30days-4.2/github.com/MicrosoftEdge/pushnotifications-demo"><strong>Push Notifications Demo Project</strong></a></li>
 </ul>]]></description>
-    <pubDate>Fri, 4 Mar 2022 13:25:27 -0800</pubDate>
+    <pubDate>Mon, 7 Mar 2022 12:25:20 -0800</pubDate>
   </item>
    
   <item>
