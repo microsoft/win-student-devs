@@ -11,21 +11,22 @@
 
 ### 4.2 | &nbsp; [Best Practices for PWA Engagement](02.md) 
 * Best practices for notifications and push notifications
-* Badging
-* Mobile vs. Desktop engagement
+* Setting an engagement strategy
+* Having actionable push notifications
 
 ### 4.3 | &nbsp; [Distributing Your PWA](03.md) 
 * PWAs are apps, so how can you get them on app stores?
 * Getting maximum discoverability, all with one codebase.
-* Working with different app stores
+* Walk through on adding your PWA to the Microsoft Store
 
 ### 4.4 | &nbsp; [Best Practices for PWA Reliability](04.md)
 * How to preserve your user experience while offline
-* IndexedDB sample walkthrough
+* Caching strategies for reliable performance
+* LocalForage and other IndexedDB options to store offline data
 
 ### 4.5 | &nbsp; [PWA Maintainability: Using Web Components](05.md)
 * What does maintainability look like in larger (and possibly collaborative) web projects?
-* What are web components?
+* What are web components and what advantages do they bring?
 * How can we use them to build maintainable and scalable PWAs?
 
 ### 4.6 | &nbsp; [Best Practices for PWA Authentication](06.md) 
