@@ -17,7 +17,7 @@
 ### 4.3 | &nbsp; [Distributing Your PWA](03.md) 
 * PWAs are apps, so how can you get them on app stores?
 * Getting maximum discoverability, all with one codebase.
-* Walk through on adding your PWA to the Microsoft Store
+* Walk through adding your PWA to the Microsoft Store
 
 ### 4.4 | &nbsp; [Best Practices for PWA Reliability](04.md)
 * How to preserve your user experience while offline
