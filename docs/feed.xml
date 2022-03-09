@@ -6,6 +6,63 @@
   <description>For 30 days, we publish articles that aim to introduce developers to Progressive Web App. We have content that covers 0-level to 200-level topics. Each post takes 5-10 minutes to read and is followed by a sample snippet or exercise.</description>
    
   <item>
+    <title><![CDATA[Week 4. Platform and Practices]]></title>
+    <link>https://aka.ms/learn-PWA/30Days-blog/#/30DaysOfPWA/platforms-practices/README</link>
+    <guid isPermaLink="false">https://aka.ms/learn-PWA/30Days-blog/#/30DaysOfPWA/platforms-practices/README</guid>
+    <description><![CDATA[<h1 id="week-4.-platform-and-practices">Week 4. Platform and Practices</h1>
+<figure>
+<img src="_media/week4-roadmap.png" alt="Visual Guide to Platforms &amp; Practices Week!" /><figcaption>Visual Guide to Platforms &amp; Practices Week!</figcaption>
+</figure>
+<h3 id="what-well-cover-in-week-4">WHAT WE’LL COVER IN WEEK 4</h3>
+<h3 id="installability-for-pwas">4.1 |   <a href="01.md">Installability for PWAs</a></h3>
+<ul>
+<li>Quick recap of how to make PWAs installable</li>
+<li>What types of apps should be installable?</li>
+<li>App-first development strategy</li>
+</ul>
+<h3 id="best-practices-for-pwa-engagement">4.2 |   <a href="02.md">Best Practices for PWA Engagement</a></h3>
+<ul>
+<li>Best practices for notifications and push notifications</li>
+<li>Setting an engagement strategy</li>
+<li>Having actionable push notifications</li>
+</ul>
+<h3 id="distributing-your-pwa">4.3 |   <a href="03.md">Distributing Your PWA</a></h3>
+<ul>
+<li>PWAs are apps, so how can you get them on app stores?</li>
+<li>Getting maximum discoverability, all with one codebase.</li>
+<li>Walk through adding your PWA to the Microsoft Store</li>
+</ul>
+<h3 id="best-practices-for-pwa-reliability">4.4 |   <a href="04.md">Best Practices for PWA Reliability</a></h3>
+<ul>
+<li>How to preserve your user experience while offline</li>
+<li>Caching strategies for reliable performance</li>
+<li>LocalForage and other IndexedDB options to store offline data</li>
+</ul>
+<h3 id="pwa-maintainability-using-web-components">4.5 |   <a href="05.md">PWA Maintainability: Using Web Components</a></h3>
+<ul>
+<li>What does maintainability look like in larger (and possibly collaborative) web projects?</li>
+<li>What are web components and what advantages do they bring?</li>
+<li>How can we use them to build maintainable and scalable PWAs?</li>
+</ul>
+<h3 id="best-practices-for-pwa-authentication">4.6 |   <a href="06.md">Best Practices for PWA Authentication</a></h3>
+<ul>
+<li>When should your PWA use authentication?</li>
+<li>Considerations for implementing authentication for your PWA</li>
+<li>Adding authentication to your app</li>
+</ul>
+<h3 id="best-practices-for-pwa-uiux">4.7 |   <a href="07.md">Best Practices for PWA UI/UX</a></h3>
+<ul>
+<li>Responsiveness across all platforms</li>
+<li>Focusing your PWA content</li>
+<li>Seamless user interactions</li>
+</ul>
+<figure>
+<img src="_media/week4-banner.png" alt="Visual Banner for Platforms &amp; Practices Week!" /><figcaption>Visual Banner for Platforms &amp; Practices Week!</figcaption>
+</figure>]]></description>
+    <pubDate>Tue, 8 Mar 2022 16:03:30 -0800</pubDate>
+  </item>
+   
+  <item>
     <title><![CDATA[4.2: Best Practices for PWA Engagement]]></title>
     <link>https://aka.ms/learn-PWA/30Days-blog/#/30DaysOfPWA/platforms-practices/02</link>
     <guid isPermaLink="false">https://aka.ms/learn-PWA/30Days-blog/#/30DaysOfPWA/platforms-practices/02</guid>
@@ -122,62 +179,6 @@
 <li><a href="https://aka.ms/learn-pwa/30days-4.2/github.com/MicrosoftEdge/pushnotifications-demo"><strong>Push Notifications Demo Project</strong></a></li>
 </ul>]]></description>
     <pubDate>Mon, 7 Mar 2022 15:55:33 -0800</pubDate>
-  </item>
-   
-  <item>
-    <title><![CDATA[Week 4. Platform and Practices]]></title>
-    <link>https://aka.ms/learn-PWA/30Days-blog/#/30DaysOfPWA/platforms-practices/README</link>
-    <guid isPermaLink="false">https://aka.ms/learn-PWA/30Days-blog/#/30DaysOfPWA/platforms-practices/README</guid>
-    <description><![CDATA[<h1 id="week-4.-platform-and-practices">Week 4. Platform and Practices</h1>
-<figure>
-<img src="_media/week4-roadmap.png" alt="Visual Guide to Platforms &amp; Practices Week!" /><figcaption>Visual Guide to Platforms &amp; Practices Week!</figcaption>
-</figure>
-<h3 id="what-well-cover-in-week-4">WHAT WE’LL COVER IN WEEK 4</h3>
-<h3 id="installability-for-pwas">4.1 |   <a href="01.md">Installability for PWAs</a></h3>
-<ul>
-<li>Quick recap of how to make PWAs installable</li>
-<li>What types of apps should be installable?</li>
-<li>App-first development strategy</li>
-</ul>
-<h3 id="best-practices-for-pwa-engagement">4.2 |   <a href="02.md">Best Practices for PWA Engagement</a></h3>
-<ul>
-<li>Best practices for notifications and push notifications</li>
-<li>Badging</li>
-<li>Mobile vs. Desktop engagement</li>
-</ul>
-<h3 id="distributing-your-pwa">4.3 |   <a href="03.md">Distributing Your PWA</a></h3>
-<ul>
-<li>PWAs are apps, so how can you get them on app stores?</li>
-<li>Getting maximum discoverability, all with one codebase.</li>
-<li>Working with different app stores</li>
-</ul>
-<h3 id="best-practices-for-pwa-reliability">4.4 |   <a href="04.md">Best Practices for PWA Reliability</a></h3>
-<ul>
-<li>How to preserve your user experience while offline</li>
-<li>IndexedDB sample walkthrough</li>
-</ul>
-<h3 id="pwa-maintainability-using-web-components">4.5 |   <a href="05.md">PWA Maintainability: Using Web Components</a></h3>
-<ul>
-<li>What does maintainability look like in larger (and possibly collaborative) web projects?</li>
-<li>What are web components?</li>
-<li>How can we use them to build maintainable and scalable PWAs?</li>
-</ul>
-<h3 id="best-practices-for-pwa-authentication">4.6 |   <a href="06.md">Best Practices for PWA Authentication</a></h3>
-<ul>
-<li>When should your PWA use authentication?</li>
-<li>Considerations for implementing authentication for your PWA</li>
-<li>Adding authentication to your app</li>
-</ul>
-<h3 id="best-practices-for-pwa-uiux">4.7 |   <a href="07.md">Best Practices for PWA UI/UX</a></h3>
-<ul>
-<li>Responsiveness across all platforms</li>
-<li>Focusing your PWA content</li>
-<li>Seamless user interactions</li>
-</ul>
-<figure>
-<img src="_media/week4-banner.png" alt="Visual Banner for Platforms &amp; Practices Week!" /><figcaption>Visual Banner for Platforms &amp; Practices Week!</figcaption>
-</figure>]]></description>
-    <pubDate>Mon, 7 Mar 2022 00:58:17 -0500</pubDate>
   </item>
    
   <item>
