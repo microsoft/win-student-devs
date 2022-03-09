@@ -6,6 +6,119 @@
   <description>For 30 days, we publish articles that aim to introduce developers to Progressive Web App. We have content that covers 0-level to 200-level topics. Each post takes 5-10 minutes to read and is followed by a sample snippet or exercise.</description>
    
   <item>
+    <title><![CDATA[4.3: Distributing Your PWA]]></title>
+    <link>https://aka.ms/learn-PWA/30Days-blog/#/30DaysOfPWA/platforms-practices/03</link>
+    <guid isPermaLink="false">https://aka.ms/learn-PWA/30Days-blog/#/30DaysOfPWA/platforms-practices/03</guid>
+    <description><![CDATA[<h1 id="distributing-your-pwa">4.3: Distributing Your PWA</h1>
+<figure>
+<img src="_media/day3.png" alt="image of title and author." /><figcaption>image of title and author.</figcaption>
+</figure>
+<h3 id="what-ill-cover-today">What I’ll cover today</h3>
+<table>
+<colgroup>
+<col style="width: 38%" />
+<col style="width: 61%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Section</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Why App Stores?</strong></td>
+<td>Distributing your PWA through app stores brings more users to your app</td>
+</tr>
+<tr class="even">
+<td><strong>Distribution model</strong></td>
+<td>What publishing a PWA to app stores looks like</td>
+</tr>
+<tr class="odd">
+<td><strong>Example</strong></td>
+<td>A quick walk-through of publishing your PWA to an app store</td>
+</tr>
+</tbody>
+</table>
+<p>Welcome to <strong>week 4 day 3</strong> of <a href="https://aka.ms/learn-pwa/30Days-blog">30 days of PWA</a>. Today, you’ll discover how to distribute your PWA to app stores and the benefits in doing so.</p>
+<h2 id="why-app-stores">Why App Stores?</h2>
+<p>When I talk about publishing PWAs to app stores, devs often ask, “Why? Isn’t the point of PWAs that you don’t need an app store?”</p>
+<p>And they’re right, you don’t <em>need</em> app stores. A great benefit of the web is there are no gatekeepers: you can publish your app without needing anyone’s permission. Your app is truly your own, and you don’t have to wait for app reviews to submit your app, add features to your app, or fix bugs. You don’t have to share 30% of your app revenue with the app store.</p>
+<p>But app stores have their benefits too. Since the mobile computing explosion of the early 2000s, <strong>we’ve trained a generation of users to look for apps in app stores.</strong> And since Progressive Web Apps are, well, <em>apps</em>, why not list your app in the places where users go looking for apps? Your PWA becomes more discoverable – and your app gains more users – when you publish to app stores.</p>
+<p>Your PWA will be easier to install. While users can add your PWA to homescreen or install from the browser, many non-technical users are unfamiliar with these tasks. Publishing your PWA to app stores lets users find and install your app using their normal workflow: app store ➡ search ➡ install.</p>
+<p>You’ll get better engagement from users as your app tile appears where users are looking: in their Start Menu and Taskbar (Windows), Dock (Mac), and home screen (Android and iOS).</p>
+<p>Users will be more likely to trust your app. An additional level of safety and security comes with apps that have gone through app store review processes.</p>
+<h2 id="distribution-model">Distribution model</h2>
+<p>Hopefully, I’ve piqued your interest in getting your PWA published to app stores.</p>
+<p>To publish, you’ll follow three steps:</p>
+<ol type="1">
+<li>Create an app package for the app store</li>
+<li>Register for a developer account for the app store</li>
+<li>Submit your app package for review</li>
+</ol>
+<h3 id="create-an-app-package">1. Create an app package</h3>
+<p>In an ideal world, you’d submit your PWA’s URL to the app store(s), and they’d publish your app.</p>
+<p>But currently, app stores don’t support PWAs natively. Instead, app stores require you to wrap your PWA in app packaging, making it look like a native app:</p>
+<ul>
+<li>An <code>.msix</code> package (Windows)</li>
+<li>An <code>.aab</code> package (Android)</li>
+<li>An <code>.app</code> archive (iOS and Mac)</li>
+<li>An <code>.apk</code> package (Oculus, Samsung, Amazon)</li>
+</ul>
+<p>Fortunately, there are free developer tools that create these app packages for you. Microsoft’s free and open source <a href="https://aka.ms/learn-pwa/30days-4.3/pwabuilder.com">PWABuilder</a> is such a tool. With PWABuilder, you input your PWA’s URL, and PWABuilder will generate app packages for your desired app stores.</p>
+<h3 id="register-for-a-developer-account">2. Register for a developer account</h3>
+<p>Once you generate your app package, you’ll need to create a developer account in order to submit your PWA for app store review:</p>
+<ul>
+<li>For Windows, register with <a href="https://aka.ms/learn-pwa/30days-4.3/partner.microsoft.com">Microsoft Partner Center</a></li>
+<li>For Android, register with <a href="https://aka.ms/learn-pwa/30days-4.3/play.google.com/console/about">Google Play Console</a></li>
+<li>For iOS and Mac, register with <a href="https://aka.ms/learn-pwa/30days-4.3/developer.apple.com/account">Apple Developer</a></li>
+<li>For Oculus, register with <a href="https://aka.ms/learn-pwa/30days-4.3/developer.oculus.com/documentation/web/pwa-submit-app">Oculus Developer Center</a></li>
+<li>For Samsung, register with <a href="hhttps://aka.ms/learn-pwa/30days-4.3/developer.samsung.com">Samsung Developer Center</a></li>
+<li>For Amazon, register with <a href="https://aka.ms/learn-pwa/30days-4.3/developer.amazon.com/apps-and-games">Amazon Developer Portal</a></li>
+</ul>
+<p>While all these app stores support PWAs in some form, know that Microsoft, Android, and Amazon support PWAs the best:</p>
+<ul>
+<li>Windows has first-class support for Store PWAs through <a href="https://aka.ms/learn-pwa/30days-4.3/blogs.windows.com/windowsdeveloper/2020/03/19/hosted-app-model">Hosted App Model</a>, where your PWA is hosted by Chromium-based Edge.</li>
+<li>Android has first-class support for Store PWAs through <a href="https://aka.ms/learn-pwa/30days-4.3/developer.chrome.com/docs/android/trusted-web-activity">Trusted Web Activity</a>, where your PWA is powered by Chrome.</li>
+<li>Amazon’s App Store has improved support for Store PWAs, allowing you to submit your URL directly to the store, which is then powered by a web view when run on Amazon devices.</li>
+</ul>
+<p>The other app stores and platforms tend to have lesser support for PWAs, usually involving a native app wrapping a web view with some PWA functionality available. Consider, for example, that publishing a PWA on iOS won’t have Push Notifications available, because iOS and mobile Safari don’t currently support the web standard for push notifications.</p>
+<p>The gap is closing, however, as platforms evolve and continue to improve their support for web technology.</p>
+<p>In the future, we expect to see first-class support for PWAs in all the major app stores. Even as it stands today, your PWA will run on all platforms, and as long as you progressively enhance to use PWA features, your app will light up as platforms support more PWA functionality.</p>
+<h3 id="submit-your-app-package-for-review">3. Submit your app package for review</h3>
+<p>Once you’ve registered with the app store’s developer program, submit your app for review through the developer portal.</p>
+<ul>
+<li><a href="https://aka.ms/learn-pwa/30days-4.3/blog.pwabuilder.com/docs/windows-platform">How to submit your PWA to Microsoft Store</a></li>
+<li><a href="https://aka.ms/learn-pwa/30days-4.3/blog.pwabuilder.com/docs/android-platform">How to submit your PWA to Google Play</a></li>
+<li><a href="https://aka.ms/learn-pwa/30days-4.3/blog.pwabuilder.com/docs/ios-platform">How to submit your PWA to iOS App Store</a></li>
+</ul>
+<p>Once you submit your app package, it’s treated like any other app: app store reviewers will inspect your app and, once approved, your app will be published in the app stores of your choosing.</p>
+<p><strong>Subsequent updates of your PWA don’t need to be published through the Store</strong>. Since your PWA loads its asssets dynamically, any features or bug fixes you push to your web server will <em>automatically be reflected in your app in the Store</em>. Typically, you’d only need to update your app store package if changing things like app icons, app name, description, screenshots, or other metadata about your app.</p>
+<h2 id="lets-publish-a-pwa-to-an-app-store">Let’s publish a PWA to an app store</h2>
+<p>Go to <a href="https://aka.ms/learn-pwa/30days-4.3/pwabuilder.com">PWABuilder.com</a> and input the URL to your PWA. (Don’t have one yet? You can use <a href="https://aka.ms/learn-pwa/30days-4.3/webboard.app">https://webboard.app</a> to try it out.)</p>
+<figure>
+<img src="https://user-images.githubusercontent.com/312936/156713422-7f970deb-ad7c-40ce-8375-384e41f2efc7.png" alt="image" /><figcaption>image</figcaption>
+</figure>
+<p>PWABuilder will analyze your PWA to ensure you have a manifest and a service worker: <img src="https://user-images.githubusercontent.com/312936/156713592-74ed51c1-c736-4da7-9d66-762d1f671017.png" alt="image" /></p>
+<p>Advance to the publish page and choose <code>Windows</code> -&gt; <code>Test Package</code>: <img src="https://user-images.githubusercontent.com/312936/156716438-5780cdbc-d1d9-4ff0-8576-527f147a118f.png" alt="image" /></p>
+<p>(Why <code>Test Package</code>? This will let us test out our PWA on a Windows device before we publish to the Store.)</p>
+<p>This will download a zip file containing your app package and instructions for testing it on your Windows device. If all looks good, you’re ready to <a href="https://aka.ms/learn-pwa/30days-4.3/blog.pwabuilder.com/docs/publish-a-new-app-to-the-microsoft-store">publish to the Microsoft Store</a>:</p>
+<ol type="1">
+<li>Login to your <a href="https://aka.ms/learn-pwa/30days-4.3/partner.microsoft.com">Microsoft Partner Center account</a></li>
+<li>Copy your <a href="https://aka.ms/learn-pwa/30days-4.3/blog.pwabuilder.com/docs/finding-your-windows-publisher-info">publisher values</a></li>
+<li>In PWABuilder, click <code>Windows</code> -&gt; <code>Store Package</code>, and paste in your publisher values.</li>
+</ol>
+<p>Your download will contain a Store-ready app package, which you can now upload to Partner Center for review.</p>
+<p>Approval typically takes 24-48 hours, and once approved, you’re in the app store. 😎</p>
+<h2 id="summary">Summary</h2>
+<p>Publishing your PWA to app stores can make your app more discoverable, bringing more users into your app.</p>
+<p>To publish your PWA to app stores, create an app package using tooling like <a href="https://aka.ms/learn-pwa/30days-4.3/pwabuilder.com">PWABuilder</a>.</p>
+<p>Once you’ve created your app package, submit the package to the app store’s developer portal for review.</p>
+<p>Happy packaging!</p>]]></description>
+    <pubDate>Tue, 8 Mar 2022 16:06:11 -0800</pubDate>
+  </item>
+   
+  <item>
     <title><![CDATA[Week 4. Platform and Practices]]></title>
     <link>https://aka.ms/learn-PWA/30Days-blog/#/30DaysOfPWA/platforms-practices/README</link>
     <guid isPermaLink="false">https://aka.ms/learn-PWA/30Days-blog/#/30DaysOfPWA/platforms-practices/README</guid>
@@ -1093,95 +1206,6 @@ To open last HTML report run:
 <p>As we’ve seen today, DevTools is a true Swiss-army knife when it comes to debugging PWA issues. There’s a tool for almost any scenario you might be having problems with. You can emulate mobile devices, check manifest errors, verify the state of your service worker and debug it, look at what’s been cached, and even test your app’s offline support!</p>
 <p>No one writes perfect code in one go, and with developer tools like these browser DevTools, you don’t have to. You can feel comfortable experimenting and trying things out, and as soon as something seems wrong, just hit <code>F12</code> to get debugging information about the problem.</p>]]></description>
     <pubDate>Tue, 1 Mar 2022 16:44:13 -0800</pubDate>
-  </item>
-   
-  <item>
-    <title><![CDATA[3.1: Get-started tools: Building new PWAs]]></title>
-    <link>https://aka.ms/learn-PWA/30Days-blog/#/30DaysOfPWA/dev-tools/01</link>
-    <guid isPermaLink="false">https://aka.ms/learn-PWA/30Days-blog/#/30DaysOfPWA/dev-tools/01</guid>
-    <description><![CDATA[<h1 id="get-started-tools-building-new-pwas">3.1: Get-started tools: Building new PWAs</h1>
-<p><strong>Author: Justin Willis (Software Engineer on the PWABuilder team) <span class="citation" data-cites="justinwillis96">[@justinwillis96]</span>(https://twitter.com/Justinwillis96)</strong></p>
-<p>Welcome to <strong>Week 3 Day 1</strong> of #30DaysOfPWA! Want to learn more about this project? Check out our <a href="../kickoff.md">Kickoff</a> post to get more details on the content roadmap and contributors. Now, let’s dive in!</p>
-<figure>
-<img src="_media/day-01.jpg" alt="image of title and author." /><figcaption>image of title and author.</figcaption>
-</figure>
-<h3 id="what-well-cover-today">WHAT WE’LL COVER TODAY</h3>
-<table>
-<colgroup>
-<col style="width: 38%" />
-<col style="width: 61%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Section</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><strong>Introduction</strong></td>
-<td>Introducing new tools from the PWABuilder project, PWA Studio and the PWA Starter!</td>
-</tr>
-<tr class="even">
-<td><strong>Getting started + demo</strong></td>
-<td>Let’s use these two new tools to create a new PWA with just a few button clicks.</td>
-</tr>
-<tr class="odd">
-<td><strong>Under the hood</strong></td>
-<td>Deep dive into some of the tools used in PWA Studio and Starter</td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h2 id="introduction">Introduction</h2>
-<p>Hello! For today’s post on the <a href="https://aka.ms/learn-pwa/30Days-blog">30 Days of PWA</a> series, we will be getting started with some new tooling from the <a href="https://aka.ms/learn-PWA/30Days-3.1/github.com/pwa-builder/PWABuilder">PWABuilder Project</a>! The PWABuilder team has been working on tools for developers at any step of the building process, from starting a brand new PWA to packaging your existing PWA for the app stores. In this article, we will focus on <a href="https://aka.ms/learn-PWA/30Days-3.1/pwa-studio">PWA Studio</a>, a new VSCode Extension from the PWABuilder project, and <a href="https://aka.ms/learn-PWA/30Days-3.1/github.com/pwa-builder/pwa-starter">the PWA Starter</a>, also from the PWABuilder team, a codebase template to help you get started with building new PWAs.</p>
-<h2 id="getting-started-demo">Getting Started + Demo</h2>
-<p>Let’s start building a new Progressive Web App using PWA Studio! PWA Studio’s <code>Start a new App</code> feature creates your app using <a href="https://aka.ms/learn-PWA/30Days-3.1/github.com/pwa-builder/pwa-starter">the PWA Starter</a>.</p>
-<ol type="1">
-<li><p>First, if you have not installed PWA Studio yet, install it from the <a href="https://aka.ms/learn-PWA/30Days-3.1/pwa-studio">VSCode Marketplace</a>.</p></li>
-<li><p>Now that you have PWA Studio installed, click the PWABuilder Icon on the left side of VSCode</p></li>
-</ol>
-<figure>
-<img src="_media/icon-on-left.png" alt="The PWABuilder icon on the left side of VSCode" /><figcaption>The PWABuilder icon on the left side of VSCode</figcaption>
-</figure>
-<ol start="3" type="1">
-<li>You should now see a <code>Start new PWA</code> button in the bottom bar of VSCode. Click this button to start generating a PWA.</li>
-</ol>
-<figure>
-<img src="_media/start-new-pwa.png" alt="The start new pwa button can be found in the bottom left" /><figcaption>The start new pwa button can be found in the bottom left</figcaption>
-</figure>
-<ol start="4" type="1">
-<li><p>Enter your respository name when propmted, this is normally the name of your app.</p></li>
-<li><p>Your PWA will be generated using the Starter and all of your dependencies will be installed!</p></li>
-<li><p>At this point, you are now ready to start coding! Click <code>F5</code> or Click <code>Run</code> and <code>Start Debugging</code> at the top of VSCode. Your new PWA will now open in dev mode, with auto-reload, in its own App window. Enabling you to build your PWA in an app-first manner.</p></li>
-</ol>
-<figure>
-<img src="_media/new-app.png" alt="Your new app will open in its own app window!" /><figcaption>Your new app will open in its own app window!</figcaption>
-</figure>
-<h2 id="under-the-hood">Under the Hood</h2>
-<h3 id="pwa-starter">PWA Starter</h3>
-<figure>
-<img src="_media/pwa-starter.png" alt="The PWA Starter Github homepage" /><figcaption>The PWA Starter Github homepage</figcaption>
-</figure>
-<p><a href="https://aka.ms/learn-PWA/30Days-3.1/github.com/pwa-builder/pwa-starter">The PWA Starter</a> is a code template, similar to what tools like create-react-app or the Angular CLI can generate.</p>
-<p>With the PWA Starter, you get an app that: - Has no build system to set up and no boilerplate code to add. Everything is included out of the box. - Has a Service Worker system using <a href="https://aka.ms/learn-PWA/30Days-3.1/developers.google.com/web/tools/workbox">Workbox</a> - Scores close to 100 on Lighthouse, out of the box - Uses the <a href="https://aka.ms/learn-PWA/30Days-3.1/docs.microsoft.com/en-us/fluent-ui/web-components">Fluent Web Components</a>, you can build native looking PWAs on Windows - Has everything needed to be installable in the browser - Is ready to be packaged for the app stores using <a href="https://aka.ms/learn-PWA/30Days-3.1/www.pwabuilder.com">PWABuilder</a></p>
-<h3 id="pwa-studio">PWA Studio</h3>
-<figure>
-<img src="_media/pwa-studio.png" alt="The PWA Studio extension running in VSCode" /><figcaption>The PWA Studio extension running in VSCode</figcaption>
-</figure>
-<p>PWA Studio is an extension that brings everything you need to build PWAs to <a href="https://aka.ms/learn-PWA/30Days-3.1/code.visualstudio.com">VSCode</a>. When you <a href="https://aka.ms/learn-PWA/30Days-3.1/pwa-studio">install PWA Studio</a>, you can: - Start building a new PWA in seconds using the PWABuilder pwa-starter. - Learn how to publish your app to the Web with <a href="https://azure.microsoft.com/en-us/services/app-service/static/">Azure Static Web Apps</a> - Add a Web App Manifest and Service Worker to your existing web app - Package your PWA for the Microsoft Store, Google Play, and Apple App Store - Generate Icons for your PWA - Validate that your PWA is installable in the browser and is ready to publish to the app stores - Learn more about using the Web App Manifest to enable new features in your PWA - Use the snippets to implement native features that can improve the User Experience of your PWA.</p>
-<p>And that was how we use the new PWA Studio VSCode Extension and the PWA Starter to start building a PWA with just a few button clicks!</p>
-<p>In our <a href="./02.md">next post</a>, we’ll dive into converting our existing website to a PWA!</p>
-<h2 id="resources">Resources</h2>
-<ul>
-<li><a href="https://aka.ms/learn-PWA/30Days-3.1/github.com/pwa-builder/PWABuilder">PWABuilder Project</a></li>
-<li><a href="https://aka.ms/learn-PWA/30Days-3.1/pwa-studio">Install PWA Studio</a></li>
-<li><a href="https://aka.ms/learn-PWA/30Days-3.1/github.com/pwa-builder/pwa-starter">The PWA Starter</a></li>
-<li><a href="https://aka.ms/learn-PWA/30Days-3.1/code.visualstudio.com">VSCode</a></li>
-<li><a href="https://aka.ms/learn-PWA/30Days-3.1/docs.microsoft.com/en-us/fluent-ui/web-components">Fluent Web Components</a></li>
-<li><a href="https://aka.ms/learn-PWA/30Days-3.1/developers.google.com/web/tools/workbox">Workbox</a></li>
-</ul>]]></description>
-    <pubDate>Tue, 1 Mar 2022 10:25:38 -0800</pubDate>
   </item>
   
 </channel>
