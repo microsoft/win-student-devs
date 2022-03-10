@@ -6,6 +6,107 @@
   <description>For 30 days, we publish articles that aim to introduce developers to Progressive Web App. We have content that covers 0-level to 200-level topics. Each post takes 5-10 minutes to read and is followed by a sample snippet or exercise.</description>
    
   <item>
+    <title><![CDATA[4.4: Best Practices for PWA Reliability]]></title>
+    <link>https://aka.ms/learn-PWA/30Days-blog/#/30DaysOfPWA/platforms-practices/04</link>
+    <guid isPermaLink="false">https://aka.ms/learn-PWA/30Days-blog/#/30DaysOfPWA/platforms-practices/04</guid>
+    <description><![CDATA[<h1 id="best-practices-for-pwa-reliability">4.4: Best Practices for PWA Reliability</h1>
+<p><strong>Author: Zach Teutsch <span class="citation" data-cites="devteutsch">[@devteutsch]</span>(https://twitter.com/devteutsch)</strong></p>
+<p>Welcome to Week 4, Day 4 of the <a href="https://aka.ms/learn-pwa/30Days-blog">30 Days of PWA</a> series! Now that we’ve seen how to start building PWAs and what basic and advanced capabilities they bring, it’s time to dive into what a <em>good</em> PWA really looks like it, and how we can start to build quality applications ourselves. Week 4 is all about some of the best practices and technologies you can use to really polish up your PWA.</p>
+<figure>
+<img src="_media/day4.png" alt="Placeholder Banner Only. Replace when final assets ready." /><figcaption>Placeholder Banner Only. Replace when final assets ready.</figcaption>
+</figure>
+<h3 id="a-quick-note">A Quick Note</h3>
+<p>This article is about the best practices for reliability with PWAs. If you’re looking for the basics on offline behavior and caching in PWAs, check out the <a href="../core-concepts/05.md">Make PWA Work Offline</a> article from Week 1.</p>
+<h2 id="what-does-reliability-look-like-for-pwa">What Does Reliability Look Like For PWA?</h2>
+<p>In general, reliability refers to whether or not your application can maintain a consistent user experience under different circumstances. Some of the issues that can follow under the umbrella of reliability: * How fast your application loads on varying connection strengths * How your application works in offline conditions * How your application and services work as they scale up and increase in usage * How your application runs on older and less powerful devices</p>
+<p>For PWA, reliability issues related to your user’s internet connection are particularly of interest, as more traditional web experiences were heavily dependent on the availability of a connection.</p>
+<p>Today, we’re going to build on what we saw about caching in Week 1 to see how we can take advantage of PWA capabilities to make our apps work well regardless of the strength or availability of the user’s internet connection.</p>
+<h2 id="speeding-up-your-pwa-with-caching-strategies">Speeding Up Your PWA With Caching Strategies</h2>
+<p>One of the ways you can speed up your PWA and increase reliability is by minimizing requests to the network and making use of cached responses whenever possible. There are many caching strategies that you can take advantage of, but today we’re just going to take a look at two popular options: <code>cache-first</code> and <code>stale-while-revalidate</code>.</p>
+<h2 id="cache-first">Cache-First</h2>
+<p>In the <a href="../core-concepts/05.md">Make PWA Work Offline</a> article from Week 1, we saw a little bit about how a cache-first works. A cache-first strategy is exactly what it sounds like: on a <code>fetch</code> event, our service worker will check the cache for the response first, and go to the network <em>only</em> if the cache fails.</p>
+<p>We saw this service worker snippet:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb1-1" title="1"><span class="va">self</span>.<span class="at">addEventListener</span>(<span class="st">&#39;fetch&#39;</span><span class="op">,</span> event <span class="kw">=&gt;</span> <span class="op">{</span></a>
+<a class="sourceLine" id="cb1-2" title="2">    <span class="va">event</span>.<span class="at">respondWith</span>((<span class="kw">async</span> () <span class="kw">=&gt;</span> <span class="op">{</span></a>
+<a class="sourceLine" id="cb1-3" title="3">        <span class="kw">const</span> cache <span class="op">=</span> <span class="cf">await</span> <span class="va">caches</span>.<span class="at">open</span>(CACHE_NAME)<span class="op">;</span></a>
+<a class="sourceLine" id="cb1-4" title="4"></a>
+<a class="sourceLine" id="cb1-5" title="5">        <span class="co">// Try the cache first.</span></a>
+<a class="sourceLine" id="cb1-6" title="6">        <span class="kw">const</span> cachedResponse <span class="op">=</span> <span class="cf">await</span> <span class="va">cache</span>.<span class="at">match</span>(<span class="va">event</span>.<span class="at">request</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb1-7" title="7">        <span class="cf">if</span> (cachedResponse <span class="op">!==</span> <span class="kw">undefined</span>) <span class="op">{</span></a>
+<a class="sourceLine" id="cb1-8" title="8">            </a>
+<a class="sourceLine" id="cb1-9" title="9">            <span class="cf">return</span> cachedResponse<span class="op">;</span></a>
+<a class="sourceLine" id="cb1-10" title="10">        <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></a>
+<a class="sourceLine" id="cb1-11" title="11">            <span class="co">// Nothing in cache, let&#39;s go to the network.</span></a>
+<a class="sourceLine" id="cb1-12" title="12">        <span class="op">}</span></a>
+<a class="sourceLine" id="cb1-13" title="13">    <span class="op">}</span></a>
+<a class="sourceLine" id="cb1-14" title="14"><span class="op">}</span></a></code></pre></div>
+<p>Cache-first is a great strategy for quickly minimizing network requests, but it can be a bit naive and limiting if applied too generally to your application.</p>
+<p>For static, long-term assets, cache-first works great. For quickly changing resources, however, a cache-first strategy can prevent data from getting much-needed updates and your user experience can suffer as a result.</p>
+<p>Cache-first is a great starting point for improving performance reliability, but let’s take a look at something a little more flexible.</p>
+<h2 id="stale-while-revalidate">Stale-While-Revalidate</h2>
+<p>The <code>stale-while-revalidate</code> builds on cache-first to give us the best of both worlds: loading speed and freshness.</p>
+<p>Like cache-first, this strategy will check the cache for the needed response and will return a match. However, instead of stopping there, we’ll take the request to the network anyway, and update the cache in the background with the response. If there’s a cache miss, we go straight to the network.</p>
+<p>Let’s update our service worker snippet to reflect this:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb2-1" title="1"><span class="va">self</span>.<span class="at">addEventListener</span>(<span class="st">&#39;fetch&#39;</span><span class="op">,</span> event <span class="kw">=&gt;</span> <span class="op">{</span></a>
+<a class="sourceLine" id="cb2-2" title="2">    <span class="va">event</span>.<span class="at">respondWith</span>((<span class="kw">async</span> () <span class="kw">=&gt;</span> <span class="op">{</span></a>
+<a class="sourceLine" id="cb2-3" title="3">        <span class="kw">const</span> cache <span class="op">=</span> <span class="cf">await</span> <span class="va">caches</span>.<span class="at">open</span>(CACHE_NAME)<span class="op">;</span></a>
+<a class="sourceLine" id="cb2-4" title="4"></a>
+<a class="sourceLine" id="cb2-5" title="5">        <span class="co">// Try the cache first like last time.</span></a>
+<a class="sourceLine" id="cb2-6" title="6">        <span class="kw">const</span> cachedResponse <span class="op">=</span> <span class="cf">await</span> <span class="va">cache</span>.<span class="at">match</span>(<span class="va">event</span>.<span class="at">request</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb2-7" title="7">        <span class="cf">if</span> (cachedResponse <span class="op">!==</span> <span class="kw">undefined</span>) <span class="op">{</span></a>
+<a class="sourceLine" id="cb2-8" title="8">            <span class="co">// Now, we fetch a new response and cache it in the background</span></a>
+<a class="sourceLine" id="cb2-9" title="9">            <span class="at">fetch</span>(<span class="va">event</span>.<span class="at">request</span>).<span class="at">then</span>( response <span class="kw">=&gt;</span> <span class="op">{</span></a>
+<a class="sourceLine" id="cb2-10" title="10">                <span class="va">cache</span>.<span class="at">put</span>(<span class="va">event</span>.<span class="at">request</span><span class="op">,</span> <span class="va">response</span>.<span class="at">clone</span>())<span class="op">;</span></a>
+<a class="sourceLine" id="cb2-11" title="11">            <span class="op">}</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb2-12" title="12">            <span class="co">// We don&#39;t await the above line, so we return our cachedResponse right away</span></a>
+<a class="sourceLine" id="cb2-13" title="13">            <span class="cf">return</span> cachedResponse<span class="op">;</span></a>
+<a class="sourceLine" id="cb2-14" title="14">        <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></a>
+<a class="sourceLine" id="cb2-15" title="15">            <span class="co">// Go to the network otherwise</span></a>
+<a class="sourceLine" id="cb2-16" title="16">        <span class="op">}</span></a>
+<a class="sourceLine" id="cb2-17" title="17">    <span class="op">}</span></a>
+<a class="sourceLine" id="cb2-18" title="18"><span class="op">}</span></a></code></pre></div>
+<p>With this approach, we get the speed benefit of loading a cached response right away, but balance it by keeping our cache relatively up-to-date. Next time we make that request, we will get the updated response instead of the same cached response over and over again.</p>
+<h2 id="maintaining-data-offline-with-indexeddb">Maintaining Data Offline with IndexedDB</h2>
+<p>Caching works great for assets, but what about storing structured local data for our? We can use <a href="https://aka.ms/learn-pwa/30days-4.4/developer.mozilla.org/docs/Web/API/IndexedDB_API">IndexedDB</a> to handle our local data storage to keep our user experience as intact as possible in offline circumstances. IndexedDB allows for asynchronous storage of large quantities of structured data that would exceed the capabilities of our cache or LocalStorage.</p>
+<p>The API for IndexedDB can be a bit low-level for normal usage, so we’ll be taking a look at simple wrapper called <a href="https://aka.ms/learn-pwa/30days-4.4/localforage.github.io/localForage">LocalForage</a>.</p>
+<h2 id="using-localforage-to-manage-data">Using LocalForage to Manage Data</h2>
+<p>We can use a hypothetical example to see how we might use LocalForage in an application.</p>
+<p>Let’s pretend we are working on a simple email client, and we want to store the X most recent emails so that if our PWA loses connection, our user could still read their latest emails.</p>
+<p><em>Note</em>: IndexedDB can be used from inside your application and your service worker, choose whatever (or both) works best for your use case.</p>
+<p>First, we could create an instance (the same as a database) of localforage and name that instance:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb3-1" title="1"><span class="co">// our DB name</span></a>
+<a class="sourceLine" id="cb3-2" title="2"><span class="kw">const</span> databaseName <span class="op">=</span> <span class="st">&quot;EmailDB&quot;</span></a>
+<a class="sourceLine" id="cb3-3" title="3"><span class="co">// create an instance with our name</span></a>
+<a class="sourceLine" id="cb3-4" title="4"><span class="kw">var</span> emailDatabase <span class="op">=</span> <span class="va">localforage</span>.<span class="at">createInstance</span>(<span class="op">{</span><span class="dt">name</span><span class="op">:</span> databaseName<span class="op">}</span>)<span class="op">;</span></a></code></pre></div>
+<p>Now, let’s add our data to it using a key-value pair:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb4-1" title="1"><span class="co">// Let&#39;s get our recent emails as an array</span></a>
+<a class="sourceLine" id="cb4-2" title="2"><span class="kw">var</span> emails <span class="op">=</span> <span class="at">GetRecentEmails</span>()<span class="op">;</span></a>
+<a class="sourceLine" id="cb4-3" title="3"><span class="co">// and add that to our database</span></a>
+<a class="sourceLine" id="cb4-4" title="4"><span class="va">emailDatabase</span>.<span class="at">setItem</span>(<span class="st">&quot;recent-emails&quot;</span><span class="op">,</span> emails)<span class="op">;</span></a></code></pre></div>
+<p>Later, we can fetch our emails using the key and do something with the value:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb5-1" title="1"><span class="co">// Asynchronously fetch our emails and then populate our inbox</span></a>
+<a class="sourceLine" id="cb5-2" title="2"><span class="va">emailDatabase</span>.<span class="at">getItem</span>(<span class="st">&quot;recent-emails&quot;</span>).<span class="at">then</span>( emails <span class="kw">=&gt;</span> <span class="op">{</span></a>
+<a class="sourceLine" id="cb5-3" title="3">    <span class="at">PopulateInbox</span>(emails)<span class="op">;</span></a>
+<a class="sourceLine" id="cb5-4" title="4"><span class="op">}</span>)<span class="op">;</span></a></code></pre></div>
+<p>And lastly, we can remove data just as easily:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb6-1" title="1"><span class="co">// remove based on key</span></a>
+<a class="sourceLine" id="cb6-2" title="2"><span class="va">emailDatabase</span>.<span class="at">removeItem</span>(<span class="st">&quot;recent-emails&quot;</span>)<span class="op">;</span></a></code></pre></div>
+<p>Super easy, right? LocalForage keeps its API to just a handful of features for ease of use, and you can learn more about it’s capabilities <a href="https://aka.ms/learn-pwa/30days-4.4/localforage.github.io/localForage">here</a>. It’s a great option for getting started with IndexedDB and for storing data for simple use cases.</p>
+<p>If you need something more flexible for your PWA, there’s also <a href="https://aka.ms/learn-pwa/30days-4.4/github.com/jakearchibald/idb">idb</a>, which is another great IndexedDB wrapper that packs more of a punch when it comes to functionality. However, it is somewhat more involved when it comes to managing your database and its transactions, so get ready for more complexity. If you like the style of idb, but want something simpler like LocalForage, there’s also <a href="https://github.com/jakearchibald/idb-keyval">idb-keyval</a>, which is maintained by the creator of idb and has a smaller package size than LocalForage.</p>
+<h2 id="wrapping-up">Wrapping Up</h2>
+<p>That’s it for Best Practices for PWA Reliability! There’s plenty more to do as far as making your PWA more reliable, but basic caching strategies and IndexedDB are great launching points for creating reliable offline web experiences. Only thing left to do now is to get out there and get caching!</p>
+<h2 id="resources">Resources</h2>
+<ul>
+<li><a href="../core-concepts/05.md">Making PWA Work Offline</a></li>
+<li><a href="https://aka.ms/learn-pwa/30days-4.4/web.dev/offline-cookbook">Offline Cookbook</a></li>
+<li><a href="https://aka.ms/learn-pwa/30days-4.4/developer.mozilla.org/docs/Web/API/IndexedDB_API">MDN IndexedDB documentation</a></li>
+<li><a href="https://aka.ms/learn-pwa/30days-4.4/localforage.github.io/localForage">LocalForage</a></li>
+<li><a href="https://aka.ms/learn-pwa/30days-4.4/github.com/jakearchibald/idb">idb</a></li>
+</ul>]]></description>
+    <pubDate>Wed, 9 Mar 2022 16:07:01 -0800</pubDate>
+  </item>
+   
+  <item>
     <title><![CDATA[4.3: Distributing Your PWA]]></title>
     <link>https://aka.ms/learn-PWA/30Days-blog/#/30DaysOfPWA/platforms-practices/03</link>
     <guid isPermaLink="false">https://aka.ms/learn-PWA/30Days-blog/#/30DaysOfPWA/platforms-practices/03</guid>
@@ -1043,169 +1144,6 @@ To open last HTML report run:
 <li><a href="https://aka.ms/learn-pwa/30Days-survey">🗣 Help us grow with your feedback</a></li>
 </ul>]]></description>
     <pubDate>Wed, 2 Mar 2022 14:53:43 -0800</pubDate>
-  </item>
-   
-  <item>
-    <title><![CDATA[3.3: Debugging tools #1]]></title>
-    <link>https://aka.ms/learn-PWA/30Days-blog/#/30DaysOfPWA/dev-tools/03</link>
-    <guid isPermaLink="false">https://aka.ms/learn-PWA/30Days-blog/#/30DaysOfPWA/dev-tools/03</guid>
-    <description><![CDATA[<h1 id="debugging-tools-1">3.3: Debugging tools #1</h1>
-<p><strong>Author: Patrick Brosset <span class="citation" data-cites="patrickbrosset">[@patrickbrosset]</span>(https://twitter.com/patrickbrosset)</strong></p>
-<p>Welcome to <strong>Week 3 Day 3</strong> of #30DaysOfPWA! Want to learn more about this project? Check out our <a href="../kickoff.md">Kickoff</a> post to get more details on the content roadmap and contributors. Now, let’s dive in!</p>
-<figure>
-<img src="_media/day-03.jpg" alt="image of title and author." /><figcaption>image of title and author.</figcaption>
-</figure>
-<h3 id="what-well-cover-today">WHAT WE’LL COVER TODAY</h3>
-<table>
-<colgroup>
-<col style="width: 38%" />
-<col style="width: 61%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Section</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><strong>Testing on other devices</strong></td>
-<td>How to simulate your app being rendered on a mobile device during development?</td>
-</tr>
-<tr class="even">
-<td><strong>Troubleshooting installation issues</strong></td>
-<td>How to detect issues preventing your app from installing and resolve them?</td>
-</tr>
-<tr class="odd">
-<td><strong>Reloading manifest changes</strong></td>
-<td>How to make sure your manifest changes are reloaded?</td>
-</tr>
-<tr class="even">
-<td><strong>Troubleshooting server worker issues</strong></td>
-<td>How to check if your service worker is running, force update it, and debug it?</td>
-</tr>
-<tr class="odd">
-<td><strong>Troubleshooting cache issues</strong></td>
-<td>How to view and manage your cached resources?</td>
-</tr>
-<tr class="even">
-<td><strong>Testing offline support</strong></td>
-<td>How to simulate offline mode?</td>
-</tr>
-</tbody>
-</table>
-<hr />
-<p>As you start creating your PWA and making use of service workers, storage, and other features, you may start running into bugs. Thankfully, web browsers come with powerful built-in tools you can use to inspect your application’s code and debug it.</p>
-<p>On top of accessing HTML and CSS, editing it live in the browser, finding JavaScript errors or debugging them, browser developer tools (or just DevTools) also come with tools specifically made for PWAs.</p>
-<h2 id="overview">Overview</h2>
-<p>Today, we’ll cover some of the most useful tools when working on Progressive Web Apps code. In this article we’ll take a look at how to simulate different devices, troubleshoot installability and caching issues, as well as test offline scenarios.</p>
-<p>Although we’ll be using Microsoft Edge to demo the tools, other browsers have very similar tools.</p>
-<h2 id="testing-on-other-devices">Testing on other devices</h2>
-<p>Nothing replaces testing on real devices. So once your app is getting ready and runs on a web server, it’s great if you can check it on other computers and mobile devices.</p>
-<p>It’s not always possible though and DevTools comes with a very useful <strong>Device Emulation</strong> tool you can use to check what your app would look and feel like on other devices.</p>
-<p>To start <strong>Device Emulation</strong>:</p>
-<ul>
-<li>Open DevTools by pressing <code>F12</code> or right-clicking the page and selecting <code>Inspect</code>.</li>
-<li>Click the <strong>Toggle device emulation</strong> button in the top-left corner of DevTools.</li>
-</ul>
-<figure>
-<img src="_media/device-mode.png" alt="Screenshot of a tab in Microsoft Edge with DevTools open and the device emulation tool started, making the page appear as if rendered on a mobile device" /><figcaption>Screenshot of a tab in Microsoft Edge with DevTools open and the device emulation tool started, making the page appear as if rendered on a mobile device</figcaption>
-</figure>
-<p>Choose the devices you want to emulate in the <strong>Dimensions</strong> drop-down menu. When you do, the viewport resizes to match the emulated device’s screen, and your cursor acts like a touch input if the emulated device supports it. If you want, you can also click <strong>Edit</strong> in the menu and create your own devices.</p>
-<p>Note that <strong>Device Emulation</strong> only works when your app is running in a browser tab. If it is running separately from the browser (e.g. when using <a href="01.md">PWA Starter</a>, or when installed and running as a separate window), then the <strong>Toggle device emulation</strong> button won’t be available in DevTools.</p>
-<p>Learn more about the <a href="https://aka.ms/learn-PWA/device-emulation"><strong>Device Emulation</strong> tool here</a>.</p>
-<h2 id="making-sure-the-app-is-installable">Making sure the app is installable</h2>
-<p>During week 1, we saw the 3 building blocks of a PWA: using <a href="../core-concepts/04.md">HTTPS</a>, a <a href="../core-concepts/05.md">Service Worker</a>, and a <a href="../core-concepts/06.md">Web App Manifest</a>.</p>
-<p>Web browsers will check that all 3 are available before making a web app installable. But they also run a few more checks on the content of the worker and manifest before letting a user install the app.</p>
-<p>There may be times when the web browser thinks your app isn’t ready to be installed, and it is not always straightforward to know why. To debug this problem, you can review the installability information in the <strong>Application</strong> tool.</p>
-<p>To review this information:</p>
-<ul>
-<li>Open DevTools.</li>
-<li>Open the <strong>Application</strong> tool by clicking the <code>+</code> sign in the toolbar and finding the tool name in the list.</li>
-<li>Once in the tool, go to the <strong>Manifest</strong> tab in the left sidebar.</li>
-</ul>
-<p>You may see a number of warnings that prevent your application from being installable.</p>
-<figure>
-<img src="_media/installability-warnings.png" alt="Screenshot of the Application tool in Microsoft Edge DevTools, showing the Manifest tab with many installability warnings" /><figcaption>Screenshot of the Application tool in Microsoft Edge DevTools, showing the Manifest tab with many installability warnings</figcaption>
-</figure>
-<p>Review and address these warnings, and reload the page. Once the warnings are gone, the web browser should display the app installation button in the address bar, which in Microsoft Edge, looks like this:</p>
-<figure>
-<img src="_media/app-available-icon.png" alt="Screenshot of the App Available button in Microsoft Edge DevTools" /><figcaption>Screenshot of the App Available button in Microsoft Edge DevTools</figcaption>
-</figure>
-<p>Learn more about using the <a href="https://aka.ms/learn-PWA/debug-PWA"><strong>Application</strong> tool to review your Web App Manifest</a>.</p>
-<h2 id="reloading-manifest-changes">Reloading manifest changes</h2>
-<p>While we’re on the topic of fixing manifest issues, there will be times when you make manifest changes and want to test the app again.</p>
-<p>Because the manifest file is read upon installation, the only way for the OS to know about the change is by installing the app again. So, in order to reload your manifest changes:</p>
-<ol type="1">
-<li>Un-install the app:
-<ul>
-<li>On a mobile device, PWAs can be un-installed like any other apps.</li>
-<li>On desktop computers, using Microsoft Edge, or Chrome, go to the special <code>about:apps</code> page to un-install any app.</li>
-</ul></li>
-<li>Go to the app again with your web browser, and make sure the new manifest is loaded.
-<ul>
-<li>You may need to force a hard-reload: open DevTools, then right-click on the page refresh icon in the browser toolbar and choose <strong>Empty cache and hard refresh</strong>.</li>
-</ul></li>
-<li>Install the app again.</li>
-</ol>
-<h2 id="checking-if-your-service-worker-is-running">Checking if your service worker is running</h2>
-<p>Once registered, a service worker has its own lifecycle, independent from the one of the web page that registered it. It can get started and stopped, as well as updated by the browser outside of your control. As a developer, it’s important to know what state a service worker is currently in, and here DevTools can help again.</p>
-<p>To find information about your PWA service worker:</p>
-<ul>
-<li>Open DevTools.</li>
-<li>Open the <strong>Application</strong> tool by clicking the <code>+</code> sign in the toolbar and finding the tool name in the list.</li>
-<li>Once in the tool, go to the <strong>Service Workers</strong> tab in the left sidebar.</li>
-</ul>
-<p>From there a few different pieces of information are provided including the name of the service worker file (which you can click to open it) and its status. This tool makes it easy to see whether the worker is running but can also be used to stop the service worker and, more usefully, update it. If you made a change to the code of your service worker and want to test it right away, click the <strong>Update</strong> link to do it.</p>
-<figure>
-<img src="_media/service-worker-status.png" alt="Screenshot of the Application tool in Microsoft Edge DevTools, showing the Service Workers panel, with the status of the worker, and the Update button" /><figcaption>Screenshot of the Application tool in Microsoft Edge DevTools, showing the Service Workers panel, with the status of the worker, and the Update button</figcaption>
-</figure>
-<p>If you want to debug the JavaScript code in your worker, click its <strong>Source</strong> file name in the tool. This will automatically open the file in the <strong>Sources</strong> tool. You can always go back to the <strong>Application</strong> tool by using the tab bar at the top, but the <strong>Sources</strong> tool is very handy for when you need to investigate JavaScript problems that require checking what the code does step by step.</p>
-<ul>
-<li>Click in the line number gutter, next to where you suspect the bug might be. This will add a breakpoint on that line. The next time this line runs, the JavaScript debugger will pause there.</li>
-<li>Now use the app so that this line of code is execute. For example, if you added the breakpoint in your <code>fetch</code> handler, use the app so that a network request is made.</li>
-<li>The debugger now pauses on that line, making it possible to review the values of all the accessible variables, as well as continue the execution step by step.</li>
-</ul>
-<figure>
-<img src="_media/service-worker-debug.png" alt="Screenshot of the Sources tool in Microsoft Edge DevTools, showing the debugger paused in the service worker file" /><figcaption>Screenshot of the Sources tool in Microsoft Edge DevTools, showing the debugger paused in the service worker file</figcaption>
-</figure>
-<p>Learn more about using the <a href="https://aka.ms/learn-PWA/sources-tool"><strong>Sources</strong> tool to debug JavaScript code</a>.</p>
-<h2 id="troubleshooting-cache-issues">Troubleshooting cache issues</h2>
-<p>A lot of your service worker code likely revolves around accessing the cache, either reading from it or writing to it. There will come a time when you need to debug cache issues. Here the <strong>Sources</strong> tool will be useful to debug your code step by step, but it’s also very important to be able to see what’s in the cache already.</p>
-<p>DevTools comes with a way to visualize the cache for your PWA.</p>
-<ul>
-<li>Open DevTools.</li>
-<li>Open the <strong>Application</strong> tool by clicking the <code>+</code> sign in the toolbar and finding the tool name in the list.</li>
-<li>Once in the tool, expand the <strong>Cache Storage</strong> section in the left sidebar.</li>
-<li>Find your cache (it will be displayed in the expanded section with the name you chose in your service worker code) and click on it.</li>
-</ul>
-<p>This tool will display all of the cached resources in a table. The table is very handy, it lets you search through the list, sort by various columns, preview the content of a resource, etc.</p>
-<figure>
-<img src="_media/cache-storage.png" alt="Screenshot of the Application tool in Microsoft Edge DevTools, showing the Cache Storage section, with a table filled with cached resources" /><figcaption>Screenshot of the Application tool in Microsoft Edge DevTools, showing the Cache Storage section, with a table filled with cached resources</figcaption>
-</figure>
-<p>One of the most useful thing you can do in this tool is delete entries from the cache. This way you can make changes to your caching code, and test again, as if the resource had not been cached before. To delete a cached resource:</p>
-<ul>
-<li>Select it by clicking on it in the <strong>Cache Storage</strong> table.</li>
-<li>Click the <strong>Delete Selected</strong> button in the table toolbar.</li>
-</ul>
-<p>Learn more about using the <a href="https://aka.ms/learn-PWA/cache-storage"><strong>Cache Storage</strong> tool</a>.</p>
-<h2 id="testing-offline-support">Testing offline support</h2>
-<p>Making your PWA work even when there is no network connection is key to a true app-like user experience, but it’s almost certain that when coding, you do have access to the network. So how do you test the offline scenario?</p>
-<p>Again, DevTools comes to the rescue!</p>
-<ul>
-<li>Open DevTools.</li>
-<li>Open the <strong>Application</strong> tool by clicking the <code>+</code> sign in the toolbar and finding the tool name in the list.</li>
-<li>Once in the tool, go to the <strong>Service Workers</strong> tab in the left sidebar.</li>
-<li>Select the <strong>Offline</strong> checkbox at the top of the tool.</li>
-</ul>
-<p>Once done, the browser will act as if you’re not connected to the internet and you can use the app to see how it behaves. For example, you could try to refresh (by pressing <code>F5</code> or <code>ctrl+R</code>/<code>cmd+R</code>) and see if the app loads at all.</p>
-<figure>
-<img src="_media/offline-mode.png" alt="Screenshot of the Application tool in Microsoft Edge DevTools, showing the Service Workers section and the Offline checkbox" /><figcaption>Screenshot of the Application tool in Microsoft Edge DevTools, showing the Service Workers section and the Offline checkbox</figcaption>
-</figure>
-<h2 id="summary">Summary</h2>
-<p>As we’ve seen today, DevTools is a true Swiss-army knife when it comes to debugging PWA issues. There’s a tool for almost any scenario you might be having problems with. You can emulate mobile devices, check manifest errors, verify the state of your service worker and debug it, look at what’s been cached, and even test your app’s offline support!</p>
-<p>No one writes perfect code in one go, and with developer tools like these browser DevTools, you don’t have to. You can feel comfortable experimenting and trying things out, and as soon as something seems wrong, just hit <code>F12</code> to get debugging information about the problem.</p>]]></description>
-    <pubDate>Tue, 1 Mar 2022 16:44:13 -0800</pubDate>
   </item>
   
 </channel>
