@@ -6,6 +6,113 @@
   <description>For 30 days, we publish articles that aim to introduce developers to Progressive Web App. We have content that covers 0-level to 200-level topics. Each post takes 5-10 minutes to read and is followed by a sample snippet or exercise.</description>
    
   <item>
+    <title><![CDATA[4.5: PWA Maintainability: Using Web Components]]></title>
+    <link>https://aka.ms/learn-PWA/30Days-blog/#/30DaysOfPWA/platforms-practices/05</link>
+    <guid isPermaLink="false">https://aka.ms/learn-PWA/30Days-blog/#/30DaysOfPWA/platforms-practices/05</guid>
+    <description><![CDATA[<h1 id="pwa-maintainability-using-web-components">4.5: PWA Maintainability: Using Web Components</h1>
+<p><strong>Author: Zach Teutsch <span class="citation" data-cites="devteutsch">[@devteutsch]</span>(https://twitter.com/devteutsch)</strong></p>
+<p>Welcome to Week 4, Day 5 of the <a href="https://aka.ms/learn-pwa/30Days-blog">30 Days of PWA</a> series! Now that we’ve seen how to start building PWAs and what basic and advanced capabilities they bring, it’s time to dive into what a <em>good</em> PWA really looks like it, and how we can start to build quality applications ourselves. Week 4 is all about some of the best practices and technologies you can use to really polish up your PWA.</p>
+<figure>
+<img src="_media/day5.png" alt="image of title and author." /><figcaption>image of title and author.</figcaption>
+</figure>
+<h2 id="where-do-we-start-with-maintainability">Where Do We Start With Maintainability?</h2>
+<p>Keeping our PWA maintainable, or any application for that matter, can be a serious undertaking with tons of unique challenges. The web capabilities that make PWAs possible allow for more capable and complicated web experiences, but it comes with a price. How do we keep our increasingly complex PWA projects clean and extensible?</p>
+<p>Out of the many options available to us, today we’ll be looking at one technology we can leverage in our projects: <strong>web components!</strong></p>
+<h2 id="web-components">Web Components?</h2>
+<p>Web components are set of web technologies that allow you to create custom standalone components (like your very own <code>&lt;custom-button&gt;</code>, for example) that work anywhere on the web. They come with a whole suite of development advantages, including project maintainability. Check out this <a href="https://aka.ms/learn-pwa/30days-4.5/fast.design/docs/resources/why-web-components">“Why Web Components?”</a> article for a quick primer on what Web Components bring to the table.</p>
+<p>Now, let’s take a look at how web components can improve our PWAs and make our projects more maintainable.</p>
+<h2 id="encapsulation-with-shadow-dom">Encapsulation with Shadow DOM</h2>
+<p>When we create a web component, all of our behavior, html, and styling is contained to that component. We don’t have to worry about it interfering with other aspects of our project when we include our component in our application. This a huge bonus for maintainability: it allows us to segment our code and avoid overly-verbose spaghetti code in our project files. Additionally, for larger PWAs that may have multiple developers working at once, web components allow for concurrent contribution by keeping unrelated components separated from each other.</p>
+<p>Web components make this possible using <a href="https://aka.ms/learn-pwa/30days-4.5/developer.mozilla.org/docs/Web/Web_Components/Using_shadow_DOM"><strong>Shadow DOM</strong></a>, which allows our component to live in a “hidden” portion of our larger DOM tree. We can prevent clashing with the rest of our DOM by isolating the portion related to the web component.</p>
+<h2 id="web-standard">Web Standard</h2>
+<p>Web Components are a <strong>Web Standard</strong>, which means they are considered a fundamental model for component behavior on the Web. This means we can rely on the web components we build to work just about everywhere:</p>
+<figure>
+<img src="_media/component-web-standards.png" alt="Compatibility list for web components" /><figcaption>Compatibility list for web components</figcaption>
+</figure>
+<p>Another benefit to this is that web component frameworks are generally small and fully interoperable. This means that you can use web components within larger modern frameworks (like React or Angular) and they will still work as expected. You can even ditch the frameworks all together and build web components in vanilla javascript.</p>
+<p>As far as maintainability goes for our PWAs, this is great. We know our components will work in different browsers and frameworks, and we don’t have to write extra code to keep our project functional. When we go to update or extend one of our components, we can work freely without worrying about compatibility issues. Web Standards also generally guarantee forward-compatibility: our components will still work as the open web grows and changes.</p>
+<h2 id="building-web-components-with-fast">Building Web Components with FAST</h2>
+<p>There are lots of framework options for building web components, but today we’ll be using <a href="https://aka.ms/learn-pwa/30days-4.5/fast.design/docs/introduction">the FAST framework</a> to see a beginner example.</p>
+<p>Let’s say we are building a naive <code>&lt;movie-review&gt;</code> element that will live in an <code>MovieReview.ts</code> file.</p>
+<p>First, we can start with an element with a few attributes:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode typescript"><code class="sourceCode typescript"><a class="sourceLine" id="cb1-1" title="1"><span class="im">import</span> <span class="op">{</span> FASTElement<span class="op">,</span> customElement<span class="op">,</span> attr <span class="op">}</span> <span class="im">from</span> <span class="st">&#39;@microsoft/fast-element&#39;</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb1-2" title="2"></a>
+<a class="sourceLine" id="cb1-3" title="3">@<span class="fu">customElement</span>(<span class="st">&#39;movie-review&#39;</span>)</a>
+<a class="sourceLine" id="cb1-4" title="4"><span class="im">export</span> <span class="kw">class</span> MovieReview <span class="kw">extends</span> FASTElement <span class="op">{</span></a>
+<a class="sourceLine" id="cb1-5" title="5">    @attr movieName<span class="op">:</span> <span class="dt">string</span> <span class="op">=</span> <span class="st">&quot;No Movie Listed&quot;</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb1-6" title="6">    @attr rating<span class="op">:</span> <span class="dt">string</span> <span class="op">=</span> <span class="st">&quot;0&quot;</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb1-7" title="7"><span class="op">}</span></a></code></pre></div>
+<p>Next, we can provide an HTML template so we can display our attributes:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode typescript"><code class="sourceCode typescript"><a class="sourceLine" id="cb2-1" title="1"><span class="im">import</span> <span class="op">{</span> FASTElement<span class="op">,</span> customElement<span class="op">,</span> attr<span class="op">,</span> html <span class="op">}</span> <span class="im">from</span> <span class="st">&#39;@microsoft/fast-element&#39;</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb2-2" title="2"></a>
+<a class="sourceLine" id="cb2-3" title="3"><span class="co">// our html template for our component</span></a>
+<a class="sourceLine" id="cb2-4" title="4"><span class="kw">const</span> template <span class="op">=</span> html<span class="op">&lt;</span>MovieReview<span class="op">&gt;</span><span class="vs">`</span></a>
+<a class="sourceLine" id="cb2-5" title="5"><span class="vs">    &lt;div class=&quot;reviewDiv&quot;&gt;</span></a>
+<a class="sourceLine" id="cb2-6" title="6"><span class="vs">        &lt;div class=&quot;nameDiv&quot;&gt;</span><span class="sc">${</span>x <span class="kw">=&gt;</span> <span class="va">x</span><span class="op">.</span><span class="at">movieName</span><span class="sc">}</span><span class="vs">&lt;/div&gt;</span></a>
+<a class="sourceLine" id="cb2-7" title="7"><span class="vs">        &lt;div class=&quot;ratingDiv&quot;&gt;</span><span class="sc">${</span>x<span class="kw">=&gt;</span> <span class="va">x</span><span class="op">.</span><span class="at">rating</span><span class="sc">}</span><span class="vs"> stars!&lt;div&gt;</span></a>
+<a class="sourceLine" id="cb2-8" title="8"><span class="vs">    &lt;/div&gt;</span></a>
+<a class="sourceLine" id="cb2-9" title="9"><span class="vs">`</span></a>
+<a class="sourceLine" id="cb2-10" title="10"></a>
+<a class="sourceLine" id="cb2-11" title="11"><span class="co">// that we can pass into our customElement</span></a>
+<a class="sourceLine" id="cb2-12" title="12">@<span class="fu">customElement</span>(<span class="op">{</span></a>
+<a class="sourceLine" id="cb2-13" title="13">    name<span class="op">:</span> <span class="st">&#39;movie-review&#39;</span><span class="op">,</span></a>
+<a class="sourceLine" id="cb2-14" title="14">    template</a>
+<a class="sourceLine" id="cb2-15" title="15"><span class="op">}</span>)</a>
+<a class="sourceLine" id="cb2-16" title="16"><span class="im">export</span> <span class="kw">class</span> MovieReview <span class="kw">extends</span> FASTElement <span class="op">{</span></a>
+<a class="sourceLine" id="cb2-17" title="17">    @attr movieName<span class="op">:</span> <span class="dt">string</span> <span class="op">=</span> <span class="st">&quot;No Movie Listed&quot;</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb2-18" title="18">    @attr rating<span class="op">:</span> <span class="dt">string</span> <span class="op">=</span> <span class="st">&quot;0&quot;</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb2-19" title="19"><span class="op">}</span></a></code></pre></div>
+<p>We could then use our element like so:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode html"><code class="sourceCode html"><a class="sourceLine" id="cb3-1" title="1"><span class="kw">&lt;movie-review</span><span class="ot"> moviename=</span><span class="st">&quot;Fast and Furious: Tokyo Drift&quot;</span><span class="ot"> rating=</span><span class="st">&quot;5&quot;</span><span class="kw">&gt;</span></a></code></pre></div>
+<p>This is just going to give us some boring black text. Let’s see how we can add styling:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode typescript"><code class="sourceCode typescript"><a class="sourceLine" id="cb4-1" title="1"><span class="im">import</span> <span class="op">{</span> FASTElement<span class="op">,</span> customElement<span class="op">,</span> attr<span class="op">,</span> html<span class="op">,</span> css <span class="op">}</span> <span class="im">from</span> <span class="st">&#39;@microsoft/fast-element&#39;</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb4-2" title="2"></a>
+<a class="sourceLine" id="cb4-3" title="3"><span class="kw">const</span> styles <span class="op">=</span> css<span class="vs">`</span></a>
+<a class="sourceLine" id="cb4-4" title="4"><span class="vs">    .reviewDiv {</span></a>
+<a class="sourceLine" id="cb4-5" title="5"><span class="vs">        border: 1px solid black;</span></a>
+<a class="sourceLine" id="cb4-6" title="6"><span class="vs">        display: inline-block;</span></a>
+<a class="sourceLine" id="cb4-7" title="7"><span class="vs">        padding: 10px;</span></a>
+<a class="sourceLine" id="cb4-8" title="8"><span class="vs">    }</span></a>
+<a class="sourceLine" id="cb4-9" title="9"></a>
+<a class="sourceLine" id="cb4-10" title="10"><span class="vs">    .nameDiv { </span></a>
+<a class="sourceLine" id="cb4-11" title="11"><span class="vs">        font-size: 24; </span></a>
+<a class="sourceLine" id="cb4-12" title="12"><span class="vs">        font-weight: bold;</span></a>
+<a class="sourceLine" id="cb4-13" title="13"><span class="vs">        font-style: italic;</span></a>
+<a class="sourceLine" id="cb4-14" title="14"><span class="vs">    }</span></a>
+<a class="sourceLine" id="cb4-15" title="15"></a>
+<a class="sourceLine" id="cb4-16" title="16"><span class="vs">    .ratingDiv { </span></a>
+<a class="sourceLine" id="cb4-17" title="17"><span class="vs">        color: blue; </span></a>
+<a class="sourceLine" id="cb4-18" title="18"><span class="vs">    }</span></a>
+<a class="sourceLine" id="cb4-19" title="19"><span class="vs">`</span></a></code></pre></div>
+<p>And we can pass those styles in just like our template:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode typescript"><code class="sourceCode typescript"><a class="sourceLine" id="cb5-1" title="1">@<span class="fu">customElement</span>(<span class="op">{</span></a>
+<a class="sourceLine" id="cb5-2" title="2">    name<span class="op">:</span> <span class="st">&#39;movie-review&#39;</span><span class="op">,</span></a>
+<a class="sourceLine" id="cb5-3" title="3">    template<span class="op">,</span></a>
+<a class="sourceLine" id="cb5-4" title="4">    styles</a>
+<a class="sourceLine" id="cb5-5" title="5"><span class="op">}</span>)</a>
+<a class="sourceLine" id="cb5-6" title="6"><span class="im">export</span> <span class="kw">class</span> MovieReview <span class="kw">extends</span> FASTElement <span class="op">{</span></a>
+<a class="sourceLine" id="cb5-7" title="7">    @attr movieName<span class="op">:</span> <span class="dt">string</span> <span class="op">=</span> <span class="st">&quot;No Movie Listed&quot;</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb5-8" title="8">    @attr rating<span class="op">:</span> <span class="dt">string</span> <span class="op">=</span> <span class="st">&quot;0&quot;</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb5-9" title="9"><span class="op">}</span></a></code></pre></div>
+<p>Our <em>beautiful</em> component would then look something like this:</p>
+<figure>
+<img src="_media/movie-review.png" alt="Image of our movie review web component" /><figcaption>Image of our movie review web component</figcaption>
+</figure>
+<p>We now have a reusable <code>&lt;movie-review&gt;</code> component. As you can see, this example is fairly naive, but you can start to imagine the possibilities. Let’s say we had a more in-depth <code>&lt;movie-review&gt;</code> component that we could use inside a related <code>&lt;movie-review-list&gt;</code> component. We could then change the appearance and functionality of our movie reviews separate from the list that displays them, allowing us extend and update our <code>&lt;movie-review&gt;</code> component regardless of the environment it lives in. Encapsulated and maintainable!</p>
+<p>If you want more depth on building quality components and adding functionality, or if you want to leverage the dozens of pre-built components FAST offers, check out the <a href="https://aka.ms/learn-pwa/30days-4.5/fast.design/docs/introduction">FAST documentation</a>.</p>
+<p>FAST isn’t the only way to build web components: check out this <a href="https://aka.ms/learn-pwa/30days-4.5/webcomponents.dev/blog/all-the-ways-to-make-a-web-component">blog post</a> for a comprehensive list of options.</p>
+<h2 id="wrapping-up">Wrapping Up</h2>
+<p>Today, we learned how we can write maintainable web code and power up our PWAs with web components. We just barely scratched the surface of web components and the FAST framework, and there’s a ton more to dive into if you want to really make use of web components in our PWAs. Check out the resources for more learning!</p>
+<h2 id="resources">Resources</h2>
+<ul>
+<li><strong><a href="https://aka.ms/learn-pwa/30days-4.5/fast.design/docs/introduction">FAST documentation</a></strong></li>
+<li><strong><a href="https://aka.ms/learn-pwa/30days-4.5/developer.mozilla.org/docs/Web/Web_Components">MDN documentation on Web Components</a></strong></li>
+<li><strong><a href="https://aka.ms/learn-pwa/30days-4.5/medium.com/pwabuilder/building-pwas-with-web-components-33f986bf8e4c">Building PWAs with Web Components</a></strong> article by Justin Willis</li>
+</ul>]]></description>
+    <pubDate>Thu, 10 Mar 2022 16:12:41 -0800</pubDate>
+  </item>
+   
+  <item>
     <title><![CDATA[4.4: Best Practices for PWA Reliability]]></title>
     <link>https://aka.ms/learn-PWA/30Days-blog/#/30DaysOfPWA/platforms-practices/04</link>
     <guid isPermaLink="false">https://aka.ms/learn-PWA/30Days-blog/#/30DaysOfPWA/platforms-practices/04</guid>
@@ -1091,59 +1198,6 @@ To open last HTML report run:
 <p>After reading yesterday’s and today’s articles in this series, you should have a pretty good understating of how the browser DevTools can be used for PWA development and debugging. A lot of PWA issues can be resolved with DevTools and development can be made easy by using the specialized tools we went over in the past two days.</p>
 <p>The feature set available to PWAs is always growing and the DevTools is planning to add tooling support for these new features as well. If you have any feature requests or feedback, you can contact the Microsoft Edge DevTools team by clicking the <strong>Send Feedback</strong> button in upper right corner of DevTools.</p>]]></description>
     <pubDate>Thu, 3 Mar 2022 01:01:03 +0100</pubDate>
-  </item>
-   
-  <item>
-    <title><![CDATA[-]]></title>
-    <link>https://aka.ms/learn-PWA/30Days-blog/#/_sidebar</link>
-    <guid isPermaLink="false">https://aka.ms/learn-PWA/30Days-blog/#/_sidebar</guid>
-    <description><![CDATA[<ul>
-<li><a href="/30DaysOfPWA/kickoff"><strong>0. Kickoff</strong></a></li>
-<li><a href="/30DaysOfPWA/core-concepts/"><strong>1. Core Concepts</strong></a>
-<ul>
-<li><a href="/30DaysOfPWA/core-concepts/01.md">1.1 Introducing PWA.</a></li>
-<li><a href="/30DaysOfPWA/core-concepts/02.md">1.2 Deconstructing PWA.</a></li>
-<li><a href="/30DaysOfPWA/core-concepts/03.md">1.3 Make PWA installable.</a></li>
-<li><a href="/30DaysOfPWA/core-concepts/04.md">1.4 Make PWA reliable.</a></li>
-<li><a href="/30DaysOfPWA/core-concepts/05.md">1.5 Make PWA work offline.</a></li>
-<li><a href="/30DaysOfPWA/core-concepts/06.md">1.6 Make PWA capable.</a></li>
-<li><a href="/30DaysOfPWA/core-concepts/07.md">1.7 Developing PWA.</a></li>
-</ul></li>
-<li><a href="/30DaysOfPWA/advanced-capabilities/"><strong>2. Advanced Capabilities</strong></a>
-<ul>
-<li><a href="/30DaysOfPWA/advanced-capabilities/01.md">2.1 Introducting the advanced capabilities of Progressive Web Apps</a></li>
-<li><a href="/30DaysOfPWA/advanced-capabilities/02.md">2.2 Creating application shortcuts</a></li>
-<li><a href="/30DaysOfPWA/advanced-capabilities/03.md">2.3 Sharing content from and with your app</a></li>
-<li><a href="/30DaysOfPWA/advanced-capabilities/04.md">2.4 Displaying content more like an app</a></li>
-<li><a href="/30DaysOfPWA/advanced-capabilities/05.md">2.5 Caching your app data</a></li>
-<li><a href="/30DaysOfPWA/advanced-capabilities/06.md">2.6 Synchronizing app data in the background</a></li>
-<li><a href="/30DaysOfPWA/advanced-capabilities/07.md">2.7 Notifying your users of updates</a></li>
-</ul></li>
-<li><a href="/30DaysOfPWA/dev-tools/"><strong>3. Developer Tools</strong></a>
-<ul>
-<li><a href="/30DaysOfPWA/dev-tools/01.md">3.1 Get-started tools - Part 1</a></li>
-<li><a href="/30DaysOfPWA/dev-tools/02.md">3.2 Get-started tools - Part 2</a></li>
-<li><a href="/30DaysOfPWA/dev-tools/03.md">3.3 Debugging tools - Part 1</a></li>
-<li><a href="/30DaysOfPWA/dev-tools/04.md">3.4 Debugging tools - Part 2</a></li>
-<li><a href="/30DaysOfPWA/dev-tools/05.md">3.5 Auditing tools</a></li>
-<li><a href="/30DaysOfPWA/dev-tools/06.md">3.6 Test automation tools</a></li>
-<li><a href="/30DaysOfPWA/dev-tools/07.md">3.7 Packaging tools</a></li>
-</ul></li>
-<li><a href="/30DaysOfPWA/platforms-practices/"><strong>4. Platforms &amp; Practices</strong></a>
-<ul>
-<li><a href="/30DaysOfPWA/platforms-practices/01.md">4.1 Installability for PWAs</a></li>
-<li><a href="/30DaysOfPWA/platforms-practices/02.md">4.2 Best practices for PWA engagement</a></li>
-<li><a href="/30DaysOfPWA/platforms-practices/03.md">4.3 Distributing your PWA</a></li>
-<li><a href="/30DaysOfPWA/platforms-practices/04.md">4.4 Best practices for PWA reliability</a></li>
-<li><a href="/30DaysOfPWA/platforms-practices/05.md">4.5 PWA maintainability - Using web components</a></li>
-<li><a href="/30DaysOfPWA/platforms-practices/06.md">4.6 Best practices for PWA authentication</a></li>
-<li><a href="/30DaysOfPWA/platforms-practices/07.md">4.7 Best practices for PWA UI/UX</a></li>
-</ul></li>
-<li><h2 id="summary"><a href="/30DaysOfPWA/summary"><strong>5. Summary</strong></a></h2></li>
-<li><a href="https://aka.ms/learn-pwa/30Days-ghd">💬 Join the discussion on Github</a></li>
-<li><a href="https://aka.ms/learn-pwa/30Days-survey">🗣 Help us grow with your feedback</a></li>
-</ul>]]></description>
-    <pubDate>Wed, 2 Mar 2022 14:53:43 -0800</pubDate>
   </item>
   
 </channel>
