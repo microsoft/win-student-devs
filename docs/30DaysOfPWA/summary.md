@@ -1,5 +1,7 @@
 # Day 30: Wrap-up
 
+**Author: Beth Pan | [@beth_panx](https://twitter.com/beth_panx)**
+
 Welcome to day 30 of the [30 Days of PWA](https://aka.ms/learn-pwa/30Days-blog) series. You made it! Let's look back at our journey over the past month, review key concepts and learnings, and talk about next steps to continue your self-study.
 
 ## Recap & Resources
