@@ -6,6 +6,48 @@
   <description>For 30 days, we publish articles that aim to introduce developers to Progressive Web App. We have content that covers 0-level to 200-level topics. Each post takes 5-10 minutes to read and is followed by a sample snippet or exercise.</description>
    
   <item>
+    <title><![CDATA[4.7: Best Practices for PWA UI/UX]]></title>
+    <link>https://aka.ms/learn-PWA/30Days-blog/#/30DaysOfPWA/platforms-practices/07</link>
+    <guid isPermaLink="false">https://aka.ms/learn-PWA/30Days-blog/#/30DaysOfPWA/platforms-practices/07</guid>
+    <description><![CDATA[<h1 id="best-practices-for-pwa-uiux">4.7: Best Practices for PWA UI/UX</h1>
+<figure>
+<img src="_media/day7.png" alt="Image of title and author" /><figcaption>Image of title and author</figcaption>
+</figure>
+<p>Welcome to day 29 of the <a href="https://aka.ms/learn-pwa/30Days-blog">30 Days of PWA</a> series! Today’s blog post will walk through some of the best practices to keep in mind when thinking about your PWA’s user experience and interface.</p>
+<h2 id="responsive-considerations">Responsive considerations</h2>
+<p>When designing your PWA there are a few things to think about beyond just ensuring the user interface adapts to whatever device someone is on, whether that’s on mobile, a tablet or a desktop. In a previous article we looked at <a href="../advanced-capabilities/04.md">display modes</a> and how you can make your PWA feel more like an app. These display modes are important to consider when you’re thinking about the responsiveness of your PWA.</p>
+<p>When a user is on mobile or a tablet, how much of the browser UI do you want to be shown, if any? Does your decision affect the UI of the PWA? For example, if you want your PWA to be displayed in fullscreen mode, ensure there’s a way to navigate back from the current page because there’s no browser back button provided in this mode.</p>
+<p>How do you want your desktop version to display if it’s in standalone mode outside of the browser? Do you want it to feel as native as possible? Consider implementing <a href="../advanced-capabilities/04.md">Window Controls Overlay</a> to customize the title bar of your PWA.</p>
+<p>Regardless of the display mode you choose, consider what each one means for the way your PWA displays on mobile, tablet and desktop an assess what implications that has for your UI.</p>
+<h2 id="keep-content-focused-and-up-to-date">Keep content focused and up to date</h2>
+<p>Progressive web apps are inherently about delivering experiences in more performant ways and that experience isn’t just about technical performance but about how quickly users can find what they need. The Starbucks PWA is a great example of focused experience that has been optimized for mobile ordering. The main menu gives us three main options: “Menu”, “Rewards” and “Gift Cards”.</p>
+<figure>
+<img src="_media/starbucks-app.jpg" alt="The Starbucks PWA home screen and menu" /><figcaption>The Starbucks PWA home screen and menu</figcaption>
+</figure>
+<p>The rest of the site content is deprioritized and placed at the bottom. It’s still accessible but out of the way of the main task users are coming to the site for: to order coffee.</p>
+<p>Identify what key tasks and content your users are coming to your app for and optimize for those scenarios to streamline their task. Focus on reducing any clutter in the UI particularly with mobile versions due to the reduced screen size. For example, the Twitter app on desktop has two sidebars. On the mobile version, the navigation moves to the bottom and the “What’s Happening” sidebar becomes integrated into the search tab with the main focus of the app being the timeline.</p>
+<figure>
+<img src="_media/twitter-app.jpg" alt="The What’s Happening content on Twitter appears when you’re in the Search pane on mobile" /><figcaption>The What’s Happening content on Twitter appears when you’re in the Search pane on mobile</figcaption>
+</figure>
+<p>Additionally consider how to prompt your users to install the latest version of your PWA when there’s been a change, especially if it’s going to affect what they’re seeing in the app. Make it stand out from the rest of the UI so that users notice the call to update immediately so that they can start their journey in your app with the most recent version and no interruption to update in the middle of using it.</p>
+<h2 id="keep-users-engaged-in-offline-mode">Keep users engaged in offline mode</h2>
+<p>The great thing about PWAs is their ability to retain some functionality (or all depending on the PWA’s features) when they’re <a href="../core-concepts/05.md">offline</a> without an internet connection. Depending on some of the feature functionality though, key parts of your PWA may not work offline so you need to think about what your users are going to see when that page goes offline.</p>
+<p>Having a typical “page offline” or “no connection” message won’t keep your users engaged and in the app, and it doesn’t take advantage of the offline capabilities of PWAs. Think about what the experience will be offline. What content can still be served and interacted with when offline, and if there isn’t core content that can be, what can you put in its place that isn’t an error message?</p>
+<p>If you’re curious about some offline strategies, check out the <a href="04.md">post on reliability</a> from earlier this week.</p>
+<h2 id="make-interactions-feel-seamless">Make interactions feel seamless</h2>
+<p>Performance and speed are critical when thinking about the user experience of any website. If you’re on a website and click something and the navigation takes you to a screen that is loading slowly, it can be frustrating especially without any indication the page is loading. Provide transition states such as showing <a href="https://aka.ms/learn-pwa/30days-4.7/docs.microsoft.com/fluent-ui/web-components/components/skeleton">skeleton UI</a> when content is loading. This provides a preview of the UI while it waits for the actual UI to load. It also indicates that something is happening and provides a better experience than just a loader or progress bar. The switch from skeleton UI to actual UI is smoother and sets your users up for what to expect on the page.</p>
+<p>Seamlessness and perceived performance aren’t just about the UI of your PWA though, certain tasks that users need to complete can be sped up with certain features. For example, in a checkout task flow, make things like autofill and web payments available so that users can quickly fill out details. This reduces friction and gets them to the end of their task more quickly. Experiences like this leave a good impression and will bring users back to your PWA.</p>
+<h2 id="keep-design-native-like">Keep design native-like</h2>
+<p>Finally, your PWA experience should feel like a native app so implementing features like Window Controls Overlay can help deliver that experience. You can also use things like Fluent components for Windows based PWAs. Keeping the experience native-like ensures that users have a familiar experience to what they’d expect on a specific platform.</p>
+<h2 id="resources">Resources</h2>
+<ul>
+<li><a href="https://aka.ms/learn-pwa/30days-4.7/microsoft.com/design/fluent">Fluent design</a></li>
+<li><a href="../advanced-capabilities/04.md">Making PWA Feel Like an App</a></li>
+</ul>]]></description>
+    <pubDate>Sat, 12 Mar 2022 16:04:07 -0800</pubDate>
+  </item>
+   
+  <item>
     <title><![CDATA[4.6: Best Practices for PWA Authentication]]></title>
     <link>https://aka.ms/learn-PWA/30Days-blog/#/30DaysOfPWA/platforms-practices/06</link>
     <guid isPermaLink="false">https://aka.ms/learn-PWA/30Days-blog/#/30DaysOfPWA/platforms-practices/06</guid>
@@ -1012,168 +1054,6 @@ To open last HTML report run:
 </ol>
 <hr />]]></description>
     <pubDate>Fri, 4 Mar 2022 19:19:59 -0500</pubDate>
-  </item>
-   
-  <item>
-    <title><![CDATA[3.5: Auditing tools]]></title>
-    <link>https://aka.ms/learn-PWA/30Days-blog/#/30DaysOfPWA/dev-tools/05</link>
-    <guid isPermaLink="false">https://aka.ms/learn-PWA/30Days-blog/#/30DaysOfPWA/dev-tools/05</guid>
-    <description><![CDATA[<h1 id="auditing-tools">3.5: Auditing tools</h1>
-<p><strong>Author: Justin Willis (Software Engineer on the PWABuilder team) <span class="citation" data-cites="justinwillis96">[@justinwillis96]</span>(https://twitter.com/Justinwillis96)</strong></p>
-<p>Welcome to <strong>Week 3 Day 5</strong> of #30DaysOfPWA! Want to learn more about this project? Check out our <a href="../kickoff.md">Kickoff</a> post to get more details on the content roadmap and contributors. Now, let’s dive in!</p>
-<figure>
-<img src="_media/day-05.jpg" alt="image of title and author." /><figcaption>image of title and author.</figcaption>
-</figure>
-<h3 id="what-well-cover-today">WHAT WE’LL COVER TODAY</h3>
-<table>
-<colgroup>
-<col style="width: 38%" />
-<col style="width: 61%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Section</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><strong>Why audit our PWA</strong></td>
-<td>Why should you use these auditing tools?</td>
-</tr>
-<tr class="even">
-<td><strong>Audit with PWABuilder</strong></td>
-<td>PWABuilder can tell you if our PWA is installable and store ready</td>
-</tr>
-<tr class="odd">
-<td><strong>Audit with Webhint</strong></td>
-<td>Let’s use these two new tools to create a new PWA with just a few button clicks.</td>
-</tr>
-<tr class="even">
-<td><strong>Audit performance with Lighthouse and Edge Devtools</strong></td>
-<td>Deep dive into some of the tools used in PWA Studio and Starter</td>
-</tr>
-</tbody>
-</table>
-<hr />
-<p>Hello! For today’s post on the 30 Days of PWA series, we will be learning how to audit a PWA and use those audits to help improve it’s user experience.</p>
-<h2 id="why-audit-a-pwa">Why audit a PWA</h2>
-<p>So, why should we audit our PWA anyways? And what does this even mean?</p>
-<p>When we are talking about auditing our PWA, we mean using tools to ensure that our PWA is:</p>
-<ul>
-<li>Installable from the browser</li>
-<li>Ready to submit to app stores such as the Microsoft Store</li>
-<li>Accessible</li>
-<li>Fast</li>
-<li>Follows cross-browser development best practices</li>
-</ul>
-<p>We do this to ensure our PWA is the best it can be for users. Users want high quality apps that are accessible, fast and discoverable, and auditing ensures we are meeting these requirements.</p>
-<p>Today we are going to use PWABuider, Webhint and Edge Devtools to audit our PWA, let’s dive in!</p>
-<h2 id="audit-with-pwabuilder">Audit with PWABuilder</h2>
-<p>Let’s start with PWABuilder. The focus of the audit PWABuilder does is to ensure our PWA is high-quality, installable, and ready to publish to app stores like the Microsoft Store. To do this, PWABuilder looks at the:</p>
-<ul>
-<li>Web Manifest</li>
-<li>Service Worker</li>
-<li>HTTPS Setup</li>
-</ul>
-<p>and audits them based on a set of requirements. These also happen to be the technical essentials you need for an app to be considered a PWA.</p>
-<table>
-<colgroup>
-<col style="width: 24%" />
-<col style="width: 37%" />
-<col style="width: 37%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Web Manifest</th>
-<th>Service Worker</th>
-<th>Security</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Properly linked + registered</td>
-<td>Properly linked + registered</td>
-<td>Uses HTTPS</td>
-</tr>
-<tr class="even">
-<td>Contains required fields for installation</td>
-<td>Works Offline</td>
-<td>Valid HTTPS Setup</td>
-</tr>
-<tr class="odd">
-<td>Icons follow best practices</td>
-<td>Suggested features to improve our offline experience</td>
-<td>No HTTP content on page</td>
-</tr>
-<tr class="even">
-<td>Suggested fields to improve our PWA or enable new features</td>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<p>Each section above has a set of Required audits. These are audits that are required to be in the app stores and for installation from the browser. There are also Recommended and Optional audits for each section. These audit things such as, for example, manifest fields you can add to improve the installation experience of your PWA, but are not required.</p>
-<p>To get started with PWABuilder’s audits, you can use either <a href="https://aka.ms/learn-PWA/30Days-3.5/pwabuilder.com">PWABuilder</a> or the <a href="https://aka.ms/learn-PWA/30Days-3.5/pwa-studio">PWA Studio VSCode Extension</a>.</p>
-<h3 id="getting-audits-from-pwabuilder.com">Getting audits from pwabuilder.com</h3>
-<p>Already have a published and live PWA that you want to audit?</p>
-<ul>
-<li>Grab our URL and head over to https://aka.ms/learn-PWA/30Days-3.5/pwabuilder.com</li>
-<li>Enter the URL to our PWA on the homepage of pwabuilder.com and click Start <img src="_media/05/enter-url.png" alt="We have entered our URL into the input on the homepage of PWABuilder" /></li>
-<li>pwabuilder.com will now analyze our PWA and return our audits <img src="_media/05/report-card.jpeg" alt="A screenshot of the report-card page in PWABuilder showing our audits" /></li>
-</ul>
-<p>Each section is given an overall score. If we click on that section, it will give us more details on our score, including what we can add or change to get a better score. Towards the bottom of the page, we can see our total score. <img src="_media/05/total-score.png" alt="A screenshot showing the total score located towards the bottom of the report page" /></p>
-<p>If our total score is green, then our PWA is ready to publish and we are ready to click next to start packaging our PWA.</p>
-<p>If our total score is yellow this means that our PWA is most likely ready to publish, but may be missing out on Recommended Features such as having a <code>background_color</code> in our Web Manifest. The section that is lowering our score will also have a yellow score. At that point, we should click on it to see what we need to add.</p>
-<p>If our score is red, this means our PWA is not ready to publish to the web or app stores and needs additional work. The section with the problem will also have a red score. As above, we can click on that section to see what needs to be added next.</p>
-<h3 id="getting-our-audits-with-pwa-studio">Getting our audits with PWA Studio</h3>
-<p>PWA Studio enables us to audit with PWABuilder during development, not just after our PWA has gone live.</p>
-<ul>
-<li>Install PWA Studio from the <a href="https://aka.ms/learn-PWA/30Days-3.5/pwa-studio">VSCode Marketplace</a></li>
-<li>Open our codebase in VSCode</li>
-<li>Click the PWABuilder icon on the left side of VSCode <img src="_media/05/icon-on-left.png" alt="The PWABuilder icon on the left side of VSCode" /></li>
-<li>We will now see our audits</li>
-</ul>
-<figure>
-<img src="_media/05/pwa-studio.png" alt="The audits panels in PWA Studio" /><figcaption>The audits panels in PWA Studio</figcaption>
-</figure>
-<p>PWA Studio uses a simpler way of showing audits. As it shows in the above screenshot, there are three sections again, but slightly different this time: Web Manifest, Service Worker, Store Ready.</p>
-<p>For each section, you will see a list of items. If that item is good to go, it will have a checkmark next to it, if not, it will have a caution symbol. For every item, you can click on the info icon in that item to learn more about it and how to fix the audit.</p>
-<p>For the best PWA, we recommend checking off as many items as you can. If you are missing something that is required, PWA Studio will give you an alert when trying to publish to the web or package your PWA for the app stores.</p>
-<h2 id="audit-a-pwa-with-webhint">Audit a PWA with Webhint</h2>
-<p>You may have heard of <a href="https://aka.ms/learn-PWA/30Days-3.5/webhint.io">Webhint</a> before, but did you know it’s audits are built into the <a href="https://aka.ms/learn-PWA/30Days-3.5/docs.microsoft.com/en-us/microsoft-edge/devtools-guide-chromium/issues">Issues panel in Edge devtools?</a></p>
-<p>The Issues panel allows you to quickly see any of the issues webhint detected in our app. On top of this, it also tells you which HTML element the problem affects and how to fix it.</p>
-<p><img src="_media/05/webhint.png" alt="The issues panel in Edge devtools showing an accessibility issue" />.</p>
-<p>To use it: - Open our app in Edge - Open <a href="https://aka.ms/learn-PWA/30Days-3.5/docs.microsoft.com/en-us/microsoft-edge/devtools-guide-chromium">Edge devtools</a> - Select the Issues tab. The Issues panel opens with issues grouped into different categories. - Refresh our app, because some issues are reported based on network requests. Notice the updated count in the Issues counter.</p>
-<h2 id="audit-performance-with-lighthouse-and-devtools">Audit performance with Lighthouse and Devtools</h2>
-<p>We are now ready to audit our app’s loading performance, or how fast our PWA loads on different devices with varying network connections.</p>
-<p><strong>Note</strong> Edge devtools can also help you evaluate and improve our apps runtime performance. Check our <a href="https://aka.ms/learn-PWA/30Days-3.5/docs.microsoft.com/en-us/microsoft-edge/devtools-guide-chromium/evaluate-performance">docs</a> to learn more.</p>
-<p>Edge devtools has the <a href="https://aka.ms/learn-PWA/30Days-3.5/docs.microsoft.com/en-us/microsoft-edge/devtools-guide-chromium/speed/get-started">Lighhouse</a> tool built in. Lighthouse can quickly evaluate our apps loading performance and give us suggestions on how to make it load faster. It will evaluate our app running on our device, but with CPU throttling and Network throttling to better match what you users experience. When talking about loading performance, it is important to remember that we need to ensure our apps load fast on our users devices, not just our development machines. Lighthouse enables us to do this directly from our development device.</p>
-<p>To get started auditing our loading performance with Lighthouse:</p>
-<ul>
-<li>Open our app in Edge</li>
-<li>Open <a href="https://aka.ms/learn-PWA/30Days-3.5/docs.microsoft.com/en-us/microsoft-edge/devtools-guide-chromium">Edge devtools</a></li>
-<li>Open the Lighthouse tab in devtools</li>
-</ul>
-<figure>
-<img src="_media/05/lighthouse.png" alt="A screenshot of the lighthouse tab at the top of devtools" /><figcaption>A screenshot of the lighthouse tab at the top of devtools</figcaption>
-</figure>
-<ul>
-<li>Click <code>Generate Report</code> to get a baseline report</li>
-<li>Analyze the report and make the suggested changes to our app.</li>
-</ul>
-<p>For a full walkthrough on using Lighthouse to improve the loading performance of our application, check our <a href="https://aka.ms/learn-PWA/30Days-3.5/docs.microsoft.com/en-us/microsoft-edge/devtools-guide-chromium/speed/get-started">docs</a>.</p>
-<p>Using these tools, we can quickly make changes to our PWA to ensure it provides the best experience possible for our users. And, because PWAs are instantly updateable like normal websites, we can get these changes out to our users quickly!</p>
-<p>In our next post, we’ll dive into converting our existing website to a PWA!</p>
-<h2 id="resources">Resources</h2>
-<ul>
-<li><a href="https://aka.ms/learn-PWA/30Days-3.5/pwabuilder.com">pwabuilder.com</a></li>
-<li><a href="https://aka.ms/learn-PWA/30Days-3.5/pwa-studio">PWA Studio VSCode Extension</a></li>
-<li><a href="https://aka.ms/learn-PWA/30Days-3.5/docs.microsoft.com/en-us/microsoft-edge/devtools-guide-chromium">Edge devtools</a></li>
-<li><a href="https://aka.ms/learn-PWA/30Days-3.5/docs.microsoft.com/en-us/microsoft-edge/devtools-guide-chromium/evaluate-performance">Evaluate Runtime Performance</a></li>
-<li><a href="https://aka.ms/learn-PWA/30Days-3.5/docs.microsoft.com/en-us/microsoft-edge/devtools-guide-chromium/speed/get-started">Evaluate Loading Performance</a></li>
-</ul>]]></description>
-    <pubDate>Thu, 3 Mar 2022 16:05:19 -0800</pubDate>
   </item>
   
 </channel>
