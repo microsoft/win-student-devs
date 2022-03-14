@@ -6,6 +6,97 @@
   <description>For 30 days, we publish articles that aim to introduce developers to Progressive Web App. We have content that covers 0-level to 200-level topics. Each post takes 5-10 minutes to read and is followed by a sample snippet or exercise.</description>
    
   <item>
+    <title><![CDATA[-]]></title>
+    <link>https://aka.ms/learn-PWA/30Days-blog/#/_sidebar</link>
+    <guid isPermaLink="false">https://aka.ms/learn-PWA/30Days-blog/#/_sidebar</guid>
+    <description><![CDATA[<ul>
+<li><a href="/30DaysOfPWA/kickoff.md"><strong>0. Kickoff</strong></a></li>
+<li><a href="/30DaysOfPWA/core-concepts/"><strong>1. Core Concepts</strong></a>
+<ul>
+<li><a href="/30DaysOfPWA/core-concepts/01.md">1.1 Introducing PWA</a></li>
+<li><a href="/30DaysOfPWA/core-concepts/02.md">1.2 Deconstructing PWA</a></li>
+<li><a href="/30DaysOfPWA/core-concepts/03.md">1.3 Make PWA installable</a></li>
+<li><a href="/30DaysOfPWA/core-concepts/04.md">1.4 Make PWA reliable</a></li>
+<li><a href="/30DaysOfPWA/core-concepts/05.md">1.5 Make PWA work offline</a></li>
+<li><a href="/30DaysOfPWA/core-concepts/06.md">1.6 Make PWA capable</a></li>
+<li><a href="/30DaysOfPWA/core-concepts/07.md">1.7 Developing PWA</a></li>
+</ul></li>
+<li><a href="/30DaysOfPWA/advanced-capabilities/"><strong>2. Advanced Capabilities</strong></a>
+<ul>
+<li><a href="/30DaysOfPWA/advanced-capabilities/01.md">2.1 Introducting the advanced capabilities of Progressive Web Apps</a></li>
+<li><a href="/30DaysOfPWA/advanced-capabilities/02.md">2.2 Creating application shortcuts</a></li>
+<li><a href="/30DaysOfPWA/advanced-capabilities/03.md">2.3 Sharing content from and with your app</a></li>
+<li><a href="/30DaysOfPWA/advanced-capabilities/04.md">2.4 Displaying content more like an app</a></li>
+<li><a href="/30DaysOfPWA/advanced-capabilities/05.md">2.5 Caching your app data</a></li>
+<li><a href="/30DaysOfPWA/advanced-capabilities/06.md">2.6 Synchronizing app data in the background</a></li>
+<li><a href="/30DaysOfPWA/advanced-capabilities/07.md">2.7 Notifying your users of updates</a></li>
+</ul></li>
+<li><a href="/30DaysOfPWA/dev-tools/"><strong>3. Developer Tools</strong></a>
+<ul>
+<li><a href="/30DaysOfPWA/dev-tools/01.md">3.1 Get-started tools - Part 1</a></li>
+<li><a href="/30DaysOfPWA/dev-tools/02.md">3.2 Get-started tools - Part 2</a></li>
+<li><a href="/30DaysOfPWA/dev-tools/03.md">3.3 Debugging tools - Part 1</a></li>
+<li><a href="/30DaysOfPWA/dev-tools/04.md">3.4 Debugging tools - Part 2</a></li>
+<li><a href="/30DaysOfPWA/dev-tools/05.md">3.5 Auditing tools</a></li>
+<li><a href="/30DaysOfPWA/dev-tools/06.md">3.6 Test automation tools</a></li>
+<li><a href="/30DaysOfPWA/dev-tools/07.md">3.7 Packaging tools</a></li>
+</ul></li>
+<li><a href="/30DaysOfPWA/platforms-practices/"><strong>4. Platforms &amp; Practices</strong></a>
+<ul>
+<li><a href="/30DaysOfPWA/platforms-practices/01.md">4.1 Installability for PWAs</a></li>
+<li><a href="/30DaysOfPWA/platforms-practices/02.md">4.2 Best practices for PWA engagement</a></li>
+<li><a href="/30DaysOfPWA/platforms-practices/03.md">4.3 Distributing your PWA</a></li>
+<li><a href="/30DaysOfPWA/platforms-practices/04.md">4.4 Best practices for PWA reliability</a></li>
+<li><a href="/30DaysOfPWA/platforms-practices/05.md">4.5 PWA maintainability - Using web components</a></li>
+<li><a href="/30DaysOfPWA/platforms-practices/06.md">4.6 Best practices for PWA authentication</a></li>
+<li><a href="/30DaysOfPWA/platforms-practices/07.md">4.7 Best practices for PWA UI/UX</a></li>
+</ul></li>
+<li><h2 id="summary"><a href="/30DaysOfPWA/summary.md"><strong>5. Summary</strong></a></h2></li>
+<li><a href="https://aka.ms/learn-pwa/30Days-ghd">💬 Join the discussion on Github</a></li>
+<li><a href="https://aka.ms/learn-pwa/30Days-survey">🗣 Help us grow with your feedback</a></li>
+</ul>]]></description>
+    <pubDate>Mon, 14 Mar 2022 11:07:25 -0700</pubDate>
+  </item>
+   
+  <item>
+    <title><![CDATA[PWA DevTools]]></title>
+    <link>https://aka.ms/learn-PWA/30Days-blog/#/_navbar</link>
+    <guid isPermaLink="false">https://aka.ms/learn-PWA/30Days-blog/#/_navbar</guid>
+    <description><![CDATA[<ul>
+<li>PWA DevTools
+<ul>
+<li><a href="https://pwabuilder.com">PWA Builder</a></li>
+<li><a href="https://docs.microsoft.com/microsoft-edge/progressive-web-apps-chromium/">Microsoft Edge</a></li>
+<li><a href="https://playwright.dev">Playwright</a></li>
+<li><a href="https://webhint.io">webhint</a></li>
+</ul></li>
+</ul>]]></description>
+    <pubDate>Mon, 14 Mar 2022 11:07:25 -0700</pubDate>
+  </item>
+   
+  <item>
+    <title><![CDATA[[GitHub license](https://img.shields.io/github/license/microsoft/Win-Student-Devs.svg)](https://github.com/microsoft/Win-Student-Devs/blob/master/LICENSE)]]></title>
+    <link>https://aka.ms/learn-PWA/30Days-blog/#/README</link>
+    <guid isPermaLink="false">https://aka.ms/learn-PWA/30Days-blog/#/README</guid>
+    <description><![CDATA[<p><a href="https://github.com/microsoft/Win-Student-Devs/blob/master/LICENSE"><img src="https://img.shields.io/github/license/microsoft/Win-Student-Devs.svg" alt="GitHub license" /></a> <a href="http://makeapullrequest.com"><img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square" alt="PRs Welcome" /></a></p>
+<p><a href="https://GitHub.com/microsoft/Win-Student-Devs/watchers/"><img src="https://img.shields.io/github/watchers/microsoft/Win-Student-Devs.svg?style=social&amp;label=Watch&amp;maxAge=2592000" alt="GitHub watchers" /></a> <a href="https://GitHub.com/microsoft/Win-Student-Devs/stargazers/"><img src="https://img.shields.io/github/stars/microsoft/Win-Student-Devs.svg?style=social&amp;label=Star&amp;maxAge=2592000" alt="GitHub stars" /></a></p>
+<p><a href="https://open.vscode.dev/microsoft/Win-Student-Devs">Open in Visual Studio Code</a></p>
+<h1 id="welcome">Welcome</h1>
+<p><a href="https://github.com/microsoft/win-student-devs">This repo</a> aims to help student and early-in-career developers to build awesome apps that run on Windows. Explore some of our ongoing project pages here:</p>
+<ul>
+<li><a href="./30DaysOfPWA/">#30DaysOfPWA</a></li>
+</ul>
+<hr />
+<h2 id="contributing">Contributing</h2>
+<p>This project welcomes contributions and suggestions. Most contributions require you to agree to a Contributor License Agreement (CLA) declaring that you have the right to, and actually do, grant us the rights to use your contribution. For details, visit <a href="https://cla.opensource.microsoft.com">https://cla.opensource.microsoft.com</a>.</p>
+<p>When you submit a pull request, a CLA bot will automatically determine whether you need to provide a CLA and decorate the PR appropriately (e.g., status check, comment). Simply follow the instructions provided by the bot. You will only need to do this once across all repos using our CLA.</p>
+<p>This project has adopted the <a href="https://opensource.microsoft.com/codeofconduct/">Microsoft Open Source Code of Conduct</a>. For more information see the <a href="https://opensource.microsoft.com/codeofconduct/faq/">Code of Conduct FAQ</a> or contact <a href="mailto:opencode@microsoft.com">opencode@microsoft.com</a> with any additional questions or comments.</p>
+<h2 id="trademarks">Trademarks</h2>
+<p>This project may contain trademarks or logos for projects, products, or services. Authorized use of Microsoft trademarks or logos is subject to and must follow <a href="https://www.microsoft.com/legal/intellectualproperty/trademarks/usage/general">Microsoft’s Trademark &amp; Brand Guidelines</a>. Use of Microsoft trademarks or logos in modified versions of this project must not cause confusion or imply Microsoft sponsorship. Any use of third-party trademarks or logos are subject to those third-party’s policies.</p>]]></description>
+    <pubDate>Mon, 14 Mar 2022 11:07:25 -0700</pubDate>
+  </item>
+   
+  <item>
     <title><![CDATA[Day 30: Wrap-up]]></title>
     <link>https://aka.ms/learn-PWA/30Days-blog/#/30DaysOfPWA/summary</link>
     <guid isPermaLink="false">https://aka.ms/learn-PWA/30Days-blog/#/30DaysOfPWA/summary</guid>
@@ -595,296 +686,6 @@
 <img src="_media/week4-banner.png" alt="Visual Banner for Platforms &amp; Practices Week!" /><figcaption>Visual Banner for Platforms &amp; Practices Week!</figcaption>
 </figure>]]></description>
     <pubDate>Tue, 8 Mar 2022 16:03:30 -0800</pubDate>
-  </item>
-   
-  <item>
-    <title><![CDATA[4.2: Best Practices for PWA Engagement]]></title>
-    <link>https://aka.ms/learn-PWA/30Days-blog/#/30DaysOfPWA/platforms-practices/02</link>
-    <guid isPermaLink="false">https://aka.ms/learn-PWA/30Days-blog/#/30DaysOfPWA/platforms-practices/02</guid>
-    <description><![CDATA[<h1 id="best-practices-for-pwa-engagement">4.2: Best Practices for PWA Engagement</h1>
-<p><strong>Author: Zach Teutsch <span class="citation" data-cites="devteutsch">[@devteutsch]</span>(https://twitter.com/devteutsch)</strong></p>
-<p>Welcome to Week 4, Day 2 of the <a href="https://aka.ms/learn-pwa/30Days-blog">30 Days of PWA</a> series! Now that we’ve seen how to start building PWAs and what basic and advanced capabilites they bring, it’s time to dive into what a <em>good</em> PWA really looks like it, and how we can turn our PWAs into quality application experiences. Week 4 is all about some of the best practices and technologies you can use to really polish up your PWA.</p>
-<figure>
-<img src="_media/day2.png" alt="Placeholder Banner Only. Replace when final assets ready." /><figcaption>Placeholder Banner Only. Replace when final assets ready.</figcaption>
-</figure>
-<h3 id="a-quick-note">A Quick Note</h3>
-<p>This article is about the best practices for engagement with PWAs. If you’re looking for the basics on push notifications and badging in PWAs, check out the <a href="../advanced-capabilities/07.md">Notifying Your Users of Updates</a> article from Week 2.</p>
-<h2 id="todays-plan">Today’s Plan</h2>
-<p>As we briefly touched on in <a href="01.md">Day 1</a>, a carefully thought out engagement strategy can be one of the cornerstones of a great PWA. With the “one codebase” nature of PWA, it’s also easy to keep your engagement strategy consistent across different devices and platforms.</p>
-<p>Today, we’re going to take a look at how PWAs stack up in terms of engagement and see how we can build on what we already learned about push notifications to get started off on the right foot with engagement.</p>
-<h2 id="comparing-pwa-engagement">Comparing PWA Engagement</h2>
-<p>You may not have taken the dive into making your first PWA, but others have! Engagement with PWAs has been a success story for several companies that have experimented with redesigning their web experiences as PWAs. <a href="https://aka.ms/learn-pwa/30days-4.2/pwastats.com">PWAstats.com</a> is a great resource for seeing how PWAs can improve many factors of your app, including engagement. Some cherry-picked figures related to engagement:</p>
-<ul>
-<li><strong>Starbucks doubled daily active users with their PWA</strong></li>
-<li><strong>Tinder’s PWA saw engagement increase across the board</strong></li>
-<li><strong>Forbes saw a 2x increase in session length and 20% increase in impressions through their PWA</strong></li>
-</ul>
-<p>Granted, progressive web apps aren’t a magic, one-size-fits all solution for engagement, but they do give you all the tools you need for building a re-engageable application.</p>
-<h2 id="improving-engagement-with-actionable-push-notifications">Improving Engagement with Actionable Push Notifications</h2>
-<p>We’ve seen some numbers. Now let’s take a look at how we can take advantage of <a href="https://aka.ms/learn-pwa/30days-4.2/docs.microsoft.com/microsoft-edge/progressive-web-apps-chromium/how-to/notifications-badges">PWA notification capabilities</a> to improve engagement on our app.</p>
-<h3 id="content-comes-first">Content Comes First</h3>
-<p>Before you even think about sending push notifications, make sure your PWA has enough engageable content and reusability to even justify sending a push notification in the first place. If there’s nothing to do on your app, why prompt a user to visit?</p>
-<h3 id="what-does-actionable-mean">What Does “Actionable” Mean?</h3>
-<p>A great place to start with push notifications for your PWA is to make sure every notification has an action associated to it. When a user receives a notification, there should be something that the user can <strong>do</strong> that is directly related to your push. This could mean:</p>
-<ul>
-<li>Some new content to read or engage with</li>
-<li>A message that the user can reply to</li>
-<li>A new feature for the user to try out</li>
-</ul>
-<p>A quality notification will give the user something to do on your PWA, not just have them open the application for the sake of opening it.</p>
-<h2 id="lets-see-some-code">Let’s See Some Code!</h2>
-<p>We can build on the snippets that we saw in the <a href="../advanced-capabilities/07.md">Notifying Your Users of Updates</a> article to keep our notifications actionable in practice. If you haven’t seen the notifications snippets from that post, go check them out and then come back to this.</p>
-<p>Using the <a href="https://aka.ms/learn-pwa/30days-4.2/developer.mozilla.org/docs/Web/API/Notification/Notification">Notification API</a>, we can take advantage of the <code>data</code> property to associate our notification with any structured data that we want.</p>
-<p>So, if we want to associate our notification with a specific location in our PWA, the notification payload we send could look something like this:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb1-1" title="1"><span class="op">{</span></a>
-<a class="sourceLine" id="cb1-2" title="2">    <span class="dt">title</span><span class="op">:</span> <span class="st">&quot;Our Notification Title&quot;</span><span class="op">,</span></a>
-<a class="sourceLine" id="cb1-3" title="3">    <span class="dt">body</span><span class="op">:</span> <span class="st">&quot;Our Notifcation Message&quot;</span><span class="op">,</span></a>
-<a class="sourceLine" id="cb1-4" title="4">    <span class="dt">icon</span><span class="op">:</span> <span class="st">&quot;path/to/icon.png&quot;</span><span class="op">,</span></a>
-<a class="sourceLine" id="cb1-5" title="5">    <span class="dt">data</span><span class="op">:</span> <span class="op">{</span></a>
-<a class="sourceLine" id="cb1-6" title="6">        <span class="dt">path</span><span class="op">:</span> <span class="st">&quot;&lt;relative path for our notification&gt;&quot;</span></a>
-<a class="sourceLine" id="cb1-7" title="7">    <span class="op">}</span></a>
-<a class="sourceLine" id="cb1-8" title="8"><span class="op">}</span></a></code></pre></div>
-<p>Now, we can adjust the push listener in our service worker to make sure the displayed Notification captures our new <code>data</code> property:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb2-1" title="1"><span class="va">self</span>.<span class="at">addEventListener</span>(<span class="st">&#39;push&#39;</span><span class="op">,</span> (event) <span class="kw">=&gt;</span> <span class="op">{</span></a>
-<a class="sourceLine" id="cb2-2" title="2">    <span class="kw">const</span> notificationData <span class="op">=</span> <span class="va">JSON</span>.<span class="at">parse</span>(<span class="va">event</span>.<span class="va">data</span>.<span class="at">text</span>())<span class="op">;</span></a>
-<a class="sourceLine" id="cb2-3" title="3"></a>
-<a class="sourceLine" id="cb2-4" title="4">    <span class="va">event</span>.<span class="at">waitUntil</span>(</a>
-<a class="sourceLine" id="cb2-5" title="5">        <span class="va">self</span>.<span class="va">registration</span>.<span class="at">showNotification</span>(<span class="va">notificationData</span>.<span class="at">title</span><span class="op">,</span> <span class="op">{</span></a>
-<a class="sourceLine" id="cb2-6" title="6">            <span class="dt">body</span><span class="op">:</span> <span class="va">notificationData</span>.<span class="at">message</span><span class="op">,</span></a>
-<a class="sourceLine" id="cb2-7" title="7">            <span class="dt">icon</span><span class="op">:</span> <span class="va">notificationData</span>.<span class="at">icon</span><span class="op">,</span></a>
-<a class="sourceLine" id="cb2-8" title="8">            <span class="dt">data</span><span class="op">:</span> <span class="va">notificationData</span>.<span class="at">data</span> <span class="co">// This is the only change from week 2</span></a>
-<a class="sourceLine" id="cb2-9" title="9">        <span class="op">}</span>)<span class="op">;</span></a>
-<a class="sourceLine" id="cb2-10" title="10">    )<span class="op">;</span></a>
-<a class="sourceLine" id="cb2-11" title="11"><span class="op">}</span>)<span class="op">;</span></a></code></pre></div>
-<p>Our data property is now associated with our notification, and we can use that property in the listener for the <code>notificationclick</code> event in our service worker:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb3-1" title="1"><span class="va">self</span>.<span class="at">addEventListener</span>(<span class="st">&#39;notificationclick&#39;</span><span class="op">,</span> (event) <span class="kw">=&gt;</span> <span class="op">{</span></a>
-<a class="sourceLine" id="cb3-2" title="2">    <span class="co">// close the notification</span></a>
-<a class="sourceLine" id="cb3-3" title="3">    <span class="va">event</span>.<span class="va">notification</span>.<span class="at">close</span>()<span class="op">;</span> </a>
-<a class="sourceLine" id="cb3-4" title="4">    <span class="co">// append our relative path to our origin</span></a>
-<a class="sourceLine" id="cb3-5" title="5">    <span class="kw">var</span> fullPath <span class="op">=</span> <span class="va">self</span>.<span class="va">location</span>.<span class="at">origin</span> <span class="op">+</span> <span class="va">event</span>.<span class="va">notification</span>.<span class="va">data</span>.<span class="at">path</span><span class="op">;</span> </a>
-<a class="sourceLine" id="cb3-6" title="6">    <span class="co">// open our PWA at that location</span></a>
-<a class="sourceLine" id="cb3-7" title="7">    <span class="va">clients</span>.<span class="at">openWindow</span>(fullPath)<span class="op">;</span> </a>
-<a class="sourceLine" id="cb3-8" title="8"><span class="op">}</span>)<span class="op">;</span></a></code></pre></div>
-<p>Using this strategy, we can easily associate our notification with specific content on our PWA, directing our users directly to the portion of our app that we want them to engage with.</p>
-<p><em>Note:</em> This is a very basic implementation for our listener and skips out on some case handling for the sake of simplicity. You can see more detailed implementations in the <a href="https://aka.ms/learn-pwa/30days-4.2/github.com/MicrosoftEdge/pushnotifications-demo">Push Notifications Demo project</a> or in the MDN specification for <a href="https://aka.ms/learn-pwa/30days-4.2/developer.mozilla.org/docs/Web/API/Clients/openWindow"><code>openWindow()</code></a>.</p>
-<h2 id="further-notification-behavior-with-actions">Further Notification Behavior with Actions</h2>
-<p><a href="https://aka.ms/learn-pwa/30days-4.2/developer.mozilla.org/docs/Web/API/notification/actions">Some browsers</a>, including Edge and Chrome, have support for Notification <code>actions</code>, which allow you to add multiple options to a notification.</p>
-<p>You can add actions to your Notification payload like so:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb4-1" title="1"><span class="op">{</span></a>
-<a class="sourceLine" id="cb4-2" title="2">    <span class="dt">title</span><span class="op">:</span> <span class="st">&quot;Our Notification Title&quot;</span><span class="op">,</span></a>
-<a class="sourceLine" id="cb4-3" title="3">    <span class="dt">body</span><span class="op">:</span> <span class="st">&quot;Our Notifcation Message&quot;</span><span class="op">,</span></a>
-<a class="sourceLine" id="cb4-4" title="4">    <span class="dt">icon</span><span class="op">:</span> <span class="st">&quot;path/to/icon.png&quot;</span><span class="op">,</span></a>
-<a class="sourceLine" id="cb4-5" title="5">    <span class="dt">actions</span><span class="op">:</span> [</a>
-<a class="sourceLine" id="cb4-6" title="6">        <span class="op">{</span><span class="dt">action</span><span class="op">:</span> <span class="st">&quot;firstAction&quot;</span><span class="op">,</span> <span class="dt">title</span><span class="op">:</span> <span class="st">&quot;First Action&quot;</span><span class="op">,</span> <span class="dt">icon</span><span class="op">:</span> <span class="st">&quot;action1/icon.png&quot;</span><span class="op">},</span></a>
-<a class="sourceLine" id="cb4-7" title="7">        <span class="op">{</span><span class="dt">action</span><span class="op">:</span> <span class="st">&quot;secondAction&quot;</span><span class="op">,</span> <span class="dt">title</span><span class="op">:</span> <span class="st">&quot;Second Action&quot;</span><span class="op">,</span> <span class="dt">icon</span><span class="op">:</span> <span class="st">&quot;action2/icon.png&quot;</span><span class="op">}</span></a>
-<a class="sourceLine" id="cb4-8" title="8">    ]</a>
-<a class="sourceLine" id="cb4-9" title="9"><span class="op">}</span></a></code></pre></div>
-<p>We can update the notification we show to include our actions:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb5-1" title="1"><span class="va">event</span>.<span class="at">waitUntil</span>(</a>
-<a class="sourceLine" id="cb5-2" title="2">    <span class="va">self</span>.<span class="va">registration</span>.<span class="at">showNotification</span>(<span class="va">notificationData</span>.<span class="at">title</span><span class="op">,</span> <span class="op">{</span></a>
-<a class="sourceLine" id="cb5-3" title="3">        <span class="dt">body</span><span class="op">:</span> <span class="va">notificationData</span>.<span class="at">message</span><span class="op">,</span></a>
-<a class="sourceLine" id="cb5-4" title="4">        <span class="dt">icon</span><span class="op">:</span> <span class="va">notificationData</span>.<span class="at">icon</span><span class="op">,</span></a>
-<a class="sourceLine" id="cb5-5" title="5">        <span class="dt">actions</span><span class="op">:</span> <span class="va">notificationData</span>.<span class="at">actions</span></a>
-<a class="sourceLine" id="cb5-6" title="6">    <span class="op">}</span>)<span class="op">;</span></a>
-<a class="sourceLine" id="cb5-7" title="7">)<span class="op">;</span></a></code></pre></div>
-<p>And then in our listener, we can handle different actions:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb6-1" title="1"><span class="va">self</span>.<span class="at">addEventListener</span>(<span class="st">&#39;notificationclick&#39;</span><span class="op">,</span> (event) <span class="kw">=&gt;</span> <span class="op">{</span></a>
-<a class="sourceLine" id="cb6-2" title="2">    <span class="co">// close the notification</span></a>
-<a class="sourceLine" id="cb6-3" title="3">    <span class="va">event</span>.<span class="va">notification</span>.<span class="at">close</span>()<span class="op">;</span> </a>
-<a class="sourceLine" id="cb6-4" title="4">    <span class="co">// get the action</span></a>
-<a class="sourceLine" id="cb6-5" title="5">    <span class="kw">var</span> action <span class="op">=</span> <span class="va">event</span>.<span class="va">notification</span>.<span class="at">action</span><span class="op">;</span></a>
-<a class="sourceLine" id="cb6-6" title="6"></a>
-<a class="sourceLine" id="cb6-7" title="7">    <span class="cf">if</span>(action <span class="op">===</span> <span class="st">&quot;firstAction&quot;</span>) <span class="op">{</span></a>
-<a class="sourceLine" id="cb6-8" title="8">        <span class="co">// do something specific to first action</span></a>
-<a class="sourceLine" id="cb6-9" title="9">    <span class="op">}</span> <span class="cf">else</span> <span class="cf">if</span>( action <span class="op">===</span> <span class="st">&quot;secondAction&quot;</span>) <span class="op">{</span></a>
-<a class="sourceLine" id="cb6-10" title="10">        <span class="co">// do something specific to second action</span></a>
-<a class="sourceLine" id="cb6-11" title="11">    <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></a>
-<a class="sourceLine" id="cb6-12" title="12">        <span class="co">// default if actions aren&#39;t supported or an action wasn&#39;t clicked</span></a>
-<a class="sourceLine" id="cb6-13" title="13">    <span class="op">}</span></a>
-<a class="sourceLine" id="cb6-14" title="14">    </a>
-<a class="sourceLine" id="cb6-15" title="15"><span class="op">}</span>)<span class="op">;</span></a></code></pre></div>
-<p>With actions, we can make our notifications a bit more dynamic and interactive for our users. You could even use the <code>data</code> property to provide paths for every action, generalizing this solution and making it a bit more reliable in practice. To make it a bit easier on yourself, the <a href="https://aka.ms/learn-pwa/30days-4.2/marketplace.visualstudio.com">PWA Studio VSCode extension</a> also has support for code snippets for working with notifications, with and without actions.</p>
-<p><em>Note:</em> It’s important to always provide default behavior. Actions aren’t supported in some browsers and can behave differently in browsers that do support them.</p>
-<h2 id="wrapping-up">Wrapping Up</h2>
-<p>Today, we took a brief look at how engagement can work on PWAs and how to get started working with quality, actionable notifications for our applications. You can adapt the tricks we showed you today to help with your own engagement strategy for your PWAs, but don’t forget that every application is going to be different: experiment and find what works for you!</p>
-<h2 id="resources">Resources</h2>
-<ul>
-<li><a href="https://aka.ms/learn-pwa/30days-4.2/developer.mozilla.org/docs/Web/API/Notification/Notification"><strong>Notification specification</strong></a></li>
-<li><a href="https://aka.ms/learn-pwa/30days-4.2/docs.microsoft.com/microsoft-edge/progressive-web-apps-chromium/how-to/notifications-badgess"><strong>Re-engage users with badges, notifications, and push messages</strong></a> article on Microsoft Docs</li>
-<li><a href="https://aka.ms/learn-pwa/30days-4.2/github.com/MicrosoftEdge/pushnotifications-demo"><strong>Push Notifications Demo Project</strong></a></li>
-</ul>]]></description>
-    <pubDate>Mon, 7 Mar 2022 15:55:33 -0800</pubDate>
-  </item>
-   
-  <item>
-    <title><![CDATA[4.1: Installability for PWAs]]></title>
-    <link>https://aka.ms/learn-PWA/30Days-blog/#/30DaysOfPWA/platforms-practices/01</link>
-    <guid isPermaLink="false">https://aka.ms/learn-PWA/30Days-blog/#/30DaysOfPWA/platforms-practices/01</guid>
-    <description><![CDATA[<h1 id="installability-for-pwas">4.1: Installability for PWAs</h1>
-<p><strong>Author: Zach Teutsch <span class="citation" data-cites="devteutsch">[@devteutsch]</span>(https://twitter.com/devteutsch)</strong></p>
-<p>Welcome to Week 4, Day 1 of the <a href="https://aka.ms/learn-pwa/30Days-blog">30 Days of PWA</a> series! Now that we’ve seen how to <a href="../core-concepts/">start building PWAs</a> and what basic and <a href="../advanced-capabilities/">advanced capabilities</a> they bring, it’s time to dive into what a <em>good</em> PWA really looks like, and how we can turn our PWAs into quality application experiences. Week 4 is all about some of the best practices and technologies you can use to really polish up your PWA.</p>
-<figure>
-<img src="_media/day1.png" alt="Placeholder Banner Only. Replace when final assets ready." /><figcaption>Placeholder Banner Only. Replace when final assets ready.</figcaption>
-</figure>
-<h3 id="a-quick-note">A Quick Note</h3>
-<p>This article is about the best practices for installability and when adding installation makes sense for a web application. If you’re looking for the basics on how to add installation to your PWA, check out the <a href="../core-concepts/03.md">Core Concepts article on Installation</a> from Week 1.</p>
-<h2 id="you-dont-install-websites-you-install-apps">You Don’t Install Websites, You Install Apps</h2>
-<p>One of the most important pieces of PWA installability is remembering that PWAs are <strong>apps first</strong>, and websites second. When a user installs an application to a device, they expect a certain standard of use and design that they’ve come to expect on whatever platform they use. PWAs are more than just installable websites, they are functional and integrated application experiences that <em>meet the expectations of the platform</em>.</p>
-<h2 id="so-what-apps-websites-who-cares">So What? Apps, Websites, Who Cares?</h2>
-<p>Seeing your PWA as an application instead of a website sets a different standard for the development of your product. It also forces the developer to think about whether or not their product even makes sense as a PWA. An app that is going to be installed needs to make sense within the context of the platform, and if it doesn’t, it might just be better off as a website.</p>
-<p>Here are some questions you can ask when planning your PWA’s development:</p>
-<ul>
-<li><p><em><strong>What is going to be gained by the user from installing this app?</strong></em></p></li>
-<li><p><em><strong>Does my app have to the potential to integrate with the operating system?</strong></em></p></li>
-<li><p><em><strong>Does my app have motivation for regular use and re-engagement?</strong></em></p></li>
-<li><p><em><strong>How will my app behave in offline conditions?</strong></em></p></li>
-<li><p><em><strong>Does the appearance and feel of my app match with comparable native experiences?</strong></em></p></li>
-</ul>
-<p>It may not be necessary to apply all these questions to your app, but it’s a great starting place for thinking about what sorts of experiences should even be installed as PWAs in the first place.</p>
-<p>Imagine your app installed and on somebody’s Home Screen or Taskbar. Does it make sense there?</p>
-<h2 id="well-show-us-a-good-pwa-then.">Well, show us a good PWA, then.</h2>
-<p>There’s a ton of great PWAs out there, but <a href="https://aka.ms/learn-pwa/30days-4.1/twitter.com">Twitter</a> is a great example of a well-known platform that has created a really well-done PWA for their users. Twitter’s PWA takes advantage of many of the available web capabilities to create an integrated app-like experience.</p>
-<figure>
-<img src="_media/twitter-pwa.png" alt="Twitter PWA open on Windows" /><figcaption>Twitter PWA open on Windows</figcaption>
-</figure>
-<p>Some of the things that I like about Twitter’s PWA:</p>
-<p><strong>Smooth, app-like user experience</strong></p>
-<p>Twitter’s PWA doesn’t show a lot of the behaviors that many typical websites would: * It uses the <code>standalone</code> <a href="../advanced-capabilities/04.md">display mode</a> to present the the window as an app. * The view never refreshes, the shell UI is always visible and only the main content area changes with user interaction. * There’s very little latency on navigation. Fetched content (like the tweets themselves) may take a second to load, but the UI interactivity itself is nearly instant.</p>
-<p>We’ll learn more about best practices for PWA UI/UX on <a href="07.md">Day 7</a> of Platforms and practices week.</p>
-<p><strong>Consistent offline behavior</strong></p>
-<p>Even though Twitter relies pretty heavily on connectivity, it still maintains as much of the app interaction as possible when connection is lost (just like any native app would).</p>
-<p>When connection is lost, the app still loads its view and the UI is still navigable. If there are any tweets stored locally, those will be displayed. If there aren’t, the user will get a notice that doesn’t interfere with the rest of the UI:</p>
-<figure>
-<img src="_media/twitter-offline.png" alt="Twitter offline warning" /><figcaption>Twitter offline warning</figcaption>
-</figure>
-<p>We already learned a little about offline behavior on <a href="../core-concepts/05.md">Day 5</a> of Week 1 and more is coming in the <a href="04.md">reliability article</a> later this week.</p>
-<p><strong>OS integration and plenty of web capabilities</strong></p>
-<p>Twitter also makes great use of available web capabilities to integrate with your device. Just to list some:</p>
-<ul>
-<li>Push notifications</li>
-<li>Sharing from Twitter</li>
-<li>Sharing to Twitter</li>
-<li>Badging</li>
-<li>Shortcuts</li>
-</ul>
-<figure>
-<img src="_media/twitter-push.jpg" alt="Push Notification from Twitter" /><figcaption>Push Notification from Twitter</figcaption>
-</figure>
-<p>We already covered how to use all these capabilities and more in <a href="../advanced-capabilities">Week 2: Advanced Capabilities.</a> Go check them out!</p>
-<p><strong>Published to the Microsoft Store</strong></p>
-<p>Twitter takes advantage of one the best parts about PWAs: discoverability and installability on the web <em>and</em> in app stores.</p>
-<figure>
-<img src="_media/twitter-in-store.png" alt="Twitter in the Microsoft Store" /><figcaption>Twitter in the Microsoft Store</figcaption>
-</figure>
-<p>The same PWA the can be installed from the browser can be distributed in app stores. You can learn more about packaging for the stores in our <a href="../dev-tools/07.md">article on PWABuilder</a> and more info about best practices for distribution to different app stores is coming <a href="03.md">later this week.</a></p>
-<h2 id="summary">Summary</h2>
-<p>At the end of the day, best practices for PWA installability are really just about best practices for PWAs in general. When you prompt a user to install your app to their machine, that app needs to live up to the expectations of applications on that platform. Luckily enough, we’re going to spend all week building on what we’ve already learned about PWAs and seeing some best practices for making solid PWA experiences. If you’re looking to get a head start, check out the <a href="https://aka.ms/learn-pwa/30days-4.1/github.com/pwa-builder/pwa-starter">PWA Starter</a> for a PWA template that’s built with best practices in mind.</p>
-<h3 id="exercise"><strong>Exercise</strong></h3>
-<p>Think about some of your favorite web experiences that you use or have built yourself.</p>
-<p>Would any of these experiences make good PWAs? Would any of them not?</p>
-<p>What could these experiences gain by taking advantage of some of the capabilites that PWAs bring to the table?</p>
-<h3 id="resources"><strong>Resources</strong></h3>
-<ul>
-<li><strong><a href="https://aka.ms/learn-pwa/30days-4.1/docs.microsoft.com/en-us/microsoft-edge/progressive-web-apps-chromium">Microsoft PWA Overview</a></strong></li>
-<li><strong><a href="../advanced-capabilities/">PWA Advanced Capabilities Week</a></strong></li>
-</ul>]]></description>
-    <pubDate>Sun, 6 Mar 2022 17:41:46 -0800</pubDate>
-  </item>
-   
-  <item>
-    <title><![CDATA[3.7: Packaging tools]]></title>
-    <link>https://aka.ms/learn-PWA/30Days-blog/#/30DaysOfPWA/dev-tools/07</link>
-    <guid isPermaLink="false">https://aka.ms/learn-PWA/30Days-blog/#/30DaysOfPWA/dev-tools/07</guid>
-    <description><![CDATA[<h1 id="packaging-tools">3.7: Packaging tools</h1>
-<p><strong>Author: Jaylyn Barbee <span class="citation" data-cites="jaylynsatwork">[@jaylynsatwork]</span>(https://twitter.com/jaylynsatwork)</strong></p>
-<p>Welcome to <strong>Week 3 Day 7</strong> of #30DaysOfPWA! Want to learn more about this project? Check out our <a href="../kickoff.md">Kickoff</a> post to get more details on the content roadmap and contributors. Now, let’s dive in!</p>
-<figure>
-<img src="_media/day-07.jpg" alt="image of title and author." /><figcaption>image of title and author.</figcaption>
-</figure>
-<h3 id="what-well-cover-today">WHAT WE’LL COVER TODAY</h3>
-<table>
-<colgroup>
-<col style="width: 38%" />
-<col style="width: 61%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Section</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><strong>Introduction</strong></td>
-<td>Introduction to packaging for the Windows Store</td>
-</tr>
-<tr class="even">
-<td><strong>Step 1: Packaging</strong></td>
-<td>A walkthrough of the PWA Builder process to package your app for the Windows Store</td>
-</tr>
-<tr class="odd">
-<td><strong>Step 2: Partner Center</strong></td>
-<td>A walkthrough of Partner Center and how to submit your app to the Store</td>
-</tr>
-<tr class="even">
-<td><strong>Why the Microsoft Store?</strong></td>
-<td>An explanation of why you would chose the Microsoft Store over any others</td>
-</tr>
-</tbody>
-</table>
-<h1 id="packaging-for-the-windows-store">Packaging for the Windows Store</h1>
-<h2 id="introduction">Introduction</h2>
-<p>Great! You’ve just finished your web app and you are ready to send it off into the stores! Luckily for you, PWA Builder makes that as easy as pie. PWA Builder makes it possible to ship your app into multiple stores including the Google Play Store and Apple App Store. In this article we will focus on how to use our tools to package your PWA for the Microsoft Store, via the Partner Center. This is the last step, sharing your PWA with the world and now its time for all your hard work to pay off! Before we get started, here are some things you might want to have ready:</p>
-<ul>
-<li>A 512px by 512px icon (at least)
-<ul>
-<li>This will be used for your app icon</li>
-</ul></li>
-<li>Screenshots
-<ul>
-<li>For the Microsoft Store, you’re going to want laptop/tablet sized screenshots of your app to display in a carousel on your product description page. The exact pixel dimensions will be given to you in the Partner Center, where you will be publishing your app for the Microsoft Store (more on that later)</li>
-</ul></li>
-<li>Short Description &amp; Long Description
-<ul>
-<li>The short description may be the same as what you have in your manifest while the long description is a more in-depth summary of what your app is and what it does</li>
-</ul></li>
-<li>A privacy policy if your app can access, collect, or transmit personal information (data that could be used to identify a person).</li>
-<li>A personal Microsoft account (create one <a href="https://aka.ms/learn-PWA/30Days-3.7/signup.live.com">here</a> if needed)</li>
-<li>$20 to pay for your Partner Center account.This covers the monitoring of your app and prevents spam apps from being submitted. (Google Play Store: $25, Apple App Store: $99)</li>
-<li>The URL to your site.</li>
-</ul>
-<p>With the above four items, you are ready to begin.</p>
-<h2 id="step-1-packaging">Step 1: Packaging</h2>
-<p>In order to package for the Windows store, you are going to want to navigate to <a href="https://aka.ms/learn-PWA/30Days-3.7/pwabuilder.com">pwabuilder.com</a> and enter the url to your web app on the home page.</p>
-<figure>
-<img src="_media/07_pwabuilder_home.png" alt="pwa builder home page" /><figcaption>pwa builder home page</figcaption>
-</figure>
-<p>After a few tests run to verify the quality of your PWA, you’ll receive a report card detailing what you do well and some areas for improvement.</p>
-<figure>
-<img src="_media/07_pwabuilder_rc.png" alt="pwa builder report card page" /><figcaption>pwa builder report card page</figcaption>
-</figure>
-<p>At the bottom of this page, you can press “Next” and you will be at the publishing page of PWABuilder. You can press “Store Package” in the Windows section and you are greeted with a pop up to input a few options.</p>
-<figure>
-<img src="_media/07_pwabuilder_pub.png" alt="pwa builder publish page" /><figcaption>pwa builder publish page</figcaption>
-</figure>
-<p>In a new tab, you are going to want to head over to <a href="https://aka.ms/learn-PWA/30Days-3.7/partner.microsoft.com">Partner Center</a> and register your app.</p>
-<p><strong>It is important that you register your app on Partner Center with the same name you listed in your manifest. When it comes time to upload your app bundles, it will check if the bundle matches the name of the registered app.</strong></p>
-<p>Information on how to register your app can be found <a href="https://aka.ms/learn-PWA/30Days-3.7/blog.pwabuilder.com/docs/publish-a-new-app-to-the-microsoft-store">here</a> and information on <a href="https://aka.ms/learn-PWA/30Days-3.7/blog.pwabuilder.com/docs/finding-your-windows-publisher-info">where</a> to find the necessary Ids can be found here. Once you have inputted your publisher information, you can press generate and download your app bundles.</p>
-<h2 id="step-2-partner-center">Step 2: Partner Center</h2>
-<p>If you are inside of your app on Partner Center, you will see a button that says, “Start your submission”. After clicking on that you will see a list of options you will need to take care of before your submission is ready to be reviewed. Since you made sure to have everything on the checklist above, these sections should be a breeze.</p>
-<figure>
-<img src="_media/07_pc.png" alt="partner center submission page" /><figcaption>partner center submission page</figcaption>
-</figure>
-<p>After completing each task under each headers, your app is ready for review. These tasks will include setting up your product description page, getting your IARC rating, and uploading your app bundles that you got from PWA Builder. The review process takes about 24 hours and the feedback will either be precisely what was wrong with your submission so you can fix it or a congratulations message letting your know that your submission has been processed and your app will be in the store within the next two hours.</p>
-<figure>
-<img src="_media/07_store.png" alt="windows store webboard product description page" /><figcaption>windows store webboard product description page</figcaption>
-</figure>
-<p>PWA Builder helps you to create store ready PWAs with robust descriptions pages: all while keeping the app submission process as simple as possible.</p>
-<h2 id="why-the-microsoft-store">Why the Microsoft Store?</h2>
-<p>The Microsoft store is an excellent place for your app to live. All of your in-app purchases (whether that be through Stripe or a custom payment system) go 100% to you. Microsoft will not take a cut. All of your analytics that you have running for your website will behave seemlessly. And most importantly, PWAs submitted through the Microsoft Store are TRUE PWAs; meaning they are not wrapped in a webview. There will be no “gotchas” or extra hoops to jump through in order for your app to feel native. It will just work. I promise I am not making this up, I submitted my very own app, “Sync’d - a Social Calendar App”, to the Microsoft Store in early February. I downloaded the app and it looked flawless, exactly like I expected. The cherry on top is that my app was reviewed, approved and in the Store in 24 hours.</p>
-<h2 id="wrapping-up">Wrapping Up</h2>
-<p>PWABuilder makes packaging for the Microsoft Store easier than ever. For additional resources on how to package and much more, you can visit the <a href="https://aka.ms/learn-PWA/30Days-3.7/blog.pwabuilder.com">PWABuilder Blog</a> page.</p>]]></description>
-    <pubDate>Sun, 6 Mar 2022 10:44:25 -0800</pubDate>
   </item>
   
 </channel>
