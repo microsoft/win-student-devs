@@ -9,11 +9,17 @@
   <meta name="description" content="For 30 days, we publish articles that aim to introduce developers to Progressive Web App. We have content that covers 0-level to 200-level topics. Each post takes 5-10 minutes to read and is followed by a sample snippet or exercise.">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
   <meta name="theme-color" content="#0d4c73" />
-  <meta content="Learn Progressive Web Apps in 30 Days" itemprop="name" />
-  <meta content="For 30 days, we publish articles that aim to introduce developers to Progressive Web App. We have content that covers 0-level to 200-level topics. Each post takes 5-10 minutes to read and is followed by a sample snippet or exercise." itemprop="description" />
+  <meta itemprop="name" content="Learn Progressive Web Apps in 30 Days" />
+  <meta itemprop="description" content="For 30 days, we publish articles that aim to introduce developers to Progressive Web App. We have content that covers 0-level to 200-level topics. Each post takes 5-10 minutes to read and is followed by a sample snippet or exercise." />
 
-  <meta property="og:url" content="https://microsoft.github.io/win-student-devs/#/30DaysOfPWA/" />
-  <meta property="og:type" content="article" />
+  <meta
+    property="og:url"
+    content="https://microsoft.github.io/win-student-devs/#/30DaysOfPWA/"
+  />
+  <meta
+    property="og:type"
+    content="article"
+  />
   <meta
     property="og:title"
     content="30 Days of PWA - Learning Series about Progressive Web Apps"
@@ -22,11 +28,23 @@
     property="og:description"
     content="For 30 days, we publish articles that aim to introduce developers to Progressive Web App. We have content that covers 0-level to 200-level topics. Each post takes 5-10 minutes to read and is followed by a sample snippet or exercise."
   />
-  <meta property="og:image" content="https://microsoft.github.io/win-student-devs/30DaysOfPWA/_media/social.jpg" />
+  <meta
+    property="og:image"
+    content="https://microsoft.github.io/win-student-devs/30DaysOfPWA/_media/social.jpg"
+  />
 
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta property="twitter:domain" content="microsoft.github.io" />
-  <meta property="twitter:url" content="https://microsoft.github.io/win-student-devs/#/30DaysOfPWA/" />
+  <meta
+    name="twitter:card"
+    content="summary_large_image"
+  />
+  <meta
+    property="twitter:domain"
+    content="microsoft.github.io"
+  />
+  <meta
+    property="twitter:url"
+    content="https://microsoft.github.io/win-student-devs/#/30DaysOfPWA/"
+  />
   <meta
     name="twitter:title"
     content="30 Days of PWA - Learning Series about Progressive Web Apps"
@@ -35,28 +53,19 @@
     name="twitter:description"
     content="For 30 days, we publish articles that aim to introduce developers to Progressive Web App. We have content that covers 0-level to 200-level topics. Each post takes 5-10 minutes to read and is followed by a sample snippet or exercise."
   />
-  <meta name="twitter:image" content="https://microsoft.github.io/win-student-devs/30DaysOfPWA/_media/social.jpg" />
+  <meta
+    name="twitter:image"
+    content="https://microsoft.github.io/win-student-devs/30DaysOfPWA/_media/social.jpg"
+  />
 
   <link href="/feed.xml" rel="alternate" type="application/atom+xml" title="30 Days of PWA feed" />
   <link rel="manifest" href="manifest.json" />
   <link rel="icon" href="30DaysOfPWA/_media/favicon.png" />
-  <!-- Default Theme Style (now commented out)--
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css"> 
-  -->
-
-  <!-- Custom theme options: 
-       1. https://cdn.jsdelivr.net/npm/docsify-themeable@0/dist/css/theme-simple-dark.css
-       2. "//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css" - use vue, buble, dark, or pure
-  -->
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
   <style>
     :root {
-    --base-font-size: 16px;
-    --theme-color   : #eb5757;
-    }
-
-    .content {
-      overflow: auto;
+      --base-font-size: 16px;
+      --theme-color   : #eb5757;
     }
 
     td::before { 
@@ -85,6 +94,19 @@
       margin-top: auto;
     }
 
+    .search .clear-button {
+      background-color: transparent;
+      border: none;
+    }
+
+    .search .clear-button svg {
+      width: 26px;
+      height: 24px;
+    }
+
+    .search .clear-button svg circle {
+      fill: #ccc;
+    }
   </style>
   <!-- End custom style -->
 
@@ -99,38 +121,53 @@
     var config = {
       instrumentationKey: "7e86b45bb02d49bba581a9e26dae47d7-05302068-853c-43e4-a9d5-8eb43302ca62-7388",
       channelConfiguration:{ // Post channel configuration
-          eventsLimitInMem: 50
+        eventsLimitInMem: 50
       },
       propertyConfiguration: { // Properties Plugin configuration 
-      env:"PROD" // Environment can be set to PPE or PROD as needed. 
+        env:"PROD" // Environment can be set to PPE or PROD as needed. 
       },
       webAnalyticsConfiguration:{ // Web Analytics Plugin configuration
         urlCollectQuery:true, 
-          autoCapture: {
-            scroll: true,
-            pageView: true,
-            onLoad: true,
-            onUnload: true,
-            click: true,
-            resize: true,
-            lineage: true,
-            jsError: true
-          }
+        autoCapture: {
+          scroll: true,
+          pageView: true,
+          onLoad: true,
+          onUnload: true,
+          click: true,
+          resize: true,
+          lineage: true,
+          jsError: true
+        }
       }
     }; 
     //Initialize SDK
     analytics.initialize(config, []);
   </script>
 
+  <!-- docsify config -->
   <script>
     window.$docsify = {
+      alias: {
+        '/.*/_navbar.md': '/_navbar.md',
+        '/.*/_sidebar.md': '/_sidebar.md'
+      },
+      auto2top: true,
       name: 'Hello WinDev!',
       repo: 'https://github.com/microsoft/win-student-devs',
       relativePath: true,
-      loadSidebar: true,       // edit _sidebar.md
-      loadNavbar: true,        // edit _navbar.md
+      loadSidebar: true,
+      loadNavbar: true,
+      mergeNavbar: true,
       sidebarDisplayLevel: 1,
-      auto2top: true,
+      search: {
+          noData: {
+            '/': 'No results!',
+          },
+          paths: 'auto',
+          placeholder: {
+            '/': 'Search',
+          }
+        },
       count:{
         countable: true,
         position: 'top',
@@ -147,10 +184,6 @@
       },
     }
   </script>
-  <!-- Docsify v4 --
-  <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
-  <script src="//cdn.jsdelivr.net/npm/docsify@4.12.2"></script>
-  -->
 
   <!-- Hacky fix for scroll to subsection bug on docsify https://github.com/docsifyjs/docsify/issues/351-->
   <script>
@@ -184,12 +217,14 @@
     })(window, document, "clarity", "script", "ae0b3uuj0i");  
   </script>
 
-  <!-- plugins -->
+  <!-- Docsify v4 -- -->
+  <script src="//cdn.jsdelivr.net/npm/docsify@4/lib/docsify.min.js"></script>
+
+  <!-- docsify plugins -->
   <script src="//cdn.jsdelivr.net/npm/docsify-sidebar-collapse/dist/docsify-sidebar-collapse.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/docsify-count@latest/dist/countable.min.js"></script>
-  <!-- Google Analytics -->
-  <script src="//cdn.jsdelivr.net/npm/docsify/lib/docsify.min.js" data-ga="UA-218629596-1"></script>
-  <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/ga.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/docsify@4/lib/plugins/search.min.js"></script>
+
   <!-- docsify-themeable (latest v0.x.x) -->
   <script src="https://cdn.jsdelivr.net/npm/docsify-themeable@0/dist/js/docsify-themeable.min.js"></script>
   <!-- register as PWA -->
