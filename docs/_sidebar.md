@@ -34,7 +34,7 @@
   - [4.5 PWA maintainability - Using web components](/30DaysOfPWA/platforms-practices/05.md)
   - [4.6 Best practices for PWA authentication](/30DaysOfPWA/platforms-practices/06.md)
   - [4.7 Best practices for PWA UI/UX](/30DaysOfPWA/platforms-practices/07.md)
-- [**5. Summary**](/30DaysOfPWA/summary)
+- [**5. Summary**](/30DaysOfPWA/summary.md)
 ---
 - [💬 Join the discussion on Github](https://aka.ms/learn-pwa/30Days-ghd)
 - [🗣 Help us grow with your feedback](https://aka.ms/learn-pwa/30Days-survey)
