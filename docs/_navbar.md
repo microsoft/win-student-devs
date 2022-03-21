@@ -3,3 +3,6 @@
   - [Microsoft Edge](https://docs.microsoft.com/microsoft-edge/progressive-web-apps-chromium/)
   - [Playwright](https://playwright.dev)
   - [webhint](https://webhint.io)
+- RSS
+  - [GitHub](https://microsoft.github.io/win-student-devs/feed.xml)
+  - [dev.to](https://dev.to/feed/tag/pwabuilder)
