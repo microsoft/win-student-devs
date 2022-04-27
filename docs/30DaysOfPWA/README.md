@@ -4,7 +4,7 @@
 
 ## What is this project?
 
-Join us for #30Days of strucutured content and resources to help you explore the fascinating world of Progressive Web Apps (PWA). 
+Join us for #30Days of structured content and resources to help you explore the fascinating world of Progressive Web Apps (PWA). 
 * `Core Concepts`: Learn the fundamental concepts and components of a PWA.
 * `Advanced Capabilities`: Explore web capabilities APIs, status, and examples of use.
 * `Developer Tools`: Learn about key authoring, debugging, auditing, testing and packaging tools for PWA.
