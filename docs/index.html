@@ -62,6 +62,8 @@
   <link rel="manifest" href="manifest.json" />
   <link rel="icon" href="30DaysOfPWA/_media/favicon.png" />
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.0.0-beta.75/dist/themes/light.css" />
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.0.0-beta.75/dist/shoelace.js"></script>
   <style>
     :root {
       --base-font-size: 16px;
@@ -126,6 +128,19 @@
 
     .search .clear-button svg circle {
       fill: #ccc;
+    }
+
+    .pwa-summit-banner strong {
+      color: var(--sl-color-green-950);
+      font-size: medium;
+    }
+
+    .pwa-summit-banner a {
+      color: var(--sl-color-green-700);
+    }
+
+    .pwa-summit-banner {
+      margin-bottom: 50px;
     }
   </style>
   <!-- End custom style -->
@@ -204,6 +219,24 @@
         },
         isExpected: true
       },
+      plugins: [
+      function(hook) {
+        var summitBanner = [
+          '<sl-alert open variant="success" class="pwa-summit-banner">',
+          '<sl-icon slot="icon" name="globe2"></sl-icon>',
+          '<div>',
+          '<strong>Upcoming: PWA Summit on October 5th! &#x1F604; </strong><br />',
+          '<a href="https://pwasummit.org/">PWA Summit</a> is an online conference dedicated entirely to helping developers succeed with Progressive Web Apps. ',
+          'If you have interest in speaking, you can submit a talk <a href="https://sessionize.com/pwa-summit-2022"> here.</a> Sign ups will be open through July 13th.',
+          '</div>',
+          '</sl-alert>'
+        ].join('');
+
+        hook.afterEach(function(html) {
+            return summitBanner + html;
+        });
+    }
+      ]
     }
   </script>
 
