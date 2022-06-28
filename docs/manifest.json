@@ -11,11 +11,11 @@
     "display": "standalone",
     "background_color": "#ffffff",
     "theme_color": "#F25122",
-    "scope": "/win-student-devs",
+    "scope": "/",
     "description": "A collection of articles and resources to help you learn more about Progressive Web Apps (PWA)",
     "icons": [
         {
-            "src": "/30DaysOfPWA/_media/800x800/800x800.png",
+            "src": "https://microsoft.github.io/win-student-devs/30DaysOfPWA/_media/800x800/800x800.png",
             "sizes": "800x800",
             "type": "image/png"
         }
