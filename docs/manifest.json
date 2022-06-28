@@ -11,7 +11,7 @@
     "display": "standalone",
     "background_color": "#ffffff",
     "theme_color": "#F25122",
-    "scope": "/",
+    "scope": "/win-student-devs",
     "description": "A collection of articles and resources to help you learn more about Progressive Web Apps (PWA)",
     "icons": [
         {
