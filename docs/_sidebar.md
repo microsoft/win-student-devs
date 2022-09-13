@@ -38,3 +38,4 @@
 ---
 - [💬 Join the discussion on Github](https://aka.ms/learn-pwa/30Days-ghd)
 - [🗣 Help us grow with your feedback](https://aka.ms/learn-pwa/30Days-survey)
+- [🔗 Check out other series in #30DaysHub](https://aka.ms/30DaysOf)
