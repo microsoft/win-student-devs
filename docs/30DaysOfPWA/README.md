@@ -1,3 +1,5 @@
+## _Please note that this series is now archived._
+
 # Hello, #30DaysOfPWA!
 
 ![30DaysOfPWA](_media/branding.png)
